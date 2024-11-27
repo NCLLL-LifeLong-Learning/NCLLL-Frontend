@@ -1,3 +1,11 @@
 {
-    "Hello World" : "Hello World"
+    "Hello World" : "Hello World",
+    "quick_link" : "Quick Link",
+    "khmer" : "Khmer",
+    "english" : "English",
+    "home" : "Home",
+    "about_nclll" : "About NCLLL",
+    "program" : "Program",
+    "focus_areas" : "Focus Areas",
+    "resourcess" : "Resources"
 }
