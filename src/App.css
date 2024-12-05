@@ -1,0 +1,23 @@
+.std-layout {
+  min-block-size: 100vh;
+  inline-size: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.std-header {
+  min-block-size: 120px;
+}
+
+.std-content {
+  flex: 1;
+}
+
+.std-footer {
+    min-block-size: 200;
+}
+
+.header-logo {
+    inline-size: 50px;
+    block-size: 50px;
+}
