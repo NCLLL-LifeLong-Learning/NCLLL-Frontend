@@ -1,12 +1,13 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
+import OurProgram from '../components/OurProgram/OurProgram';
 
 export default function HomePage() {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   return (
     <div className='w-full'>
-      <h1>{t('nothing')}</h1>
+      <OurProgram />
     </div>
   )
 }
