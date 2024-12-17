@@ -42,3 +42,105 @@
   font-size: 16px;
   font-weight: 700;
 }
+
+.std-banner-image {
+  width: 100%;
+  aspect-ratio: 2.3/1;
+}
+
+.custom-blur {
+  overflow: hidden;
+  border-radius: 2rem;
+  position: relative;
+}
+
+.custom-blur:before {
+  content: '';
+  background-color: #000;
+  opacity: 0.3;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+:where(.root-banner-carousel).ant-carousel .slick-dots-bottom {
+  margin-bottom: -30px;
+  bottom: 0 !important;
+}
+
+:where(.root-banner-carousel).ant-carousel .slick-dots li.slick-active button {
+  background: none !important;
+  background-color: var(--primary-color) !important;
+  border-radius: 20px !important;
+  height: 10px !important;
+  width: 24px !important;
+}
+
+:where(.root-banner-carousel).ant-carousel .slick-dots button {
+  background: none !important;
+  background-color: black !important;
+  border-radius: 1rem !important;
+  height: 10px !important;
+  width: 10px !important;
+}
+
+:where(.root-banner-carousel).ant-carousel .slick-dots li {
+  width: fit-content !important;
+}
+
+:where(.root-segmentedTab).ant-segmented {
+  border-radius: 5rem !important;
+  overflow: hidden !important;
+  padding: 10px !important;
+}
+
+:where(.root-segmentedTab).ant-segmented .ant-segmented-thumb {
+  border-radius: 5rem !important;
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+:where(.root-segmentedTab).ant-segmented .ant-segmented-item {
+  border-radius: 5rem !important;
+  overflow: hidden !important;
+  padding: 8px 40px !important;
+}
+
+:where(.root-segmentedTab).ant-segmented .ant-segmented-item {
+  color: var(--primary-color) !important;
+}
+:where(.root-segmentedTab).ant-segmented
+  .ant-segmented-item.ant-segmented-item-selected {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+:where(.root-segmentedTab).ant-segmented .ant-segmented-item-label {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+:where(.root-segmented-carousel).ant-carousel .slick-track {
+  padding: 20px 0px !important;
+}
+
+.std-card-image {
+  width: 100%;
+  aspect-ratio: 1.3/1;
+}
+
+.std-card-title {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.std-card-wrapper {
+  overflow: hidden !important;
+  border-radius: 10px;
+  box-shadow: 0px 1px 2px 0px #0000004d, 0px 2px 6px 2px #00000026;
+  width: 100%;
+  aspect-ratio: 1/1.05;
+}
