@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import React, { Suspense } from 'react';
 
 const WebDefaultLayout = React.lazy(() => import('./layouts/DefaultLayout'));
-const WebHomePage = React.lazy(() => import('./pages/HomePage'));
+const WebHomePage = React.lazy(() => import('./pages/Website/HomePage'));
 
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 

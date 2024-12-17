@@ -6,6 +6,7 @@
   --primary-color: #0f69b7;
   --white-color: #ffffff;
   --green-color: #3a9207;
+  --linear-background: linear-gradient(141.08deg, #2E84F1 -11.75%, #085B01 112.29%);
 }
 
 * {
@@ -18,6 +19,7 @@
 }
 
 body {
+  background-color: var(--white-color);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",

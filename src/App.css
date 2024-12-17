@@ -1,3 +1,9 @@
+.std-container {
+  max-width: 85vw;
+  margin: 0px auto;
+  width: 100%;
+}
+
 .std-layout {
   min-block-size: 100vh;
   inline-size: 100%;
@@ -6,6 +12,7 @@
 }
 
 .std-header {
+  padding: 20px;
   min-block-size: 120px;
 }
 
@@ -14,10 +21,24 @@
 }
 
 .std-footer {
-    min-block-size: 200;
+  min-block-size: 200;
 }
 
 .header-logo {
-    inline-size: 50px;
-    block-size: 50px;
+  inline-size: 80px;
+  block-size: 80px;
+  object-fit: contain;
+}
+
+.search-input {
+  width: 194px;
+  height: 34px;
+  border-radius: 5rem;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.std-menu-link {
+  font-size: 16px;
+  font-weight: 700;
 }
