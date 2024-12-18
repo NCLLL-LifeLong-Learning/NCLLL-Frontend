@@ -1,0 +1,19 @@
+name: Sync Repositories
+
+on:
+  push:
+    branches:
+      - test-sync-repo  # Trigger on pushes to the 'main' branch
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@v3
+
+      - name: Push to Dev Server
+        run: |
+          git remote add git@github.com:DamonKert/NCLLL-Frontend.git
+          git push --mirror client1
+
