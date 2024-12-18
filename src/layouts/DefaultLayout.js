@@ -3,6 +3,7 @@ import { BASE_ASSET_URL } from '../constants/Url'
 import { Outlet } from 'react-router'
 import HeaderNavigationBar from '../components/NavigationBar/HeaderNavigationBar'
 import { Input } from 'antd'
+import { useTranslation } from 'react-i18next'
 import AmericanSvg from '../assets/svgs/AmericanSvg'
 import CambodiaSvg from '../assets/svgs/CambodiaSvg'
 import FacebookSvg from '../assets/svgs/FacebookSvg'
@@ -11,6 +12,7 @@ import YoutubeSvg from '../assets/svgs/YoutubeSvg'
 import SearchSvg from '../assets/svgs/SearchSvg'
 
 export default function DefaultLayout() {
+  const { t, i18n } = useTranslation();
 
   const socialMedia = [
     {
@@ -78,8 +80,12 @@ export default function DefaultLayout() {
             <div className='flex gap-[2rem] items-center'>
               <Input className='search-input' placeholder='Search' suffix={<SearchSvg width='14px' height='14px' color='black' />} />
               <div className='flex gap-[0.75rem]'>
-                <AmericanSvg width='20px' height='20px' />
-                <CambodiaSvg width='20px' height='20px' />
+                <button onClick={() => i18n.changeLanguage('en')}>
+                  <AmericanSvg width='20px' height='20px' />
+                </button>
+                <button onClick={() => i18n.changeLanguage('kh')}>
+                  <CambodiaSvg width='20px' height='20px' />
+                </button>
               </div>
               <div className='flex gap-[1.25rem]'>
                 {

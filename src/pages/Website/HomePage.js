@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import BannerCarousel from '../../components/Carousel/BannerCarousel';
 import OurProgram from '../../components/OurProgram/OurProgram';
 import SegmentedTabs from '../../components/Segmented/SegmentedTabs';
+import OurPartner from '../../components/OurPartner/OurPartner';
+import BecomePartner from '../../components/OurPartner/BecomePartner';
 
 export default function HomePage() {
   const { t } = useTranslation();
@@ -15,8 +17,11 @@ export default function HomePage() {
       <div className='p-[30px]'>
         <SegmentedTabs />
       </div>
-      <div>
-        <OurProgram />
+      <div className='p-[30px]'>
+        <OurPartner />
+      </div>
+       <div className='p-[30px]'>
+        <BecomePartner />
       </div>
     </div>
   )
