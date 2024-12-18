@@ -1,11 +1,8 @@
 name: Deploy Develop
 
 on:
-  pull_request:
-    types:
-      - closed # Trigger when a pull request is closed
-    branches:
-      - test-sync-repo  # Trigger on pushes to the 'main' branch
+  push:
+      branches: [ "main" ]# Trigger on pushes to the 'main' branch
   workflow_dispatch:
 
 jobs:
