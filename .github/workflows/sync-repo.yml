@@ -1,21 +1,21 @@
-name: NCLLL-Frontend
+name: Deploy Develop
 
 on:
-  pull_request:
-    types:
-      - closed # Trigger when a pull request is closed
-    branches:
-      - test-sync-repo  # Trigger on pushes to the 'main' branch
+  push:
+      branches: [ "main" ]# Trigger on pushes to the 'main' branch
   workflow_dispatch:
 
 jobs:
-  sync:
+  repo-sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main repository
-        uses: actions/checkout@v3
-
-      - name: Push to Dev Server
-        run: |
-          git remote add develop git@github.com:DamonKert/NCLLL-Frontend.git
-          git push --mirror develop
+    - uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+    - name: repo-sync
+      uses: repo-sync/github-sync@v2
+      with:
+        source_repo: "https://x-access-token:${{ secrets.DEVELOP_REPOSITORY_ACCESS_KEY }}@github.com/owner/source-repo.git"
+        source_branch: "main"
+        destination_branch: "main"
+        github_token: ${{ secrets.DEVELOP_REPOSITORY_ACCESS_KEY }}
