@@ -6,16 +6,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  sync:
+  repo-sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main repository
-        uses: actions/checkout@v3
-
-      - name: Push to Dev Server
-        env:
-         DEVELOP_REPOSITORY_ACCESS_KEY: ${{ secrets.DEVELOP_REPOSITORY_ACCESS_KEY }}
-        run: |
-          echo "Using PAT: ${DEVELOP_REPOSITORY_ACCESS_KEY:0:4}****************"
-          git remote add develop https://x-access-token:${DEVELOP_REPOSITORY_ACCESS_KEY}@github.com/DamonKert/NCLLL-Frontend.git
-          git push --mirror develop
+    - uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+    - name: repo-sync
+      uses: repo-sync/github-sync@v2
+      with:
+        source_repo: "https://x-access-token:${{ secrets.DEVELOP_REPOSITORY_ACCESS_KEY }}@github.com/owner/source-repo.git"
+        source_branch: "main"
+        destination_branch: "main"
+        github_token: ${{ secrets.DEVELOP_REPOSITORY_ACCESS_KEY }}
