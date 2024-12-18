@@ -17,5 +17,5 @@ jobs:
 
       - name: Push to Dev Server
         run: |
-          git remote add git@github.com:DamonKert/NCLLL-Frontend.git
-          git push --mirror client1
+          git remote add develop git@github.com:DamonKert/NCLLL-Frontend.git
+          git push --mirror develop
