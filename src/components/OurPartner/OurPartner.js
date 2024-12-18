@@ -6,7 +6,6 @@ import DVV_International from "../../assets/images/dvv_international.png";
 const OurPartner = () => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
-  console.log(currentLanguage, 'language');
 
   const partner = {
     paragraph: "Our focus areas encourage lifelong learning through flexible, inclusive and comprehensive initiatives that meet the changing need.",

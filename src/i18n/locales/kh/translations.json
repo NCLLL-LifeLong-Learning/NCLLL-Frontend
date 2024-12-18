@@ -8,5 +8,9 @@
     "program" : "Program",
     "focus_areas" : "Focus Areas",
     "resourcess" : "Resources",
-    "our_partner" : "Our Partner"
+    "our_partner" : "Our Partner",
+    "become_our_partner" : "Become Our Partner",
+    "email" : "Email",
+    "possible_area_of_collaboration": "Possible area of collaboration",
+    "describ_scope_of_work": "Describe scope of work"
 }
