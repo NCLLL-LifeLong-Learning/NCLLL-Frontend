@@ -16,5 +16,6 @@ jobs:
         env:
          DEVELOP_REPOSITORY_ACCESS_KEY: ${{ secrets.DEVELOP_REPOSITORY_ACCESS_KEY }}
         run: |
+          echo "Using PAT: ${DEVELOP_REPOSITORY_ACCESS_KEY:0:4}****************"
           git remote add develop https://x-access-token:${DEVELOP_REPOSITORY_ACCESS_KEY}@github.com/DamonKert/NCLLL-Frontend.git
           git push --mirror develop
