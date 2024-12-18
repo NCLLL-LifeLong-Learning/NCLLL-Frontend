@@ -1,4 +1,4 @@
-name: NCLLL-Frontend
+name: Deploy Develop
 
 on:
   pull_request:
@@ -16,6 +16,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Push to Dev Server
+        env:
+         DEVELOP_REPOSITORY_ACCESS_KEY: ${{ secrets.DEVELOP_REPOSITORY_ACCESS_KEY }}
         run: |
-          git remote add develop git@github.com:DamonKert/NCLLL-Frontend.git
+          git remote add develop https://x-access-token:${DEVELOP_REPOSITORY_ACCESS_KEY}@github.com/DamonKert/NCLLL-Frontend.git
           git push --mirror develop
