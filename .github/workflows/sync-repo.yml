@@ -6,6 +6,7 @@ on:
       - closed # Trigger when a pull request is closed
     branches:
       - test-sync-repo  # Trigger on pushes to the 'main' branch
+  workflow_dispatch:
 
 jobs:
   sync:
