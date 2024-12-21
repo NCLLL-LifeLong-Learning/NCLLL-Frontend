@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --primary-btn-color: #0F69B780;
   --primary-color: #0F69B7;
   --white-color: #ffffff;
   --green-color: #3a9207;
