@@ -40,7 +40,6 @@ export default function SegmentedTabs() {
                     swipeToSlide
                     draggable
                     slidesToShow={3}
-                    verticalSwiping
                     pauseOnHover
                     centerMode
                     centerPadding='150px'

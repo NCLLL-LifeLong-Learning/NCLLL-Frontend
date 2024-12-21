@@ -74,7 +74,7 @@ export default function DefaultLayout() {
 
   return (
     <div className='std-layout'>
-      <div className='std-header'>
+      <div className='std-header shadow-md'>
         <div className='std-container'>
           <div className='flex justify-end'>
             <div className='flex gap-[2rem] items-center'>
