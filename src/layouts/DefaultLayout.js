@@ -43,9 +43,25 @@ export default function DefaultLayout() {
       }],
     }, {
       title: "Programs",
-      link: "",
+      link: "/program",
       children: [{
-        title: "Enagement",
+        title: "National Lifelong Learning Forum",
+        link: "",
+        disabled: false,
+      }, {
+        title: "Lifelong Learning Center",
+        link: "",
+        disabled: false,
+      }, {
+        title: "Lifelong Learning Club",	
+        link: "",
+        disabled: false,
+      }, {
+        title: "Lifelong Learning City",	
+        link: "",
+        disabled: false,
+      }, {
+        title: "Engagement",	
         link: "",
         disabled: false,
       }],
