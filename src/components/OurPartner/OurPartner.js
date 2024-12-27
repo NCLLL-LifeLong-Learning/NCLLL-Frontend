@@ -12,7 +12,6 @@ const OurPartner = () => {
 
   const partner = {
     paragraph: "Our focus areas encourage lifelong learning through flexible, inclusive and comprehensive initiatives that meet the changing need.",
-    paragraphKH: "តំបន់ផ្តោតអារម្មណ៍របស់យើងលើកទឹកចិត្តដល់ការរៀនសូត្រពេញមួយជីវិត តាមរយៈគំនិតផ្តួចផ្តើមដែលអាចបត់បែនបាន រួមបញ្ចូល និងទូលំទូលាយ ដែលបំពេញតម្រូវការផ្លាស់ប្តូរ។"
   };
 
 
@@ -39,7 +38,7 @@ const OurPartner = () => {
       <div className="col-span-2 flex flex-col justify-center gap-[25px]">
         <h1 className="std-title m-0">{t("our_partner")}</h1>
         <div>
-          <p className="std-content m-0">{currentLanguage === "en" ? partner.paragraph : partner.paragraphKH}</p>
+          <p className="std-content m-0">{partner.paragraph}</p>
         </div>
         <Button className="std-btn">Become a partner</Button>
       </div>

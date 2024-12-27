@@ -5,19 +5,17 @@ import { Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
 
 const BecomePartner = () => {
-  const { t, i18n } = useTranslation();
-  const currentLanguage = i18n.language;
+  const { t } = useTranslation();
 
   const becomePartner = {
     paragraph: "Seeking for Collaboration.",
-    paragraphKH: "ស្វែងរកកិច្ចសហប្រតិបត្តិការ។"
   };
 
   return (
     <div className="grid grid-cols-2 gap-6 px-[5%]">
       <div>
         <h1 className="mb-2 text-4xl font-bold text-[#0F69B7]">{t("become_our_partner")}</h1>
-        <p className="pb-4 text-wrap text-base">{currentLanguage === "en" ? becomePartner.paragraph : becomePartner.paragraphKH}</p>
+        <p className="pb-4 text-wrap text-base">{becomePartner.paragraph}</p>
         <form action="" className="flex flex-col justify-center items-center">
           <Input
             type="text"

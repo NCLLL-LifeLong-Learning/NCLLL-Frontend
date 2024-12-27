@@ -13,7 +13,7 @@ export default function HomePage() {
 
   return (
     <div className='w-full'>
-      <div>
+      <div className='pt-[1rem]'>
         <BannerCarousel />
       </div>
       <div className='pt-[30px]'>

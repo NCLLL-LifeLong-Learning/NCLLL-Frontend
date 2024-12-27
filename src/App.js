@@ -21,6 +21,10 @@ function App() {
           <Route element={<Suspense><WebDetailsLayout /></Suspense>}>
             <Route path='/program' element={<Suspense><WebOurProgramPage /></Suspense>} />
           </Route>
+
+          <Route element={<Suspense><WebDetailsLayout /></Suspense>}>
+            <Route path='/aboutus' element={<Suspense><WebOurProgramPage /></Suspense>} />
+          </Route>
         </Route>
 
         {/* Admin */}
