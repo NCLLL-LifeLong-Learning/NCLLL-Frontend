@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import { DATE_FORMAT } from "../constants/ConstantsKey";
 import _ from "lodash";
 
 export const showFormatDate = (date) => {
@@ -12,11 +11,11 @@ export const showFormatDate = (date) => {
         return "Invaild Date";
     }
 
-    return date.format(DATE_FORMAT);
+    return date.format("MM-DD-YYYY");
 }
 
 //Follow Flow Tailwind Responsive
-export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg: {}, xl: {} }) => {
+export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg: {}, xl: {}, xxl: {} }) => {
     const responsive = [];
     if (!_.isEmpty(settings.xxs)) {
         responsive.push({
@@ -53,12 +52,20 @@ export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg:
         })
     }
 
-    if (!_.isEmpty(settings.lx)) {
+    if (!_.isEmpty(settings.xl)) {
         responsive.push({
             breakpoint: 1535,
             settings: settings.xl,
         })
     }
 
+    if (!_.isEmpty(settings.xxl)) {
+        responsive.push({
+            breakpoint: 1800,
+            settings: settings.xxl,
+        })
+    }
+
+    
     return responsive;
 }

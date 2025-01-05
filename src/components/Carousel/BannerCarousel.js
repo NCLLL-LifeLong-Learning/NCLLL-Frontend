@@ -2,6 +2,7 @@ import { Carousel } from 'antd'
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
+import { antdResponsive } from '../../utils/Utils';
 
 export default function BannerCarousel() {
     const [dataSource, setDataSource] = useState([
@@ -35,6 +36,17 @@ export default function BannerCarousel() {
     return (
         <div className='pb-[40px]'>
             <Carousel
+                responsive={antdResponsive({
+                    lg: {
+                        centerPadding: '40px'
+                    },
+                    md: {
+                        centerPadding: '40px'
+                    },
+                    xxs: {
+                        centerPadding: '15px'
+                    }
+                })}
                 rootClassName='root-banner-carousel'
                 autoplay
                 swipeToSlide
@@ -44,13 +56,13 @@ export default function BannerCarousel() {
                 pauseOnHover
                 pauseOnDotsHover
                 centerMode
-                centerPadding='150px'
+                centerPadding='100px'
                 dotPosition='bottom'
                 dots={true}
             >
                 {
                     dataSource.map(data => (
-                        <div className='px-[15px]'>
+                        <div className='px-[5px] md:px-[15px]'>
                             <div className='custom-blur'>
                                 <img className="std-banner-image" src={data.imageUrl} alt={data.imageUrl} />
                             </div>

@@ -1,50 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import ITSTEPAcademy from "../../assets/images/step_academy.png";
-import DVV_International from "../../assets/images/dvv_international.png";
+import React from "react";
 import { Button } from "antd";
 import AutoScroll from "../AutoScroll/AutoScroll";
 
-const OurPartner = () => {
-  const { t, i18n } = useTranslation();
-  const [dataSource, setDataSource] = useState([]);
-  const currentLanguage = i18n.language;
-
-  const partner = {
-    paragraph: "Our focus areas encourage lifelong learning through flexible, inclusive and comprehensive initiatives that meet the changing need.",
-  };
-
-
-  const fetchData = async () => {
-    const res = [];
-    const tempName = ["dvv_international.png", "step_academy.png"];
-
-    for (let i = 0; i < 20; i++) {
-      res.push({
-        _id: i,
-        imageUrl: "/assets/images/partner/" + tempName[i % 2],
-      });
-    }
-
-    setDataSource([...res]);
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, [])
+const OurPartner = ({ dataSource, description, title, onClick }) => {
 
   return (
-    <div className="grid grid-cols-4 gap-[20%] px-[5%] min-h-[400px]">
-      <div className="col-span-2 flex flex-col justify-center gap-[25px]">
-        <h1 className="std-title m-0">{t("our_partner")}</h1>
+    <div className="flex flex-col-reverse sm:grid grid-cols-4 gap-[30px] sm:gap-[10%] px-[5%] min-h-[150px] sm:min-h-[400px]">
+      <div className="w-full col-span-2 flex flex-col justify-center gap-[25px]">
+        <h1 className="std-title m-0">{title}</h1>
         <div>
-          <p className="std-content m-0">{partner.paragraph}</p>
+          <p className="std-content m-0">{description}</p>
         </div>
-        <Button className="std-btn">Become a partner</Button>
+        <Button className="std-btn" onClick={onClick}>Become a partner</Button>
       </div>
-      <div className="col-span-2 space-y-[30px] overflow-hidden max-w-[100%]">
-        <AutoScroll dataSource={dataSource} />
-        <AutoScroll dataSource={dataSource} scroll={"right"} className="flex-row-reverse" />
+      <div className="w-full col-span-2 space-y-0 sm:space-y-[30px] overflow-hidden max-w-[100%]">
+        <AutoScroll dataSource={dataSource} className="!hidden sm:!flex" />
+        <AutoScroll dataSource={dataSource} scroll={"right"} className="!hidden sm:!flex" />
         <AutoScroll dataSource={dataSource} />
       </div>
     </div>

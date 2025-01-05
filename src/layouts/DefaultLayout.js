@@ -91,7 +91,7 @@ export default function DefaultLayout() {
   return (
     <div className='std-layout'>
       <div className='std-header shadow-md'>
-        <div className='std-container'>
+        {/* <div className='std-container'>
           <div className='flex justify-end'>
             <div className='flex gap-[2rem] items-center'>
               <Input className='search-input' placeholder='Search' suffix={<SearchSvg width='14px' height='14px' color='black' />} />
@@ -116,7 +116,7 @@ export default function DefaultLayout() {
             <img className='header-logo' src={BASE_ASSET_URL + "/Logo.png"} alt='NCLL Logo' />
             <HeaderNavigationBar menu={menu} />
           </div>
-        </div>
+        </div> */}
       </div>
       <div className='std-content'>
         <Outlet />
