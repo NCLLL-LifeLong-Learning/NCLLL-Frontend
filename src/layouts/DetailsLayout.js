@@ -1,17 +1,14 @@
-import { Tree } from 'antd';
+import { Breadcrumb, Tree } from 'antd';
 import React, { useState } from 'react'
 import { Outlet } from 'react-router';
-
-const getTreeTitle = (title, isChild, isActive) => {
-    if (isChild) {
-        return <div className={`menu-tree-child ${isActive && "active"}`}>{title}</div>
-    }
-    return <div className={`menu-tree-title ${isActive && "active"}`}>{title}</div>
-}
+import { getTreeTitle } from '../utils/Utils';
+import { AiOutlineHome } from "react-icons/ai";
+import ArrowSvg from '../assets/svgs/ArrowSvg';
 
 export default function DetailsLayout() {
     const [menu, setMenu] = useState();
     const [treeTitle, setTreeTitle] = useState("Documents");
+    const [treeDescription, setTreeDescription] = useState("Documents");
     const [activeKeys, setActiveKeys] = useState(["Laws & Regulation"]);
     const [treeData, setTreeData] = useState([
         {
@@ -82,9 +79,14 @@ export default function DetailsLayout() {
     };
 
     const contextValue = {
-        title: "Programs",
-        description: "Dynamic content for this page",
+        title: treeTitle,
+        setTitle: (value) => setTreeTitle(value),
+        description: treeDescription,
+        setTreeDescription: (value) => setTreeDescription(value),
         menu: menu,
+        setTreeData: (value) => setTreeData([...value]),
+        activeKeys: activeKeys,
+        setActiveKeys: (value) => setActiveKeys(value),
         onChildAction: handleChildAction, // Function passed to child
     };
 
@@ -127,9 +129,35 @@ export default function DetailsLayout() {
 
     return (
         <div>
-            <header>
+            <div className='h-[260px] text-white flex justify-center items-center' style={{ background: "var(--detail-header-background)" }}>
+                <div className='max-w-[800px] text-center gap-[20px] flex flex-col'>
+                    <div className='std-title !text-white'>{treeTitle}</div>
+                    <div className='std-content'>{treeDescription}</div>
+                </div>
+            </div>
 
-            </header>
+            <div className='bg-white shadow-md'>
+                <div className='std-container h-[50px] flex items-center'>
+                    <Breadcrumb
+                        className='list-center breadcrumb-custom'
+                        separator={<ArrowSvg className="size-[16px]" transform="scale(-1)" />}
+                        items={[
+                            {
+                                href: '/',
+                                title: <AiOutlineHome className='size-[24px]' />,
+                            },
+                            {
+                                href: '',
+                                title: treeTitle,
+                            },
+                            ...activeKeys.map(i => ({
+                                href: '',
+                                title: i,
+                            })),
+                        ]}
+                    />
+                </div>
+            </div>
             <div className='grid grid-cols-12 gap-4'>
                 <div className='col-span-2 ps-[10px]' style={{ backgroundColor: '#0F69B7', color: "white" }}>
                     <h1 className='p-[20px] text-[30px] text-center m-0'>{treeTitle}</h1>

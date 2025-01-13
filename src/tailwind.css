@@ -6,4 +6,7 @@
   .full-flex {
     @apply flex flex-col w-full flex-1;
   }
+  .icons-container {
+    @apply no-underline cursor-pointer flex items-center;
+  }
 }
