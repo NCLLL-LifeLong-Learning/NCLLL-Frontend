@@ -2,9 +2,9 @@ import React from 'react'
 import { SvgProp } from './SvgProps'
 
 export default function PinSvg(props = SvgProp) {
-    const { height, width, color, backgroundColor } = props;
+    const { height, width, color, className, backgroundColor } = props;
     return (
-        <svg width={width} height={height} viewBox="0 0 12 14" style={{ color: color, backgroundColor: backgroundColor }} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <svg width={width} height={height} className={className} viewBox="0 0 12 14" style={{ color: color, backgroundColor: backgroundColor }} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 -0.00415039C4.54184 -0.00243016 3.14389 0.577585 2.11282 1.60866C1.08174 2.63974 0.501724 4.03769 0.500003 5.49585C0.498663 6.6874 0.887857 7.84655 1.608 8.79585C1.608 8.79585 1.758 8.99335 1.7825 9.02185L6 13.9958L10.2195 9.01935C10.2415 8.99285 10.392 8.79585 10.392 8.79585L10.3925 8.79435C11.1122 7.84539 11.5012 6.68682 11.5 5.49585C11.4983 4.03769 10.9183 2.63974 9.88719 1.60866C8.85611 0.577585 7.45817 -0.00243016 6 -0.00415039ZM6 7.49585C5.60444 7.49585 5.21776 7.37855 4.88886 7.15879C4.55996 6.93903 4.30362 6.62667 4.15224 6.26122C4.00087 5.89576 3.96126 5.49363 4.03843 5.10567C4.1156 4.71771 4.30608 4.36134 4.58579 4.08164C4.86549 3.80193 5.22186 3.61145 5.60982 3.53428C5.99778 3.45711 6.39992 3.49672 6.76537 3.64809C7.13082 3.79947 7.44318 4.05581 7.66294 4.38471C7.88271 4.71361 8 5.10029 8 5.49585C7.99934 6.02608 7.78842 6.5344 7.41349 6.90933C7.03856 7.28426 6.53023 7.49519 6 7.49585Z" fill="currentColor" />
         </svg>
     )

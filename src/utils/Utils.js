@@ -69,3 +69,10 @@ export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg:
     
     return responsive;
 }
+
+export const getTreeTitle = (title, isChild, isActive) => {
+    if (isChild) {
+        return <div className={`menu-tree-child ${isActive && "active"}`}>{title}</div>
+    }
+    return <div className={`menu-tree-title ${isActive && "active"}`}>{title}</div>
+}

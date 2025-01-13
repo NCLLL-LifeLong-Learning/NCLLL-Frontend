@@ -1,9 +1,30 @@
+@font-face {
+  font-family: 'Moul';
+  src: url('./assets/fonts/Moul-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Moul-Bold';
+  src: url('./assets/fonts/KantumruyPro-Bold.ttf') format('truetype');
+}
+
+
 :root {
   --primary-btn-color: #0F69B780;
   --primary-color: #0F69B7;
   --white-color: #ffffff;
   --green-color: #3a9207;
-  --linear-background: linear-gradient(141.08deg, #2E84F1 -11.75%, #085B01 112.29%);
+  --detail-header-background: linear-gradient(92.25deg, rgba(15, 105, 183, 0.7) 0%, rgba(58, 146, 7, 0.7) 100%);
+  --submenu-background: linear-gradient(169.15deg, #EEEEEE -51.95%, #D9EDFF 113.76%);
+  --footer-background: linear-gradient(95.06deg, rgba(15, 105, 183, 0.7) -0.9%, rgba(8, 91, 1, 0.7) 100%);
+}
+
+.font-english-700 {
+  font-family: "Moul-Bold" !important;
+}
+
+.font-khmer {
+  font-family: "Moul" !important;
 }
 
 * {
