@@ -15,7 +15,7 @@ export default function GuardLayout(props) {
         setTitle(title);
         setTreeDescription(description);
         setTreeData([...treeData]);
-    }, [])
+    }, [route, title, description])
 
     useEffect(() => {
         if (location.pathname) {
@@ -28,7 +28,7 @@ export default function GuardLayout(props) {
             setActiveKeys([currentPage.key]);
             setCurrentTitle(currentPage.label);
         }
-    }, [location.pathname])
+    }, [location, location.pathname])
 
     const contextValue = {
         subTitle: currentTitle,
