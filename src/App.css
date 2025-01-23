@@ -523,6 +523,17 @@
   font-weight: 400;
 }
 
+.mission-content {
+  line-height: 25px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.mission-title {
+  font-size: 48px;
+  font-weight: 600;
+}
+
 /* responsive base on tailwind sm, md, lg, xl, 2xl */
 
 /* max-xl */

@@ -2,7 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  ul, ol {
+    list-style: revert;
+  }
+}
+
 @layer utilities {
+  .flex-col-center {
+    @apply flex justify-center items-center flex-col
+  }
   .full-flex {
     @apply flex flex-col w-full flex-1;
   }

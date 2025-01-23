@@ -9,13 +9,13 @@ export default function GuardLayout(props) {
     const [currentTitle, setCurrentTitle] = useState("National Lifelong Learning Forum");
     const { setTitle, setTreeDescription, setShowContactForm, setTreeData, setActiveKeys } = contextParent
     const location = useLocation();
-    const treeData = useMemo(() => route, []);
+    const treeData = useMemo(() => route, [route]);
 
     useEffect(() => {
         setTitle(title);
         setTreeDescription(description);
         setTreeData([...treeData]);
-    }, [route, title, description])
+    }, [treeData, title, description])
 
     useEffect(() => {
         if (location.pathname) {
