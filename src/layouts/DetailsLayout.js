@@ -181,7 +181,7 @@ export default function DetailsLayout() {
                         treeData={renderTreeNodes(treeData)}
                     />
                 </div>
-                <div className='col-span-9 p-[40px]'>
+                <div className='col-span-10 p-[40px]'>
                     <Outlet context={contextValue} />
                 </div>
             </div>
