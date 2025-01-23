@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { BASE_ASSET_URL } from '../constants/Url'
 import { Outlet, useNavigate } from 'react-router'
 import HeaderNavigationBar from '../components/NavigationBar/HeaderNavigationBar'
 import { Button, Dropdown, FloatButton, Input } from 'antd'
@@ -113,54 +112,57 @@ export default function DefaultLayout() {
     // },
     {
       title: "About NCLLL",
-      link: "",
+      link: "/about-us/mission",
       children: [{
         title: "Chairman",
-        link: "",
+        link: "/about-us/sglll",
         disabled: false,
       }],
     }, {
       title: "Programs",
-      link: "/program",
+      link: "/program/forum",
       children: [{
         title: "National Lifelong Learning Forum",
-        link: "",
+        link: "/program/forum",
         disabled: false,
       }, {
         title: "Lifelong Learning Center",
-        link: "",
+        link: "/program/center",
         disabled: false,
       }, {
         title: "Lifelong Learning Club",
-        link: "",
+        link: "/program/club",
         disabled: false,
       }, {
         title: "Lifelong Learning City",
-        link: "",
+        link: "/program/city",
         disabled: false,
       }, {
         title: "Engagement",
-        link: "",
+        link: "/program/engagement",
         disabled: false,
       }],
     }, {
       title: "Focus Areas",
-      link: "",
+      link: "/focus-area/all",
       children: [{
-        title: "Enviroment",
-        link: "",
+        title: "Comprehensive and Flexible Learning Program",
+        link: "/focus-area/comprehensive-flexible",
         disabled: false,
       }, {
-        title: "Lifelong Learning Club",
-        link: "",
+        title: "Lifelong Learning Environment",
+        link: "/focus-area/environment",
         disabled: false,
       }, {
-        title: "Lifelong Learning City",
-        link: "",
+        title: "Professional Development",
+        link: "/focus-area/professional",
         disabled: false,
       }, {
-        title: "Engagement",
-        link: "",
+        title: "Accreditation & Recognition",
+        linl: "/focus-area/accreditation-recognition",
+      }, {
+        title: "Collaboration & Support",
+        link: "/focus-area/collaboration-support",
         disabled: false,
       }],
     }, {
@@ -196,6 +198,10 @@ export default function DefaultLayout() {
   const handleSearch = () => {
     //SEARCH SOMETHING
     console.log(search);
+  }
+
+  const toPage = (link) => {
+    navigate(link);
   }
 
   return (
@@ -286,7 +292,7 @@ export default function DefaultLayout() {
                 <div className='flex flex-wrap gap-[20px] justify-between items-center h-full'>
                   {
                     item.children.map(child => (
-                      <Button className='w-[calc(100vw/4)] h-[54px] gap-2 std-menu-link' onClick={() => child?.link}>
+                      <Button className='w-[calc(100vw/4)] h-[54px] gap-2 std-menu-link' onClick={() => toPage(child?.link)}>
                         {child?.title}
                       </Button>
                     ))

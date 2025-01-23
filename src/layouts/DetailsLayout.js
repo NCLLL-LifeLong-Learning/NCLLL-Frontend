@@ -1,12 +1,15 @@
 import { Breadcrumb, Tree } from 'antd';
 import React, { useState } from 'react'
-import { Outlet } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 import { getTreeTitle } from '../utils/Utils';
 import { AiOutlineHome } from "react-icons/ai";
 import ArrowSvg from '../assets/svgs/ArrowSvg';
+import BecomePartner from "../components/OurPartner/BecomePartner";
 
 export default function DetailsLayout() {
+    const navigate = useNavigate();
     const [menu, setMenu] = useState();
+    const [contactUs, setContactUs] = useState(false);
     const [treeTitle, setTreeTitle] = useState("Documents");
     const [treeDescription, setTreeDescription] = useState("Documents");
     const [activeKeys, setActiveKeys] = useState(["Laws & Regulation"]);
@@ -87,6 +90,7 @@ export default function DetailsLayout() {
         setTreeData: (value) => setTreeData([...value]),
         activeKeys: activeKeys,
         setActiveKeys: (value) => setActiveKeys(value),
+        setShowContactForm: (value) => setContactUs(value),
         onChildAction: handleChildAction, // Function passed to child
     };
 
@@ -99,7 +103,14 @@ export default function DetailsLayout() {
         // Combine selected and parent keys
         const updatedActiveKeys = selected ? [...parentKeys, key] : [];
 
+        const currentKey = treeData.find(i => i.key === key);
+        
         setActiveKeys(updatedActiveKeys);
+
+        console.log("currentKey = ", currentKey);
+        if (currentKey) {
+            navigate(currentKey.path);
+        }
     }
 
     const getParentKeys = (nodes, key, parents = []) => {
@@ -118,7 +129,6 @@ export default function DetailsLayout() {
     };
 
     const renderTreeNodes = (nodes, isChild) => {
-        console.log(nodes);
         return nodes.map((node) => ({
             ...node,
             title: getTreeTitle(node.title, isChild, activeKeys.includes(node.key)),
@@ -159,7 +169,7 @@ export default function DetailsLayout() {
                 </div>
             </div>
             <div className='grid grid-cols-12 gap-4'>
-                <div className='col-span-2 ps-[10px]' style={{ backgroundColor: '#0F69B7', color: "white" }}>
+                <div className='col-span-2 ps-[10px] h-fit rounded-l pb-[20px]' style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "10px" }}>
                     <h1 className='p-[20px] text-[30px] text-center m-0'>{treeTitle}</h1>
                     <Tree
                         rootClassName='root-menu-tree'
@@ -171,10 +181,15 @@ export default function DetailsLayout() {
                         treeData={renderTreeNodes(treeData)}
                     />
                 </div>
-                <div className='col-span-9'>
+                <div className='col-span-9 p-[40px]'>
                     <Outlet context={contextValue} />
                 </div>
             </div>
+            {
+                contactUs && <div className="min-h-[700px] flex justify-center items-center" style={{ backgroundColor: 'var(--light-blue-color)' }}>
+                    <BecomePartner />
+                </div>
+            }
         </div>
     )
 }
