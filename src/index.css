@@ -10,11 +10,15 @@
 
 
 :root {
+  --dark-green-color: #085B01;
+  --dark-blue-color: #0F69B74D;
+  --light-green-color: #3A920733;
   --light-blue-color: #2E84F11A;
   --primary-btn-color: #0F69B780;
   --primary-color: #0F69B7;
   --white-color: #ffffff;
   --green-color: #3a9207;
+  --chairman-background: linear-gradient(180deg, rgba(15, 105, 183, 0.7) 0%, rgba(8, 91, 1, 0.7) 100%);
   --detail-header-background: linear-gradient(92.25deg, rgba(15, 105, 183, 0.7) 0%, rgba(58, 146, 7, 0.7) 100%);
   --submenu-background: linear-gradient(169.15deg, #EEEEEE -51.95%, #D9EDFF 113.76%);
   --footer-background: linear-gradient(95.06deg, rgba(15, 105, 183, 0.7) -0.9%, rgba(8, 91, 1, 0.7) 100%);
