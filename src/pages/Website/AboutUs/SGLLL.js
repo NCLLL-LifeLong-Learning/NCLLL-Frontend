@@ -7,7 +7,7 @@ export default function SecretariatGeneralOfNLLL() {
 
   return (
     <div className='flex flex-col gap-[30px]'>
-      <div>Structure of NCLLL</div>
+      <div className='mission-title' style={{ color: "var(--primary-color)" }}>Structure of NCLLL</div>
       <div className='mission-content px-[40px] py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
         Annex of Sub-Decree No. 237 អនក្រ.បក issued on 2 December 2021 on the Organization and Functioning of the Secretariat of the National Committee for Lifelong Learning
       </div>
