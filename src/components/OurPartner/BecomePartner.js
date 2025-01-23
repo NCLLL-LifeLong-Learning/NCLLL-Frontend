@@ -12,35 +12,30 @@ const BecomePartner = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-6 px-[5%]">
-      <div>
-        <h1 className="mb-2 text-4xl font-bold text-[#0F69B7]">{t("become_our_partner")}</h1>
-        <p className="pb-4 text-wrap text-base">{becomePartner.paragraph}</p>
-        <form action="" className="flex flex-col justify-center items-center">
-          <Input
-            type="text"
-            placeholder={t("email")}
-            className="w-full px-3 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500"
-          />
-          <Input
-            type="text"
-            placeholder={t("possible_area_of_collaboration")}
-            className="w-full my-5 px-3 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500"
-          />
-          <TextArea
-            type="text"
-            rows={7}
-            placeholder={t("describ_scope_of_work")}
-            className="w-full mb-5 px-3 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500"
-          />
-          <button type="submit" className="bg-[#0F69B7] w-full text-white px-4 py-4 rounded-xl">
-            {t("submit")}
-          </button>
-        </form>
-      </div>
-      <div className="flex justify-center items-center space-x-7">
-        <img src={PartnerMember} alt="dvv-international" className="mx-4"/>
-      </div>
+    <div className="max-w-[60vw] w-full">
+      <h1 className="mb-2 text-4xl font-bold text-[#0F69B7]">{t("become_our_partner")}</h1>
+      <p className="pb-4 text-wrap text-base">{becomePartner.paragraph}</p>
+      <form action="" className="flex flex-col justify-center items-center">
+        <Input
+          type="text"
+          placeholder={t("email")}
+          className="w-full px-3 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500"
+        />
+        <Input
+          type="text"
+          placeholder={t("possible_area_of_collaboration")}
+          className="w-full my-5 px-3 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500"
+        />
+        <TextArea
+          type="text"
+          rows={7}
+          placeholder={t("describ_scope_of_work")}
+          className="w-full mb-5 px-3 py-4 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-500"
+        />
+        <button type="submit" className="bg-[#0F69B7] w-full text-white px-4 py-4 rounded-xl">
+          {t("submit")}
+        </button>
+      </form>
     </div>
   );
 };

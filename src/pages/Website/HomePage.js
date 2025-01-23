@@ -181,7 +181,7 @@ export default function HomePage() {
           dataSource={TabsData}
         />
       </div>
-      <div className='p-[30px]' style={{ backgroundColor: '#2E84F11A' }}>
+      <div className='p-[30px]' style={{ backgroundColor: 'var(--light-blue-color)' }}>
         <MinistriesPartner
           title="Ministries Partner"
           description={"Our focus areas encourage lifelong learning through flexible, inclusive and comprehensive initiatives that meet the changing need."}
