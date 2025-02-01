@@ -12,7 +12,9 @@ export default function HorizontalCard({ image, name, linkURL }) {
           <h3 className='pb-[0.5rem] font-semibold text-[#0F69B7]'>
             {name}
           </h3>
-          <p className='text-gray-600 text-sm'>URL: {linkURL}</p>
+          <p className='text-gray-600 text-sm'>URL: 
+            <a href={linkURL} target='_blank' className='text-[#0F69B7] ml-1'>{linkURL}</a>
+          </p>
         </div>
       </div>
     </div>

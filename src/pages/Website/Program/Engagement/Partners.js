@@ -1,12 +1,9 @@
 import React from 'react'
 import HorizontalCard from '../../../../components/Engagement/HorizontalCard'
 
-export default function Partners() {
-  const partners = [
-    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
-    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
-    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
-  ]
+export default function Partners(props) {
+  const { partners } = props
+  console.log(partners, ' -> partners')
   return (
     <div>
       <div>

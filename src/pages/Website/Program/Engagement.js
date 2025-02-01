@@ -1,6 +1,11 @@
 import { useState } from "react";
 import ArrowSvg from "../../../assets/svgs/ArrowSvg";
 import Partners from "./Engagement/Partners";
+import Advisor from "./Engagement/Advisor";
+import Voluntary from "./Engagement/Voluntary";
+import Fellowship from "./Engagement/Fellowship";
+import Consultant from "./Engagement/Consultant";
+import ExchangeProgram from "./Engagement/ExchangeProgram";
 
 const tabs = ["Voluntary", "Fellowship", "Consultant", "Exchange Program", "Partners", "Advisor", "Tab 7", "Tab 8", "Tab 9", "Tab 10"];
 
@@ -48,7 +53,12 @@ export default function Engagement() {
                </div>
             </div>
             <div className="w-full pt-[2rem]">
-               { tabs[activeTab] === "Partners" && <Partners /> }
+               {tabs[activeTab] === "Partners" && <Partners partners={partners} />}
+               {tabs[activeTab] === "Advisor" && <Advisor />}
+               {tabs[activeTab] === "Voluntary" && <Voluntary />}
+               {tabs[activeTab] === "Fellowship" && <Fellowship />}
+               {tabs[activeTab] === "Consultant" && <Consultant />}
+               {tabs[activeTab] === "Exchange Program" && <ExchangeProgram />}
             </div>
          </div>
       </div>
