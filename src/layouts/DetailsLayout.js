@@ -169,8 +169,8 @@ export default function DetailsLayout() {
                 </div>
             </div>
             <div className='grid grid-cols-12 gap-4'>
-                <div className='col-span-2 ps-[10px] h-fit rounded-l pb-[20px]' style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "10px" }}>
-                    <h1 className='p-[20px] text-[30px] text-center m-0'>{treeTitle}</h1>
+                <div className='col-span-2 ps-[10px] h-fit rounded-l pb-[20px]' style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
+                    <h1 className='p-[20px] text-[2rem] text-center m-0'>{treeTitle}</h1>
                     <Tree
                         rootClassName='root-menu-tree'
                         rootStyle={{ backgroundColor: '#0F69B7', color: 'white' }}
