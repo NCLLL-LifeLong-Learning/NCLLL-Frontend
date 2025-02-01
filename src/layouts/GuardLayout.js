@@ -38,11 +38,11 @@ export default function GuardLayout(props) {
 
     return (
         <div>
-            <div className='detail-page-title'>
-                {currentTitle}
-            </div>
-            <Divider />
-            <div className='py-[20px]'>
+
+            {currentTitle == "Engagement" ? "" : <div className='detail-page-title'>{currentTitle}</div>}
+            {currentTitle == "Engagement" ? "" : <Divider />}
+
+            <div className={currentTitle === "Engagement" ? "py-0" : "py-[20px]"}>
                 <Outlet context={contextValue} />
             </div>
         </div>
