@@ -167,7 +167,7 @@ export default function DefaultLayout() {
       }],
     }, {
       title: "Resources",
-      link: "/resources",
+      link: "",
       children: [],
     },
   ];

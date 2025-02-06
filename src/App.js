@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import React, { Suspense } from 'react';
 import GuardLayout from './layouts/GuardLayout';
-import { aboutUs, focusArea, program, resources } from './constants/Route';
+import { aboutUs, focusArea, program } from './constants/Route';
 
 const WebDefaultLayout = React.lazy(() => import('./layouts/DefaultLayout'));
 const WebDetailsLayout = React.lazy(() => import('./layouts/DetailsLayout'));
@@ -30,15 +30,6 @@ const LifelongLearningEnvironmentPage = React.lazy(() => import('./pages/Website
 const ProfessionalDevelopmentPage = React.lazy(() => import('./pages/Website/FocusArea/ProfessionalDevelopment'));
 const LifelongLearningForAllPage = React.lazy(() => import('./pages/Website/FocusArea/LifelongLearningForAll'));
 
-const AllResourcesPage = React.lazy(() => import('./pages/Website/Resources/Resources'));
-const LegalDocumentPage = React.lazy(() => import('./pages/Website/Resources/LegalDocument'));
-const PolicyAndStrategyPage = React.lazy(() => import('./pages/Website/Resources/PolicyAndStrategy'));
-const AdministrationPage = React.lazy(() => import('./pages/Website/Resources/Administration'));
-const ReportAndPublicationsPage = React.lazy(() => import('./pages/Website/Resources/ReportAndPublications'));
-const NewsAndEventsPage = React.lazy(() => import('./pages/Website/Resources/NewsAndEvents'));
-
-
-
 
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
@@ -51,21 +42,7 @@ function App() {
           <Route path='/' element={<Suspense><WebHomePage /></Suspense>} />
 
           <Route element={<Suspense><WebDetailsLayout /></Suspense>}>
-            <Route path='/resources' element={<GuardLayout description={resources.description} title={resources.title} route={resources.route} />}>
-              <Route index path='all' element={<Suspense><AllResourcesPage /></Suspense>} />
 
-              <Route path='legal-document' element={<Suspense><LegalDocumentPage /></Suspense>} />
-
-              <Route path='administration' element={<Suspense><AdministrationPage /></Suspense>} />
-
-              <Route path='policy-and-strategy' element={<Suspense><PolicyAndStrategyPage /></Suspense>} />
-
-              <Route path='projects' element={<Suspense><GoverningBoardPage /></Suspense>} />
-
-              <Route path='news-and-events' element={<Suspense><NewsAndEventsPage /></Suspense>} />
-
-              <Route path='report-and-publications' element={<Suspense><ReportAndPublicationsPage /></Suspense>} />
-            </Route>
             <Route path='/about-us' element={<GuardLayout description={aboutUs.description} title={aboutUs.title} route={aboutUs.route} />}>
               <Route index path='mission' element={<Suspense><MissionAndVisionPage /></Suspense>} />
 
