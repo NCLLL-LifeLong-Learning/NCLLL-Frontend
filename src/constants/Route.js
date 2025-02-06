@@ -36,6 +36,7 @@ export const program = {
             title: getTreeTitle("Engagement"),
             label: "Engagement",
             key: "Engagement",
+            noHeader: true,
             path: "/program/engagement",
             children: [],
         }
@@ -92,14 +93,104 @@ export const aboutUs = {
     ]
 }
 
+export const resources = {
+    title: "Resources",
+    description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
+    route: [
+        {
+            title: getTreeTitle('All'),
+            label: 'All',
+            key: 'All',
+            noHeader: true,
+            path: "/resources",
+            children: []
+        },
+        {
+            title: getTreeTitle("Legal Document"),
+            label: 'Legal Document',
+            key: "Legal Document",
+            noHeader: true,
+            path: "/resources/laws",
+            children: [],
+        },
+        {
+            noHeader: true,
+            title: getTreeTitle("Administration"),
+            label: 'Administration',
+            key: "Administration",
+            path: "/resources/admin",
+            children: [
+                {
+                    title: getTreeTitle('Laws & Regulation', true),
+                    key: 'Laws & Regulation',
+                },
+                {
+                    title: getTreeTitle('Royal Decrees', true),
+                    key: 'Royal Decrees',
+                },
+                {
+                    title: getTreeTitle("Sub-Decrees", true),
+                    key: "Sub-Decrees",
+                }, {
+                    title: getTreeTitle("Circulations", true),
+                    key: "Circulations"
+                }, {
+                    title: getTreeTitle("Prakas", true),
+                    key: "Prakas"
+                }, {
+                    title: getTreeTitle("Decisions", true),
+                    key: "Decisions"
+                }, {
+                    title: getTreeTitle("Orders", true),
+                    key: "Orders"
+                }
+            ],
+        },
+        {
+            title: getTreeTitle("Policy & Strategy"),
+            label: 'Policy & Strategy',
+            key: "Policy & Strategy",
+            path: "/resources/policy",
+            children: [],
+            noHeader: true,
+        },
+        {
+            title: getTreeTitle("Report & Publication"),
+            label: 'Report & Publication',
+            key: "Report & Publication",
+            noHeader: true,
+            path: "/resources/report",
+            children: []
+        },
+        {
+            title: getTreeTitle("Projects"),
+            label: 'Projects',
+            key: "Projects",
+            noHeader: true,
+            path: "/resources/projects",
+            children: [],
+        },
+        {
+            title: getTreeTitle("News & Event"),
+            label: 'News & Event',
+            noHeader: true,
+            key: "News & Event",
+            path: "/resources/news",
+            children: []
+        }
+    ]
+}
+
+
+
 export const focusArea = {
     title: "Focus Areas",
     description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
     route: [
         {
             title: getTreeTitle('Lifelong Learning for all'),
-            label: 'Lifelong Learning for all',
-            key: 'Lifelong Learning for all',
+            label: 'All',
+            key: 'All',
             path: "/focus-area/all",
             children: []
         },
