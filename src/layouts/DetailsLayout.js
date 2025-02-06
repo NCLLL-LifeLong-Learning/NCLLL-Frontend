@@ -1,5 +1,5 @@
 import { Breadcrumb, Tree } from 'antd';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router';
 import { getTreeTitle } from '../utils/Utils';
 import { AiOutlineHome } from "react-icons/ai";
@@ -9,7 +9,7 @@ import BecomePartner from "../components/OurPartner/BecomePartner";
 export default function DetailsLayout() {
     const navigate = useNavigate();
     const [menu, setMenu] = useState();
-    const [contactUs, setContactUs] = useState(false);
+    const [currentRoute, setCurrentRoute] = useState({});
     const [treeTitle, setTreeTitle] = useState("Documents");
     const [treeDescription, setTreeDescription] = useState("Documents");
     const [activeKeys, setActiveKeys] = useState(["Laws & Regulation"]);
@@ -90,8 +90,9 @@ export default function DetailsLayout() {
         setTreeData: (value) => setTreeData([...value]),
         activeKeys: activeKeys,
         setActiveKeys: (value) => setActiveKeys(value),
-        setShowContactForm: (value) => setContactUs(value),
         onChildAction: handleChildAction, // Function passed to child
+        currentRoute: currentRoute,
+        setCurrentRoute: setCurrentRoute,
     };
 
     const handleSelectedTree = (selectedKeys, { selected, node }) => {
@@ -104,11 +105,11 @@ export default function DetailsLayout() {
         const updatedActiveKeys = selected ? [...parentKeys, key] : [];
 
         const currentKey = treeData.find(i => i.key === key);
-        
+
         setActiveKeys(updatedActiveKeys);
 
-        console.log("currentKey = ", currentKey);
         if (currentKey) {
+            setCurrentRoute({ ...currentKey });
             navigate(currentKey.path);
         }
     }
@@ -186,7 +187,7 @@ export default function DetailsLayout() {
                 </div>
             </div>
             {
-                contactUs && <div className="min-h-[700px] flex justify-center items-center" style={{ backgroundColor: 'var(--light-blue-color)' }}>
+                currentRoute.contactUs && <div className="min-h-[700px] flex justify-center items-center" style={{ backgroundColor: 'var(--light-blue-color)' }}>
                     <BecomePartner />
                 </div>
             }

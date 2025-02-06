@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, Divider } from 'antd';
 import React, { useState } from 'react'
 import { useOutletContext } from 'react-router';
 import { BASE_ASSET_URL } from "../../../constants/Url";
@@ -19,7 +19,8 @@ export default function SecretariatGeneralOfNLLL() {
         <Button className='std-btn !px-[60px]'>7th Term</Button>
         <Button className='std-btn !px-[60px]'>8th Term</Button>
       </div>
-      <div className='flex-col-center py-[30px] gap-[10px]'>
+      <Divider />
+      <div className='flex-col-center pb-[30px] gap-[10px]'>
         <div className='p-[20px] w-fit rounded-lg' style={{ background: "var(--chairman-background)" }}>
           <img className='rounded-lg' src={BASE_ASSET_URL + "/NCLLL-ChairMan.png"} alt='Chair Man Picutre' />
         </div>

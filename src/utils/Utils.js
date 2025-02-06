@@ -66,7 +66,7 @@ export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg:
         })
     }
 
-    
+
     return responsive;
 }
 
@@ -75,4 +75,34 @@ export const getTreeTitle = (title, isChild, isActive) => {
         return <div className={`menu-tree-child ${isActive && "active"}`}>{title}</div>
     }
     return <div className={`menu-tree-title ${isActive && "active"}`}>{title}</div>
+}
+
+export const convertToKhmerDate = (date) => {
+    // Khmer month names
+    const khmerMonths = [
+        "មករា", "កុម្ភៈ", "មីនា", "មេសា", "ឧសភា", "មិថុនា",
+        "កក្កដា", "សីហា", "កញ្ញា", "តុលា", "វិច្ឆិកា", "ធ្នូ"
+    ];
+
+    // Khmer numerals mapping
+    const khmerNumbers = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩'];
+
+    // Function to convert Arabic numbers to Khmer numerals
+    const toKhmerNumbers = (num) => num.toString().split('').map(digit => khmerNumbers[digit]).join('');
+
+    // Convert date to Khmer format
+    function formatKhmerDate(date) {
+        const day = toKhmerNumbers(dayjs(date).format('DD')); // Convert day to Khmer
+        const monthIndex = parseInt(dayjs(date).format('M'), 10) - 1; // Get month index
+        const year = toKhmerNumbers(dayjs(date).format('YYYY')); // Convert year to Khmer
+
+        return `${day} ${khmerMonths[monthIndex]} ${year}`;
+    }
+
+
+    return formatKhmerDate(date);
+}
+
+export function formatEnglishDate(date) {
+    return dayjs(date).format('DD MMMM YYYY'); // Example: 14 August 1963
 }
