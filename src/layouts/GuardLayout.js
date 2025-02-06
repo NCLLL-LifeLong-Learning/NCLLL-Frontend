@@ -7,7 +7,7 @@ export default function GuardLayout(props) {
     const { title, description, route } = props;
     const contextParent = useOutletContext();
     const [currentTitle, setCurrentTitle] = useState("National Lifelong Learning Forum");
-    const { setTitle, setTreeDescription, setShowContactForm, setTreeData, setActiveKeys } = contextParent
+    const { setCurrentRoute, currentRoute, setTitle, setTreeDescription, setTreeData, setActiveKeys } = contextParent
     const location = useLocation();
     const treeData = useMemo(() => route, [route]);
 
@@ -24,9 +24,10 @@ export default function GuardLayout(props) {
             if (isEmpty(currentPage)) {
                 return;
             }
-            setShowContactForm(currentPage?.contactUs || false);
+
             setActiveKeys([currentPage.key]);
             setCurrentTitle(currentPage.label);
+            setCurrentRoute({ ...currentPage });
         }
     }, [location, location.pathname])
 
@@ -38,11 +39,12 @@ export default function GuardLayout(props) {
 
     return (
         <div>
+            {!currentRoute?.noHeader && <>
+                <div className='detail-page-title'>{currentTitle}</div>
+                <Divider />
+            </>}
 
-            {currentTitle == "Engagement" ? "" : <div className='detail-page-title'>{currentTitle}</div>}
-            {currentTitle == "Engagement" ? "" : <Divider />}
-
-            <div className={currentTitle === "Engagement" ? "py-0" : "py-[20px]"}>
+            <div className={!currentRoute?.noHeader ? "py-0" : "py-[20px]"}>
                 <Outlet context={contextValue} />
             </div>
         </div>

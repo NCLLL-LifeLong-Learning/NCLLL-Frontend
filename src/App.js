@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import React, { Suspense } from 'react';
 import GuardLayout from './layouts/GuardLayout';
-import { aboutUs, focusArea, program } from './constants/Route';
+import { aboutUs, focusArea, program, resources } from './constants/Route';
 
 const WebDefaultLayout = React.lazy(() => import('./layouts/DefaultLayout'));
 const WebDetailsLayout = React.lazy(() => import('./layouts/DetailsLayout'));
@@ -14,6 +14,7 @@ const KeyFunctionsPage = React.lazy(() => import('./pages/Website/AboutUs/KeyFun
 const MissionAndVisionPage = React.lazy(() => import('./pages/Website/AboutUs/MissionAndVision'));
 const MemberMinistriesPage = React.lazy(() => import('./pages/Website/AboutUs/MemberMinistries'));
 const GoverningBoardPage = React.lazy(() => import('./pages/Website/AboutUs/GoverningBoard'));
+const GoverningDetailPage = React.lazy(() => import('./pages/Website/AboutUs/GoverningDetail'));
 const ContactUsPage = React.lazy(() => import('./pages/Website/AboutUs/ContactUs'));
 const SecretariatGeneralOfNLLLPage = React.lazy(() => import('./pages/Website/AboutUs/SGLLL'));
 
@@ -30,6 +31,13 @@ const LifelongLearningEnvironmentPage = React.lazy(() => import('./pages/Website
 const ProfessionalDevelopmentPage = React.lazy(() => import('./pages/Website/FocusArea/ProfessionalDevelopment'));
 const LifelongLearningForAllPage = React.lazy(() => import('./pages/Website/FocusArea/LifelongLearningForAll'));
 
+const AllReourcesPage = React.lazy(() => import('./pages/Website/Documents/AllDocuments'));
+const LegalDocumentPage = React.lazy(() => import('./pages/Website/Documents/LegalDocument'));
+const AdministrationPage = React.lazy(() => import('./pages/Website/Documents/Administration'));
+const PolicyStrategyPage = React.lazy(() => import('./pages/Website/Documents/PolicyStrategy'));
+const ProjectResourcePage = React.lazy(() => import('./pages/Website/Documents/ProjectsDocument'));
+const NewsAndEventPage = React.lazy(() => import('./pages/Website/Documents/NewsAndEvent'));
+const ReportAndPublicationPage = React.lazy(() => import('./pages/Website/Documents/ReportAndPublication'));
 
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
@@ -50,9 +58,9 @@ function App() {
 
               <Route path='member' element={<Suspense><MemberMinistriesPage /></Suspense>} />
 
-              <Route path='member' element={<Suspense><MemberMinistriesPage /></Suspense>} />
-
               <Route path='board' element={<Suspense><GoverningBoardPage /></Suspense>} />
+              
+              <Route path='board/:id' element={<Suspense><GoverningDetailPage /></Suspense>} />
 
               <Route path='sglll' element={<Suspense><SecretariatGeneralOfNLLLPage /></Suspense>} />
 
@@ -71,18 +79,6 @@ function App() {
               <Route path='engagement' element={<Suspense><EngagementPage /></Suspense>} />
             </Route>
 
-            {/* <Route path='/program' element={<GuardLayout description={program.description} title={program.title} route={program.route} />}>
-              <Route index path='forum' element={<Suspense><NationalLifelongLearningForumPage /></Suspense>} />
-
-              <Route path='center' element={<Suspense><LifelongLearningCenterPage /></Suspense>} />
-
-              <Route path='club' element={<Suspense><LifelongLearningClubPage /></Suspense>} />
-
-              <Route path='city' element={<Suspense><LifelongLearningCityPage /></Suspense>} />
-
-              <Route path='engagement' element={<Suspense><EngagementPage /></Suspense>} />
-            </Route> */}
-
             <Route path='/focus-area' element={<GuardLayout description={focusArea.description} title={focusArea.title} route={focusArea.route} />}>
               <Route index path='all' element={<Suspense><LifelongLearningForAllPage /></Suspense>} />
 
@@ -97,6 +93,20 @@ function App() {
               <Route path='accreditation-recognition' element={<Suspense><AccreditationAndRecognitionPage /></Suspense>} />
             </Route>
 
+            <Route path='/resources' element={<GuardLayout description={resources.description} title={resources.title} route={resources.route} />}>
+              <Route index element={<Suspense><AllReourcesPage /></Suspense>} />
+
+              <Route path='laws' element={<Suspense><LegalDocumentPage /></Suspense>} />
+
+              <Route path='admin' element={<Suspense><AdministrationPage /></Suspense>} />
+
+              <Route path='policy' element={<Suspense><PolicyStrategyPage /></Suspense>} />
+
+              <Route path='projects' element={<Suspense><ProjectResourcePage /></Suspense>} />
+
+              <Route path='news' element={<Suspense><NewsAndEventPage /></Suspense>} />
+              <Route path='report' element={<Suspense><ReportAndPublicationPage /></Suspense>} />
+            </Route>
           </Route>
         </Route>
 

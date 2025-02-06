@@ -398,6 +398,50 @@
   animation: scroll-left 20s linear infinite;
 }
 
+.goverment-title {
+  padding: 10px 15px 10px;
+  width: 100%;
+  background-color: #f7f7f7;
+  color: #017827;
+  border: 1px solid #ececec;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.goverment-item-name {
+  overflow: hidden;
+  flex-shrink: 0;
+  font-size: 18px;
+  padding: 0 1rem;
+  word-wrap: break-word;
+  width: 80%;
+}
+
+.goverment-item-name > a {
+  color: #20708e;
+}
+
+.member-table-title {
+  font-size: 16px;
+  line-height: 1.9;
+  padding: 10px 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(219, 219, 219);
+  border-image: initial;
+}
+
+:where(.title-padding-none).ant-list-split .ant-list-header {
+  padding: 0 !important;
+}
+
+.member-table {
+  padding: 10px 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(219, 219, 219);
+}
+
 @keyframes scroll-left {
   from {
     transform: translateX(0);
@@ -474,7 +518,7 @@
 }
 
 .detail-page-title {
-  font-size: 36px;
+  font-size: 40px;
   font-weight: 600;
 }
 
@@ -530,7 +574,7 @@
 }
 
 .mission-title {
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 600;
 }
 

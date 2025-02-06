@@ -26,7 +26,7 @@ export default function Engagement() {
       <div>
          <div className="w-full">
             <div>
-               <div className="flex items-center justify-between mb-4 rounded-full bg-white shadow-xl py-2">
+               <div className="flex items-center justify-between mb-4 rounded-full bg-white shadow-md py-2">
                   <button onClick={handlePrev} className="p-2 rounded-lg text-[#0F69B7]">
                      <ArrowSvg className="w-5 h-5" />
                   </button>
