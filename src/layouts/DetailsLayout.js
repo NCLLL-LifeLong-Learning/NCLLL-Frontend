@@ -1,80 +1,19 @@
 import { Breadcrumb, Tree } from 'antd';
-import React, { useEffect, useState } from 'react'
-import { Outlet, useNavigate } from 'react-router';
+import React, { useEffect, useMemo, useState } from 'react'
+import { Outlet, useLocation, useNavigate } from 'react-router';
 import { getTreeTitle } from '../utils/Utils';
 import { AiOutlineHome } from "react-icons/ai";
 import ArrowSvg from '../assets/svgs/ArrowSvg';
 import BecomePartner from "../components/OurPartner/BecomePartner";
 
 export default function DetailsLayout() {
-    const navigate = useNavigate();
-    const [menu, setMenu] = useState();
     const [currentRoute, setCurrentRoute] = useState({});
-    const [treeTitle, setTreeTitle] = useState("Documents");
-    const [treeDescription, setTreeDescription] = useState("Documents");
-    const [activeKeys, setActiveKeys] = useState(["Laws & Regulation"]);
-    const [treeData, setTreeData] = useState([
-        {
-            title: getTreeTitle('All'),
-            key: 'All',
-            children: []
-        },
-        {
-            title: getTreeTitle("Legal Document"),
-            key: "Legal Document",
-            children: [],
-        },
-        {
-            title: getTreeTitle("Administration"),
-            key: "Administration",
-            children: [
-                {
-                    title: getTreeTitle('Laws & Regulation', true),
-                    key: 'Laws & Regulation',
-                },
-                {
-                    title: getTreeTitle('Royal Decrees', true),
-                    key: 'Royal Decrees',
-                },
-                {
-                    title: getTreeTitle("Sub-Decrees", true),
-                    key: "Sub-Decrees",
-                }, {
-                    title: getTreeTitle("Circulations", true),
-                    key: "Circulations"
-                }, {
-                    title: getTreeTitle("Prakas", true),
-                    key: "Prakas"
-                }, {
-                    title: getTreeTitle("Decisions", true),
-                    key: "Decisions"
-                }, {
-                    title: getTreeTitle("Orders", true),
-                    key: "Orders"
-                }
-            ],
-        },
-        {
-            title: getTreeTitle("Policy & Strategy"),
-            key: "Policy & Strategy",
-            children: [],
-        },
-        {
-            title: getTreeTitle("Projects"),
-            key: "Projects",
-            children: [],
-        },
-        {
-            title: getTreeTitle("News & Event"),
-            key: "News & Event",
-            children: [],
-        },
-        {
-            title: getTreeTitle("Report & Publication"),
-            key: "Report & Publication",
-            children: [],
-        },
-    ]);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [treeTitle, setTreeTitle] = useState("");
+    const [treeDescription, setTreeDescription] = useState("");
+    const [activeKeys, setActiveKeys] = useState([]);
+    const [treeData, setTreeData] = useState([]);
 
     const handleChildAction = (message) => {
         console.log("Message from child:", message);
@@ -86,7 +25,6 @@ export default function DetailsLayout() {
         setTitle: (value) => setTreeTitle(value),
         description: treeDescription,
         setTreeDescription: (value) => setTreeDescription(value),
-        menu: menu,
         setTreeData: (value) => setTreeData([...value]),
         activeKeys: activeKeys,
         setActiveKeys: (value) => setActiveKeys(value),
@@ -96,47 +34,67 @@ export default function DetailsLayout() {
     };
 
     const handleSelectedTree = (selectedKeys, { selected, node }) => {
-        const key = selectedKeys[0];
+        if (!selected) { return; }
+        const selectedTree = node?.treeNode;
 
-        // Find all parent keys
-        const parentKeys = getParentKeys(treeData, key);
+        const currentKey = selectedTree[selectedTree.length - 1];
 
-        // Combine selected and parent keys
-        const updatedActiveKeys = selected ? [...parentKeys, key] : [];
+        const activeKeys = selectedTree.map(node => node.key)
 
-        const currentKey = treeData.find(i => i.key === key);
-
-        setActiveKeys(updatedActiveKeys);
+        setActiveKeys(activeKeys);
 
         if (currentKey) {
             setCurrentRoute({ ...currentKey });
-            navigate(currentKey.path);
+            if (location.pathname !== currentKey.path) {
+                navigate(currentKey.path);
+            }
         }
     }
 
-    const getParentKeys = (nodes, key, parents = []) => {
-        for (const node of nodes) {
-            if (node.key === key) {
-                return parents;
+    const renderTreeNodes = (nodes, isChild, treeNode = []) => {
+        return nodes.map((node) => ({
+            ...node,
+            title: node.title,
+            key: node.key,
+            treeNode: [...treeNode, removeChild(node)],
+            children: node.children ? renderTreeNodes(node.children, true, [...treeNode, removeChild(node)]) : [],
+        }));
+    }
+
+    const removeChild = (node) => {
+        return { ...node, children: [] };
+    }
+
+    const getActiveNodes = (nodes, parents = []) => {
+        for (let node of nodes) {
+            if (node.path === location.pathname) {
+                return [...parents, node];
             }
-            if (node.children) {
-                const result = getParentKeys(node.children, key, [...parents, node.key]);
-                if (result) {
+
+            if (node?.children?.length > 0) {
+                let result = getActiveNodes(node.children, [...parents, node]);
+                if (result.length > 0) {
                     return result;
                 }
             }
         }
-        return null;
-    };
-
-    const renderTreeNodes = (nodes, isChild) => {
-        return nodes.map((node) => ({
-            ...node,
-            title: getTreeTitle(node.title, isChild, activeKeys.includes(node.key)),
-            key: node.key,
-            children: node.children ? renderTreeNodes(node.children, true) : null,
-        }));
+        return [];
     }
+
+    useEffect(() => {
+        if (location.pathname !== currentRoute?.path && treeData.length > 0) {
+            let activeNodes = getActiveNodes(treeData, []);
+
+            if (activeNodes.length > 0) {
+                setActiveKeys(activeNodes.map(node => node.key));
+                setCurrentRoute({ ...activeNodes[activeNodes.length - 1] });
+            }
+        }
+    }, [treeData, location, location.pathname])
+
+
+
+    const formatTreeData = useMemo(() => renderTreeNodes(treeData), [treeData])
 
     return (
         <div>
@@ -163,6 +121,7 @@ export default function DetailsLayout() {
                             },
                             ...activeKeys.map(i => ({
                                 href: '',
+                                key: i,
                                 title: i,
                             })),
                         ]}
@@ -176,10 +135,11 @@ export default function DetailsLayout() {
                         rootClassName='root-menu-tree'
                         rootStyle={{ backgroundColor: '#0F69B7', color: 'white' }}
                         switcherIcon={null}
-                        activeKey={"Laws & Regulation"}
+                        titleRender={(node) => getTreeTitle(node.title, node.treeNode.length > 1, activeKeys.includes(node.key), node.children.length > 1)}
                         onSelect={handleSelectedTree}
-                        defaultExpandAll
-                        treeData={renderTreeNodes(treeData)}
+                        expandedKeys={activeKeys}
+                        autoExpandParent
+                        treeData={formatTreeData}
                     />
                 </div>
                 <div className='col-span-10 p-[40px]'>
