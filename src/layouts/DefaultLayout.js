@@ -222,7 +222,7 @@ export default function DefaultLayout() {
 
               <div className='flex gap-[1.25rem]'>
                 {
-                  socialMedia.map(i => <a href={i.link}>
+                  socialMedia.map((i, index) => <a href={i.link} key={index}>
                     {i.icon}
                   </a>)
                 }
@@ -288,11 +288,12 @@ export default function DefaultLayout() {
                 menuHover={menuHover}
                 value={index}
                 height={260}
+                key={index}
               >
                 <div className='flex flex-wrap gap-[20px] justify-between items-center h-full'>
                   {
-                    item.children.map(child => (
-                      <Button className='w-[calc(100vw/4)] h-[54px] gap-2 std-menu-link' onClick={() => toPage(child?.link)}>
+                    item.children.map((child, index) => (
+                      <Button key={index} className='w-[calc(100vw/4)] h-[54px] gap-2 std-menu-link' onClick={() => toPage(child?.link)}>
                         {child?.title}
                       </Button>
                     ))
@@ -336,8 +337,8 @@ export default function DefaultLayout() {
               </div>
               <div className='mt-[10px] lg:mt-0 ms-0 lg:ms-[75px] flex flex-col gap-4'>
                 {
-                  businessInfo.map(i => (
-                    <Link to={i.link} className='icons-container gap-3'>
+                  businessInfo.map((i, index) => (
+                    <Link key={index} to={i.link} className='icons-container gap-3'>
                       {i.icon}
                       <span className='truncate'>{i.text}</span>
                     </Link>
@@ -357,8 +358,8 @@ export default function DefaultLayout() {
                   About NCLL
                 </Link>
                 {
-                  aboutNCLL.map(i => (
-                    <Link className='text-[16px]' to={i.link}>
+                  aboutNCLL.map((i, index) => (
+                    <Link className='text-[16px]' key={index} to={i.link}>
                       {i.text}
                     </Link>
                   ))
@@ -370,8 +371,8 @@ export default function DefaultLayout() {
                   Follow us
                 </Link>
                 {
-                  socialMediaFooter.map(i => (
-                    <Link className='text-[16px] icons-container gap-2' to={i.link}>
+                  socialMediaFooter.map((i, index) => (
+                    <Link key={index} className='text-[16px] icons-container gap-2' to={i.link}>
                       {i.text}
                       <ExportSvg width='13px' height='13px' />
                     </Link>

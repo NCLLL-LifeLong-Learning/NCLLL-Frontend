@@ -7,14 +7,19 @@ export default function HeaderNavigationBar(props) {
     return (
         <div className='hidden lg:flex gap-[5rem]'>
             {
-                menu.map((item, index) => <div className='menu-container'>
+                menu.map((item, index) => <div
+                    key={index}
+                    className='menu-container'
+                >
                     <Link
                         onMouseEnter={() => {
                             if (item.children.length > 0) {
                                 setMenuHover(index)
                             }
                         }}
-                        className='flex items-center gap-2 std-menu-link' to={item?.link}>
+                        className='flex items-center gap-2 std-menu-link'
+                        to={item?.link}
+                    >
                         {item?.title}
                         {
                             item.children.length > 0 &&
