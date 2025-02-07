@@ -19,12 +19,12 @@ export default function NewsAndEvent() {
       const fileList = Array.from({ length: 50 }, (_, index) => ({
         type: key[index % 2],
         _id: index,
-        cover: `${BASE_ASSET_URL}/resources/Cover-Resource.png`,
+        imageUrl: `${BASE_ASSET_URL}/segmented/event-news.png`,
         title: `[${key[index % 2]}] - National Policy on Lifelong Learning ${index + 1}`,
-        source: "Ministry 1",
+        source: "Ministry " + index,
         publishedTS: "01/01/2024",
+        tags: "Tags " + index,
         lang: "KH",
-        file: `${BASE_ASSET_URL}/resources/dummy.pdf`,
       }));
       setDataSource([...fileList])
     } catch (error) {

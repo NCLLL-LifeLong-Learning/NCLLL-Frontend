@@ -18,12 +18,12 @@ export default function ProjectsDocument() {
       const fileList = Array.from({ length: 50 }, (_, index) => ({
         type: RESOURCE_TYPE.project,
         _id: index,
-        cover: `${BASE_ASSET_URL}/resources/Cover-Resource.png`,
+        imageUrl: `${BASE_ASSET_URL}/segmented/event-news.png`,
         title: `[${RESOURCE_TYPE.project}] - National Policy on Lifelong Learning ${index + 1}`,
-        source: "Ministry 1",
+        source: "Ministry " + index,
+        tags: "Tags " + index,
         publishedTS: "01/01/2024",
         lang: "KH",
-        file: `${BASE_ASSET_URL}/resources/dummy.pdf`,
       }));
       setDataSource([...fileList])
     } catch (error) {
