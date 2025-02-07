@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import TagsSvg from '../../assets/svgs/TagsSvg';
 import ArrowSvg from '../../assets/svgs/ArrowSvg';
 
-export default function SegmentedTabs({ total, onLoadMore, dataSource, options, defaultOpitons, onChange }) {
+export default function SegmentedTabs({ handleEventClick, total, onLoadMore, dataSource, options, defaultOpitons, onChange }) {
     const [currentOption, setCurrentOption] = useState(defaultOpitons);
 
     const handleChangeDefault = (value) => {
@@ -60,7 +60,7 @@ export default function SegmentedTabs({ total, onLoadMore, dataSource, options, 
                     loadMore={loadMore}
                     dataSource={dataSource}
                     renderItem={(data) => {
-                        return <div className='px-[20px] py-[15px]'>
+                        return <div className='px-[20px] py-[15px]' onClick={handleEventClick}>
                             <div className='std-card-wrapper'>
                                 <div>
                                     <img className="std-card-image" src={data.imageUrl} alt={data.imageUrl} />

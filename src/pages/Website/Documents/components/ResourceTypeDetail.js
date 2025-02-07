@@ -27,25 +27,25 @@ export default function RosourceTypeDetail(props) {
             <div className='flex flex-col gap-3 justify-center flex-1'>
                 <div className='text-xl' style={{ color: "var(--primary-color)" }}>{record.title}</div>
                 <div className='flex items-center gap-3'>
-                    <div className='flex gap-2 items-center'>
+                    <div className='flex gap-1 items-center'>
                         <div className='text-md font-bold'>Source</div>
                         <div>:</div>
-                        <span>{record.source}</span>
+                        <span style={{ textWrap: "nowrap" }}>{record.source}</span>
                     </div>
                     -
-                    <div className='flex gap-2 items-center'>
+                    <div className='flex gap-1 items-center'>
                         <div className='text-md font-bold'>Tags</div>
                         <div>:</div>
-                        <span>{record.tags}</span>
+                        <span style={{ textWrap: "nowrap" }}>{record.tags}</span>
                     </div>
                     -
-                    <div className='flex gap-2 items-center'>
+                    <div className='flex gap-1 items-center'>
                         <div className='text-md font-bold'>Published</div>
                         <div>:</div>
                         <span>{dayjs(record.publishedTS).format("DD/MM/YYYY")}</span>
                     </div>
                     -
-                    <div className='flex gap-2 items-center'>
+                    <div className='flex gap-1 items-center'>
                         <div className='text-md font-bold'>Lan</div>
                         <div>:</div>
                         <span>{record.lang}</span>
