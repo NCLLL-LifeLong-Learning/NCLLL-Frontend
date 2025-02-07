@@ -3,7 +3,7 @@ import ResourceList from './components/ResourceList'
 import { BASE_ASSET_URL } from '../../../constants/Url'
 import { debounce } from 'lodash';
 import { Button, Divider, Input, Select } from 'antd';
-import { RESOURCE_TYPE } from '../../../constants/Bridge';
+import { RESOURCE_TYPE, RESOURCE_TYPE_DOWNLOAD, RESOURCE_TYPE_VIEW } from '../../../constants/Bridge';
 
 export default function AllDocuments() {
   const pageSize = 10;
@@ -14,19 +14,35 @@ export default function AllDocuments() {
   const fetchData = () => {
     try {
       setLoading(true);
-      const typeResources = Object.keys(RESOURCE_TYPE);
+      const typeView = Object.keys(RESOURCE_TYPE_VIEW);
+      const typeDownload = Object.keys(RESOURCE_TYPE_DOWNLOAD)
 
       const fileList = Array.from({ length: 50 }, (_, index) => ({
-        type: typeResources[index % 7],
+        type: typeDownload[index % typeDownload.length],
         _id: index,
         cover: `${BASE_ASSET_URL}/resources/Cover-Resource.png`,
-        title: `[${typeResources[index % 7].toUpperCase()}] - National Policy on Lifelong Learning ${index + 1}`,
-        source: "Ministry 1",
+        title: `[${typeDownload[index % typeDownload.length].toUpperCase()}] - National Policy on Lifelong Learning ${index + 1}`,
         publishedTS: "01/01/2024",
         lang: "KH",
+        source: "Ministry " + index,
         file: `${BASE_ASSET_URL}/resources/dummy.pdf`,
       }));
-      setDataSource([...fileList])
+
+      const viewList = Array.from({ length: 50 }, (_, index) => ({
+        type: typeView[index % typeView.length],
+        _id: index,
+        imageUrl: `${BASE_ASSET_URL}/segmented/event-news.png`,
+        title: `[${typeView[index % typeView.length].toUpperCase()}] - National Policy on Lifelong Learning ${index + 1}`,
+        publishedTS: "01/01/2024",
+        lang: "KH",
+        source: "Ministry " + index,
+        tags: "Tags " + index,
+        file: `${BASE_ASSET_URL}/resources/dummy.pdf`,
+      }));
+      // tags: "Tags " + index,
+
+
+      setDataSource([...viewList, ...fileList])
     } catch (error) {
       console.log(error);
     } finally {
