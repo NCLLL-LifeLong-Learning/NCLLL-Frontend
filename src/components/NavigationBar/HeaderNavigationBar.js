@@ -5,7 +5,7 @@ export default function HeaderNavigationBar(props) {
     const { menu, setMenuHover } = props;
 
     return (
-        <div className='hidden lg:flex gap-[5rem]'>
+        <div className='hidden lg:flex gap-[2rem] xl:gap-[5rem]'>
             {
                 menu.map((item, index) => <div
                     key={index}

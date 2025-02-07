@@ -1,10 +1,11 @@
-import { Breadcrumb, Tree } from 'antd';
+import { Breadcrumb, Button, FloatButton, Tree } from 'antd';
 import React, { useEffect, useMemo, useState } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import { getTreeTitle } from '../utils/Utils';
 import { AiOutlineHome } from "react-icons/ai";
 import ArrowSvg from '../assets/svgs/ArrowSvg';
 import BecomePartner from "../components/OurPartner/BecomePartner";
+import ExpandSvg from '../assets/svgs/ExpandSvg';
 
 export default function DetailsLayout() {
     const [currentRoute, setCurrentRoute] = useState({});
@@ -14,6 +15,7 @@ export default function DetailsLayout() {
     const [treeDescription, setTreeDescription] = useState("");
     const [activeKeys, setActiveKeys] = useState([]);
     const [treeData, setTreeData] = useState([]);
+    const [burger, setBurger] = useState(false);
 
     const handleChildAction = (message) => {
         console.log("Message from child:", message);
@@ -97,14 +99,13 @@ export default function DetailsLayout() {
     const formatTreeData = useMemo(() => renderTreeNodes(treeData), [treeData])
 
     return (
-        <div>
+        (<div>
             <div className='h-[260px] text-white flex justify-center items-center' style={{ background: "var(--detail-header-background)" }}>
                 <div className='max-w-[800px] text-center gap-[20px] flex flex-col'>
                     <div className='std-title !text-white'>{treeTitle}</div>
                     <div className='std-content'>{treeDescription}</div>
                 </div>
             </div>
-
             <div className='bg-white shadow-md'>
                 <div className='std-container h-[50px] flex items-center'>
                     <Breadcrumb
@@ -128,8 +129,14 @@ export default function DetailsLayout() {
                     />
                 </div>
             </div>
-            <div className='grid grid-cols-12 gap-4'>
-                <div className='col-span-2 ps-[10px] h-fit rounded-l pb-[20px]' style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
+            <div className='relative lg:grid grid-cols-12 gap-4'>
+                <FloatButton
+                    className='esi-floating-buger'
+                    onClick={() => setBurger(!burger)}
+                    icon={<ExpandSvg color='white' />}
+                    style={{ left: 10, bottom: 40, backgroundColor: "var(--primary-color)" }}
+                />
+                <div className={`${burger ? "active" : ""} transition-all fixed-burger xl:block col-span-2 ps-[10px] h-fit pb-[20px]`} style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
                     <h1 className='p-[20px] text-[2rem] text-center m-0'>{treeTitle}</h1>
                     <Tree
                         rootClassName='root-menu-tree'
@@ -142,7 +149,7 @@ export default function DetailsLayout() {
                         treeData={formatTreeData}
                     />
                 </div>
-                <div className='col-span-10 p-[40px]'>
+                <div className='col-span-12 xl:col-span-10 py-[40px] p-0 xl:p-[40px] std-container flex justify-center'>
                     <Outlet context={contextValue} />
                 </div>
             </div>
@@ -151,6 +158,6 @@ export default function DetailsLayout() {
                     <BecomePartner />
                 </div>
             }
-        </div>
-    )
+        </div>)
+    );
 }

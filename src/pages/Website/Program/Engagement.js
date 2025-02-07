@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ArrowSvg from "../../../assets/svgs/ArrowSvg";
 import Partners from "./Engagement/Partners";
+import { useLocation } from "react-router";
 
 const tabs = ["Voluntary", "Fellowship", "Consultant", "Exchange Program", "Partners", "Advisor", "Tab 7", "Tab 8", "Tab 9", "Tab 10"];
 
 export default function Engagement() {
+   const location = useLocation();
    const [visibleStart, setVisibleStart] = useState(0);
    const [activeTab, setActiveTab] = useState(0);
    const visibleTabs = 6;
@@ -22,6 +24,17 @@ export default function Engagement() {
       { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
       { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
    ]
+
+   useEffect(() => {
+      console.log("location = ", location);
+      if (location?.state) {
+         const { initTabs } = location.state;
+         console.log("tabs.indexOf(initTabs) = ", tabs.indexOf(initTabs));
+
+         setActiveTab(tabs.indexOf(initTabs));
+      }
+   }, [location, location.state])
+
    return (
       <div>
          <div className="w-full">
@@ -49,6 +62,7 @@ export default function Engagement() {
             </div>
             <div className="w-full pt-[2rem]">
                { tabs[activeTab] === "Partners" && <Partners /> }
+               { tabs[activeTab] !== "Partners" && <Partners /> }
             </div>
          </div>
       </div>

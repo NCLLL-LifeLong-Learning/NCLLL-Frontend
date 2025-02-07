@@ -105,17 +105,37 @@ export default function DefaultLayout() {
   ];
 
   const menu = [
-    // {
-    //   title: "Home",
-    //   link: "",
-    //   children: [],
-    // },
     {
       title: "About NCLLL",
       link: "/about-us/mission",
       children: [{
-        title: "Chairman",
+        title: 'Mission & Vision',
+        link: "/about-us/mission",
+        disabled: false,
+      },
+      {
+        title: "Key Functions",
+        link: "/about-us/key",
+        disabled: false,
+      },
+      {
+        title: "NCLLL Member Ministries",
+        link: "/about-us/member",
+        disabled: false,
+      },
+      {
+        title: "Governing Board",
+        link: "/about-us/board",
+        disabled: false,
+      },
+      {
+        title: "SGLLL",
         link: "/about-us/sglll",
+        disabled: false,
+      },
+      {
+        title: "Contact us",
+        link: "/about-us/contact",
         disabled: false,
       }],
     }, {
@@ -293,7 +313,7 @@ export default function DefaultLayout() {
                 <div className='flex flex-wrap gap-[20px] justify-between items-center h-full'>
                   {
                     item.children.map((child, index) => (
-                      <Button key={index} className='w-[calc(100vw/4)] h-[54px] gap-2 std-menu-link' onClick={() => toPage(child?.link)}>
+                      <Button key={index} className='truncate w-[calc(100vw/3)] xl:w-[calc(100vw/4)] h-[54px] gap-2 std-menu-link' onClick={() => toPage(child?.link)}>
                         {child?.title}
                       </Button>
                     ))
