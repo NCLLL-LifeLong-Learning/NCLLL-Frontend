@@ -22,13 +22,13 @@ export default function RosourceTypeDetail(props) {
     }
 
     return (
-        <div className='flex px-[20px] gap-[20px] w-full items-center justify-between py-[20px] ring rounded-lg'>
-            <div className='border'>
-                <img className='max-h-[150px]' src={record?.imageUrl} alt={record?.imageUrl} />
+        <div className='grid grid-cols-3 md:flex px-[10px] md:px-[20px] gap-[10px] md:gap-[20px] w-full items-center justify-between py-[20px] ring rounded-lg'>
+            <div className='col-span-3'>
+                <img className='w-full h-auto md:w-auto max-h-none md:max-h-[150px] border' src={record?.imageUrl} alt={record?.imageUrl} />
             </div>
-            <div className='flex flex-col gap-3 justify-center flex-1'>
-                <div className='text-xl' style={{ color: "var(--primary-color)" }}>{record.title}</div>
-                <div className='flex items-center gap-3'>
+            <div className='col-span-3 flex flex-col gap-3 justify-center flex-1'>
+                <div className='text-xl truncate' style={{ color: "var(--primary-color)" }}>{record.title}</div>
+                <div className='flex-wrap flex items-center gap-3'>
                     <div className='flex gap-1 items-center'>
                         <div className='text-md font-bold'>{t("Source")}</div>
                         <div>:</div>
@@ -54,7 +54,7 @@ export default function RosourceTypeDetail(props) {
                     </div>
                 </div>
             </div>
-            <div className='h-fit flex-center w-[25%] max-w-[150px]'>
+            <div className='col-span-3 h-fit flex-center'>
                 <Button type='link' icon={<LuEye style={{ fontSize: "30px", color: "black" }} onClick={onViewDetail} />} />
             </div>
         </div>

@@ -28,7 +28,7 @@ export default function MinistriesPartner({ dataSource, description, title, onCl
                                 slidesToShow: 2
                             },
                             xxs: {
-                                slidesToShow: 2
+                                slidesToShow: 1
                             },
                         })}
                         rootClassName='root-partner-list slick-item-center hide-arrow center-arrow cursor-grab'

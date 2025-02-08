@@ -10,16 +10,16 @@ export default function SecretariatGeneralOfNLLL() {
   return (
     <div className='flex flex-col gap-[30px]'>
       <div className='mission-title' style={{ color: "var(--primary-color)" }}>{t("Structure of NCLLL")}</div>
-      <div className='mission-content px-[40px] py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+      <div className='mission-content py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
         {t("Annex to Sub-Decree No. 237 dated 2 December 2021 on the Organization and Functioning of the Secretariat of the National Committee for Lifelong Learning")}
       </div>
       <div className='text-center' style={{ color: "var(--primary-color)", fontWeight: 600 }}>
         {t("The Structure of Secretariat General of NLLL are as follow :")}
       </div>
-      <div className='flex justify-between px-[40px]'>
-        <Button className='std-btn px-[25px] md:!px-[60px]'>{t("6th Term")}</Button>
-        <Button className='std-btn px-[25px] md:!px-[60px]'>{t("7th Term")}</Button>
-        <Button className='std-btn px-[25px] md:!px-[60px]'>{t("8th Term")}</Button>
+      <div className='flex justify-between px-[10px] md:px-[40px]'>
+        <Button className='std-btn !px-[10px] md:!px-[60px]'>{t("6th Term")}</Button>
+        <Button className='std-btn !px-[10px] md:!px-[60px]'>{t("7th Term")}</Button>
+        <Button className='std-btn !px-[10px] md:!px-[60px]'>{t("8th Term")}</Button>
       </div>
       <div className='flex-col-center pb-[30px] gap-[10px]'>
         <div className='p-[20px] w-fit rounded-lg' style={{ background: "var(--chairman-background)" }}>
@@ -41,13 +41,13 @@ export default function SecretariatGeneralOfNLLL() {
         </div>
 
         <div className='flex flex-col w-full gap-[30px] pt-[20px]'>
-          <div className='min-h-[300px] mission-content w-full px-[40px] py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+          <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
             {t("The Secretariat of the NEC has the following functions and responsibilities:")}
           </div>
-          <div className='min-h-[300px] mission-content w-full px-[40px] py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+          <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
             {t("The policy section has the following responsibilities:")}
           </div>
-          <div className='min-h-[300px] mission-content w-full px-[40px] py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+          <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
             {t("The policy section has the following responsibilities:")}
           </div>
         </div>

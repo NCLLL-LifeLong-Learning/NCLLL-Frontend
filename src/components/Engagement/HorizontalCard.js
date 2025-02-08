@@ -6,15 +6,15 @@ export default function HorizontalCard({ image, name, linkURL }) {
   return (
     <div>
       {/* Card */}
-      <div className='shadow-lg border rounded-xl w-full p-[1rem] flex  items-center mb-[1rem]'>
-        <div className='w-[8rem]'>
+      <div className='shadow-lg border rounded-xl w-full p-[1rem] flex gap-1 items-center mb-[1rem]'>
+        <div className='w-[60px] md:w-[8rem]'>
           <img src={image} className='w-full bg-cover bg-center object-cover' alt='Forum 2' />
         </div>
-        <div className='lg:ml-[10rem]'>
-          <h3 className='pb-[0.5rem] font-semibold text-[#0F69B7]'>
+        <div className='ml-0 lg:ml-[10rem] flex justify-between text-start flex-col'>
+          <h3 className='font-semibold text-[#0F69B7]'>
             {t(name)}
           </h3>
-          <p className='text-gray-600 text-sm'>URL: {linkURL}</p>
+          <p className='text-gray-600 text-sm m-0'>URL: {linkURL}</p>
         </div>
       </div>
     </div>

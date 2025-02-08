@@ -50,14 +50,14 @@ export default function PolicyStrategy() {
   return (
     <div>
       <div className='font-bold text-4xl'>{t("Resources")}</div>
-      <div className='flex justify-between mt-[2rem]'>
-        <div className='w-[50%] flex gap-[30px]'>
-          <div className='flex gap-3 items-center'>
+      <div className='flex-col gap-5 lg:flex-row flex justify-between mt-[2rem]'>
+        <div className='grid grid-cols-1 w-full lg:w-[50%] lg:flex gap-5'>
+          <div className='col-span-1 flex gap-3 items-center'>
             {t("Ministry")}:
             <Select
               showSearch
               allowClear
-              className='min-w-[150px]'
+              className='w-full min-w-[150px]'
               placeholder={t("All")}
               filterOption={(input, option) =>
                 (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
@@ -70,12 +70,12 @@ export default function PolicyStrategy() {
             />
           </div>
 
-          <div className='flex gap-3 items-center'>
+          <div className='col-span-1 flex gap-3 items-center'>
             {t("Year")}:
             <Select
               showSearch
               allowClear
-              className='min-w-[150px]'
+              className='w-full min-w-[150px]'
               placeholder={t("All")}
               filterOption={(input, option) =>
                 (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
@@ -89,12 +89,12 @@ export default function PolicyStrategy() {
             />
           </div>
         </div>
-        <div className='flex gap-3 w-[50%]'>
+        <div className='flex gap-3 w-full lg:w-[50%]'>
           <Input placeholder={t('Search')} />
           <Button className="std-btn !px-[40px]" onClick={handleSearch}>{t("Search")}</Button>
         </div>
       </div>
-      
+
       <Divider />
 
       <div className='mt-[3rem]'>
