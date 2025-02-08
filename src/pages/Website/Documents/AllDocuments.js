@@ -4,8 +4,10 @@ import { BASE_ASSET_URL } from '../../../constants/Url'
 import { debounce } from 'lodash';
 import { Button, Divider, Input, Select } from 'antd';
 import { RESOURCE_TYPE, RESOURCE_TYPE_DOWNLOAD, RESOURCE_TYPE_VIEW } from '../../../constants/Bridge';
+import { useTranslation } from 'react-i18next';
 
 export default function AllDocuments() {
+  const { t } = useTranslation();
   const pageSize = 10;
   const [loading, setLoading] = useState(true);
   const [dataSource, setDataSource] = useState([]);
@@ -64,15 +66,16 @@ export default function AllDocuments() {
 
   return (
     <div>
-      <div className='font-bold text-4xl'>Resources</div>
+      <div className='font-bold text-4xl'>{t("Resources")}</div>
       <div className='flex justify-between mt-[2rem]'>
         <div className='w-[50%] flex gap-[30px]'>
-          <div className='flex gap-3 items-center'>Ministry:
+          <div className='flex gap-3 items-center'>
+            {t("Ministry")}:
             <Select
               showSearch
               allowClear
               className='min-w-[150px]'
-              placeholder="All"
+              placeholder={t("All")}
               filterOption={(input, option) =>
                 (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
               }
@@ -85,12 +88,12 @@ export default function AllDocuments() {
           </div>
 
           <div className='flex gap-3 items-center'>
-            Year:
+            {t("Year")}:
             <Select
               showSearch
               allowClear
               className='min-w-[150px]'
-              placeholder="All"
+              placeholder={t("All")}
               filterOption={(input, option) =>
                 (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
               }
@@ -104,11 +107,11 @@ export default function AllDocuments() {
           </div>
         </div>
         <div className='flex gap-3 w-[50%]'>
-          <Input placeholder='Search' />
-          <Button className="std-btn !px-[40px]" onClick={handleSearch}>Search</Button>
+          <Input placeholder={t('Search')} />
+          <Button className="std-btn !px-[40px]" onClick={handleSearch}>{t("Search")}</Button>
         </div>
-
       </div>
+      
       <Divider />
 
       <div className='mt-[3rem]'>

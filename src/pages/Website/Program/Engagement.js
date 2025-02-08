@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import ArrowSvg from "../../../assets/svgs/ArrowSvg";
 import Partners from "./Engagement/Partners";
 import { useLocation } from "react-router";
+import { useTranslation } from "react-i18next";
 
-const tabs = ["Voluntary", "Fellowship", "Consultant", "Exchange Program", "Partners", "Advisor", "Tab 7", "Tab 8", "Tab 9", "Tab 10"];
+const tabs = ["Voluntary", "Fellowship", "Consultant", "Exchange Program", "Partners", "Advisor"];
 
 export default function Engagement() {
+   const { t } = useTranslation();
    const location = useLocation();
    const [visibleStart, setVisibleStart] = useState(0);
    const [activeTab, setActiveTab] = useState(0);
@@ -51,7 +53,7 @@ export default function Engagement() {
                            className={`font-semibold px-4 py-2 rounded-full transition-all duration-300 ${activeTab === visibleStart + index ? "bg-[#0F69B7] text-white" : " text-black"
                               }`}
                         >
-                           {tab}
+                           {t(tab)}
                         </button>
                      ))}
                   </div>

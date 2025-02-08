@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 import HeaderNavigationBar from '../components/NavigationBar/HeaderNavigationBar'
 import { Button, Dropdown, FloatButton, Input } from 'antd'
@@ -20,14 +20,15 @@ import BottomMenu from '../components/NavigationBar/BottomMenu.js'
 import GridSvg from '../assets/svgs/GridSvg.js'
 import ExpandSvg from '../assets/svgs/ExpandSvg.js'
 import { FaArrowUp } from 'react-icons/fa'
+import QuickLinkDrawer from '../components/Drawers/QuickLinkDrawer.js'
 
 export default function DefaultLayout() {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const quickLinkModal = useRef();
   const [search, setSearch] = useState("");
   const [currentLanguage, setCurrentLanguage] = useState("kh");
   const [menuHover, setMenuHover] = useState(-1);
-
-  const { t, i18n } = useTranslation();
 
   const aboutNCLL = [
     {
@@ -195,25 +196,31 @@ export default function DefaultLayout() {
   const lanuageMenu = [
     {
       label: <div
-        onClick={() => setCurrentLanguage("en")}
+        onClick={() => onChangeLang("en")}
         className='flex gap-3'
       >
         <AmericanSvg width='20px' height='20px' />
-        English
+        {t("English")}
       </div>,
       key: 'en',
     },
     {
       label: <div
-        onClick={() => setCurrentLanguage("kh")}
+        onClick={() => onChangeLang("kh")}
         className='flex gap-3'
       >
         <CambodiaSvg width='20px' height='20px' />
-        Khmer
+        {t("Khmer")}
       </div>,
       key: 'kh',
     },
   ];
+
+  const onChangeLang = (value) => {
+    i18n.changeLanguage(value);
+    localStorage.setItem("lang", value)
+    setCurrentLanguage(value);
+  }
 
   const handleSearch = () => {
     //SEARCH SOMETHING
@@ -224,20 +231,28 @@ export default function DefaultLayout() {
     navigate(link);
   }
 
-  return (
+  const openQuickLink = () => {
+    quickLinkModal?.current?.show();
+  }
 
+  const contextValue = { 
+    currentLanguage
+   };
+
+  return (
     <div className='std-layout'>
       <div className='bg-white sticky z-[50] hidden lg:block'>
         <div className='std-container pe-[20px] pt-[20px]'>
           <div className='flex justify-end'>
             <div className='flex gap-[2rem] items-center'>
               <Button
+                onClick={openQuickLink}
                 type='text'
                 iconPosition='end'
                 className='p-0'
                 icon={<GridSvg color='black' className="size-[16px]" />}
               >
-                Quick Links
+                {t("Quick Links")}
               </Button>
 
               <div className='flex gap-[1.25rem]'>
@@ -264,7 +279,8 @@ export default function DefaultLayout() {
                     <div className='text-[14px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                   </div>
                   <div className='flex lg:hidden'>
-                    <ExpandSvg className="size-[35px]" />
+                    <Button type='link' onClick={openQuickLink} icon={<ExpandSvg color='black' className="size-[35px]" />} />
+
                   </div>
                 </div>
                 <HeaderNavigationBar menu={menu} setMenuHover={setMenuHover} />
@@ -278,7 +294,7 @@ export default function DefaultLayout() {
                     </div>
                   </div>
 
-                  <div className='py-[5px] px-[20px]'>
+                  <div className='py-[5px] px-[20px] '>
                     <Dropdown
                       className='bg-none cursor-pointer'
                       type="primary"
@@ -288,7 +304,7 @@ export default function DefaultLayout() {
                         {
                           currentLanguage === "kh" ?
                             <CambodiaSvg width='20px' height='20px' /> :
-                            <AmericanSvg width='20px' height='20px' />
+                            <AmericanSvg height='20px' width='20px' />
                         }
                         <ArrowSvg width='10px' height='10px' className="arrow-icons" />
                       </div>
@@ -314,7 +330,7 @@ export default function DefaultLayout() {
                   {
                     item.children.map((child, index) => (
                       <Button key={index} className='truncate w-[calc(100vw/3)] xl:w-[calc(100vw/4)] h-[54px] gap-2 std-menu-link' onClick={() => toPage(child?.link)}>
-                        {child?.title}
+                        {t(child?.title)}
                       </Button>
                     ))
                   }
@@ -334,14 +350,14 @@ export default function DefaultLayout() {
           >
             <div className='flex gap-3 items-center h-full'>
               <Input className='h-[40px]' value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} />
-              <Button className='search-button' onClick={handleSearch}>Search</Button>
+              <Button className='search-button' onClick={handleSearch}>{t("Search")}</Button>
             </div>
           </BottomMenu>
         </div>
       </div>
 
       <div className='mt-[70px] md:mt-0 std-outlet-content'>
-        <Outlet />
+        <Outlet context={contextValue}  />
       </div>
 
       <div className='min-h-[380px] std-footer py-[30px] lg:p-[30px] text-white' style={{ background: "var(--footer-background)" }}>
@@ -366,7 +382,7 @@ export default function DefaultLayout() {
                 }
                 <div className='hidden lg:block'>
                   <Link to='#' className='ms-[calc(20px+1rem)] mt-[7px] gap-2 icons-container'>
-                    <span className='font-[600] text-[14px]'>Contact Us</span>
+                    <span className='font-[600] text-[14px]'>{t("Contact Us")}</span>
                     <ExportSvg width='13px' height='13px' />
                   </Link>
                 </div>
@@ -375,12 +391,12 @@ export default function DefaultLayout() {
             <div className='col-span-1 flex justify-between mt-[10px] lg:mt-[0]'>
               <div className='flex flex-col gap-4'>
                 <Link className='font-[700] text-[20px]' to='#'>
-                  About NCLL
+                  {t("About NCLLL")}
                 </Link>
                 {
                   aboutNCLL.map((i, index) => (
                     <Link className='text-[16px]' key={index} to={i.link}>
-                      {i.text}
+                      {t(i.text)}
                     </Link>
                   ))
                 }
@@ -388,7 +404,7 @@ export default function DefaultLayout() {
 
               <div className='flex flex-col gap-4'>
                 <Link className='font-[700] text-[20px]' to='#'>
-                  Follow us
+                  {t("Follow us")}
                 </Link>
                 {
                   socialMediaFooter.map((i, index) => (
@@ -410,7 +426,7 @@ export default function DefaultLayout() {
 
       {/* Copy Right */}
       <div className='text-center content-center text-white h-[100px]' style={{ backgroundColor: "var(--primary-color)" }}>
-        Copyright 2024 © National Committee For Lifelong Education | ALL RIGHTS RESERVED
+        {t("Copyright 2024 © National Committee For Lifelong Education | ALL RIGHTS RESERVED")}
       </div>
 
 
@@ -418,6 +434,8 @@ export default function DefaultLayout() {
         icon={<FaArrowUp style={{ color: "var(--primary-color)" }} />}
         className='floating-button'
       />
+
+      <QuickLinkDrawer ref={quickLinkModal} onChangeLang={onChangeLang} menu={menu} lanuageMenu={lanuageMenu} currentLanguage={currentLanguage} />
     </div>
   )
 }

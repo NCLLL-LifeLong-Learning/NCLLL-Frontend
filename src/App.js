@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import React, { Suspense } from 'react';
 import GuardLayout from './layouts/GuardLayout';
 import { aboutUs, focusArea, program, resources } from './constants/Route';
+import { RESOURCE_TYPE } from './constants/Bridge';
 
 const WebDefaultLayout = React.lazy(() => import('./layouts/DefaultLayout'));
 const WebDetailsLayout = React.lazy(() => import('./layouts/DetailsLayout'));
@@ -38,6 +39,7 @@ const PolicyStrategyPage = React.lazy(() => import('./pages/Website/Documents/Po
 const ProjectResourcePage = React.lazy(() => import('./pages/Website/Documents/ProjectsDocument'));
 const NewsAndEventPage = React.lazy(() => import('./pages/Website/Documents/NewsAndEvent'));
 const ReportAndPublicationPage = React.lazy(() => import('./pages/Website/Documents/ReportAndPublication'));
+const DynamicDetailPage = React.lazy(() => import('./pages/Website/Documents/DynamicDetailPage'));
 
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
@@ -59,7 +61,7 @@ function App() {
               <Route path='member' element={<Suspense><MemberMinistriesPage /></Suspense>} />
 
               <Route path='board' element={<Suspense><GoverningBoardPage /></Suspense>} />
-              
+
               <Route path='board/:id' element={<Suspense><GoverningDetailPage /></Suspense>} />
 
               <Route path='sglll' element={<Suspense><SecretariatGeneralOfNLLLPage /></Suspense>} />
@@ -105,7 +107,12 @@ function App() {
               <Route path='projects' element={<Suspense><ProjectResourcePage /></Suspense>} />
 
               <Route path='news' element={<Suspense><NewsAndEventPage /></Suspense>} />
+              
+              <Route path='news/:id' element={<Suspense><DynamicDetailPage type={RESOURCE_TYPE.event} /></Suspense>} />
+              
               <Route path='report' element={<Suspense><ReportAndPublicationPage /></Suspense>} />
+              
+              <Route path='projects/:id' element={<Suspense><DynamicDetailPage type={RESOURCE_TYPE.project} /></Suspense>} />
             </Route>
           </Route>
         </Route>

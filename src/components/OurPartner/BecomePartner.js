@@ -13,8 +13,8 @@ const BecomePartner = () => {
 
   return (
     <div className="max-w-[60vw] w-full">
-      <h1 className="mb-2 text-4xl font-bold text-[#0F69B7]">{t("become_our_partner")}</h1>
-      <p className="pb-4 text-wrap text-base">{becomePartner.paragraph}</p>
+      <h1 className="mb-2 text-4xl font-bold text-[#0F69B7]">{t("Become Our Partner")}</h1>
+      <p className="pb-4 text-wrap text-base">{t(becomePartner.paragraph)}</p>
       <form action="" className="flex flex-col justify-center items-center">
         <Input
           type="text"

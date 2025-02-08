@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { Outlet, useLocation, useOutletContext } from 'react-router'
+import React, { useEffect, useMemo } from 'react'
+import { Outlet, useOutletContext } from 'react-router'
 import { Divider } from 'antd';
-import { isEmpty } from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 export default function GuardLayout(props) {
+    const { t } = useTranslation();
     const { title, description, route } = props;
     const contextParent = useOutletContext();
     const { currentRoute, setTitle, setTreeDescription, setTreeData } = contextParent
@@ -22,7 +23,7 @@ export default function GuardLayout(props) {
     return (
         <div>
             {!currentRoute?.noHeader && <>
-                <div className='detail-page-title'>{currentRoute.title}</div>
+                <div className='detail-page-title'>{t(currentRoute.title)}</div>
                 <Divider />
             </>}
 

@@ -4,9 +4,11 @@ import React from 'react'
 import { LuEye } from 'react-icons/lu';
 import { useNavigate } from 'react-router';
 import { RESOURCE_TYPE } from '../../../../constants/Bridge';
+import { useTranslation } from 'react-i18next';
 
 export default function RosourceTypeDetail(props) {
     const { record } = props;
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     const onViewDetail = () => {
@@ -28,25 +30,25 @@ export default function RosourceTypeDetail(props) {
                 <div className='text-xl' style={{ color: "var(--primary-color)" }}>{record.title}</div>
                 <div className='flex items-center gap-3'>
                     <div className='flex gap-1 items-center'>
-                        <div className='text-md font-bold'>Source</div>
+                        <div className='text-md font-bold'>{t("Source")}</div>
                         <div>:</div>
                         <span style={{ textWrap: "nowrap" }}>{record.source}</span>
                     </div>
                     -
                     <div className='flex gap-1 items-center'>
-                        <div className='text-md font-bold'>Tags</div>
+                        <div className='text-md font-bold'>{t("Tags")}</div>
                         <div>:</div>
                         <span style={{ textWrap: "nowrap" }}>{record.tags}</span>
                     </div>
                     -
                     <div className='flex gap-1 items-center'>
-                        <div className='text-md font-bold'>Published</div>
+                        <div className='text-md font-bold'>{t("Published")}</div>
                         <div>:</div>
                         <span>{dayjs(record.publishedTS).format("DD/MM/YYYY")}</span>
                     </div>
                     -
                     <div className='flex gap-1 items-center'>
-                        <div className='text-md font-bold'>Lan</div>
+                        <div className='text-md font-bold'>{t("Lan")}</div>
                         <div>:</div>
                         <span>{record.lang}</span>
                     </div>
