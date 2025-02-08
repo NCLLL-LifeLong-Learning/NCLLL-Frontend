@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 export default function KeyFunctions() {
+  const { t } = useTranslation();
   const [keyFunctions, setKeyFunctions] = useState([
-    "Develop legislative Framework and Mechanisms",
-    "Provide Lifelong Learning Service to all people",
-    "Develop comprehensive and flexible Lifelong Learning Program in response to the demand for learning",
-    "Develop learning centers, infrastructure, and appropriate learning venue",
-    "Provide capacity building for LLL program facilitators  to be professional",
-    "Recognize, validate, and accredit knowledge , skill, and competence acquired from LLL program, ensuring transparency, justice and  consistency",
-    "Foster ministries and relevant institution to support lifelong learning",
-    "Promote Culture of Global Citizenship",
-    "Promote gender equality, equity, and inclusion",
-    "Promote gender equality, equity, and inclusion",
-    "Promote gender equality, equity, and inclusion"
+    t("Develop legislative Framework and Mechanisms"),
+    t("Provide Lifelong Learning Service to all people"),
+    t("Develop comprehensive and flexible Lifelong Learning Program in response to the demand for learning"),
+    t("Develop learning centers, infrastructure, and appropriate learning venue"),
+    t("Provide capacity building for LLL program facilitators  to be professional"),
+    t("Recognize, validate, and accredit knowledge , skill, and competence acquired from LLL program, ensuring transparency, justice and  consistency"),
+    t("Foster ministries and relevant institution to support lifelong learning"),
+    t("Promote Culture of Global Citizenship"),
+    t("Promote gender equality, equity, and inclusion"),
+    t("Promote gender equality, equity, and inclusion"),
+    t("Promote gender equality, equity, and inclusion")
   ]);
   return (
     <div className='flex flex-col gap-[30px]'>

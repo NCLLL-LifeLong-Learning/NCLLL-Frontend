@@ -2,13 +2,15 @@ import React from 'react'
 import { BASE_ASSET_URL } from '../../../constants/Url'
 import { List } from 'antd'
 import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 export default function GoverningBoard() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const dataSource = [
     {
-      title: "រដ្ឋមន្ត្រី",
+      title: "Minister",
       member: [
         {
           memberId: 1,
@@ -19,7 +21,7 @@ export default function GoverningBoard() {
       ],
     },
     {
-      title: "រដ្ឋលេខាធិការ",
+      title: "Secretary of State",
       member: [
         {
           memberId: 1,
@@ -60,7 +62,7 @@ export default function GoverningBoard() {
       ]
     },
     {
-      title: "អគ្គនាយក",
+      title: "CEO",
       member: [
         {
           memberId: 7,
@@ -110,7 +112,7 @@ export default function GoverningBoard() {
     <div className='flex flex-col gap-[30px] max-w-[70vw]'>
       {
         dataSource.map(data => <div>
-          <h1 className='goverment-title font-khmer'>{data.title}</h1>
+          <h1 className='goverment-title font-khmer'>{t(data.title)}</h1>
 
           {
             data.member.length === 1 ? <div className='flex gap-[20px] p-[20px]' onClick={() => goToDetail(data.member[0])}>
@@ -124,8 +126,8 @@ export default function GoverningBoard() {
                 grid={{
                   xs: 1,
                   sm: 1,
-                  md: 2,
-                  lg: 2,
+                  md: 1,
+                  lg: 1,
                   xl: 2,
                   xxl: 2,
                 }}

@@ -2,8 +2,10 @@ import { Button, List, Segmented } from 'antd'
 import React, { useState } from 'react'
 import TagsSvg from '../../assets/svgs/TagsSvg';
 import ArrowSvg from '../../assets/svgs/ArrowSvg';
+import { useTranslation } from 'react-i18next';
 
 export default function SegmentedTabs({ handleEventClick, total, onLoadMore, dataSource, options, defaultOpitons, onChange }) {
+    const { t } = useTranslation();
     const [currentOption, setCurrentOption] = useState(defaultOpitons);
 
     const handleChangeDefault = (value) => {
@@ -33,7 +35,7 @@ export default function SegmentedTabs({ handleEventClick, total, onLoadMore, dat
                 }
                 onClick={onLoadMore}
             >
-                Load more
+                {t("Load more")}
             </Button>
         </div> : null;
 

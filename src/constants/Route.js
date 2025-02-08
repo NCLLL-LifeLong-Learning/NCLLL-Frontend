@@ -193,8 +193,6 @@ export const resources = {
     ]
 }
 
-
-
 export const focusArea = {
     title: "Focus Areas",
     description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",

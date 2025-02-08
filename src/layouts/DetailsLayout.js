@@ -1,18 +1,22 @@
 import { Breadcrumb, Button, FloatButton, Tree } from 'antd';
 import React, { useEffect, useMemo, useState } from 'react'
-import { Outlet, useLocation, useNavigate } from 'react-router';
+import { Outlet, useLocation, useNavigate, useOutletContext } from 'react-router';
 import { getTreeTitle } from '../utils/Utils';
 import { AiOutlineHome } from "react-icons/ai";
 import ArrowSvg from '../assets/svgs/ArrowSvg';
 import BecomePartner from "../components/OurPartner/BecomePartner";
 import ExpandSvg from '../assets/svgs/ExpandSvg';
+import { useTranslation } from 'react-i18next';
 
 export default function DetailsLayout() {
+    const { t } = useTranslation();
+    const context = useOutletContext();
     const [currentRoute, setCurrentRoute] = useState({});
     const location = useLocation();
     const navigate = useNavigate();
     const [treeTitle, setTreeTitle] = useState("");
     const [treeDescription, setTreeDescription] = useState("");
+    const [activeNodes, setActiveNodes] = useState([]);
     const [activeKeys, setActiveKeys] = useState([]);
     const [treeData, setTreeData] = useState([]);
     const [burger, setBurger] = useState(false);
@@ -23,6 +27,7 @@ export default function DetailsLayout() {
     };
 
     const contextValue = {
+        ...context,
         title: treeTitle,
         setTitle: (value) => setTreeTitle(value),
         description: treeDescription,
@@ -46,6 +51,7 @@ export default function DetailsLayout() {
         setActiveKeys(activeKeys);
 
         if (currentKey) {
+            setActiveNodes([...selectedTree]);
             setCurrentRoute({ ...currentKey });
             if (location.pathname !== currentKey.path) {
                 navigate(currentKey.path);
@@ -53,13 +59,13 @@ export default function DetailsLayout() {
         }
     }
 
-    const renderTreeNodes = (nodes, isChild, treeNode = []) => {
+    const renderTreeNodes = (nodes, treeNode = []) => {
         return nodes.map((node) => ({
             ...node,
-            title: node.title,
+            title: t(node.title),
             key: node.key,
             treeNode: [...treeNode, removeChild(node)],
-            children: node.children ? renderTreeNodes(node.children, true, [...treeNode, removeChild(node)]) : [],
+            children: node.children ? renderTreeNodes(node.children, [...treeNode, removeChild(node)]) : [],
         }));
     }
 
@@ -88,56 +94,60 @@ export default function DetailsLayout() {
             let activeNodes = getActiveNodes(treeData, []);
 
             if (activeNodes.length > 0) {
+                setActiveNodes([...activeNodes]);
                 setActiveKeys(activeNodes.map(node => node.key));
                 setCurrentRoute({ ...activeNodes[activeNodes.length - 1] });
+                return;
             }
+            setActiveNodes([]);
+            setActiveKeys([]);
+            setCurrentRoute({ noHeader: true });
         }
     }, [treeData, location, location.pathname])
 
 
-
-    const formatTreeData = useMemo(() => renderTreeNodes(treeData), [treeData])
+    const formatTreeData = useMemo(() => renderTreeNodes(treeData), [treeData, t])
 
     return (
         (<div>
             <div className='h-[260px] text-white flex justify-center items-center' style={{ background: "var(--detail-header-background)" }}>
                 <div className='max-w-[800px] text-center gap-[20px] flex flex-col'>
-                    <div className='std-title !text-white'>{treeTitle}</div>
-                    <div className='std-content'>{treeDescription}</div>
+                    <div className='std-title !text-white'>{t(treeTitle)}</div>
+                    <div className='std-content'>{t(treeDescription)}</div>
                 </div>
             </div>
             <div className='bg-white shadow-md'>
-                <div className='std-container h-[50px] flex items-center'>
+                <div className='std-container py-[20px] flex items-center'>
                     <Breadcrumb
                         className='list-center breadcrumb-custom'
                         separator={<ArrowSvg className="size-[16px]" transform="scale(-1)" />}
                         items={[
                             {
-                                href: '/',
+                                onClick: () => navigate("/"),
                                 title: <AiOutlineHome className='size-[24px]' />,
                             },
                             {
-                                href: '',
-                                title: treeTitle,
+                                onClick: () => navigate(treeData[0]?.path),
+                                title: t(treeTitle),
                             },
-                            ...activeKeys.map(i => ({
-                                href: '',
-                                key: i,
-                                title: i,
+                            ...activeNodes.map(i => ({
+                                onClick: () => navigate(i?.path),
+                                key: i.key,
+                                title: t(i.title),
                             })),
                         ]}
                     />
                 </div>
             </div>
-            <div className='relative lg:grid grid-cols-12 gap-4'>
+            <div className='relative grid grid-cols-12 gap-4'>
                 <FloatButton
-                    className='esi-floating-buger'
+                    rootClassName='xl:hidden esi-floating-buger'
                     onClick={() => setBurger(!burger)}
                     icon={<ExpandSvg color='white' />}
                     style={{ left: 10, bottom: 40, backgroundColor: "var(--primary-color)" }}
                 />
                 <div className={`${burger ? "active" : ""} transition-all fixed-burger xl:block col-span-2 ps-[10px] h-fit pb-[20px]`} style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
-                    <h1 className='p-[20px] text-[2rem] text-center m-0'>{treeTitle}</h1>
+                    <h1 className='py-[20px] text-[2rem] text-center m-0'>{t(treeTitle)}</h1>
                     <Tree
                         rootClassName='root-menu-tree'
                         rootStyle={{ backgroundColor: '#0F69B7', color: 'white' }}

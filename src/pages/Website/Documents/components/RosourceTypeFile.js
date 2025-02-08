@@ -2,9 +2,11 @@ import { Button } from 'antd';
 import dayjs from 'dayjs';
 import React from 'react'
 import DownloadSvg from '../../../../assets/svgs/DownloadSvg';
+import { useTranslation } from 'react-i18next';
 
 export default function RosourceType(props) {
     const { record } = props;
+    const { t } = useTranslation();
 
     const handleDownload = async (record) => {
         try {
@@ -33,19 +35,19 @@ export default function RosourceType(props) {
                 <div className='text-xl' style={{ color: "var(--primary-color)" }}>{record.title}</div>
                 <div className='flex items-center gap-3'>
                     <div className='flex gap-1 items-center'>
-                        <div className='text-md font-bold'>Source</div>
+                        <div className='text-md font-bold'>{t("Source")}</div>
                         <div>:</div>
                         <span>{record.source}</span>
                     </div>
                     -
                     <div className='flex gap-1 items-center'>
-                        <div>Published</div>
+                        <div>{t("Published")}</div>
                         <div>:</div>
                         <span>{dayjs(record.publishedTS).format("DD/MM/YYYY")}</span>
                     </div>
                     -
                     <div className='flex gap-1 items-center'>
-                        <div>Lan</div>
+                        <div>{t("Lan")}</div>
                         <div>:</div>
                         <span>{record.lang}</span>
                     </div>

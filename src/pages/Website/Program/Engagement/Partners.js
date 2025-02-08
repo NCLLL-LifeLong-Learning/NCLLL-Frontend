@@ -1,21 +1,24 @@
 import React from 'react'
 import HorizontalCard from '../../../../components/Engagement/HorizontalCard'
+import { useTranslation } from 'react-i18next'
+import { BASE_ASSET_URL } from '../../../../constants/Url';
 
 export default function Partners() {
+  const { t } = useTranslation();
   const partners = [
-    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
-    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
-    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
+    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: BASE_ASSET_URL + '/partner/step_academy.png' },
+    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: BASE_ASSET_URL + '/partner/step_academy.png' },
+    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: BASE_ASSET_URL + '/partner/step_academy.png' },
   ]
   return (
     <div>
       <div>
-        <h1 className='font-semibold text-5xl text-black'>Partners</h1>
-        <p className='font-semibold text-lg text-[#0F69B7] mb-2'>National Committee of LifeLong Learning</p>
+        <h1 className='font-semibold text-5xl text-black'>{t("Partners")}</h1>
+        <p className='font-semibold text-lg text-[#0F69B7] mb-2'>{t("National Committee of LifeLong Learning")}</p>
         <p className='font-semibold space-x-3 text-lg text-gray-600'>
-          <span>Total XX</span>
-          <span>Showing 10</span>
-          <span>| Page 1/1</span>
+          <span>{t("Total")} XX</span>
+          <span>{t("Showing")} 10</span>
+          <span>| {t("Page")} 1/1</span>
         </p>
       </div>
       {/* Card */}

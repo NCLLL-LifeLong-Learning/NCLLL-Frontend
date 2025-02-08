@@ -489,6 +489,10 @@
   background-color: white !important;
 }
 
+:where(.root-menu-tree).ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected {
+  background-color: var(--primary-color) !important;
+  color: white !important;}
+
 .menu-tree-title {
   display: flex;
   justify-content: center;
@@ -597,6 +601,15 @@
   background-color: var(--primary-color);
 }
 
+:where(.drawer-fullscreen).ant-drawer-top .ant-drawer-content-wrapper {
+  height: 100vh !important;
+}
+
+:where(.quick-link-drawer).ant-drawer-top .ant-drawer-content {
+  background-color: var(--primary-color) !important;
+  color: white !important
+}
+
 /* responsive base on tailwind sm, md, lg, xl, 2xl */
 
 /* max-xl */
@@ -624,6 +637,9 @@
 
 /* max-md */
 @media (max-width: 1023px) {
+  .detail-page-title {
+    font-size: 30px;
+  }
 
   .std-card-wrapper {
     aspect-ratio: 1/0.7;

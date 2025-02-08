@@ -6,6 +6,7 @@ import SwiperBackgroundImage from '../../components/Swiper/SwiperBackgroundImage
 import MinistriesPartner from '../../components/Swiper/MinistriesPartner';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 const initSwiperImageBackground = (res) => {
   const tempTitle = [
@@ -46,6 +47,7 @@ const initMinistryPartner = (res) => {
 
 
 export default function HomePage() {
+  const { t } = useTranslation();
   const TabsOptions = ['News', 'Events'];
   const [total, setTotal] = useState(30);
   const [limit, setLimit] = useState(3);

@@ -1,13 +1,12 @@
 import React, { useMemo } from 'react'
 import { BASE_ASSET_URL } from '../../../constants/Url'
-import { List, Table } from 'antd'
-import { useNavigate } from 'react-router'
-import dayjs from 'dayjs';
-import { convertToKhmerDate, formatEnglishDate } from '../../../utils/Utils';
+import { ConfigProvider, Table } from 'antd'
+import { useOutletContext } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 export default function GoverningBoard() {
-  const navigate = useNavigate();
-  const currentLanuage = "en";
+  const { t } = useTranslation();
+  const { currentLanguage } = useOutletContext();
 
   const dataSource = {
     en: {
@@ -85,32 +84,32 @@ export default function GoverningBoard() {
       },
       careerStatus: [
         {
-          value: "Deputy Prime Minister of the Royal Government of Cambodia",
-          detail: "Minister of Economy and Finance"
+          value: "ឧបនាយករដ្ឋមន្ត្រី នៃរាជរដ្ឋាភិបាលកម្ពុជា។",
+          detail: "រដ្ឋមន្ត្រីក្រសួងសេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ"
         }, {
-          value: "Chairman",
-          detail: "Supreme National Economic Council (SNEC)"
+          value: "ប្រធាន",
+          detail: "ឧត្តមក្រុមប្រឹក្សាសេដ្ឋកិច្ចជាតិ (SNEC)"
         }, {
-          value: "Deputy Prime Minister of the Royal Government of Cambodia",
-          detail: "Minister of Economy and Finance"
+          value: "ឧបនាយករដ្ឋមន្ត្រី នៃរាជរដ្ឋាភិបាលកម្ពុជា។",
+          detail: "រដ្ឋមន្ត្រីក្រសួងសេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ"
         }, {
-          value: "Chairman",
-          detail: "Supreme National Economic Council (SNEC)"
+          value: "ប្រធាន",
+          detail: "ឧត្តមក្រុមប្រឹក្សាសេដ្ឋកិច្ចជាតិ (SNEC)"
         }
       ],
       experience: [
         {
-          value: "Deputy Prime Minister of the Royal Government of Cambodia",
-          detail: "Minister of Economy and Finance"
+          value: "ឧបនាយករដ្ឋមន្ត្រី នៃរាជរដ្ឋាភិបាលកម្ពុជា។",
+          detail: "រដ្ឋមន្ត្រីក្រសួងសេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ"
         }, {
-          value: "Chairman",
-          detail: "Supreme National Economic Council (SNEC)"
+          value: "ប្រធាន",
+          detail: "ឧត្តមក្រុមប្រឹក្សាសេដ្ឋកិច្ចជាតិ (SNEC)"
         }, {
-          value: "Deputy Prime Minister of the Royal Government of Cambodia",
-          detail: "Minister of Economy and Finance"
+          value: "ឧបនាយករដ្ឋមន្ត្រី នៃរាជរដ្ឋាភិបាលកម្ពុជា។",
+          detail: "រដ្ឋមន្ត្រីក្រសួងសេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ"
         }, {
-          value: "Chairman",
-          detail: "Supreme National Economic Council (SNEC)"
+          value: "ប្រធាន",
+          detail: "ឧត្តមក្រុមប្រឹក្សាសេដ្ឋកិច្ចជាតិ (SNEC)"
         }
       ]
     }
@@ -124,8 +123,8 @@ export default function GoverningBoard() {
   ];
 
   const data = useMemo(() => {
-    return { ...dataSource[currentLanuage] }
-  }, [currentLanuage]);
+    return { ...dataSource[currentLanguage] }
+  }, [currentLanguage, t]);
 
   const basicInfo = useMemo(() => {
     const showInfo = [
@@ -176,54 +175,70 @@ export default function GoverningBoard() {
   }, [data]);
 
   return (
-    <div className='flex flex-col gap-[30px] max-w-[70vw]'>
-      <div className='grid grid-cols-5'>
-        <div className='col-span-2 text-center flex gap-[20px] flex-col items-center'>
-          <img className='w-[50%]' src={data.imageUrl} alt={data.imageUrl} />
-          <h1 className='mb-0'>{data?.name}</h1>
-        </div>
-        <div className='col-span-3'>
-          <Table
-            bordered
-            rowKey="key"
-            showHeader={false}
-            pagination={false}
-            title={() => <div className='font-khmer text-center'>ប្រវត្តិរូបសង្ខេប</div>}
-            columns={[
-              {
-                dataIndex: "value",
-                width: "40%"
-              }, {
-                dataIndex: "detail",
-                width: "60%",
-              }
-            ]}
-            dataSource={basicInfo}
-          />
-        </div>
-        <div className='col-span-5'>
-          {
-            tables.map(table => data[table.dataIndex].length > 0 &&
-              <Table
-                bordered
-                rowKey="key"
-                showHeader={false}
-                pagination={false}
-                title={() => <div className='font-khmer text-center'>ការងារបច្ចុប្បន្ន</div>}
-                columns={[
-                  {
-                    dataIndex: "value",
-                    width: "40%"
-                  }, {
-                    dataIndex: "detail",
-                    width: "60%"
-                  }
-                ]}
-                dataSource={data[table.dataIndex]}
-              />)
+    <ConfigProvider
+      theme={{
+        components: {
+          Table: {
+            borderColor: "black"
           }
+        }
+      }}
+    >
+      <div className='flex flex-col gap-[30px] max-w-[70vw]'>
+        <div className='detail-page-title text-center'>{t("Governing Detail")}</div>
+
+        <div className='grid grid-cols-5 gap-5'>
+          <div className='col-span-5 md:col-span-2 text-center flex gap-[20px] flex-col items-center'>
+            <img className='w-[50%]' src={data.imageUrl} alt={data.imageUrl} />
+            <h1 className='mb-0'>{data?.name}</h1>
+          </div>
+
+          <div className='col-span-5 md:col-span-3'>
+            <Table
+              bordered
+              className='antd-'
+              rowKey="key"
+              showHeader={false}
+              pagination={false}
+              title={() => <div className='font-khmer text-center'>{t("Profile")}</div>}
+              columns={[
+                {
+                  dataIndex: "value",
+                  width: "40%",
+                  render:(value) => t(value) 
+                }, {
+                  dataIndex: "detail",
+                  width: "60%",
+                }
+              ]}
+              dataSource={basicInfo}
+            />
+          </div>
+          <div className='col-span-5'>
+            {
+              tables.map(table => data[table.dataIndex].length > 0 &&
+                <Table
+                  bordered
+                  rowKey="key"
+                  showHeader={false}
+                  pagination={false}
+                  title={() => <div className='font-khmer text-center'>{t("Current job")}</div>}
+                  columns={[
+                    {
+                      dataIndex: "value",
+                      width: "40%",
+                    }, {
+                      dataIndex: "detail",
+                      width: "60%"
+                    }
+                  ]}
+                  dataSource={data[table.dataIndex]}
+                />)
+            }
+
+          </div>
         </div>
       </div>
-    </div>
+    </ConfigProvider>
   )
 }
