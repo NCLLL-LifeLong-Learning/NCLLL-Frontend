@@ -2,16 +2,18 @@ import { Carousel } from 'antd';
 import React from 'react'
 import ArrowSvg from '../../assets/svgs/ArrowSvg';
 import { antdResponsive } from '../../utils/Utils';
+import { useTranslation } from 'react-i18next';
 
 export default function SwiperBackgroundImage({ onClick, dataSource, title, description }) {
+    const { t } = useTranslation();
 
     return (
         <div className='flex flex-col items-center container mx-auto'>
             <div>
-                <h1 className='std-title'>{title}</h1>
+                <h1 className='std-title'>{t(title)}</h1>
             </div>
             <div className='px-2 text-center'>
-                <p className='std-content'>{description}</p>
+                <p className='std-content'>{t(description)}</p>
             </div>
             <div className='w-full px-[30px] sm:px-[60px] lg:px-[100px]'>
                 <Carousel
@@ -51,7 +53,7 @@ export default function SwiperBackgroundImage({ onClick, dataSource, title, desc
                                     <img className="std-feature-image" src={data.imageUrl} alt={data.imageUrl} />
                                     <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[120px] !rounded-none p-4'>
                                         <p>
-                                            {data.title}
+                                            {t(data.title)}
                                         </p>
                                     </div>
                                 </div>

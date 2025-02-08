@@ -1,7 +1,9 @@
 import { List } from 'antd';
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 export default function CollaborationAndSupport() {
+  const { t } = useTranslation();
   const [dataSource, setDataSource] = useState([]);
 
   const initSwiperImageBackground = (res) => {
@@ -39,7 +41,7 @@ export default function CollaborationAndSupport() {
   return (
     <div className='flex flex-col gap-[30px]'>
       <div>
-        គ​ ជ ស​​​ ជ មានតូនាទីយ៉ាងសំខាន់ក្នុងការជំុរុញអោយក្រសួងនានា និង  ស្ថាប័នពាក់ពន្ធ័នានាផ្តល់ការគាំទ្រ និង អនិវត្តការសិក្សាពេញមួយជីវិត ក្រសួងដែលជាសមាជិកនៃ គ ជ ស ជ ទាំងនោះរួមមានដូចខាងក្រុម៖
+        {t("The NEC has an important role to play in encouraging ministries and relevant institutions to provide support and lifelong learning, for which member ministries include:")}
       </div>
       <List
         grid={{ xxl: 3, xl: 3, lg: 2, md: 2, sm: 1, xs: 1 }}
@@ -50,7 +52,7 @@ export default function CollaborationAndSupport() {
               <img className="std-feature-image" src={data.imageUrl} alt={data.imageUrl} />
               <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[120px] !rounded-none p-4'>
                 <p>
-                  {data.title}
+                  {t(data.title)}
                 </p>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import _ from "lodash";
+import ArrowSvg from "../assets/svgs/ArrowSvg";
 
 export const showFormatDate = (date) => {
     if (dayjs.isDayjs(date)) {
@@ -70,11 +71,27 @@ export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg:
     return responsive;
 }
 
-export const getTreeTitle = (title, isChild, isActive) => {
+export const getTreeTitle = (title, isChild, isActive, isParent) => {
     if (isChild) {
-        return <div className={`menu-tree-child ${isActive && "active"}`}>{title}</div>
+        return <div className={`gap-3 menu-tree-child ${isActive && "active"}`}>
+            {title}
+            {
+                isParent &&
+                <span className="switcher-icon">
+                    <ArrowSvg className="size-[20px] scale-[-1]" color={isActive ? "var(--primary-color)" : "white"} />
+                </span>
+            }
+        </div>
     }
-    return <div className={`menu-tree-title ${isActive && "active"}`}>{title}</div>
+    return <div className={`gap-3 menu-tree-title ${isActive && "active"}`}>
+        {title}
+        {
+            isParent &&
+            <span className="switcher-icon">
+                <ArrowSvg className={`size-[20px] transition-all ${isActive ? "-rotate-90" : "-rotate-180"}`} color={isActive ? "var(--primary-color)" : "white"} />
+            </span>
+        }
+    </div>
 }
 
 export const convertToKhmerDate = (date) => {

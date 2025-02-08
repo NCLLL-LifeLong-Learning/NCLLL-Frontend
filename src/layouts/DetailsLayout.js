@@ -1,80 +1,25 @@
-import { Breadcrumb, Tree } from 'antd';
-import React, { useEffect, useState } from 'react'
-import { Outlet, useNavigate } from 'react-router';
+import { Breadcrumb, Button, FloatButton, Tree } from 'antd';
+import React, { useEffect, useMemo, useState } from 'react'
+import { Outlet, useLocation, useNavigate, useOutletContext } from 'react-router';
 import { getTreeTitle } from '../utils/Utils';
 import { AiOutlineHome } from "react-icons/ai";
 import ArrowSvg from '../assets/svgs/ArrowSvg';
 import BecomePartner from "../components/OurPartner/BecomePartner";
+import ExpandSvg from '../assets/svgs/ExpandSvg';
+import { useTranslation } from 'react-i18next';
 
 export default function DetailsLayout() {
-    const navigate = useNavigate();
-    const [menu, setMenu] = useState();
+    const { t } = useTranslation();
+    const context = useOutletContext();
     const [currentRoute, setCurrentRoute] = useState({});
-    const [treeTitle, setTreeTitle] = useState("Documents");
-    const [treeDescription, setTreeDescription] = useState("Documents");
-    const [activeKeys, setActiveKeys] = useState(["Laws & Regulation"]);
-    const [treeData, setTreeData] = useState([
-        {
-            title: getTreeTitle('All'),
-            key: 'All',
-            children: []
-        },
-        {
-            title: getTreeTitle("Legal Document"),
-            key: "Legal Document",
-            children: [],
-        },
-        {
-            title: getTreeTitle("Administration"),
-            key: "Administration",
-            children: [
-                {
-                    title: getTreeTitle('Laws & Regulation', true),
-                    key: 'Laws & Regulation',
-                },
-                {
-                    title: getTreeTitle('Royal Decrees', true),
-                    key: 'Royal Decrees',
-                },
-                {
-                    title: getTreeTitle("Sub-Decrees", true),
-                    key: "Sub-Decrees",
-                }, {
-                    title: getTreeTitle("Circulations", true),
-                    key: "Circulations"
-                }, {
-                    title: getTreeTitle("Prakas", true),
-                    key: "Prakas"
-                }, {
-                    title: getTreeTitle("Decisions", true),
-                    key: "Decisions"
-                }, {
-                    title: getTreeTitle("Orders", true),
-                    key: "Orders"
-                }
-            ],
-        },
-        {
-            title: getTreeTitle("Policy & Strategy"),
-            key: "Policy & Strategy",
-            children: [],
-        },
-        {
-            title: getTreeTitle("Projects"),
-            key: "Projects",
-            children: [],
-        },
-        {
-            title: getTreeTitle("News & Event"),
-            key: "News & Event",
-            children: [],
-        },
-        {
-            title: getTreeTitle("Report & Publication"),
-            key: "Report & Publication",
-            children: [],
-        },
-    ]);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [treeTitle, setTreeTitle] = useState("");
+    const [treeDescription, setTreeDescription] = useState("");
+    const [activeNodes, setActiveNodes] = useState([]);
+    const [activeKeys, setActiveKeys] = useState([]);
+    const [treeData, setTreeData] = useState([]);
+    const [burger, setBurger] = useState(false);
 
     const handleChildAction = (message) => {
         console.log("Message from child:", message);
@@ -82,11 +27,11 @@ export default function DetailsLayout() {
     };
 
     const contextValue = {
+        ...context,
         title: treeTitle,
         setTitle: (value) => setTreeTitle(value),
         description: treeDescription,
         setTreeDescription: (value) => setTreeDescription(value),
-        menu: menu,
         setTreeData: (value) => setTreeData([...value]),
         activeKeys: activeKeys,
         setActiveKeys: (value) => setActiveKeys(value),
@@ -96,93 +41,125 @@ export default function DetailsLayout() {
     };
 
     const handleSelectedTree = (selectedKeys, { selected, node }) => {
-        const key = selectedKeys[0];
+        if (!selected) { return; }
+        const selectedTree = node?.treeNode;
 
-        // Find all parent keys
-        const parentKeys = getParentKeys(treeData, key);
+        const currentKey = selectedTree[selectedTree.length - 1];
 
-        // Combine selected and parent keys
-        const updatedActiveKeys = selected ? [...parentKeys, key] : [];
+        const activeKeys = selectedTree.map(node => node.key)
 
-        const currentKey = treeData.find(i => i.key === key);
-
-        setActiveKeys(updatedActiveKeys);
+        setActiveKeys(activeKeys);
 
         if (currentKey) {
+            setActiveNodes([...selectedTree]);
             setCurrentRoute({ ...currentKey });
-            navigate(currentKey.path);
+            if (location.pathname !== currentKey.path) {
+                navigate(currentKey.path);
+            }
         }
     }
 
-    const getParentKeys = (nodes, key, parents = []) => {
-        for (const node of nodes) {
-            if (node.key === key) {
-                return parents;
+    const renderTreeNodes = (nodes, treeNode = []) => {
+        return nodes.map((node) => ({
+            ...node,
+            title: t(node.title),
+            key: node.key,
+            treeNode: [...treeNode, removeChild(node)],
+            children: node.children ? renderTreeNodes(node.children, [...treeNode, removeChild(node)]) : [],
+        }));
+    }
+
+    const removeChild = (node) => {
+        return { ...node, children: [] };
+    }
+
+    const getActiveNodes = (nodes, parents = []) => {
+        for (let node of nodes) {
+            if (node.path === location.pathname) {
+                return [...parents, node];
             }
-            if (node.children) {
-                const result = getParentKeys(node.children, key, [...parents, node.key]);
-                if (result) {
+
+            if (node?.children?.length > 0) {
+                let result = getActiveNodes(node.children, [...parents, node]);
+                if (result.length > 0) {
                     return result;
                 }
             }
         }
-        return null;
-    };
-
-    const renderTreeNodes = (nodes, isChild) => {
-        return nodes.map((node) => ({
-            ...node,
-            title: getTreeTitle(node.title, isChild, activeKeys.includes(node.key)),
-            key: node.key,
-            children: node.children ? renderTreeNodes(node.children, true) : null,
-        }));
+        return [];
     }
 
+    useEffect(() => {
+        if (location.pathname !== currentRoute?.path && treeData.length > 0) {
+            let activeNodes = getActiveNodes(treeData, []);
+
+            if (activeNodes.length > 0) {
+                setActiveNodes([...activeNodes]);
+                setActiveKeys(activeNodes.map(node => node.key));
+                setCurrentRoute({ ...activeNodes[activeNodes.length - 1] });
+                return;
+            }
+            setActiveNodes([]);
+            setActiveKeys([]);
+            setCurrentRoute({ noHeader: true });
+        }
+    }, [treeData, location, location.pathname])
+
+
+    const formatTreeData = useMemo(() => renderTreeNodes(treeData), [treeData, t])
+
     return (
-        <div>
+        (<div>
             <div className='h-[260px] text-white flex justify-center items-center' style={{ background: "var(--detail-header-background)" }}>
                 <div className='max-w-[800px] text-center gap-[20px] flex flex-col'>
-                    <div className='std-title !text-white'>{treeTitle}</div>
-                    <div className='std-content'>{treeDescription}</div>
+                    <div className='std-title !text-white'>{t(treeTitle)}</div>
+                    <div className='std-content'>{t(treeDescription)}</div>
                 </div>
             </div>
-
             <div className='bg-white shadow-md'>
-                <div className='std-container h-[50px] flex items-center'>
+                <div className='std-container py-[20px] flex items-center'>
                     <Breadcrumb
                         className='list-center breadcrumb-custom'
                         separator={<ArrowSvg className="size-[16px]" transform="scale(-1)" />}
                         items={[
                             {
-                                href: '/',
+                                onClick: () => navigate("/"),
                                 title: <AiOutlineHome className='size-[24px]' />,
                             },
                             {
-                                href: '',
-                                title: treeTitle,
+                                onClick: () => navigate(treeData[0]?.path),
+                                title: t(treeTitle),
                             },
-                            ...activeKeys.map(i => ({
-                                href: '',
-                                title: i,
+                            ...activeNodes.map(i => ({
+                                onClick: () => navigate(i?.path),
+                                key: i.key,
+                                title: t(i.title),
                             })),
                         ]}
                     />
                 </div>
             </div>
-            <div className='grid grid-cols-12 gap-4'>
-                <div className='col-span-2 ps-[10px] h-fit rounded-l pb-[20px]' style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
-                    <h1 className='p-[20px] text-[2rem] text-center m-0'>{treeTitle}</h1>
+            <div className='relative grid grid-cols-12 gap-4'>
+                <FloatButton
+                    rootClassName='xl:hidden esi-floating-buger'
+                    onClick={() => setBurger(!burger)}
+                    icon={<ExpandSvg color='white' />}
+                    style={{ left: 10, bottom: 40, backgroundColor: "var(--primary-color)" }}
+                />
+                <div className={`${burger ? "active" : ""} transition-all fixed-burger xl:block col-span-2 ps-[10px] h-fit pb-[20px]`} style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
+                    <h1 className='py-[20px] text-[2rem] text-center m-0'>{t(treeTitle)}</h1>
                     <Tree
                         rootClassName='root-menu-tree'
                         rootStyle={{ backgroundColor: '#0F69B7', color: 'white' }}
                         switcherIcon={null}
-                        activeKey={"Laws & Regulation"}
+                        titleRender={(node) => getTreeTitle(node.title, node.treeNode.length > 1, activeKeys.includes(node.key), node.children.length > 1)}
                         onSelect={handleSelectedTree}
-                        defaultExpandAll
-                        treeData={renderTreeNodes(treeData)}
+                        expandedKeys={activeKeys}
+                        autoExpandParent
+                        treeData={formatTreeData}
                     />
                 </div>
-                <div className='col-span-10 p-[40px]'>
+                <div className='col-span-12 xl:col-span-10 py-[40px] p-0 xl:p-[40px] std-container flex justify-center'>
                     <Outlet context={contextValue} />
                 </div>
             </div>
@@ -191,6 +168,6 @@ export default function DetailsLayout() {
                     <BecomePartner />
                 </div>
             }
-        </div>
-    )
+        </div>)
+    );
 }

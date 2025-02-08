@@ -5,6 +5,8 @@ import OurPartner from '../../components/OurPartner/OurPartner';
 import SwiperBackgroundImage from '../../components/Swiper/SwiperBackgroundImage';
 import MinistriesPartner from '../../components/Swiper/MinistriesPartner';
 import dayjs from 'dayjs';
+import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 const initSwiperImageBackground = (res) => {
   const tempTitle = [
@@ -45,11 +47,13 @@ const initMinistryPartner = (res) => {
 
 
 export default function HomePage() {
+  const { t } = useTranslation();
   const TabsOptions = ['News', 'Events'];
   const [total, setTotal] = useState(30);
   const [limit, setLimit] = useState(3);
   const [selectedTabs, setSelectedTabs] = useState("News");
   const [TabsData, setTabsData] = useState([]);
+  const navigate = useNavigate();
 
   const [ourPartner, setOurPartner] = useState([]);
   const [ministryPartner, setMinistryPartner] = useState([]);
@@ -71,19 +75,31 @@ export default function HomePage() {
     fetchSelectedTabs({ tabs: value, limit });
   }
 
+  const handleEventClick = () => {
+    navigate("/resources/news");
+  }
+
   const handleMinistryPartnerClick = () => {
+    navigate("/program/engagement", {
+      state: {
+        initTabs: "Partners"
+      }
+    });
     //Navigate somewhere
   }
 
   const handleFocusAreaClick = () => {
+    navigate("/focus-area/all");
     //Navigate somewhere
   }
 
   const handleFeatureProgramClick = () => {
+    navigate("/program/forum");
     //Navigate somewhere
   }
 
   const handleOurPartnerClick = () => {
+    navigate("/about-us/contact");
     //Navigate somewhere
   }
 
@@ -173,6 +189,7 @@ export default function HomePage() {
       </div>
       <div className='pt-[30px] container mx-auto'>
         <SegmentedTabs
+          handleEventClick={handleEventClick}
           total={total}
           onLoadMore={handleTabsLoadMore}
           options={TabsOptions}

@@ -2,8 +2,10 @@ import { List } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { useOutletContext } from 'react-router';
 import { antdResponsive } from '../../../utils/Utils';
+import { useTranslation } from 'react-i18next';
 
 export default function MemberMinistries() {
+  const { t } = useTranslation();
   const [dataSource, setDataSource] = useState([]);
 
   const initMinistryPartner = (res) => {
@@ -31,7 +33,7 @@ export default function MemberMinistries() {
   return (
     <div className='flex flex-col gap-[30px]'>
       <div>
-        គ​ ជ ស​​​ ជ មានតូនាទីយ៉ាងសំខាន់ក្នុងការជំុរុញអោយក្រសួងនានា និង  ស្ថាប័នពាក់ពន្ធ័នានាផ្តល់ការគាំទ្រ និង អនិវត្តការសិក្សាពេញមួយជីវិត ក្រសួងដែលជាសមាជិកនៃ គ ជ ស ជ ទាំងនោះរួមមានដូចខាងក្រុម៖
+        {t("The NEC has an important role to play in encouraging ministries and relevant institutions to provide support and lifelong learning, for which member ministries include:")}
       </div>
 
       <List

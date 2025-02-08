@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ArrowSvg from "../../../assets/svgs/ArrowSvg";
 import Partners from "./Engagement/Partners";
 import Advisor from "./Engagement/Advisor";
@@ -7,9 +7,11 @@ import Fellowship from "./Engagement/Fellowship";
 import Consultant from "./Engagement/Consultant";
 import ExchangeProgram from "./Engagement/ExchangeProgram";
 
-const tabs = ["Voluntary", "Fellowship", "Consultant", "Exchange Program", "Partners", "Advisor", "Tab 7", "Tab 8", "Tab 9", "Tab 10"];
+const tabs = ["Voluntary", "Fellowship", "Consultant", "Exchange Program", "Partners", "Advisor"];
 
 export default function Engagement() {
+   const { t } = useTranslation();
+   const location = useLocation();
    const [visibleStart, setVisibleStart] = useState(0);
    const [activeTab, setActiveTab] = useState(0);
    const visibleTabs = 6;
@@ -27,6 +29,17 @@ export default function Engagement() {
       { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
       { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
    ]
+
+   useEffect(() => {
+      console.log("location = ", location);
+      if (location?.state) {
+         const { initTabs } = location.state;
+         console.log("tabs.indexOf(initTabs) = ", tabs.indexOf(initTabs));
+
+         setActiveTab(tabs.indexOf(initTabs));
+      }
+   }, [location, location.state])
+
    return (
       <div>
          <div className="w-full">
@@ -43,7 +56,7 @@ export default function Engagement() {
                            className={`font-semibold px-4 py-2 rounded-full transition-all duration-300 ${activeTab === visibleStart + index ? "bg-[#0F69B7] text-white" : " text-black"
                               }`}
                         >
-                           {tab}
+                           {t(tab)}
                         </button>
                      ))}
                   </div>

@@ -1,6 +1,8 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function HorizontalCard({ image, name, linkURL }) {
+  const { t } = useTranslation();
   return (
     <div>
       {/* Card */}
@@ -10,7 +12,7 @@ export default function HorizontalCard({ image, name, linkURL }) {
         </div>
         <div className='lg:ml-[10rem]'>
           <h3 className='pb-[0.5rem] font-semibold text-[#0F69B7]'>
-            {name}
+            {t(name)}
           </h3>
           <p className='text-gray-600 text-sm'>URL: 
             <a href={linkURL} target='_blank' className='text-[#0F69B7] ml-1'>{linkURL}</a>
