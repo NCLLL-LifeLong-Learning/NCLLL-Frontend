@@ -20,7 +20,7 @@ export default function KeyFunctions() {
     <div className='flex flex-col gap-[30px]'>
       {
         keyFunctions.map((keyFunction, index) => (<div className='flex items-center gap-[10px]'>
-          <div className='key-function-index text-center content-center text-white'>{index}</div>
+          <div className='key-function-index !rounded-full text-center content-center text-white'>{index}</div>
           <div className='key-function-content rounded-xl'>{keyFunction}</div>
         </div>))
       }

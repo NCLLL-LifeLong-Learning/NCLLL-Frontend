@@ -37,7 +37,7 @@ export default function MemberMinistries() {
       </div>
 
       <List
-        grid={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 2 }}
+        grid={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
         dataSource={dataSource}
         renderItem={(record) => <div className='py-[20px] px-[10px]'>
           <div className='shadow-lg border border-gray-300 p-[30px] w-full rounded-lg'>

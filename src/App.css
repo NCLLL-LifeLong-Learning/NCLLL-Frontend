@@ -491,7 +491,8 @@
 
 :where(.root-menu-tree).ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected {
   background-color: var(--primary-color) !important;
-  color: white !important;}
+  color: white !important;
+}
 
 .menu-tree-title {
   display: flex;
@@ -515,8 +516,8 @@
   align-content: center;
 }
 
-.menu-tree-title:hover > span > svg,
-.menu-tree-child:hover > span > svg  {
+.menu-tree-title:hover>span>svg,
+.menu-tree-child:hover>span>svg {
   color: var(--primary-color) !important;
 }
 
@@ -539,7 +540,7 @@
 
 .key-function-index {
   width: 60px;
-  height: 60px;
+  aspect-ratio: 1/1;
   border-radius: 10rem;
   padding: 10px;
   background: #0F69B7;
@@ -552,11 +553,10 @@
   text-align: center;
   align-content: center;
   color: white;
-  padding: 0 40px;
+  padding: 20px 40px;
   width: 100%;
   height: 100%;
   min-height: 60px;
-
   font-size: 20px;
   font-weight: 700;
 }
@@ -656,6 +656,31 @@
 
 /* max-sm */
 @media (max-width: 767px) {
+  :where(.breadcrumb-custom) .ant-breadcrumb-link {
+    font-size: 16px;
+  }
+
+  .detail-page-title {
+    font-size: 24px;
+  }
+  :where(.breadcrumb-custom).ant-breadcrumb ol {
+    gap: 10px !important;
+  }
+
+  .contact-link,
+  .mission-content {
+    font-size: 16px;
+  }
+
+  .contact-title {
+    font-size: 1.25rem;
+  }
+
+  .goverment-item-name {
+    font-size: 16px;
+    width: 100%;
+  }
+
   .std-banner-image {
     aspect-ratio: 3/2;
   }

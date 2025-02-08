@@ -109,15 +109,15 @@ export default function GoverningBoard() {
   }
 
   return (
-    <div className='flex flex-col gap-[30px] max-w-[70vw]'>
+    <div className='flex flex-col gap-[30px] w-[90vw] md:max-w-[70vw]'>
       {
         dataSource.map(data => <div>
           <h1 className='goverment-title font-khmer'>{t(data.title)}</h1>
 
           {
-            data.member.length === 1 ? <div className='flex gap-[20px] p-[20px]' onClick={() => goToDetail(data.member[0])}>
+            data.member.length === 1 ? <div className='flex-col md:flex-row flex gap-[20px] p-[20px]' onClick={() => goToDetail(data.member[0])}>
               <img className="max-w-[400px]" src={data.member[0].imageUrl} alt={data.member[0].imageUrl} />
-              <div className='goverment-item-name flex gap-3 flex-col justify-center'>
+              <div className='text-center md:text-start goverment-item-name flex gap-3 flex-col justify-center'>
                 <div>{data.member[0].name_kh}</div>
                 <div>{data.member[0].name}</div>
               </div>
@@ -133,9 +133,9 @@ export default function GoverningBoard() {
                 }}
                 renderItem={(item) => {
                   return <List.Item>
-                    <div className='flex gap-[20px] px-[20px] py-[10px]' onClick={() => goToDetail(item)}>
-                      <img className="w-[25%] max-w-[400px]" src={item.imageUrl} alt={item.imageUrl} />
-                      <div className='goverment-item-name flex gap-1 flex-col justify-center'>
+                    <div className='flex-col md:flex-row flex gap-[20px] px-[20px] py-[10px]' onClick={() => goToDetail(item)}>
+                      <img className="w-full md:w-[25%] max-w-[400px]" src={item.imageUrl} alt={item.imageUrl} />
+                      <div className='text-center md:text-start goverment-item-name flex gap-1 flex-col justify-center'>
                         <a>{item.name_kh}</a>
                         <p>{item.name}</p>
                       </div>
