@@ -3,9 +3,13 @@ import HorizontalCard from '../../../../components/Engagement/HorizontalCard'
 import { useTranslation } from 'react-i18next'
 import { BASE_ASSET_URL } from '../../../../constants/Url';
 
-export default function Partners(props) {
-  const { partners } = props
-  console.log(partners, ' -> partners')
+export default function Partners() {
+  const { t } = useTranslation();
+  const partners = [
+    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: BASE_ASSET_URL + '/partner/step_academy.png' },
+    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: BASE_ASSET_URL + '/partner/step_academy.png' },
+    { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: BASE_ASSET_URL + '/partner/step_academy.png' },
+  ]
   return (
     <div>
       <div>

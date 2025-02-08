@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import ArrowSvg from "../../../assets/svgs/ArrowSvg";
 import Partners from "./Engagement/Partners";
-import Advisor from "./Engagement/Advisor";
-import Voluntary from "./Engagement/Voluntary";
-import Fellowship from "./Engagement/Fellowship";
-import Consultant from "./Engagement/Consultant";
-import ExchangeProgram from "./Engagement/ExchangeProgram";
+import { useLocation } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const tabs = ["Voluntary", "Fellowship", "Consultant", "Exchange Program", "Partners", "Advisor"];
 
@@ -66,12 +63,8 @@ export default function Engagement() {
                </div>
             </div>
             <div className="w-full pt-[2rem]">
-               {tabs[activeTab] === "Partners" && <Partners partners={partners} />}
-               {tabs[activeTab] === "Advisor" && <Advisor />}
-               {tabs[activeTab] === "Voluntary" && <Voluntary />}
-               {tabs[activeTab] === "Fellowship" && <Fellowship />}
-               {tabs[activeTab] === "Consultant" && <Consultant />}
-               {tabs[activeTab] === "Exchange Program" && <ExchangeProgram />}
+               { tabs[activeTab] === "Partners" && <Partners /> }
+               { tabs[activeTab] !== "Partners" && <Partners /> }
             </div>
          </div>
       </div>
