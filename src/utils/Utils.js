@@ -15,61 +15,117 @@ export const showFormatDate = (date) => {
     return date.format("MM-DD-YYYY");
 }
 
-//Follow Flow Tailwind Responsive
+// //Follow Flow Tailwind Responsive
+// export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg: {}, xl: {}, xxl: {} }) => {
+//     const responsive = [];
+    
+//     if (!_.isEmpty(settings.xxl)) {
+//         responsive.push({
+//             breakpoint: 1800,
+//             settings: settings.xxl,
+//         })
+//     }
+
+//     if (!_.isEmpty(settings.xl)) {
+//         responsive.push({
+//             breakpoint: 1535,
+//             settings: settings.xl,
+//         })
+//     }
+
+//     if (!_.isEmpty(settings.lg)) {
+//         responsive.push({
+//             breakpoint: 1279,
+//             settings: settings.lg,
+//         })
+//     }
+
+//     if (!_.isEmpty(settings.md)) {
+//         responsive.push({
+//             breakpoint: 1023,
+//             settings: settings.md,
+//         })
+//     }
+
+//     if (!_.isEmpty(settings.xs)) {
+//         responsive.push({
+//             breakpoint: 639,
+//             settings: settings.xs,
+//         })
+//     }
+    
+//     if (!_.isEmpty(settings.sm)) {
+//         responsive.push({
+//             breakpoint: 767,
+//             settings: settings.sm,
+//         })
+//     }
+
+//     if (!_.isEmpty(settings.xxs)) {
+//         responsive.push({
+//             breakpoint: 439,
+//             settings: settings.xxs,
+//         })
+//     }
+
+//     return responsive;
+// }
 export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg: {}, xl: {}, xxl: {} }) => {
     const responsive = [];
-    if (!_.isEmpty(settings.xxs)) {
-        responsive.push({
-            breakpoint: 439,
-            settings: settings.xxs,
-        })
-    }
 
-    if (!_.isEmpty(settings.xs)) {
+    if (!_.isEmpty(settings.xxl)) {
         responsive.push({
-            breakpoint: 639,
-            settings: settings.xs,
-        })
-    }
-
-    if (!_.isEmpty(settings.sm)) {
-        responsive.push({
-            breakpoint: 767,
-            settings: settings.sm,
-        })
-    }
-
-    if (!_.isEmpty(settings.md)) {
-        responsive.push({
-            breakpoint: 1023,
-            settings: settings.md,
-        })
-    }
-
-    if (!_.isEmpty(settings.lg)) {
-        responsive.push({
-            breakpoint: 1279,
-            settings: settings.lg,
-        })
+            breakpoint: 1800, // Ensure this matches your actual screen width needs
+            settings: settings.xxl,
+        });
     }
 
     if (!_.isEmpty(settings.xl)) {
         responsive.push({
-            breakpoint: 1535,
+            breakpoint: 1536, // Fixed to match standard xl breakpoint
             settings: settings.xl,
-        })
+        });
     }
 
-    if (!_.isEmpty(settings.xxl)) {
+    if (!_.isEmpty(settings.lg)) {
         responsive.push({
-            breakpoint: 1800,
-            settings: settings.xxl,
-        })
+            breakpoint: 1280, // Fixed to match lg breakpoint
+            settings: settings.lg,
+        });
     }
 
+    if (!_.isEmpty(settings.md)) {
+        responsive.push({
+            breakpoint: 1024, // Fixed to match md breakpoint
+            settings: settings.md,
+        });
+    }
+
+    if (!_.isEmpty(settings.sm)) {
+        responsive.push({
+            breakpoint: 768, // Fixed to match sm breakpoint
+            settings: settings.sm,
+        });
+    }
+
+    if (!_.isEmpty(settings.xs)) {
+        responsive.push({
+            breakpoint: 640, // Fixed to match xs breakpoint
+            settings: settings.xs,
+        });
+    }
+
+    if (!_.isEmpty(settings.xxs)) {
+        responsive.push({
+            breakpoint: 440, // Fixed to match xxs breakpoint
+            settings: settings.xxs,
+        });
+    }
 
     return responsive;
-}
+};
+
+
 
 export const getTreeTitle = (title, isChild, isActive, isParent) => {
     if (isChild) {

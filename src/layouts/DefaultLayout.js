@@ -107,7 +107,7 @@ export default function DefaultLayout() {
 
   const menu = [
     {
-      title: "About NCLLL",
+      title: "About",
       link: "/about-us/mission",
       children: [{
         title: 'Mission & Vision',
@@ -210,7 +210,7 @@ export default function DefaultLayout() {
         className='flex gap-3'
       >
         <CambodiaSvg width='20px' height='20px' />
-        {t("Khmer")}
+        {t("ខ្មែរ")}
       </div>,
       key: 'kh',
     },
@@ -235,9 +235,9 @@ export default function DefaultLayout() {
     quickLinkModal?.current?.show();
   }
 
-  const contextValue = { 
+  const contextValue = {
     currentLanguage
-   };
+  };
 
   return (
     <div className='std-layout'>
@@ -276,7 +276,7 @@ export default function DefaultLayout() {
                   <img onClick={() => navigate("/")} className='cursor-pointer max-w-none object-cover size-[50px] lg:size-[90px] rounded-full' src='/logo.jpg' alt='logo' />
                   <div onClick={() => navigate("/")} className='cursor-pointer hidden 2xl:flex flex-col gap-2 justify-center'>
                     <div className='text-[14px] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                    <div className='text-[14px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                    <div className='text-[14.5px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                   </div>
                   <div className='flex lg:hidden'>
                     <Button type='link' onClick={openQuickLink} icon={<ExpandSvg color='black' className="size-[35px]" />} />
@@ -357,7 +357,7 @@ export default function DefaultLayout() {
       </div>
 
       <div className='mt-[70px] md:mt-0 std-outlet-content'>
-        <Outlet context={contextValue}  />
+        <Outlet context={contextValue} />
       </div>
 
       <div className='min-h-[380px] std-footer py-[30px] lg:p-[30px] text-white' style={{ background: "var(--footer-background)" }}>
@@ -368,7 +368,7 @@ export default function DefaultLayout() {
                 <img className='object-cover logo rounded-full' src='/logo.jpg' alt='logo' />
                 <div className='flex flex-col text-center lg:text-start mt-2 lg:mt-0 gap-2 lg:gap-0'>
                   <div className='text-[13px] lg:text-[18px] font-[400] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                  <div className='text-[13px] lg:text-[18px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                  <div className='text-[13.5px] lg:text-[18.7px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                 </div>
               </div>
               <div className='mt-[10px] lg:mt-0 ms-0 lg:ms-[75px] flex flex-col gap-4'>
@@ -391,7 +391,7 @@ export default function DefaultLayout() {
             <div className='col-span-1 flex justify-between mt-[10px] lg:mt-[0]'>
               <div className='flex flex-col gap-4'>
                 <Link className='font-[700] text-[20px]' to='#'>
-                  {t("About NCLLL")}
+                  {t("About")}
                 </Link>
                 {
                   aboutNCLL.map((i, index) => (
@@ -407,15 +407,20 @@ export default function DefaultLayout() {
                   {t("Follow us")}
                 </Link>
                 {
-                  socialMediaFooter.map((i, index) => (
-                    <Link key={index} className='text-[16px] icons-container gap-2' to={i.link}>
-                      {i.text}
-                      <ExportSvg width='13px' height='13px' />
-                    </Link>
-                  ))
+                  socialMediaFooter.map((i, index) => {
+                    return (
+                      <>
+                        <Link key={index} className='text-[16px] icons-container gap-2' to={i.link}>
+                          {i.text}
+                          <ExportSvg width='13px' height='13px' />
+                        </Link>
+                        
+                      </>
+                    )
+                  })
                 }
                 <Link to='#' className='block lg:hidden gap-2 icons-container'>
-                  <span className='text-[16px]'>Contact Us</span>
+                  <span className='text-[16px]'>{t("Contact Us")}</span>
                   <ExportSvg width='13px' height='13px' />
                 </Link>
               </div>
@@ -426,7 +431,7 @@ export default function DefaultLayout() {
 
       {/* Copy Right */}
       <div className='text-center content-center text-white h-[100px]' style={{ backgroundColor: "var(--primary-color)" }}>
-        {t("Copyright 2024 © National Committee For Lifelong Education | ALL RIGHTS RESERVED")}
+        {t("Copyright 2024 © National Committee For Lifelong Education")}
       </div>
 
 

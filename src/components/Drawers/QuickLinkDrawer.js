@@ -53,8 +53,8 @@ function QuickLinkDrawer(props, ref) {
                     <div className='flex-col text-center md:text-start md:flex-row w-full lg:w-auto flex items-center justify-between lg:justify-start gap-3'>
                         <img onClick={() => navigate("/")} className='cursor-pointer max-w-none object-cover size-[50px] lg:size-[90px] rounded-full' src='/logo.jpg' alt='logo' />
                         <div onClick={() => navigate("/")} className='cursor-pointer flex flex-col gap-2 justify-center'>
-                            <div className='text-[14px] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                            <div className='text-[14px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                            <div className='text-[12px] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
+                            <div className='text-[12.5px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                         </div>
                     </div>
                     <div className='flex-col lg:flex-row w-full lg:w-auto flex justify-center md:justify-start items-center md:items-start gap-3'>

@@ -1,7 +1,9 @@
 import React from "react";
-import { Button } from "antd";
+import { Button, Carousel } from "antd";
 import AutoScroll from "../AutoScroll/AutoScroll";
 import { useTranslation } from "react-i18next";
+import ArrowSvg from "../../assets/svgs/ArrowSvg";
+import { antdResponsive } from "../../utils/Utils";
 
 const OurPartner = ({ dataSource, description, title, onClick }) => {
   const { t } = useTranslation();
@@ -16,9 +18,51 @@ const OurPartner = ({ dataSource, description, title, onClick }) => {
         <Button className="std-btn" onClick={onClick}>{t("Become a partner")}</Button>
       </div>
       <div className="w-full col-span-2 space-y-0 sm:space-y-[30px] overflow-hidden max-w-[100%]">
-        <AutoScroll dataSource={dataSource} className="!hidden sm:!flex" />
+        <Carousel
+          responsive={antdResponsive({
+            md: {
+              slidesToShow: 4,
+              row: 3
+            },
+            xs: {
+              slidesToShow: 2,
+              rows: 1
+            },
+            xxs: {
+              slidesToShow: 1,
+              rows: 1
+            }
+          })}
+          rootClassName='root-feature-carousel cursor-grab hide-arrow center-arrow'
+          autoplay
+          swipeToSlide
+          draggable
+          infinite
+          slidesToShow={4}
+          rows={3}
+          pauseOnHover
+          pauseOnDotsHover
+          arrows
+          verticalSwiping
+          dots={false}
+          prevArrow={<div><ArrowSvg className="std-feature-arrow-prev" /></div>}
+          nextArrow={<div><ArrowSvg className="std-feature-arrow-next" transform="scale(-1)" /></div>}
+        >
+          {
+            dataSource.map((data, index) => (
+              <img
+                key={`clone-${index}`}
+                className="std-our-partner-logo"
+                src={data.imageUrl}
+                alt={`Partner logo duplicate ${index}`}
+              />
+            ))
+          }
+        </Carousel>
+
+        {/* <AutoScroll dataSource={dataSource} className="!hidden sm:!flex" />
         <AutoScroll dataSource={dataSource} scroll={"right"} className="!hidden sm:!flex" />
-        <AutoScroll dataSource={dataSource} />
+        <AutoScroll dataSource={dataSource} /> */}
       </div>
     </div>
   );

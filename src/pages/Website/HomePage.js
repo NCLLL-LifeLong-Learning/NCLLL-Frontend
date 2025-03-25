@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import BannerCarousel from '../../components/Carousel/BannerCarousel';
 import SegmentedTabs from '../../components/Segmented/SegmentedTabs';
 import OurPartner from '../../components/OurPartner/OurPartner';
