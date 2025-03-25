@@ -74,8 +74,9 @@
 }
 
 .std-banner-image {
-  width: 100%;
-  aspect-ratio: 2.3/1;
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: 2.3/1 !important;
 }
 
 .custom-blur {
@@ -682,7 +683,7 @@
   }
 
   .std-banner-image {
-    aspect-ratio: 3/2;
+    aspect-ratio: 3/2 !important;
   }
 
   .std-feature-image {

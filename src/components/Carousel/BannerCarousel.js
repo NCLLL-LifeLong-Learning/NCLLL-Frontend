@@ -1,32 +1,39 @@
-import { Carousel } from 'antd'
+import { Carousel, message, Skeleton } from 'antd'
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
 import { antdResponsive } from '../../utils/Utils';
+import httpClient from '../../api/httpClient';
+import { LIST_BANNER } from '../../api/URLs';
 
 export default function BannerCarousel() {
+    const [loading, setLoading] = useState(true);
     const [dataSource, setDataSource] = useState([
-        {
-            _id: "1",
-            imageUrl: "/assets/images/banner/banner-1.jpg"
-        },
+        // {
+        //     "_id": "67dfb7d73b642de5375c7570",
+        //     "title": "Hello ",
+        //     "imageUrl": "https://picsum.photos/512/513",
+        //     "created_at": "2025-03-23T07:27:19.994Z",
+        //     "updated_at": "2025-03-23T07:27:19.994Z",
+        //     "__v": 0
+        // }
     ]);
 
     const fetchData = async () => {
-        setDataSource([
-            {
-                _id: "1",
-                imageUrl: "/assets/images/banner/banner-1.jpg"
-            },
-            {
-                _id: "2",
-                imageUrl: "/assets/images/banner/banner-2.jpg"
-            },
-            {
-                _id: "3",
-                imageUrl: "/assets/images/banner/banner-3.jpg"
+        setLoading(true)
+        try {
+            const res = await httpClient.get(LIST_BANNER).then(res => res.data).catch(error => { throw error });
+
+            if (res?.code === 200) {
+                setDataSource([...res?.data]);
+            } else {
+                setDataSource([]);
             }
-        ]);
+        } catch (error) {
+            message.error("Internal Server Error!");
+        } finally {
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
@@ -61,13 +68,22 @@ export default function BannerCarousel() {
                 dots={true}
             >
                 {
-                    dataSource.map(data => (
-                        <div className='px-[5px] md:px-[15px]'>
-                            <div className='custom-blur'>
-                                <img className="std-banner-image" src={data.imageUrl} alt={data.imageUrl} />
+                    loading ?
+                        Array.from({ length: 3 }, (_, index) => (
+                            <div className='px-[5px] md:px-[15px]'>
+                                <div className='custom-blur'>
+                                    <Skeleton.Image active={true} className="std-banner-image" />
+                                </div>
                             </div>
-                        </div>
-                    ))
+                        ))
+                        :
+                        dataSource.map(data => (
+                            <div className='px-[5px] md:px-[15px]'>
+                                <div className='custom-blur'>
+                                    <img className="std-banner-image" src={data.imageUrl} alt={data.imageUrl} />
+                                </div>
+                            </div>
+                        ))
                 }
             </Carousel>
         </div>
