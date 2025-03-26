@@ -1,16 +1,16 @@
-import { Button, Drawer, Dropdown, Input, Tabs } from 'antd'
+import { Button, Drawer, Input, Tabs } from 'antd'
 import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import { IoMdClose } from 'react-icons/io';
 import { useNavigate } from 'react-router';
 import { aboutUs, focusArea, program, resources } from '../../constants/Route';
-import ArrowSvg from '../../assets/svgs/ArrowSvg';
 import CambodiaSvg from '../../assets/svgs/CambodiaSvg';
 import AmericanSvg from '../../assets/svgs/AmericanSvg';
 import { useTranslation } from 'react-i18next';
 
 function QuickLinkDrawer(props, ref) {
-    const { t } = useTranslation();
-    const { lanuageMenu, currentLanguage, onChangeLang } = props
+    const { t } = useTranslation();    
+    
+    const { onChangeLang } = props
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
 

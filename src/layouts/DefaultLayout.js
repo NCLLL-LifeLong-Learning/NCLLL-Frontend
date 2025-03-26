@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 import HeaderNavigationBar from '../components/NavigationBar/HeaderNavigationBar'
 import { Button, Dropdown, FloatButton, Input } from 'antd'
@@ -21,13 +21,14 @@ import GridSvg from '../assets/svgs/GridSvg.js'
 import ExpandSvg from '../assets/svgs/ExpandSvg.js'
 import { FaArrowUp } from 'react-icons/fa'
 import QuickLinkDrawer from '../components/Drawers/QuickLinkDrawer.js'
+import { LanguageContext } from '../i18n/LanguageProvider.js'
 
 export default function DefaultLayout() {
   const { t, i18n } = useTranslation();
+  const { lang, setLang } = useContext(LanguageContext);
   const navigate = useNavigate();
   const quickLinkModal = useRef();
   const [search, setSearch] = useState("");
-  const [currentLanguage, setCurrentLanguage] = useState("kh");
   const [menuHover, setMenuHover] = useState(-1);
 
   const aboutNCLL = [
@@ -219,7 +220,7 @@ export default function DefaultLayout() {
   const onChangeLang = (value) => {
     i18n.changeLanguage(value);
     localStorage.setItem("lang", value)
-    setCurrentLanguage(value);
+    setLang(value);
   }
 
   const handleSearch = () => {
@@ -236,7 +237,7 @@ export default function DefaultLayout() {
   }
 
   const contextValue = {
-    currentLanguage
+    currentLanguage: lang
   };
 
   return (
@@ -302,7 +303,7 @@ export default function DefaultLayout() {
                     >
                       <div className='flag-container flex items-center gap-2'>
                         {
-                          currentLanguage === "kh" ?
+                          lang === "kh" ?
                             <CambodiaSvg width='20px' height='20px' /> :
                             <AmericanSvg height='20px' width='20px' />
                         }
@@ -440,7 +441,7 @@ export default function DefaultLayout() {
         className='floating-button'
       />
 
-      <QuickLinkDrawer ref={quickLinkModal} onChangeLang={onChangeLang} menu={menu} lanuageMenu={lanuageMenu} currentLanguage={currentLanguage} />
+      <QuickLinkDrawer ref={quickLinkModal} onChangeLang={onChangeLang} menu={menu} lanuageMenu={lanuageMenu} currentLanguage={lang} />
     </div>
   )
 }

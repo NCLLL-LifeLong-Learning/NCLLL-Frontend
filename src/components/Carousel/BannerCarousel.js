@@ -1,44 +1,34 @@
-import { Carousel, message, Skeleton } from 'antd'
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react'
+import { Carousel, Skeleton } from 'antd'
+import React, { useMemo } from 'react'
 import { antdResponsive } from '../../utils/Utils';
-import httpClient from '../../api/httpClient';
-import { LIST_BANNER } from '../../api/URLs';
+import { useQuery } from '@tanstack/react-query';
+import { fetchBanners } from '../../api/publicRequest';
 
 export default function BannerCarousel() {
-    const [loading, setLoading] = useState(true);
-    const [dataSource, setDataSource] = useState([
-        // {
-        //     "_id": "67dfb7d73b642de5375c7570",
-        //     "title": "Hello ",
-        //     "imageUrl": "https://picsum.photos/512/513",
-        //     "created_at": "2025-03-23T07:27:19.994Z",
-        //     "updated_at": "2025-03-23T07:27:19.994Z",
-        //     "__v": 0
-        // }
-    ]);
+    const { data, isLoading } = useQuery({
+        queryKey: ["banners"],
+        queryFn: fetchBanners,
+        staleTime: 5 * 60 * 1000,
+        cacheTime: 30 * 60 * 1000, // Keep cache for 30 minutes
+    });
 
-    const fetchData = async () => {
-        setLoading(true)
-        try {
-            const res = await httpClient.get(LIST_BANNER).then(res => res.data).catch(error => { throw error });
-
-            if (res?.code === 200) {
-                setDataSource([...res?.data]);
-            } else {
-                setDataSource([]);
-            }
-        } catch (error) {
-            message.error("Internal Server Error!");
-        } finally {
-            setLoading(false);
+    const dataSource = useMemo(() => {
+        let res = data;
+        if (res?.code === 200 && !isLoading) {
+            return [...res?.data];
+        } else {
+            return [
+                // {
+                //     "_id": "67dfb7d73b642de5375c7570",
+                //     "title": "Hello ",
+                //     "imageUrl": "https://picsum.photos/512/513",
+                //     "created_at": "2025-03-23T07:27:19.994Z",
+                //     "updated_at": "2025-03-23T07:27:19.994Z",
+                //     "__v": 0
+                // }
+            ];
         }
-    }
-
-    useEffect(() => {
-        fetchData();
-    }, [])
+    }, [data, isLoading])
 
     return (
         <div className='pb-[40px]'>
@@ -68,7 +58,7 @@ export default function BannerCarousel() {
                 dots={true}
             >
                 {
-                    loading ?
+                    isLoading ?
                         Array.from({ length: 3 }, (_, index) => (
                             <div className='px-[5px] md:px-[15px]'>
                                 <div className='custom-blur'>

@@ -5,7 +5,7 @@ import ResourceTypeDetail from "./ResourceTypeDetail";
 import { RESOURCE_TYPE_VIEW } from '../../../../constants/Bridge';
 
 export default function ResourceList(props) {
-    const { dataSource, pageSize, currentPage, setCurrentPage } = props;
+    const { dataSource, pageSize, total, currentPage, setCurrentPage } = props;
 
     return (
         <div>
@@ -13,6 +13,7 @@ export default function ResourceList(props) {
                 pagination={{
                     pageSize: pageSize,
                     current: currentPage,
+                    total: total,
                     onChange: (page) => setCurrentPage(page)
                 }}
                 dataSource={dataSource}

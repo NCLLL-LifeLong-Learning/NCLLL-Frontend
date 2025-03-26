@@ -5,6 +5,7 @@ import React, { Suspense } from 'react';
 import GuardLayout from './layouts/GuardLayout';
 import { aboutUs, focusArea, program, resources } from './constants/Route';
 import { RESOURCE_TYPE } from './constants/Bridge';
+import ResourcePage from './pages/Website/Documents/ResourcePage';
 
 const WebDefaultLayout = React.lazy(() => import('./layouts/DefaultLayout'));
 const WebDetailsLayout = React.lazy(() => import('./layouts/DetailsLayout'));
@@ -32,13 +33,6 @@ const LifelongLearningEnvironmentPage = React.lazy(() => import('./pages/Website
 const ProfessionalDevelopmentPage = React.lazy(() => import('./pages/Website/FocusArea/ProfessionalDevelopment'));
 const LifelongLearningForAllPage = React.lazy(() => import('./pages/Website/FocusArea/LifelongLearningForAll'));
 
-const AllReourcesPage = React.lazy(() => import('./pages/Website/Documents/AllDocuments'));
-const LegalDocumentPage = React.lazy(() => import('./pages/Website/Documents/LegalDocument'));
-const AdministrationPage = React.lazy(() => import('./pages/Website/Documents/Administration'));
-const PolicyStrategyPage = React.lazy(() => import('./pages/Website/Documents/PolicyStrategy'));
-const ProjectResourcePage = React.lazy(() => import('./pages/Website/Documents/ProjectsDocument'));
-const NewsAndEventPage = React.lazy(() => import('./pages/Website/Documents/NewsAndEvent'));
-const ReportAndPublicationPage = React.lazy(() => import('./pages/Website/Documents/ReportAndPublication'));
 const DynamicDetailPage = React.lazy(() => import('./pages/Website/Documents/DynamicDetailPage'));
 
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
@@ -96,23 +90,12 @@ function App() {
             </Route>
 
             <Route path='/resources' element={<GuardLayout description={resources.description} title={resources.title} route={resources.route} />}>
-              <Route index element={<Suspense><AllReourcesPage /></Suspense>} />
 
-              <Route path='laws' element={<Suspense><LegalDocumentPage /></Suspense>} />
-
-              <Route path='admin' element={<Suspense><AdministrationPage /></Suspense>} />
-
-              <Route path='policy' element={<Suspense><PolicyStrategyPage /></Suspense>} />
-
-              <Route path='projects' element={<Suspense><ProjectResourcePage /></Suspense>} />
-
-              <Route path='news' element={<Suspense><NewsAndEventPage /></Suspense>} />
-              
               <Route path='news/:id' element={<Suspense><DynamicDetailPage type={RESOURCE_TYPE.event} /></Suspense>} />
               
-              <Route path='report' element={<Suspense><ReportAndPublicationPage /></Suspense>} />
-              
               <Route path='projects/:id' element={<Suspense><DynamicDetailPage type={RESOURCE_TYPE.project} /></Suspense>} />
+              
+              <Route path=':type?' element={<ResourcePage />} index />
             </Route>
           </Route>
         </Route>

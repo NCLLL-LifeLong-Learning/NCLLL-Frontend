@@ -18,7 +18,7 @@ export const showFormatDate = (date) => {
 // //Follow Flow Tailwind Responsive
 // export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg: {}, xl: {}, xxl: {} }) => {
 //     const responsive = [];
-    
+
 //     if (!_.isEmpty(settings.xxl)) {
 //         responsive.push({
 //             breakpoint: 1800,
@@ -53,7 +53,7 @@ export const showFormatDate = (date) => {
 //             settings: settings.xs,
 //         })
 //     }
-    
+
 //     if (!_.isEmpty(settings.sm)) {
 //         responsive.push({
 //             breakpoint: 767,
@@ -179,3 +179,40 @@ export const convertToKhmerDate = (date) => {
 export function formatEnglishDate(date) {
     return dayjs(date).format('DD MMMM YYYY'); // Example: 14 August 1963
 }
+
+
+export const objectToQuery = (uri, obj) => {
+    const flattenObject = (prefix, value) => {
+        if (_.isObject(value) && !Array.isArray(value)) {
+            return Object.keys(value)
+                .flatMap(key => flattenObject(`${prefix}[${encodeURIComponent(key)}]`, value[key]))
+                .join('&');
+        }
+        return `${prefix}=${encodeURIComponent(value)}`;
+    };
+
+    const cleanedObj = _.omitBy(obj, value => value === null || value === undefined || value === '' || value === false || Number.isNaN(value) || (Array.isArray(value) && value.length === 0));
+
+    const queryString = Object.keys(cleanedObj)
+        .flatMap(key => {
+            const value = cleanedObj[key];
+
+            if (Array.isArray(value)) {
+                return value.map(item => {
+                    if (_.isObject(item)) {
+                        return Object.keys(item)
+                            .map(subKey => `${encodeURIComponent(key)}[${encodeURIComponent(subKey)}]=${encodeURIComponent(item[subKey])}`)
+                            .join('&');
+                    }
+                    return `${encodeURIComponent(key)}[]=${encodeURIComponent(item)}`;
+                });
+            } else if (_.isObject(value)) {
+                return flattenObject(encodeURIComponent(key), value);
+            }
+
+            return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+        })
+        .join('&');
+
+    return queryString ? `${uri}?${queryString}` : uri;
+};

@@ -7,24 +7,6 @@ import { useTranslation } from 'react-i18next';
 export default function MinistriesPartner({ dataSource, description, title, onClick }) {
     const { t } = useTranslation();
 
-    console.log("responsive antd = ", antdResponsive({
-        xl: {
-            slidesToShow: 6
-        },
-        lg: {
-            slidesToShow: 4
-        },
-        md: {
-            slidesToShow: 3
-        },
-        xs: {
-            slidesToShow: 2
-        },
-        xxs: {
-            slidesToShow: 1
-        },
-    }));
-    
     return (
         <div className='min-h-[350px] md:min-h-[450px] flex items-center container mx-auto'>
             <div className='text-center w-full'>
