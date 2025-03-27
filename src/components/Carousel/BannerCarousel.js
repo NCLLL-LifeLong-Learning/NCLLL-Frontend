@@ -62,7 +62,7 @@ export default function BannerCarousel() {
                         Array.from({ length: 3 }, (_, index) => (
                             <div className='px-[5px] md:px-[15px]'>
                                 <div className='custom-blur'>
-                                    <Skeleton.Image active={true} className="std-banner-image" />
+                                    <Skeleton.Image active className="std-banner-image" />
                                 </div>
                             </div>
                         ))

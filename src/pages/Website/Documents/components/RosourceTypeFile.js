@@ -29,7 +29,7 @@ export default function RosourceType(props) {
     return (
         <div className='grid grid-cols-3 md:flex px-[10px] md:px-[20px] gap-[10px] md:gap-[20px] w-full items-center justify-between py-[20px] ring rounded-lg'>
             <div className='col-span-3'>
-                <img className='w-full h-auto md:w-auto max-h-none md:max-h-[150px] border' src={record.cover} alt={record.cover} />
+                <img className='!aspect-square w-full h-auto md:w-auto max-h-none md:max-h-[150px] border' src={record.cover} alt={record.cover} />
             </div>
             <div className='col-span-3 flex flex-col gap-3 justify-center flex-1'>
                 <div className='text-xl truncate' style={{ color: "var(--primary-color)" }}>{record.title}</div>

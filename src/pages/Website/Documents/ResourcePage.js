@@ -47,17 +47,23 @@ export default function ResourcePage() {
         }))]
       };
     } else {
-      return [
-        //       type: typeView[index % typeView.length],
-        //       _id: index,
-        //       imageUrl: `${BASE_ASSET_URL}/segmented/event-news.png`,
-        //       title: `[${typeView[index % typeView.length].toUpperCase()}] - National Policy on Lifelong Learning ${index + 1}`,
-        //       publishedTS: "01/01/2024",
-        //       lang: "KH",
-        //       source: "Ministry " + index,
-        //       tags: "Tags " + index,
-        //       file: `${BASE_ASSET_URL}/resources/dummy.pdf`,
-      ];
+      return {
+        total: res?.total || 10,
+        dataSource: Array.from({ length: 10 }, (_, index) => ({
+          skeleton: true,
+        }))
+      }
+      // [
+      //   //       type: typeView[index % typeView.length],
+      //   //       _id: index,
+      //   //       imageUrl: `${BASE_ASSET_URL}/segmented/event-news.png`,
+      //   //       title: `[${typeView[index % typeView.length].toUpperCase()}] - National Policy on Lifelong Learning ${index + 1}`,
+      //   //       publishedTS: "01/01/2024",
+      //   //       lang: "KH",
+      //   //       source: "Ministry " + index,
+      //   //       tags: "Tags " + index,
+      //   //       file: `${BASE_ASSET_URL}/resources/dummy.pdf`,
+      // ];
     }
 
   }, [resourceData, isResourceLoading])

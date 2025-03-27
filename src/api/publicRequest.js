@@ -1,6 +1,6 @@
 import { objectToQuery } from "../utils/Utils";
 import httpClient from "./httpClient";
-import { LIST_BANNER, LIST_MINISTRIES, LIST_RESOURCE } from "./URLs";
+import { GOVERMENT_DETAIL, LIST_BANNER, LIST_GOVERMENT, LIST_MINISTRIES, LIST_RESOURCE } from "./URLs";
 
 
 export const fetchBanners = async () => {
@@ -15,5 +15,15 @@ export const fetchMinistryPartner = async () => {
 
 export const fetchResource = async (query) => {
     const res = await httpClient.get(objectToQuery(LIST_RESOURCE, query)).then(res => res.data).catch(error => { throw error });
+    return res;
+};
+
+export const fetchGovermentDetail = async (id) => {
+    const res = await httpClient.get(GOVERMENT_DETAIL.replace(":id", id)).then(res => res.data).catch(error => { throw error });
+    return res;
+};
+
+export const fetchGoverments = async () => {
+    const res = await httpClient.get(LIST_GOVERMENT).then(res => res.data).catch(error => { throw error });
     return res;
 };
