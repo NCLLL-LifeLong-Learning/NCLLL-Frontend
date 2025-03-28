@@ -7,7 +7,7 @@ export default function LifelongLearningCenter() {
   return (
     <div>
       <p className='text-xl font-semibold text-[#0F69B7]'>{t("Cambodia's Skill Gap: Challenges and Opportunities in Lifelong Learning")}</p>
-      <div className='flex justify-between items-center gap-[1rem] my-[1.5rem]'>
+      <div className='flex-col md:flex-row flex justify-between items-center gap-[1rem] my-[1.5rem]'>
         <img className='p-3' src={BASE_ASSET_URL + '/program/square_art.png'} alt='Square Art' />
         <div className='bg-[#0F69B7] bg-opacity-[30%] rounded-lg border shadow-md'>
           <p className='p-3 font-normal text-wrap text-lg leading-snug'>
@@ -32,7 +32,7 @@ export default function LifelongLearningCenter() {
         </div>
 
         <div className='p-[2rem] shadow-md rounded-xl mt-[2rem]'>
-          <div className='w-[10%] pb-[1rem]'>
+          <div className='w-[40%] md:w-[10%] pb-[1rem]'>
             <img src={BASE_ASSET_URL + '/program/key_topic.png'} className='w-full bg-cover bg-center object-cover' alt='Key Topic to Discuss' />
           </div>
           <p className='text-xl font-semibold text-[#0F69B7]'>{t("Key Topic to Discuss:")}</p>
@@ -65,20 +65,20 @@ export default function LifelongLearningCenter() {
         </div>
 
         <div className='grid grid-cols-3 gap-[1rem] mt-[3rem] mb-[4rem]'>
-          <div className='col-span-1 flex flex-col justify-center items-center'>
+          <div className='col-span-3 lg:col-span-1 flex flex-col justify-center items-center'>
             <p>{t("Co-organized by")}</p>
             <div className='w-full flex justify-center items-center'>
-              <img src={BASE_ASSET_URL + 'assets/images/partner/moey_logo.png'} className='w-[50%] bg-cover bg-center object-cover' alt='Forum 1' />
+              <img src={BASE_ASSET_URL + '/partner/moey_logo.png'} className='w-[50%] bg-cover bg-center object-cover' alt='Forum 1' />
             </div>
           </div>
-          <div className='col-span-1 flex flex-col justify-center items-center'>
+          <div className='col-span-3 lg:col-span-1 flex flex-col justify-center items-center'>
             <p>{t("Co-organized by")}</p>
             <div className='w-full flex justify-center items-center'>
               <img src={BASE_ASSET_URL + '/partner/dvv_international.png'} className='w-[50%] bg-cover bg-center object-cover' alt='Forum 3' />
               <img src={BASE_ASSET_URL + '/partner/step_academy.png'} className='w-[50%] bg-cover bg-center object-cover' alt='Forum 2' />
             </div>
           </div>
-          <div className='col-span-1 flex flex-col justify-center items-center'>
+          <div className='col-span-3 lg:col-span-1 flex flex-col justify-center items-center'>
             <p>{t("Co-organized by")}</p>
             <div className='w-full flex justify-center items-center'>
               <img src={BASE_ASSET_URL + '/partner/dvv_international.png'} className='w-[50%] bg-cover bg-center object-cover' alt='Forum 3' />

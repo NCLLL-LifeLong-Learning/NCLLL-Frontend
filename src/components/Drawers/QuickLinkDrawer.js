@@ -31,7 +31,7 @@ function QuickLinkDrawer(props, ref) {
 
     const onNavTo = (path) => {
         navigate(path);
-        onclose();
+        onClose();
     }
 
     useImperativeHandle(ref, () => {

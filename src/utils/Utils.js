@@ -73,7 +73,7 @@ export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg:
 
 export const getTreeTitle = (title, isChild, isActive, isParent) => {
     if (isChild) {
-        return <div className={`gap-3 menu-tree-child ${isActive && "active"}`}>
+        return <div className={`gap-3 px-[10px] menu-tree-child ${isActive && "active"}`}>
             {title}
             {
                 isParent &&
@@ -83,7 +83,7 @@ export const getTreeTitle = (title, isChild, isActive, isParent) => {
             }
         </div>
     }
-    return <div className={`gap-3 menu-tree-title ${isActive && "active"}`}>
+    return <div className={`gap-3 px-[10px] menu-tree-title ${isActive && "active"}`}>
         {title}
         {
             isParent &&

@@ -48,7 +48,7 @@ export default function MissionAndVision() {
             <li>{t("Collaboration and Implementation: Encourage ministries, institutions, the private sector, and development partners to implement lifelong learning programs to continuously update and advance employee skills as outlined in the CNQF.")}</li>
           </ol>
           <div className='flex-col-center py-[30px]'>
-            <Button className='std-btn w-[30%] flex gap-[10px]'>{t("More on Objective")} <SideWayArrowSvg width='10px' height='10px' /></Button>
+            <Button className='std-btn w-auto lg:w-[30%] flex gap-[10px]'>{t("More on Objective")} <SideWayArrowSvg width='10px' height='10px' /></Button>
           </div>
         </div>
       </div>
