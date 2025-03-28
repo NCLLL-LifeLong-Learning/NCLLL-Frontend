@@ -41,10 +41,11 @@ export default function ResourcePage() {
           title: data?.title || "",
           publishedTS: data?.publishedAt,
           lang: data?.lang || "",
-          source: data?.source[lang]?.name || "",
+          source: data?.source && data.source[lang]?.name ? data.source[lang]?.name : "",
           tags: data?.tags || "",
           file: data?.file,
         }))]
+
       };
     } else {
       return {

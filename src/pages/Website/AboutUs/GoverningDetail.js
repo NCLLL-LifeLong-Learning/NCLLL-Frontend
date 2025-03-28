@@ -139,7 +139,13 @@ export default function GoverningBoard() {
   const tables = [
     {
       dataIndex: "careerStatus",
-      title: "ការងារបច្ចុប្បន្ន",
+      title_en: "Career Status",
+      title_kh: "ការងារបច្ចុប្បន្ន",
+    },
+    {
+      dataIndex: "experience",
+      title_en: "Experience",
+      title_kh: "បទពិសោធន៍",
     }
   ];
 
@@ -257,7 +263,7 @@ export default function GoverningBoard() {
               dataSource={basicInfo}
             />
           </div>
-          <div className='col-span-5'>
+          <div className='col-span-5 flex flex-col gap-4'>
             {
               tables.map(table => data[table?.dataIndex]?.length > 0 &&
                 <Table
@@ -265,7 +271,7 @@ export default function GoverningBoard() {
                   rowKey="key"
                   showHeader={false}
                   pagination={false}
-                  title={() => <div className='font-khmer text-center'>{t("Current job")}</div>}
+                  title={() => <div className='font-khmer text-center'>{table["title_" + lang]}</div>}
                   columns={[
                     {
                       dataIndex: "value",

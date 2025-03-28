@@ -315,8 +315,8 @@
 
 .std-partner-logo {
   max-width: none !important;
-  width: 130px;
-  height: 140px;
+  width: 130px !important;
+  height: 140px !important;
   object-fit: cover;
 }
 
