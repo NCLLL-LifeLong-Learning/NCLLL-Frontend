@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { CACHE_TIME, FOCUS_AREA, STALE_TIME } from '../../constants/CacheAPI';
 import { fetchFocusArea } from '../../api/publicRequest';
 import { LanguageContext } from '../../i18n/LanguageProvider';
+import { NavLink } from 'react-router-dom';
 
 export default function SwiperBackgroundImageFocusArea({ onClick, title, description }) {
     const { t } = useTranslation();
@@ -75,14 +76,16 @@ export default function SwiperBackgroundImageFocusArea({ onClick, title, descrip
                     {
                         dataSource.map(data => (
                             <div className='p-[5px] md:p-[15px]'>
-                                <div className='std-feature-card-wrapper' onClick={onClick}>
-                                    <img className="std-feature-image" src={data.cover} alt={data.cover} />
-                                    <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[120px] !rounded-none p-4'>
-                                        <p>
-                                            {t(data[lang]?.title)}
-                                        </p>
+                                <NavLink role='button' to={"/focus-area/" + data?._id}>
+                                    <div className='std-feature-card-wrapper'>
+                                        <img className="std-feature-image" src={data.cover} alt={data.cover} />
+                                        <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[120px] !rounded-none p-4'>
+                                            <p>
+                                                {t(data[lang]?.title)}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
+                                </NavLink>
                             </div>
                         ))
                     }

@@ -1,5 +1,5 @@
 import { Breadcrumb, FloatButton, Tree } from 'antd';
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { Outlet, useLocation, useNavigate, useOutletContext } from 'react-router';
 import { getTreeTitle } from '../utils/Utils';
 import { AiOutlineHome } from "react-icons/ai";
@@ -8,9 +8,11 @@ import BecomePartner from "../components/OurPartner/BecomePartner";
 import ExpandSvg from '../assets/svgs/ExpandSvg';
 import { useTranslation } from 'react-i18next';
 import { IoMdClose } from 'react-icons/io';
+import { LanguageContext } from '../i18n/LanguageProvider';
 
 export default function DetailsLayout() {
     const { t } = useTranslation();
+    const { lang } = useContext(LanguageContext);
     const context = useOutletContext();
     const [currentRoute, setCurrentRoute] = useState({});
     const location = useLocation();
@@ -113,7 +115,9 @@ export default function DetailsLayout() {
         (<div>
             <div className='h-[260px] text-white flex justify-center items-center' style={{ background: "var(--detail-header-background)" }}>
                 <div className='max-w-[800px] text-center gap-[20px] flex flex-col'>
-                    <div className='std-title !text-white'>{t(treeTitle)}</div>
+                    <div className='std-title !text-white'
+                        style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                    >{t(treeTitle)}</div>
                     <div className='std-content'>{t(treeDescription)}</div>
                 </div>
             </div>
@@ -129,12 +133,16 @@ export default function DetailsLayout() {
                             },
                             {
                                 onClick: () => navigate(treeData[0]?.path),
-                                title: t(treeTitle),
+                                title: <span
+                                    style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                                >{t(treeTitle)}</span>,
                             },
                             ...activeNodes.map(i => ({
                                 onClick: () => navigate(i?.path),
                                 key: i.key,
-                                title: t(i.title),
+                                title: <span
+                                    style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                                >{t(i.title)}</span>,
                             })),
                         ]}
                     />
@@ -148,12 +156,14 @@ export default function DetailsLayout() {
                     style={{ left: 10, bottom: 40, backgroundColor: "var(--primary-color)" }}
                 />
                 <div className={`${burger ? "active" : ""} transition-all fixed-burger xl:block col-span-2 ps-[10px] h-fit pb-[20px]`} style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
-                    <h1 className='py-[20px] px-[10px] text-[1.5rem] md:text-[2rem] text-center m-0'>{t(treeTitle)}</h1>
+                    <h1 className='py-[20px] px-[10px] text-[1.5rem] md:text-[2rem] text-center m-0'
+                        style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                    >{t(treeTitle)}</h1>
                     <Tree
                         rootClassName='root-menu-tree'
                         rootStyle={{ backgroundColor: '#0F69B7', color: 'white' }}
                         switcherIcon={null}
-                        titleRender={(node) => getTreeTitle(node.title, node.treeNode.length > 1, activeKeys.includes(node.key), node.children.length > 1)}
+                        titleRender={(node) => getTreeTitle(node.title, node.treeNode.length > 1, activeKeys.includes(node.key), node.children.length > 1, lang)}
                         onSelect={handleSelectedTree}
                         expandedKeys={activeKeys}
                         autoExpandParent

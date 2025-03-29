@@ -7,6 +7,7 @@ import { aboutUs, focusArea, program, resources } from './constants/Route';
 import { RESOURCE_TYPE } from './constants/Bridge';
 import ResourcePage from './pages/Website/Documents/ResourcePage';
 import AllResourcePage from './pages/Website/Documents/AllResourcePage';
+import FocusAreaPage from './pages/Website/FocusArea/FocusAreaPage';
 
 const WebDefaultLayout = React.lazy(() => import('./layouts/DefaultLayout'));
 const WebDetailsLayout = React.lazy(() => import('./layouts/DetailsLayout'));
@@ -27,11 +28,6 @@ const LifelongLearningCityPage = React.lazy(() => import('./pages/Website/Progra
 const LifelongLearningClubPage = React.lazy(() => import('./pages/Website/Program/LifelongLearningClub'));
 const NationalLifelongLearningForumPage = React.lazy(() => import('./pages/Website/Program/NationalLifelongLearningForum'));
 
-const AccreditationAndRecognitionPage = React.lazy(() => import('./pages/Website/FocusArea/AccreditationAndRecognition'));
-const CollaborationAndSupportPage = React.lazy(() => import('./pages/Website/FocusArea/CollaborationAndSupport'));
-const ComprehensiveAndFlexibleLearningProgramPage = React.lazy(() => import('./pages/Website/FocusArea/ComprehensiveAndFlexibleLearningProgram'));
-const LifelongLearningEnvironmentPage = React.lazy(() => import('./pages/Website/FocusArea/LifelongLearningEnvironment'));
-const ProfessionalDevelopmentPage = React.lazy(() => import('./pages/Website/FocusArea/ProfessionalDevelopment'));
 const LifelongLearningForAllPage = React.lazy(() => import('./pages/Website/FocusArea/LifelongLearningForAll'));
 
 const DynamicDetailPage = React.lazy(() => import('./pages/Website/Documents/DynamicDetailPage'));
@@ -79,22 +75,14 @@ function App() {
             <Route path='/focus-area' element={<GuardLayout description={focusArea.description} title={focusArea.title} route={focusArea.route} />}>
               <Route index path='all' element={<Suspense><LifelongLearningForAllPage /></Suspense>} />
 
-              <Route path='professional' element={<Suspense><ProfessionalDevelopmentPage /></Suspense>} />
-
-              <Route path='environment' element={<Suspense><LifelongLearningEnvironmentPage /></Suspense>} />
-
-              <Route path='comprehensive-flexible' element={<Suspense><ComprehensiveAndFlexibleLearningProgramPage /></Suspense>} />
-
-              <Route path='collaboration-support' element={<Suspense><CollaborationAndSupportPage /></Suspense>} />
-
-              <Route path='accreditation-recognition' element={<Suspense><AccreditationAndRecognitionPage /></Suspense>} />
+              <Route path=':id' element={<Suspense><FocusAreaPage /></Suspense>} />
             </Route>
 
             <Route path='/resources' element={<GuardLayout description={resources.description} title={resources.title} route={resources.route} />}>
-            
+
               <Route element={<AllResourcePage />} index />
               <Route path=':type' element={<ResourcePage />} />
-              
+
               <Route path=':type/:id' element={<Suspense><DynamicDetailPage type={RESOURCE_TYPE.event} /></Suspense>} />
             </Route>
           </Route>

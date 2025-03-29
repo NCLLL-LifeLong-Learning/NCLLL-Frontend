@@ -19,3 +19,5 @@ export const SUBMIT_REQUEST_PARTNER = "/request-partner";
 export const LIST_PARTNER = "/partners";
 
 export const LIST_FOCUS_AREA = "/focus-areas";
+
+export const FOCUS_AREA_DETAIL = "/focus-areas/:id";

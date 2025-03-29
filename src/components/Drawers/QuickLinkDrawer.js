@@ -1,15 +1,16 @@
 import { Button, Drawer, Input, Tabs } from 'antd'
-import React, { forwardRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useContext, useImperativeHandle, useState } from 'react'
 import { IoMdClose } from 'react-icons/io';
 import { useNavigate } from 'react-router';
 import { aboutUs, focusArea, program, resources } from '../../constants/Route';
 import CambodiaSvg from '../../assets/svgs/CambodiaSvg';
 import AmericanSvg from '../../assets/svgs/AmericanSvg';
 import { useTranslation } from 'react-i18next';
+import { LanguageContext } from '../../i18n/LanguageProvider';
 
 function QuickLinkDrawer(props, ref) {
-    const { t } = useTranslation();    
-    
+    const { t } = useTranslation();
+    const { lang } = useContext(LanguageContext);
     const { onChangeLang } = props
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
@@ -82,16 +83,23 @@ function QuickLinkDrawer(props, ref) {
                         style={{ height: 220 }}
                         items={
                             menu.map((item, index) => ({
-                                label: <div className='text-lg  font-bold text-white'>{t(item.title)}</div>,
+                                label: <div
+                                    className='text-xl  font-bold text-white'
+                                    style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                                >{t(item.title)}</div>,
                                 key: index,
                                 children: <div className='px-[30px] py-[20px] md:py-[30px] md:px-[60px] text-white'>
                                     <div className='grid grid-cols-12 gap-2'>
                                         {
                                             item.route.map(route => (
                                                 <div className='col-span-12 sm:col-span-6 md:col-span-3 flex flex-col gap-2'>
-                                                    <div className='cursor-pointer' onClick={() => onNavTo(route.path)}>{t(route.title)}</div>
+                                                    <div className='cursor-pointer text-xl' onClick={() => onNavTo(route.path)}
+                                                        style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                                                    >{t(route.title)}</div>
                                                     <div className='ms-[20px] flex flex-col gap-2'>
-                                                        {route.children.map(child => (<div className='cursor-pointer' onClick={() => onNavTo(child.path)}>
+                                                        {route.children.map(child => (<div className='cursor-pointer text-xl' onClick={() => onNavTo(child.path)}
+                                                            style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                                                        >
                                                             {t(child.title)}
                                                         </div>))}
                                                     </div>

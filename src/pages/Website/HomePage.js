@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import BannerCarousel from '../../components/Carousel/BannerCarousel';
 import SegmentedTabs from '../../components/Segmented/SegmentedTabs';
 import OurPartner from '../../components/OurPartner/OurPartner';
@@ -8,6 +8,9 @@ import dayjs from 'dayjs';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import SwiperBackgroundImageFocusArea from '../../components/Swiper/SwiperBackgroundImageFocusArea';
+import { useQuery } from '@tanstack/react-query';
+import { BLOGS, CACHE_TIME, FOCUS_AREA, STALE_TIME } from '../../constants/CacheAPI';
+import { fetchBlogs, fetchFocusArea } from '../../api/publicRequest';
 
 const initSwiperImageBackground = (res) => {
   const tempTitle = [
@@ -51,46 +54,82 @@ export default function HomePage() {
   const { t } = useTranslation();
   const TabsOptions = ['News', 'Events'];
   const [total, setTotal] = useState(30);
-  const [limit, setLimit] = useState(3);
   const [selectedTabs, setSelectedTabs] = useState("News");
-  const [TabsData, setTabsData] = useState([]);
   const navigate = useNavigate();
-
-  const [ourPartner, setOurPartner] = useState([]);
-  const [ministryPartner, setMinistryPartner] = useState([]);
-  const [focusArea, setFocusArea] = useState([]);
   const [featureProgram, setFeatureProgram] = useState([]);
 
-  const handleTabsLoadMore = () => {
-    if (total < limit) {
-      return;
-    }
+  const [TabsList, setTabsList] = useState({
+    news: {
+      currentPage: 1,
+      data: [],
+      limit: 3,
+      total: 0,
+    },
+    events: {
+      currentPage: 1,
+      data: [],
+      limit: 3,
+      total: 0,
+    },
+  });
 
-    fetchSelectedTabs({ tabs: selectedTabs, limit: limit + 3 });
-    setLimit(() => limit + 3);
-  }
+  const handleTabsLoadMore = () => {
+    if ((TabsList[selectedTabs.toLowerCase()]?.currentPage * TabsList[selectedTabs.toLowerCase()]?.limit) > TabsList[selectedTabs.toLowerCase()].total) return;
+
+    setTabsList((prev) => ({
+      ...prev,
+      [selectedTabs.toLowerCase()]: {
+        ...prev[selectedTabs.toLowerCase()],
+        currentPage: prev[selectedTabs.toLowerCase()] + 1, // Increase limit for selected tab
+      },
+    }));
+  };
+
+  const computeQuery = useMemo(() => {
+    return {
+      page: TabsList[selectedTabs.toLowerCase()]?.currentPage,
+      limit: TabsList[selectedTabs.toLowerCase()]?.limit, // Use tab-specific limit
+      category: selectedTabs === "News" ? ["news"] : ["event"],
+    };
+  }, [selectedTabs, TabsList]);
+
+  const { data, isLoading } = useQuery({
+    queryKey: [BLOGS, computeQuery],
+    queryFn: () => fetchBlogs(computeQuery),
+    staleTime: STALE_TIME,
+    cacheTime: CACHE_TIME,
+  });
+
+  const dataSource = useMemo(() => {
+    if (data?.code === 200 && !isLoading) {
+      return [...data?.data?.results];
+    }
+    return Array.from({ length: 10 }, (_, index) => ({ skeleton: true }));
+  }, [data, isLoading]);
 
   const handleSelectedChange = (value) => {
     setSelectedTabs(value);
-    //Fetch new Tabs
-    fetchSelectedTabs({ tabs: value, limit });
-  }
+
+    // Reset the page to 1 if needed (Optional)
+    setTabsList((prev) => ({
+      ...prev,
+      [value]: {
+        ...prev[value],
+        currentPage: 1, // Reset page if needed
+      },
+    }));
+  };
 
   const handleEventClick = () => {
     navigate("/resources/news");
   }
 
   const handleMinistryPartnerClick = () => {
-    navigate("/program/engagement", {
+    navigate("/about-us/member", {
       state: {
         initTabs: "Partners"
       }
     });
-    //Navigate somewhere
-  }
-
-  const handleFocusAreaClick = () => {
-    navigate("/focus-area/all");
     //Navigate somewhere
   }
 
@@ -104,53 +143,6 @@ export default function HomePage() {
     //Navigate somewhere
   }
 
-  const fetchSelectedTabs = async ({ limit, tabs }) => {
-    const res = [];
-
-    for (let i = 1; i < limit + 1; i++) {
-      res.push({
-        imageUrl: "/assets/images/segmented/event-news.png",
-        title: tabs + " Title " + i,
-        tags: "Tags " + i,
-        publishedAt: dayjs().format("DD MMMM YYYY")
-      });
-    }
-
-    setTabsData([...res]);
-    setTotal(30);
-  }
-
-
-  const fetchOurPartner = async () => {
-    const res = [];
-    const tempName = ["dvv_international.png", "step_academy.png"];
-
-    for (let i = 0; i < 20; i++) {
-      res.push({
-        _id: i,
-        imageUrl: "/assets/images/partner/" + tempName[i % 2],
-      });
-    }
-
-    setOurPartner([...res]);
-  }
-
-  const fetchMinistryPartner = async () => {
-    const res = [];
-
-    initMinistryPartner(res);
-
-    setMinistryPartner([...res]);
-  }
-
-  const fetchFocusArea = async () => {
-    const res = [];
-
-    initSwiperImageBackground(res);
-
-    setFocusArea([...res]);
-  }
-
   const fetchFeatureProgram = async () => {
     const res = [];
 
@@ -160,11 +152,7 @@ export default function HomePage() {
   }
 
   useEffect(() => {
-    fetchFocusArea();
     fetchFeatureProgram();
-    fetchMinistryPartner();
-    fetchOurPartner();
-    fetchSelectedTabs({ tabs: selectedTabs, limit });
   }, [])
 
   return (
@@ -174,7 +162,6 @@ export default function HomePage() {
       </div>
       <div className='py-[40px]'>
         <SwiperBackgroundImageFocusArea
-          onClick={handleFocusAreaClick}
           title={"Focus Areas"}
           description={"Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities"}
         />
@@ -195,14 +182,13 @@ export default function HomePage() {
           options={TabsOptions}
           defaultOpitons={selectedTabs}
           onChange={handleSelectedChange}
-          dataSource={TabsData}
+          dataSource={dataSource}
         />
       </div>
       <div className='p-[30px]' style={{ backgroundColor: 'var(--light-blue-color)' }}>
         <MinistriesPartner
           title="Ministries Partner"
           description={"Our focus areas encourage lifelong learning through flexible, inclusive and comprehensive initiatives that meet the changing need."}
-          dataSource={ministryPartner}
           onClick={handleMinistryPartnerClick}
         />
       </div>

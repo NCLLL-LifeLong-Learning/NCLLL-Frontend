@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useMemo, useRef, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 import HeaderNavigationBar from '../components/NavigationBar/HeaderNavigationBar'
 import { Button, Dropdown, FloatButton, Input } from 'antd'
@@ -22,6 +22,9 @@ import ExpandSvg from '../assets/svgs/ExpandSvg.js'
 import { FaArrowUp } from 'react-icons/fa'
 import QuickLinkDrawer from '../components/Drawers/QuickLinkDrawer.js'
 import { LanguageContext } from '../i18n/LanguageProvider.js'
+import { useQuery } from '@tanstack/react-query'
+import { CACHE_TIME, FOCUS_AREA, STALE_TIME } from '../constants/CacheAPI.js'
+import { fetchFocusArea } from '../api/publicRequest.js'
 
 export default function DefaultLayout() {
   const { t, i18n } = useTranslation();
@@ -106,8 +109,15 @@ export default function DefaultLayout() {
     }
   ];
 
-  const menu = [
-    {
+  const { data: focusAreaMenu, isLoading: isLoadingFocusArea } = useQuery({
+    queryKey: [FOCUS_AREA, { limit: 100 }],
+    queryFn: () => fetchFocusArea({ limit: 100 }),
+    staleTime: STALE_TIME,
+    cacheTime: CACHE_TIME,
+  });
+
+  const menu = useMemo(() => {
+    const aboutUs = {
       title: "About",
       link: "/about-us/mission",
       children: [{
@@ -140,7 +150,9 @@ export default function DefaultLayout() {
         link: "/about-us/contact",
         disabled: false,
       }],
-    }, {
+    };
+
+    const Programs = {
       title: "Programs",
       link: "/program/forum",
       children: [{
@@ -164,35 +176,57 @@ export default function DefaultLayout() {
         link: "/program/engagement",
         disabled: false,
       }],
-    }, {
+    };
+
+    const FocusArea = {
       title: "Focus Areas",
       link: "/focus-area/all",
-      children: [{
-        title: "Comprehensive and Flexible Learning Program",
-        link: "/focus-area/comprehensive-flexible",
-        disabled: false,
-      }, {
-        title: "Lifelong Learning Environment",
-        link: "/focus-area/environment",
-        disabled: false,
-      }, {
-        title: "Professional Development",
-        link: "/focus-area/professional",
-        disabled: false,
-      }, {
-        title: "Accreditation & Recognition",
-        linl: "/focus-area/accreditation-recognition",
-      }, {
-        title: "Collaboration & Support",
-        link: "/focus-area/collaboration-support",
-        disabled: false,
-      }],
-    }, {
-      title: "Resources",
-      link: "/resources",
-      children: [],
-    },
-  ];
+      children: [
+        // {
+        //   title: "Comprehensive and Flexible Learning Program",
+        //   link: "/focus-area/comprehensive-flexible",
+        //   disabled: false,
+        // }, {
+        //   title: "Lifelong Learning Environment",
+        //   link: "/focus-area/environment",
+        //   disabled: false,
+        // }, {
+        //   title: "Professional Development",
+        //   link: "/focus-area/professional",
+        //   disabled: false,
+        // }, {
+        //   title: "Accreditation & Recognition",
+        //   linl: "/focus-area/accreditation-recognition",
+        // }, {
+        //   title: "Collaboration & Support",
+        //   link: "/focus-area/collaboration-support",
+        //   disabled: false,
+        // }
+      ],
+    };
+
+    if (!isLoadingFocusArea) {
+      if (focusAreaMenu.code === 200) {
+        FocusArea.children.push(...focusAreaMenu?.data?.results.map(item => ({
+          title: item[lang] && item[lang]?.title,
+          link: "/focus-area/" + item?._id,
+          disabled: false,
+        })));
+      }
+      console.log("FocusArea = ", FocusArea);
+    }
+
+    return [
+      aboutUs,
+      Programs,
+      FocusArea,
+      {
+        title: "Resources",
+        link: "/resources",
+        children: [],
+      },
+    ];
+  }, [isLoadingFocusArea, focusAreaMenu]);
 
   const lanuageMenu = [
     {
@@ -331,7 +365,9 @@ export default function DefaultLayout() {
                   {
                     item.children.map((child, index) => (
                       <Button key={index} className='truncate w-[calc(100vw/3)] xl:w-[calc(100vw/4)] h-[54px] gap-2 std-menu-link' onClick={() => toPage(child?.link)}>
-                        {t(child?.title)}
+                        <span
+                          style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                        >{t(child?.title)}</span>
                       </Button>
                     ))
                   }
@@ -381,12 +417,6 @@ export default function DefaultLayout() {
                     </Link>
                   ))
                 }
-                <div className='hidden lg:block'>
-                  <Link to='#' className='ms-[calc(20px+1rem)] mt-[7px] gap-2 icons-container'>
-                    <span className='font-[600] text-[14px]'>{t("Contact Us")}</span>
-                    <ExportSvg width='13px' height='13px' />
-                  </Link>
-                </div>
               </div>
             </div>
             <div className='col-span-1 flex justify-between mt-[10px] lg:mt-[0]'>
@@ -415,12 +445,12 @@ export default function DefaultLayout() {
                           {i.text}
                           <ExportSvg width='13px' height='13px' />
                         </Link>
-                        
+
                       </>
                     )
                   })
                 }
-                <Link to='#' className='block lg:hidden gap-2 icons-container'>
+                <Link to='#' className='gap-2 icons-container'>
                   <span className='text-[16px]'>{t("Contact Us")}</span>
                   <ExportSvg width='13px' height='13px' />
                 </Link>
