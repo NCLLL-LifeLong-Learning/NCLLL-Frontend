@@ -6,6 +6,7 @@ import GuardLayout from './layouts/GuardLayout';
 import { aboutUs, focusArea, program, resources } from './constants/Route';
 import { RESOURCE_TYPE } from './constants/Bridge';
 import ResourcePage from './pages/Website/Documents/ResourcePage';
+import AllResourcePage from './pages/Website/Documents/AllResourcePage';
 
 const WebDefaultLayout = React.lazy(() => import('./layouts/DefaultLayout'));
 const WebDetailsLayout = React.lazy(() => import('./layouts/DetailsLayout'));
@@ -90,12 +91,11 @@ function App() {
             </Route>
 
             <Route path='/resources' element={<GuardLayout description={resources.description} title={resources.title} route={resources.route} />}>
-
-              <Route path='news/:id' element={<Suspense><DynamicDetailPage type={RESOURCE_TYPE.event} /></Suspense>} />
+            
+              <Route element={<AllResourcePage />} index />
+              <Route path=':type' element={<ResourcePage />} />
               
-              <Route path='projects/:id' element={<Suspense><DynamicDetailPage type={RESOURCE_TYPE.project} /></Suspense>} />
-              
-              <Route path=':type?' element={<ResourcePage />} index />
+              <Route path=':type/:id' element={<Suspense><DynamicDetailPage type={RESOURCE_TYPE.event} /></Suspense>} />
             </Route>
           </Route>
         </Route>

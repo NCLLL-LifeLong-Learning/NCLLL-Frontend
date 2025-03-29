@@ -25,10 +25,8 @@ root.render(
       }}
     >
       <QueryClientProvider client={queryClient}>
-        {/* <Provider store={store}> */}
         <LanguageProvider>
           <App />
-          {/* </Provider> */}
         </LanguageProvider>
       </QueryClientProvider>
     </ConfigProvider>

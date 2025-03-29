@@ -2,8 +2,9 @@ import { List } from 'antd';
 import React from 'react'
 import RosourceTypeFile from "./RosourceTypeFile";
 import ResourceTypeDetail from "./ResourceTypeDetail";
-import { RESOURCE_TYPE_VIEW } from '../../../../constants/Bridge';
+// import { RESOURCE_TYPE_VIEW } from '../../../../constants/Bridge';
 import RosourceTypeDetailLoading from './ResourceTypeDetailLoading';
+import { RESOURCE_TYPE_VIEW } from '../../../../constants/Bridge';
 
 export default function ResourceList(props) {
     const { loading, dataSource, pageSize, total, currentPage, setCurrentPage } = props;
@@ -24,7 +25,9 @@ export default function ResourceList(props) {
                     if (loading) {
                         return <RosourceTypeDetailLoading />
                     }
-                    if (typeDetail.includes(record.type)) {
+                    console.log("record?.category = ", record);
+                    console.log("record?.category = ", record?.category);
+                    if ("content" === record?.contentType || typeDetail.includes(record?.category)) {
                         return <ResourceTypeDetail loading={loading} record={record} />
                     } else {
                         return <RosourceTypeFile record={record} />

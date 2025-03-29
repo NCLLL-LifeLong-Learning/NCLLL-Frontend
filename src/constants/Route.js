@@ -179,7 +179,7 @@ export const resources = {
             label: 'Projects',
             key: "Projects",
             noHeader: true,
-            path: "/resources/projects",
+            path: "/resources/project",
             children: [],
         },
         {

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import PartnerMember from "../../assets/images/partner_members.png";
 import { Button, Form, Input, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import httpClient from "../../api/httpClient";
-import { LIST_RESOURCE, SUBMIT_REQUEST_PARTNER } from "../../api/URLs";
+import { SUBMIT_REQUEST_PARTNER } from "../../api/URLs";
 
 const BecomePartner = () => {
   const { t } = useTranslation();
@@ -34,8 +33,8 @@ const BecomePartner = () => {
   }
 
   return (
-    <div className="max-w-[60vw] w-full">
-      <h1 className="mb-2 text-4xl font-bold text-[#0F69B7]">{t("Become Our Partner")}</h1>
+    <div className="max-w-[80vw] md:max-w-[60vw] w-full">
+      <h1 className="mb-2 text-2xl md:text-4xl font-bold text-[#0F69B7]">{t("Become Our Partner")}</h1>
       <p className="pb-4 text-wrap text-base">{t(becomePartner.paragraph)}</p>
       <Form form={form} className="flex flex-col justify-center items-center" onFinish={handleSubmit}>
         <Form.Item

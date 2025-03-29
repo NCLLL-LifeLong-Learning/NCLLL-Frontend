@@ -34,7 +34,7 @@ export default function MemberMinistries() {
       } else {
         return [
           // imageUrl: "/assets/images/partner/partner-" + title + ".png",
-          // name: listTitle[title - 1]
+          // name: listTitle[title - 1] 
         ];
       }
     }

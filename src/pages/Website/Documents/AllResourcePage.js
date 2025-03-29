@@ -3,59 +3,28 @@ import ResourceList from './components/ResourceList'
 import { Button, DatePicker, Divider, Input, Select } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
-import { BLOGS, CACHE_TIME, MINISTRIES, RESOURCES, STALE_TIME } from '../../../constants/CacheAPI';
-import { fetchBlogs, fetchMinistryPartner, fetchResource } from '../../../api/publicRequest';
+import { CACHE_TIME, MINISTRIES, RESOURCES, STALE_TIME } from '../../../constants/CacheAPI';
+import { fetchAllResource, fetchMinistryPartner, fetchResource } from '../../../api/publicRequest';
 import { LanguageContext } from '../../../i18n/LanguageProvider';
 import { useParams } from 'react-router';
 import dayjs from 'dayjs';
-import { RESOURCE_TYPE_VIEW } from '../../../constants/Bridge';
 
-export default function ResourcePage() {
+export default function AllResourcePage() {
   const { t } = useTranslation();
   const { lang } = useContext(LanguageContext);
   const { type } = useParams();
-  const typeDetail = Object.keys(RESOURCE_TYPE_VIEW)
-  let currentTypes = typeDetail.includes(type) ? { category: [type] } : { type: type };
-
   const [filter, setFilter] = useState({
     limit: 10,
     page: 1,
     lang: lang,
-    ...currentTypes,
+    type: type,
     year: undefined,
     source: undefined,
   });
 
-  const computeQuery = useMemo(() => {
-    if (typeDetail.includes(type)) {
-      return {
-        limit: filter.limit,
-        page: filter.page,
-        lang: lang,
-        category: type === "news" ? [RESOURCE_TYPE_VIEW.event, RESOURCE_TYPE_VIEW.news] : [RESOURCE_TYPE_VIEW.project],
-        year: filter.year,
-        source: filter.source,
-      };
-    }
-    return {
-      limit: filter.limit,
-      page: filter.page,
-      lang: lang,
-      type: type,
-      year: filter.year,
-      source: filter.source,
-    };
-  }, [filter])
-
   const { data: resourceData, isLoading: isResourceLoading } = useQuery({
-    queryKey: [typeDetail.includes(type) ? BLOGS : RESOURCES, computeQuery],
-    queryFn: () => {
-      if (typeDetail.includes(type)) {
-        return fetchBlogs(computeQuery)
-      } else {
-        return fetchResource(computeQuery)
-      }
-    },
+    queryKey: [RESOURCES, filter],
+    queryFn: () => fetchAllResource(filter),
     staleTime: STALE_TIME,
     cacheTime: CACHE_TIME,
   });
@@ -65,7 +34,13 @@ export default function ResourcePage() {
     if (res?.code === 200 && !isResourceLoading) {
       return {
         total: res?.data?.meta?.total_count || 0,
-        dataSource: [...res?.data?.results?.map(data => ({ ...data }) || [])]
+        dataSource: [...res?.data?.results?.map(data => ({
+          ...data,
+          contentType: data?.contentType,
+          originalItem: data?.originalItem,
+          _id: data?._id,
+        }))]
+
       };
     } else {
       return {
@@ -74,7 +49,19 @@ export default function ResourcePage() {
           skeleton: true,
         }))
       }
+      // [
+      //   //       type: typeView[index % typeView.length],
+      //   //       _id: index,
+      //   //       imageUrl: `${BASE_ASSET_URL}/segmented/event-news.png`,
+      //   //       title: `[${typeView[index % typeView.length].toUpperCase()}] - National Policy on Lifelong Learning ${index + 1}`,
+      //   //       publishedTS: "01/01/2024",
+      //   //       lang: "KH",
+      //   //       source: "Ministry " + index,
+      //   //       tags: "Tags " + index,
+      //   //       file: `${BASE_ASSET_URL}/resources/dummy.pdf`,
+      // ];
     }
+
   }, [resourceData, isResourceLoading])
 
   const handleSearch = () => {

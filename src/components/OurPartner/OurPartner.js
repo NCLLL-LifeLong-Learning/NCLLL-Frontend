@@ -1,12 +1,35 @@
-import React from "react";
-import { Button, Carousel } from "antd";
+import React, { useMemo } from "react";
+import { Button, Carousel, Skeleton } from "antd";
 import AutoScroll from "../AutoScroll/AutoScroll";
 import { useTranslation } from "react-i18next";
 import ArrowSvg from "../../assets/svgs/ArrowSvg";
 import { antdResponsive } from "../../utils/Utils";
+import { useQuery } from "@tanstack/react-query";
+import { fetchOurPartner } from "../../api/publicRequest";
+import { CACHE_TIME, PARTNERS, STALE_TIME } from "../../constants/CacheAPI";
 
-const OurPartner = ({ dataSource, description, title, onClick }) => {
+const OurPartner = ({ description, title, onClick }) => {
+  // const OurPartner = ({ dataSource, description, title, onClick }) => {
   const { t } = useTranslation();
+  const { data, isLoading } = useQuery({
+    queryKey: [PARTNERS, 100],
+    queryFn: () => fetchOurPartner({ page: 100 }),
+    staleTime: STALE_TIME,
+    cacheTime: CACHE_TIME,
+  });
+
+  const dataSource = useMemo(() => {
+    let res = data;
+    let results = res?.data?.results || [];
+
+    // Ensure at least 8 items by duplicating existing ones
+    while (results.length < 20) {
+      results = [...results, ...results]; // Duplicate the array
+    }
+
+    return results;
+  }, [data, isLoading]);
+
 
   return (
     <div className="flex flex-col-reverse sm:grid grid-cols-4 gap-[30px] sm:gap-[10%] px-[5%] min-h-[150px] sm:min-h-[400px]">
@@ -33,7 +56,7 @@ const OurPartner = ({ dataSource, description, title, onClick }) => {
               rows: 1
             }
           })}
-          rootClassName='root-feature-carousel cursor-grab hide-arrow center-arrow'
+          rootClassName='root-partner-dynamic-carousel root-feature-carousel cursor-grab hide-arrow center-arrow'
           autoplay
           swipeToSlide
           draggable
@@ -49,14 +72,21 @@ const OurPartner = ({ dataSource, description, title, onClick }) => {
           nextArrow={<div><ArrowSvg className="std-feature-arrow-next" transform="scale(-1)" /></div>}
         >
           {
-            dataSource.map((data, index) => (
-              <img
-                key={`clone-${index}`}
-                className="std-our-partner-logo"
-                src={data.imageUrl}
-                alt={`Partner logo duplicate ${index}`}
-              />
-            ))
+            isLoading ?
+              Array.from({ length: 20 }, (_, index) => (
+                <Skeleton.Image active
+                  className="std-our-partner-logo w-auto !my-3 !h-[120px] !aspect-square !flex"
+                />
+              ))
+              :
+              dataSource.map((data, index) => (
+                <img
+                  key={`clone-${index}`}
+                  className="std-our-partner-logo my-3 w-auto !h-[120px] !aspect-square object-contain"
+                  src={data?.logo}
+                  alt={`Partner logo duplicate ${index}`}
+                />
+              ))
           }
         </Carousel>
 

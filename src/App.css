@@ -3,6 +3,18 @@
   height: 64px;
 }
 
+:where(.dynamic-detail-page) img {
+  margin: 0 auto;
+}
+
+:where(.dynamic-detail-page) pre {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #000;
+  color: white;
+}
+
 .std-container {
   max-width: 85vw;
   margin: 0px auto;

@@ -9,7 +9,7 @@ export default function AutoScroll(props) {
                     <img
                         key={index}
                         className="std-our-partner-logo"
-                        src={data.imageUrl}
+                        src={data?.logo}
                         alt={`Partner logo ${index}`}
                     />
                 ))}
@@ -19,30 +19,11 @@ export default function AutoScroll(props) {
                     <img
                         key={`clone-${index}`}
                         className="std-our-partner-logo"
-                        src={data.imageUrl}
+                        src={data.logo}
                         alt={`Partner logo duplicate ${index}`}
                     />
                 ))}
             </div>
-
-            {/* <div>
-                <div className={`w-full h-full flex ${className}`}>
-                    {
-                        dataSource.map(data => (
-                            <img className="std-our-partner-logo mx-4 w-full h-full" src={data.imageUrl} alt={data.imageUrl} />
-                        ))
-                    }
-                </div>
-            </div>
-            <div>
-                <div className={`w-full h-full flex ${className}`}>
-                    {
-                        dataSource.map(data => (
-                            <img className="std-our=partner-logo mx-4 w-full h-full" src={data.imageUrl} alt={data.imageUrl} />
-                        ))
-                    }
-                </div>
-            </div> */}
         </div>
     )
 }
