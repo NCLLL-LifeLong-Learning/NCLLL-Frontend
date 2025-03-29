@@ -1,8 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import ArrowSvg from "../../../assets/svgs/ArrowSvg";
 import Partners from "./Engagement/Partners";
 import { useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
+import { CACHE_TIME, PARTNERS, STALE_TIME } from "../../../constants/CacheAPI";
+import { useQuery } from "@tanstack/react-query";
+import { fetchOurPartner } from "../../../api/publicRequest";
 
 const tabs = ["Voluntary", "Fellowship", "Consultant", "Exchange Program", "Partners", "Advisor"];
 
@@ -21,6 +24,24 @@ export default function Engagement() {
       setVisibleStart((prev) => (prev < tabs.length - visibleTabs ? prev + 1 : prev));
    };
 
+   const { data, isLoading } = useQuery({
+      queryKey: [PARTNERS],
+      queryFn: () => fetchOurPartner(),
+      staleTime: STALE_TIME,
+      cacheTime: CACHE_TIME,
+   });
+
+   const { dataSource, total } = useMemo(() => {
+      let res = data;
+      let results = res?.data?.results || [];
+      if (results.length === 0) {
+         return { dataSource: [], total: 0 };
+      }
+
+      return { dataSource: results, total: res?.data?.meta?.total_count };
+   }, [data, isLoading]);
+
+
    const partners = [
       { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
       { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
@@ -28,7 +49,6 @@ export default function Engagement() {
    ]
 
    const callBackWidthChange = useCallback(() => {
-      console.log("window.width = ", window.innerWidth);
       if (window.innerWidth < 767) {
          setVisibleTabs(2);
       } else if (window.innerWidth < 1024) {
@@ -73,8 +93,8 @@ export default function Engagement() {
                </div>
             </div>
             <div className="w-full pt-[2rem]">
-               { tabs[activeTab] === "Partners" && <Partners /> }
-               { tabs[activeTab] !== "Partners" && <Partners /> }
+               {tabs[activeTab] === "Partners" && <Partners total={total} dataSource={dataSource} />}
+               {tabs[activeTab] !== "Partners" && <Partners total={total} dataSource={dataSource} />}
             </div>
          </div>
       </div>

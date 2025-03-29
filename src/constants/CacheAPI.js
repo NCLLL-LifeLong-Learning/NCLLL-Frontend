@@ -7,4 +7,5 @@ export const BLOGS = "blogs";
 export const RESOURCES = "resources";
 export const GOVERMENT = "goverment";
 
-export const PARTNERS = "blogs";
+export const PARTNERS = "partners";
+export const FOCUS_AREA = "focus_area";

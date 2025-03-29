@@ -9,11 +9,10 @@ import { fetchOurPartner } from "../../api/publicRequest";
 import { CACHE_TIME, PARTNERS, STALE_TIME } from "../../constants/CacheAPI";
 
 const OurPartner = ({ description, title, onClick }) => {
-  // const OurPartner = ({ dataSource, description, title, onClick }) => {
   const { t } = useTranslation();
   const { data, isLoading } = useQuery({
     queryKey: [PARTNERS, 100],
-    queryFn: () => fetchOurPartner({ page: 100 }),
+    queryFn: () => fetchOurPartner({ limit: 100 }),
     staleTime: STALE_TIME,
     cacheTime: CACHE_TIME,
   });
@@ -21,6 +20,10 @@ const OurPartner = ({ description, title, onClick }) => {
   const dataSource = useMemo(() => {
     let res = data;
     let results = res?.data?.results || [];
+
+    if (results.length === 0) {
+      return [];
+    }
 
     // Ensure at least 8 items by duplicating existing ones
     while (results.length < 20) {

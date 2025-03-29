@@ -15,6 +15,7 @@ export default function ResourcePage() {
   const { lang } = useContext(LanguageContext);
   const { type } = useParams();
   const typeDetail = Object.keys(RESOURCE_TYPE_VIEW)
+  const [searchValue, setSearchValue] = useState("");
   let currentTypes = typeDetail.includes(type) ? { category: [type] } : { type: type };
 
   const [filter, setFilter] = useState({
@@ -35,6 +36,7 @@ export default function ResourcePage() {
         category: type === "news" ? [RESOURCE_TYPE_VIEW.event, RESOURCE_TYPE_VIEW.news] : [RESOURCE_TYPE_VIEW.project],
         year: filter.year,
         source: filter.source,
+        keyword: filter.keyword
       };
     }
     return {
@@ -44,6 +46,7 @@ export default function ResourcePage() {
       type: type,
       year: filter.year,
       source: filter.source,
+      keyword: filter.keyword
     };
   }, [filter])
 
@@ -78,7 +81,7 @@ export default function ResourcePage() {
   }, [resourceData, isResourceLoading])
 
   const handleSearch = () => {
-    //   callBackFetchData();
+    setFilter({ ...filter, keyword: searchValue })
   }
 
   const { data: ministryData, isLoading: isMinistryLoading } = useQuery({
@@ -145,7 +148,7 @@ export default function ResourcePage() {
           </div>
         </div>
         <div className='flex gap-3 w-full lg:w-[50%]'>
-          <Input placeholder={t('Search')} />
+          <Input placeholder={t('Search')} onChange={(value) => setSearchValue(value)} value={searchValue} />
           <Button className="std-btn !px-[40px]" onClick={handleSearch}>{t("Search")}</Button>
         </div>
       </div>

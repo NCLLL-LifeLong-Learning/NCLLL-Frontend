@@ -13,6 +13,7 @@ export default function AllResourcePage() {
   const { t } = useTranslation();
   const { lang } = useContext(LanguageContext);
   const { type } = useParams();
+  const [searchValue, setSearchValue] = useState("");
   const [filter, setFilter] = useState({
     limit: 10,
     page: 1,
@@ -20,6 +21,7 @@ export default function AllResourcePage() {
     type: type,
     year: undefined,
     source: undefined,
+    keyword: ""
   });
 
   const { data: resourceData, isLoading: isResourceLoading } = useQuery({
@@ -49,23 +51,12 @@ export default function AllResourcePage() {
           skeleton: true,
         }))
       }
-      // [
-      //   //       type: typeView[index % typeView.length],
-      //   //       _id: index,
-      //   //       imageUrl: `${BASE_ASSET_URL}/segmented/event-news.png`,
-      //   //       title: `[${typeView[index % typeView.length].toUpperCase()}] - National Policy on Lifelong Learning ${index + 1}`,
-      //   //       publishedTS: "01/01/2024",
-      //   //       lang: "KH",
-      //   //       source: "Ministry " + index,
-      //   //       tags: "Tags " + index,
-      //   //       file: `${BASE_ASSET_URL}/resources/dummy.pdf`,
-      // ];
     }
 
   }, [resourceData, isResourceLoading])
 
   const handleSearch = () => {
-    //   callBackFetchData();
+    setFilter({ ...filter, keyword: searchValue })
   }
 
   const { data: ministryData, isLoading: isMinistryLoading } = useQuery({
@@ -132,7 +123,7 @@ export default function AllResourcePage() {
           </div>
         </div>
         <div className='flex gap-3 w-full lg:w-[50%]'>
-          <Input placeholder={t('Search')} />
+          <Input placeholder={t('Search')} onChange={(event) => setSearchValue(event.target.value)} value={searchValue} />
           <Button className="std-btn !px-[40px]" onClick={handleSearch}>{t("Search")}</Button>
         </div>
       </div>

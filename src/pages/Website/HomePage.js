@@ -7,6 +7,7 @@ import MinistriesPartner from '../../components/Swiper/MinistriesPartner';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
+import SwiperBackgroundImageFocusArea from '../../components/Swiper/SwiperBackgroundImageFocusArea';
 
 const initSwiperImageBackground = (res) => {
   const tempTitle = [
@@ -172,9 +173,8 @@ export default function HomePage() {
         <BannerCarousel />
       </div>
       <div className='py-[40px]'>
-        <SwiperBackgroundImage
+        <SwiperBackgroundImageFocusArea
           onClick={handleFocusAreaClick}
-          dataSource={focusArea}
           title={"Focus Areas"}
           description={"Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities"}
         />
@@ -208,7 +208,6 @@ export default function HomePage() {
       </div>
       <div className='py-[20px] md:py-[60px] container mx-auto'>
         <OurPartner
-          dataSource={ourPartner}
           onClick={handleOurPartnerClick}
           title={"Our Partner"}
           description={"Our focus areas encourage lifelong learning through flexible, inclusive and comprehensive initiatives that meet the changing need."}
