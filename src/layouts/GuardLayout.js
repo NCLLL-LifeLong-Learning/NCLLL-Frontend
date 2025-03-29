@@ -16,14 +16,10 @@ export default function GuardLayout(props) {
 
     const { data, isLoading } = useQuery({
         queryKey: [FOCUS_AREA, { limit: 100 }],
-        queryFn: () => {
-            if (title === "Focus Areas") {
-                return fetchFocusArea({ limit: 100 })
-            }
-            return;
-        },
+        queryFn: () => fetchFocusArea({ limit: 100 }),
         staleTime: STALE_TIME,
         cacheTime: CACHE_TIME,
+        enabled: title === "Focus Areas"
     });
 
     const treeData = useMemo(() => {

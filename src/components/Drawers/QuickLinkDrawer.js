@@ -1,5 +1,5 @@
 import { Button, Drawer, Input, Tabs } from 'antd'
-import React, { forwardRef, useContext, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useContext, useImperativeHandle, useMemo, useState } from 'react'
 import { IoMdClose } from 'react-icons/io';
 import { useNavigate } from 'react-router';
 import { aboutUs, focusArea, program, resources } from '../../constants/Route';
@@ -7,6 +7,9 @@ import CambodiaSvg from '../../assets/svgs/CambodiaSvg';
 import AmericanSvg from '../../assets/svgs/AmericanSvg';
 import { useTranslation } from 'react-i18next';
 import { LanguageContext } from '../../i18n/LanguageProvider';
+import { useQuery } from '@tanstack/react-query';
+import { CACHE_TIME, FOCUS_AREA, STALE_TIME } from '../../constants/CacheAPI';
+import { fetchFocusArea } from '../../api/publicRequest';
 
 function QuickLinkDrawer(props, ref) {
     const { t } = useTranslation();
@@ -15,12 +18,36 @@ function QuickLinkDrawer(props, ref) {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
 
-    const menu = [
-        aboutUs,
-        program,
-        focusArea,
-        resources,
-    ];
+    const { data: focusAreaMenu, isLoading: isLoadingFocusArea } = useQuery({
+        queryKey: [FOCUS_AREA, { limit: 100 }],
+        queryFn: () => fetchFocusArea({ limit: 100 }),
+        staleTime: STALE_TIME,
+        cacheTime: CACHE_TIME,
+    });
+
+    const menu = useMemo(() => {
+        const FocusArea = JSON.parse(JSON.stringify(focusArea))
+
+        if (!isLoadingFocusArea) {
+            if (focusAreaMenu?.code === 200) {
+                FocusArea.route?.push(...[
+                ...focusAreaMenu?.data?.results?.map(item => ({
+                    title: item && item[lang]?.title,
+                    label: item && item[lang]?.title,
+                    key: item && item?._id,
+                    path: "/focus-area/" + (item && item?._id),
+                    children: []
+                }))]);
+            }
+        }
+
+        return [
+            aboutUs,
+            program,
+            FocusArea,
+            resources,
+        ];
+    }, [isLoadingFocusArea, focusAreaMenu, lang]);
 
     const onShow = () => {
         setOpen(true);

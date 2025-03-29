@@ -206,14 +206,13 @@ export default function DefaultLayout() {
     };
 
     if (!isLoadingFocusArea) {
-      if (focusAreaMenu.code === 200) {
+      if (focusAreaMenu?.code === 200) {
         FocusArea.children.push(...focusAreaMenu?.data?.results.map(item => ({
           title: item[lang] && item[lang]?.title,
           link: "/focus-area/" + item?._id,
           disabled: false,
         })));
       }
-      console.log("FocusArea = ", FocusArea);
     }
 
     return [
@@ -226,7 +225,7 @@ export default function DefaultLayout() {
         children: [],
       },
     ];
-  }, [isLoadingFocusArea, focusAreaMenu]);
+  }, [isLoadingFocusArea, focusAreaMenu, lang]);
 
   const lanuageMenu = [
     {

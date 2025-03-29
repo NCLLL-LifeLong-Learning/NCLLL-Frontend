@@ -183,6 +183,9 @@ export default function HomePage() {
           defaultOpitons={selectedTabs}
           onChange={handleSelectedChange}
           dataSource={dataSource}
+          hideLoadMore={() => {
+            
+          }}
         />
       </div>
       <div className='p-[30px]' style={{ backgroundColor: 'var(--light-blue-color)' }}>

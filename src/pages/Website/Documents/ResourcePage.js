@@ -55,9 +55,8 @@ export default function ResourcePage() {
     queryFn: () => {
       if (typeDetail.includes(type)) {
         return fetchBlogs(computeQuery)
-      } else {
-        return fetchResource(computeQuery)
       }
+      return fetchResource(computeQuery)
     },
     staleTime: STALE_TIME,
     cacheTime: CACHE_TIME,
@@ -148,7 +147,7 @@ export default function ResourcePage() {
           </div>
         </div>
         <div className='flex gap-3 w-full lg:w-[50%]'>
-          <Input placeholder={t('Search')} onChange={(value) => setSearchValue(value)} value={searchValue} />
+          <Input placeholder={t('Search')} onChange={(event) => setSearchValue(event.target.value)} value={searchValue} />
           <Button className="std-btn !px-[40px]" onClick={handleSearch}>{t("Search")}</Button>
         </div>
       </div>
