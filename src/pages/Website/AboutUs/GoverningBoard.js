@@ -1,149 +1,121 @@
-import React from 'react'
-import { BASE_ASSET_URL } from '../../../constants/Url'
-import { List } from 'antd'
+import React, { useContext, useMemo } from 'react'
+import { List, Skeleton } from 'antd'
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
+import { CACHE_TIME, GOVERMENT, STALE_TIME } from '../../../constants/CacheAPI';
+import { fetchGoverments } from '../../../api/publicRequest';
+import { LanguageContext } from '../../../i18n/LanguageProvider';
 
 export default function GoverningBoard() {
   const { t } = useTranslation();
+  const { lang } = useContext(LanguageContext);
   const navigate = useNavigate();
+  const { data, isLoading } = useQuery({
+    queryKey: [GOVERMENT],
+    queryFn: fetchGoverments,
+    staleTime: STALE_TIME,
+    cacheTime: CACHE_TIME,
+  });
 
-  const dataSource = [
-    {
-      title: "Minister",
-      member: [
-        {
-          memberId: 1,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        }
-      ],
-    },
-    {
-      title: "Secretary of State",
-      member: [
-        {
-          memberId: 1,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-        {
-          memberId: 2,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-        {
-          memberId: 3,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-        {
-          memberId: 4,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-        {
-          memberId: 5,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-        {
-          memberId: 6,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-      ]
-    },
-    {
-      title: "CEO",
-      member: [
-        {
-          memberId: 7,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-        {
-          memberId: 8,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-        {
-          memberId: 9,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-        {
-          memberId: 10,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-        {
-          memberId: 11,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-        {
-          memberId: 12,
-          name: "H. E. Dr . AUN PORNMONIROTH Deputy Prime Minister",
-          name_kh: "ឯកឧត្តមអគ្គបណ្ឌិត​សភា​ចារ្យ អូន ព័ន្ធមុនីរ័ត្ន ឧបនាយករដ្ឋមន្ត្រី",
-          imageUrl: BASE_ASSET_URL + "/NCLLL-ChairMan.png",
-        },
-      ]
+  const dataSource = useMemo(() => {
+    const res = data;
+    if (res?.code === 200 && !isLoading) {
+      return [...res?.data];
+    } else {
+      return Array.from({ length: 3 }, (_, index) => ({
+        skeleton: true,
+        members: Array.from({ length: 6 }, (_, index) => ({
+          skeleton: true
+        }))
+      }));
     }
-  ]
+  }, [data, isLoading])
 
   const goToDetail = (record) => {
-    navigate("/about-us/board/" + record.memberId);
+    navigate("/about-us/board/" + record._id);
   }
 
   return (
     <div className='flex flex-col gap-[30px] w-[90vw] md:max-w-[70vw]'>
       {
         dataSource.map(data => <div>
-          <h1 className='goverment-title font-khmer'>{t(data.title)}</h1>
+          {
+            isLoading
+              ?
+              <Skeleton.Input active className='goverment-title !w-full' />
+              :
+              <h1 className='goverment-title font-khmer'>{t(data?.position[lang]?.title)}</h1>
+          }
 
           {
-            data.member.length === 1 ? <div className='flex-col md:flex-row flex gap-[20px] p-[20px]' onClick={() => goToDetail(data.member[0])}>
-              <img className="max-w-[400px]" src={data.member[0].imageUrl} alt={data.member[0].imageUrl} />
-              <div className='text-center md:text-start goverment-item-name flex gap-3 flex-col justify-center'>
-                <div>{data.member[0].name_kh}</div>
-                <div>{data.member[0].name}</div>
+            isLoading
+              ?
+              data.members?.length === 1 ? <div className='flex-col md:flex-row flex gap-[20px] p-[20px]' onClick={() => goToDetail(data.members[0])}>
+                <div className='!w-full md:!w-[25%] max-w-[400px]'>
+                  <Skeleton.Image active className="!w-full !h-full !aspect-square " />
+                </div>
+                <div className='text-center md:text-start goverment-item-name flex gap-3 flex-col justify-center'>
+                  <Skeleton.Input active className='!w-full' />
+                  <Skeleton.Input active className='!w-full' />
+                </div>
               </div>
-            </div> :
-              <List
-                grid={{
-                  xs: 1,
-                  sm: 1,
-                  md: 1,
-                  lg: 1,
-                  xl: 2,
-                  xxl: 2,
-                }}
-                renderItem={(item) => {
-                  return <List.Item>
-                    <div className='flex-col md:flex-row flex gap-[20px] px-[20px] py-[10px]' onClick={() => goToDetail(item)}>
-                      <img className="w-full md:w-[25%] max-w-[400px]" src={item.imageUrl} alt={item.imageUrl} />
-                      <div className='text-center md:text-start goverment-item-name flex gap-1 flex-col justify-center'>
-                        <a>{item.name_kh}</a>
-                        <p>{item.name}</p>
+                :
+                <List
+                  grid={{
+                    xs: 1,
+                    sm: 1,
+                    md: 1,
+                    lg: 1,
+                    xl: 2,
+                    xxl: 2,
+                  }}
+                  renderItem={(item) => {
+                    return <List.Item>
+                      <div className='flex-col md:flex-row flex gap-[20px] px-[20px] py-[10px]' onClick={() => goToDetail(item)}>
+                        <div className='!w-full md:!w-[25%] max-w-[400px]'>
+                          <Skeleton.Image active className="!w-full !h-full !aspect-square" />
+                        </div>
+                        <div className='text-center md:text-start goverment-item-name flex gap-1 flex-col justify-center'>
+                          <Skeleton.Input active className='!w-full' />
+                          <Skeleton.Input active className='!w-full' />
+                        </div>
                       </div>
-                    </div>
-                  </List.Item>
-                }}
-                dataSource={data.member}
-              />
+                    </List.Item>
+                  }}
+                  dataSource={data.members}
+                />
+              :
+              data.members?.length === 1 ? <div className='flex-col md:flex-row flex gap-[20px] p-[20px]' onClick={() => goToDetail(data.members[0])}>
+                <img className="!w-full !h-full !aspect-square md:!w-[25%] max-w-[400px]" src={data.members[0]["imageUrl_" + lang]} alt={data.members[0]["imageUrl_" + lang]} />
+                <div className='text-center md:text-start goverment-item-name flex gap-3 flex-col justify-center'>
+                  <div>{data.members[0].name_kh}</div>
+                  <div>{data.members[0].name_en}</div>
+                </div>
+              </div>
+                :
+                <List
+                  grid={{
+                    xs: 1,
+                    sm: 1,
+                    md: 1,
+                    lg: 1,
+                    xl: 2,
+                    xxl: 2,
+                  }}
+                  renderItem={(item) => {
+                    return <List.Item>
+                      <div className='flex-col md:flex-row flex gap-[20px] px-[20px] py-[10px]' onClick={() => goToDetail(item)}>
+                        <img className="!w-full !h-full !aspect-square md:!w-[25%] max-w-[400px]" src={item["imageUrl_" + lang]} alt={item["imageUrl_" + lang]} />
+                        <div className='text-center md:text-start goverment-item-name flex gap-1 flex-col justify-center'>
+                          <a>{item.name_kh}</a>
+                          <p>{item.name_en}</p>
+                        </div>
+                      </div>
+                    </List.Item>
+                  }}
+                  dataSource={data.members}
+                />
           }
         </div>)
       }

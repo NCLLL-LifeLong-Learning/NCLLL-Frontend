@@ -32,8 +32,16 @@
   font-family: "Moul" !important;
 }
 
+.font-Montserrat {
+  font-family: Montserrat !important;
+}
+
+.font-Montserrat-bold {
+  font-family: Montserrat-800 !important;
+}
+
 * {
-  font-family: "Noto Sans Khmer", sans-serif !important;
+  font-family: "Noto Sans Khmer", sans-serif, Montserrat !important;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;

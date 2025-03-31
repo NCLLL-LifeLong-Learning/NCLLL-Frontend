@@ -1,7 +1,7 @@
 {
   "Hello World": "Hello World",
   "quick_link": "Quick Link",
-  "khmer": "Khmer",
+  "ខ្មែរ": "ខ្មែរ",
   "english": "English",
   "home": "Home",
   "Governing Detail": "Governing Detail",
@@ -14,10 +14,10 @@
   "E-mail": "E-mail",
 
   "Profile": "Profile",
-  "Copyright 2024 © National Committee For Lifelong Education | ALL RIGHTS RESERVED": "Copyright 2024 © National Committee For Lifelong Education | ALL RIGHTS RESERVED",
+  "Copyright 2024 © National Committee For Lifelong Education": "Copyright 2024 © National Committee For Lifelong Education",
   "Mission and Vision": "Mission and Vision",
   "Follow us": "Follow us",
-  "About NCLLL": "About NCLLL",
+  "About": "About",
   "Programs": "Programs",
   "Contact Us": "Contact Us",
   "Quick Links": "Quick Links",
@@ -36,7 +36,6 @@
   "describ_scope_of_work": "Describe scope of work",
   "submit": "Submit",
   "English": "English",
-  "Khmer": "Khmer",
   "Program": "Program",
   "National Lifelong Learning Forum": "National Lifelong Learning Forum",
   "Cambodia's Skill Gap: Challenges and Opportunities in Lifelong Learning": "Cambodia's Skill Gap: Challenges and Opportunities in Lifelong Learning",
@@ -130,7 +129,6 @@
   "The Secretariat of the NEC has the following functions and responsibilities:": "The Secretariat of the NEC has the following functions and responsibilities:",
   "The policy section has the following responsibilities:": "The policy section has the following responsibilities:",
   "Text Name": "Text Name",
-  "Contact us": "Contact us",
   "If you would like to get in touch with NLLL, please complete the form, or contact us directly to the following emails.": "If you would like to get in touch with NLLL, please complete the form, or contact us directly to the following emails.",
   "Information": "Information",
   "Partners and Sponsors": "Partners and Sponsors",
@@ -147,5 +145,7 @@
   "Comprehensive and Flexible learning Program": "Comprehensive and Flexible learning Program",
   "Accreditation and Recognition": "Accreditation and Recognition",
   "The NEC has an important role to play in encouraging ministries and relevant institutions to provide support and lifelong learning, for which member ministries include:": "The NEC has an important role to play in encouraging ministries and relevant institutions to provide support and lifelong learning, for which member ministries include:",
-  "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities": "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities"
+  "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities": "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
+
+  "Select year": "Select year"
 }

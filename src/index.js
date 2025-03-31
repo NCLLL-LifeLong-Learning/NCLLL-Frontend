@@ -8,9 +8,14 @@ import { Provider } from 'react-redux';
 import store from './global/Store';
 import './i18n/config'
 import { ConfigProvider } from 'antd';
-import 'antd/dist/reset.css'; 
+import 'antd/dist/reset.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { LanguageProvider } from './i18n/LanguageProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const queryClient = new QueryClient(); // Create QueryClient instance
+
 root.render(
   <React.StrictMode>
     <ConfigProvider
@@ -19,9 +24,11 @@ root.render(
         components: {},
       }}
     >
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <LanguageProvider>
+          <App />
+        </LanguageProvider>
+      </QueryClientProvider>
     </ConfigProvider>
   </React.StrictMode>
 );

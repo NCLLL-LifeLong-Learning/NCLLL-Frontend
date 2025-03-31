@@ -1,11 +1,13 @@
 import { Button, List, Segmented } from 'antd'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import TagsSvg from '../../assets/svgs/TagsSvg';
 import ArrowSvg from '../../assets/svgs/ArrowSvg';
 import { useTranslation } from 'react-i18next';
+import { LanguageContext } from '../../i18n/LanguageProvider';
 
 export default function SegmentedTabs({ handleEventClick, total, onLoadMore, dataSource, options, defaultOpitons, onChange }) {
     const { t } = useTranslation();
+    const { lang } = useContext(LanguageContext);
     const [currentOption, setCurrentOption] = useState(defaultOpitons);
 
     const handleChangeDefault = (value) => {
@@ -39,6 +41,13 @@ export default function SegmentedTabs({ handleEventClick, total, onLoadMore, dat
             </Button>
         </div> : null;
 
+    const getTags = (tags) => {
+        if (tags?.length > 0) {
+            return (tags[0] && tags[0][lang]?.name) || "N/A"
+        }
+
+        return "N/A";
+    }
     return (
         <div className='flex flex-col justify-center items-center gap-[30px] pb-[40px]'>
             <Segmented
@@ -65,14 +74,14 @@ export default function SegmentedTabs({ handleEventClick, total, onLoadMore, dat
                         return <div className='px-[20px] py-[15px]' onClick={handleEventClick}>
                             <div className='std-card-wrapper'>
                                 <div>
-                                    <img className="std-card-image" src={data.imageUrl} alt={data.imageUrl} />
+                                    <img className="std-card-image" src={data?.cover} alt={data?.cover} />
                                 </div>
                                 <div className='p-[20px] flex flex-col gap-2'>
                                     <div className='flex items-center justify-start gap-1' style={{ color: "#00000080" }}>
                                         <TagsSvg width='20px' height='20px' />
-                                        <div>{data.tags}</div>
+                                        <div>{getTags(data.tags)}</div>
                                     </div>
-                                    <h1 className='text-lg !text-black std-card-title'>{data.title}</h1>
+                                    <h1 className='text-lg !text-black std-card-title'>{data[lang]?.title}</h1>
                                 </div>
                             </div>
                         </div>

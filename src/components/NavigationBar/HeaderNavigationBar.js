@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import ArrowSvg from "../../assets/svgs/ArrowSvg";
 import { useTranslation } from 'react-i18next';
+import { LanguageContext } from '../../i18n/LanguageProvider';
 export default function HeaderNavigationBar(props) {
     const { t } = useTranslation();
+    const { lang } = useContext(LanguageContext);
     const { menu, setMenuHover } = props;
 
     return (
@@ -19,7 +21,8 @@ export default function HeaderNavigationBar(props) {
                                 setMenuHover(index)
                             }
                         }}
-                        className='flex items-center gap-2 std-menu-link'
+                        className={'flex items-center gap-2 std-menu-link'}
+                        style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
                         to={item?.link}
                     >
                         {t(item?.title)}
