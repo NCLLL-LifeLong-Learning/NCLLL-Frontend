@@ -1,43 +1,54 @@
-import React from 'react'
+import React, { useContext, useMemo } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
-import { BASE_ASSET_URL } from '../../../constants/Url';
+import TextEditor from '../../../components/TextEditor/TextEditor';
+import { useQuery } from '@tanstack/react-query';
+import { BLOGS, CACHE_TIME, STALE_TIME } from '../../../constants/CacheAPI';
+import { fetchBlogsDetail } from '../../../api/publicRequest';
+import { LanguageContext } from '../../../i18n/LanguageProvider';
+import { Divider, Skeleton } from 'antd';
 
 export default function DynamicDetailPage(props) {
     const { t } = useTranslation();
-    const { type } = props;
     const { id } = useParams();
+    const { lang } = useContext(LanguageContext);
 
-    console.log("id = ", id);
+    const { data, isLoading } = useQuery({
+        queryKey: [BLOGS, id],
+        queryFn: () => fetchBlogsDetail(id),
+        staleTime: STALE_TIME,
+        cacheTime: CACHE_TIME,
+    });
+
+    const dataSource = useMemo(() => {
+        let res = data;
+        if (res?.code === 200 && !isLoading) {
+            return { ...res?.data };
+        } else {
+            return {
+                total: res?.total || 10,
+                dataSource: Array.from({ length: 10 }, (_, index) => ({
+                    skeleton: true,
+                }))
+            }
+        }
+    }, [data, isLoading])
 
     return (
-        <div>
-            <div>
-                <p className='font-normal text-wrap text-xl leading-snug'>
-                    {t("The 1st National Forum on Lifelong Learning Cambodia, held on March 28, 2024, at the Sun & Moon Riverside Hotel in Phnom Penh, was a significant event aimed at establishing a shared vision for developing the country's lifelong learning ecosystem. The forum was conducted in a hybrid model, allowing participants to join both online and onsite. This inclusive approach ensured that a wide range of stakeholders could participate and contribute to the discussions.")}
-                </p>
-                <div className='w-full my-[1rem]'>
-                    <img src={BASE_ASSET_URL + '/program/forum_group.png'} className='w-full bg-cover bg-center object-cover' alt='First National Forum on Lifelong Learning Cambodia' />
-                </div>
-                <p className='font-normal text-wrap text-xl leading-snug'>
-                    {t("The forum brought together key figures from various sectors, including H.E. Dr. Hang Chuon Naron, Minister of Education, Youth and Sport of Cambodia, who was a key speaker. The event emphasized the importance of multi-stakeholder dialogue and cooperation to ensure that digital-enabled lifelong learning reaches all Cambodians. This approach is crucial for supporting sustainable economic growth and preparing Cambodians with the necessary technical, digital, and human skills for success.")}
-                </p>
-                <p className='font-normal text-wrap text-xl leading-snug'>
-                    {t("The forum brought together key figures from various sectors, including H.E. Dr. Hang Chuon Naron, Minister of Education, Youth and Sport of Cambodia, who was a key speaker. The event emphasized the importance of multi-stakeholder dialogue and cooperation to ensure that digital-enabled lifelong learning reaches all Cambodians. This approach is crucial for supporting sustainable economic growth and preparing Cambodians with the necessary technical, digital, and human skills for success.")}
-                </p>
-                <p className='font-normal text-wrap text-xl leading-snug'>
-                    {t("The forum brought together key figures from various sectors, including H.E. Dr. Hang Chuon Naron, Minister of Education, Youth and Sport of Cambodia, who was a key speaker. The event emphasized the importance of multi-stakeholder dialogue and cooperation to ensure that digital-enabled lifelong learning reaches all Cambodians. This approach is crucial for supporting sustainable economic growth and preparing Cambodians with the necessary technical, digital, and human skills for success.")}
-                </p>
-                <p className='font-normal text-wrap text-xl leading-snug'>
-                    {t("The forum brought together key figures from various sectors, including H.E. Dr. Hang Chuon Naron, Minister of Education, Youth and Sport of Cambodia, who was a key speaker. The event emphasized the importance of multi-stakeholder dialogue and cooperation to ensure that digital-enabled lifelong learning reaches all Cambodians. This approach is crucial for supporting sustainable economic growth and preparing Cambodians with the necessary technical, digital, and human skills for success.")}
-                </p>
-                <p className='font-normal text-wrap text-xl leading-snug'>
-                    {t("The forum brought together key figures from various sectors, including H.E. Dr. Hang Chuon Naron, Minister of Education, Youth and Sport of Cambodia, who was a key speaker. The event emphasized the importance of multi-stakeholder dialogue and cooperation to ensure that digital-enabled lifelong learning reaches all Cambodians. This approach is crucial for supporting sustainable economic growth and preparing Cambodians with the necessary technical, digital, and human skills for success.")}
-                </p>
-                <p className='font-normal text-wrap text-xl leading-snug'>
-                    {t("The forum brought together key figures from various sectors, including H.E. Dr. Hang Chuon Naron, Minister of Education, Youth and Sport of Cambodia, who was a key speaker. The event emphasized the importance of multi-stakeholder dialogue and cooperation to ensure that digital-enabled lifelong learning reaches all Cambodians. This approach is crucial for supporting sustainable economic growth and preparing Cambodians with the necessary technical, digital, and human skills for success.")}
-                </p>
-            </div>
+        <div className='dynamic-detail-page'>
+            {isLoading ?
+                <Skeleton.Input active className='!h-[40px] !w-full' />
+                :
+                <div className='detail-page-title'>{t(dataSource && dataSource[lang]?.title)}</div>
+            }
+
+            <Divider />
+
+            {isLoading ?
+                <Skeleton.Input active className='!h-[80vh] !w-full' />
+                :
+                <TextEditor jsonData={(dataSource && dataSource[lang]?.document?.content) || {}} />
+            }
         </div>
     )
 }

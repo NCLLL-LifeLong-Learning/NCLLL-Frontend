@@ -3,6 +3,18 @@
   height: 64px;
 }
 
+:where(.dynamic-detail-page) img {
+  margin: 0 auto;
+}
+
+:where(.dynamic-detail-page) pre {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #000;
+  color: white;
+}
+
 .std-container {
   max-width: 85vw;
   margin: 0px auto;
@@ -74,8 +86,9 @@
 }
 
 .std-banner-image {
-  width: 100%;
-  aspect-ratio: 2.3/1;
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: 2.3/1 !important;
 }
 
 .custom-blur {
@@ -314,8 +327,8 @@
 
 .std-partner-logo {
   max-width: none !important;
-  width: 130px;
-  height: 140px;
+  width: 130px !important;
+  height: 140px !important;
   object-fit: cover;
 }
 
@@ -682,7 +695,7 @@
   }
 
   .std-banner-image {
-    aspect-ratio: 3/2;
+    aspect-ratio: 3/2 !important;
   }
 
   .std-feature-image {

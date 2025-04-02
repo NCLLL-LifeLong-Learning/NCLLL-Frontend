@@ -1,42 +1,34 @@
+import { useQuery } from '@tanstack/react-query';
 import { List } from 'antd';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { useTranslation } from 'react-i18next';
+import { CACHE_TIME, MODULES, STALE_TIME } from '../../../constants/CacheAPI';
+import { fetchModules } from '../../../api/publicRequest';
+import { LanguageContext } from '../../../i18n/LanguageProvider';
+import { NavLink } from 'react-router-dom';
+import { MODULES_TYPE } from '../../../constants/Bridge';
 
 export default function LifelongLearningForAll() {
   const { t } = useTranslation();
-  const [dataSource, setDataSource] = useState([]);
+  const { lang } = useContext(LanguageContext);
 
-  const initSwiperImageBackground = (res) => {
-    const tempTitle = [
-      "",
-      "Lifelong Learning for all",
-      "Comprehensive and Flexible learning Program",
-      "Lifelong Learning Environment",
-      "Professional Development",
-      "Accreditation and Recognition",
-      "Collaboration and Support"
-    ];
+  const { data, isLoading } = useQuery({
+    queryKey: [MODULES, { mainCategory: MODULES_TYPE.FOCUS_AREA, subCategory: "", limit: 100 }],
+    queryFn: () => fetchModules({ mainCategory: MODULES_TYPE.FOCUS_AREA, subCategory: "", limit: 100 }),
+    staleTime: STALE_TIME,
+    cacheTime: CACHE_TIME,
+  });
 
-    let title = 1;
-    for (let i = 1; i < 7; i++) {
-      res.push({
-        imageUrl: "/assets/images/feature/feature-" + title + ".png",
-        title: tempTitle[title]
-      })
-      title++;
-      if (title === 7) {
-        title = 1;
-      }
+  const dataSource = useMemo(() => {
+    let res = data;
+    if (res?.code === 200 && !isLoading) {
+      return [...res?.data?.results];
+    } else {
+      return Array.from({ length: 10 }, (_, index) => ({
+        skeleton: true,
+      }))
     }
-  }
-
-  useEffect(() => {
-    const res = []
-
-    initSwiperImageBackground(res);
-
-    setDataSource([...res]);
-  }, [])
+  }, [data, isLoading])
 
   return (
     <div className='flex flex-col gap-[30px]'>
@@ -48,14 +40,16 @@ export default function LifelongLearningForAll() {
         dataSource={dataSource}
         renderItem={(data) => {
           return <div className='p-[5px] md:p-[15px]'>
-            <div className='std-feature-card-wrapper'>
-              <img className="std-feature-image" src={data.imageUrl} alt={data.imageUrl} />
-              <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[120px] !rounded-none p-4'>
-                <p>
-                  {t(data.title)}
-                </p>
+            <NavLink role='button' to={"/focus-area/" + data?._id}>
+              <div className='std-feature-card-wrapper'>
+                <img className="std-feature-image" src={data?.cover} alt={data?.cover} />
+                <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[120px] !rounded-none p-4'>
+                  <p>
+                    {t(data && data[lang]?.title)}
+                  </p>
+                </div>
               </div>
-            </div>
+            </NavLink>
           </div>;
         }}
       />

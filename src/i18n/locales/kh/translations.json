@@ -1,7 +1,7 @@
 {
   "Hello World": "Hello World",
   "quick_link": "Quick Link",
-  "khmer": "Khmer",
+  "ខ្មែរ": "ខ្មែរ",
   "english": "English",
   "home": "Home",
   "Governing Detail": "ប្រវត្តិរូបលម្អិត",
@@ -14,10 +14,10 @@
   "E-mail": "អ៊ីមែល",
   	
   "Profile": "ប្រវត្តិរូបសង្ខេប",
-  "Copyright 2024 © National Committee For Lifelong Education | ALL RIGHTS RESERVED": "រក្សាសិទ្ធិ 2024 © គណៈកម្មាធិការជាតិសម្រាប់ការអប់រំពេញមួយជីវិត | រក្សាសិទ្ធិគ្រប់យ៉ាង",
+  "Copyright 2024 © National Committee For Lifelong Education": "រក្សាសិទ្ធិ 2024 © គណៈកម្មាធិការជាតិសម្រាប់ការអប់រំពេញមួយជីវិត | រក្សាសិទ្ធិគ្រប់យ៉ាង",
   "Mission and Vision": "បេសកកម្ម និងចក្ខុវិស័យ",
   "Follow us": "តាមយើង",
-  "About NCLLL": "អំពី NCLLL",
+  "About": "អំពី",
   "Contact Us": "ទាក់ទងមកយើងខ្ញុំ",
   "Programs": "កម្មវិធី",
   "Quick Links": "តំណភ្ជាប់រហ័ស",
@@ -36,7 +36,6 @@
   "describ_scope_of_work": "ពិពណ៌នាអំពីវិសាលភាពនៃការងារ",
   "submit": "ដាក់ស្នើ",
   "English": "អង់គ្លេស",
-  "Khmer": "ខ្មែរ",
   "Program": "កម្មវិធី",
   "National Lifelong Learning Forum": "វេទិកាសិក្សាពេញមួយជីវិតជាតិ",
   "Cambodia's Skill Gap: Challenges and Opportunities in Lifelong Learning": "គម្លាតជំនាញរបស់កម្ពុជា៖ បញ្ហាប្រឈម និងឱកាសក្នុងការសិក្សាពេញមួយជីវិត",
@@ -130,7 +129,6 @@
   "The Secretariat of the NEC has the following functions and responsibilities:": "អគ្កលេខាធិការដ្ថានរបស់ គ ជ ស ជ មានតួនាទីសេនាធិការឳ គ ជ ស​ ជ និង មានភារកិច្ចដូចខាងក្រោម៖",
   "The policy section has the following responsibilities:": "ផ្នែកគោលនយោបាយមានទំនួលខុសត្រូវដូចខាងក្រោមៈ",
   "Text Name": "ឈ្មោះអត្ថបទ",
-  "Contact us": "ទាក់ទង​យើង",
   "If you would like to get in touch with NLLL, please complete the form, or contact us directly to the following emails.": "ប្រសិនបើអ្នកចង់ទាក់ទងជាមួយ NLLL សូមបំពេញទម្រង់បែបបទ ឬទាក់ទងមកយើងដោយផ្ទាល់តាមអ៊ីមែលខាងក្រោម។",
   "Information": "ព័ត៌មាន",
   "Partners and Sponsors": "ដៃគូនិងអ្នកឧបត្ថម្ភ",
@@ -146,5 +144,7 @@
   "Collaboration and Support": "កិច្ចសហការ និងការគាំទ្រ",
   "Comprehensive and Flexible learning Program": "កម្មវិធីសិក្សាដ៏ទូលំទូលាយ និងអាចបត់បែនបាន។",
   "The NEC has an important role to play in encouraging ministries and relevant institutions to provide support and lifelong learning, for which member ministries include:": "គ​ ជ ស​​​ ជ មានតូនាទីយ៉ាងសំខាន់ក្នុងការជំុរុញអោយក្រសួងនានា និង ស្ថាប័នពាក់ពន្ធ័នានាផ្តល់ការគាំទ្រ និង អនិវត្តការសិក្សាពេញមួយជីវិត ក្រសួងដែលជាសមាជិកនៃ គ ជ ស ជ ទាំងនោះរួមមានដូចខាងក្រុម៖",
-  "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities": "តំបន់ផ្តោតអារម្មណ៍របស់យើងបង្កើនការរៀនសូត្រពេញមួយជីវិត តាមរយៈគំនិតផ្តួចផ្តើមដែលអាចបត់បែនបាន រួមបញ្ចូល និងទូលំទូលាយ ដែលបំពេញតម្រូវការផ្លាស់ប្តូររបស់បុគ្គល និងសហគមន៍។"
+  "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities": "តំបន់ផ្តោតអារម្មណ៍របស់យើងបង្កើនការរៀនសូត្រពេញមួយជីវិត តាមរយៈគំនិតផ្តួចផ្តើមដែលអាចបត់បែនបាន រួមបញ្ចូល និងទូលំទូលាយ ដែលបំពេញតម្រូវការផ្លាស់ប្តូររបស់បុគ្គល និងសហគមន៍។",
+
+  "Select year": "ជ្រើសរើសឆ្នាំ"
 }

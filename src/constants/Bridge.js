@@ -20,3 +20,12 @@ export const RESOURCE_TYPE_DOWNLOAD = {
     admin: "admin",
     legal: "legal",
 }
+
+export const MODULES_TYPE = {
+    FOCUS_AREA: "Focus Area",
+    PROGRAM: "Program",
+}
+
+export const MODULES_SUB_TYPE = {
+    ENGAGEMENT: "Engagement",
+}

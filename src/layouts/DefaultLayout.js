@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useMemo, useRef, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 import HeaderNavigationBar from '../components/NavigationBar/HeaderNavigationBar'
 import { Button, Dropdown, FloatButton, Input } from 'antd'
@@ -21,13 +21,18 @@ import GridSvg from '../assets/svgs/GridSvg.js'
 import ExpandSvg from '../assets/svgs/ExpandSvg.js'
 import { FaArrowUp } from 'react-icons/fa'
 import QuickLinkDrawer from '../components/Drawers/QuickLinkDrawer.js'
+import { LanguageContext } from '../i18n/LanguageProvider.js'
+import { useQuery } from '@tanstack/react-query'
+import { CACHE_TIME, FOCUS_AREA, MODULES, STALE_TIME } from '../constants/CacheAPI.js'
+import { fetchFocusArea, fetchModules } from '../api/publicRequest.js'
+import _ from 'lodash'
 
 export default function DefaultLayout() {
   const { t, i18n } = useTranslation();
+  const { lang, setLang } = useContext(LanguageContext);
   const navigate = useNavigate();
   const quickLinkModal = useRef();
   const [search, setSearch] = useState("");
-  const [currentLanguage, setCurrentLanguage] = useState("kh");
   const [menuHover, setMenuHover] = useState(-1);
 
   const aboutNCLL = [
@@ -105,9 +110,19 @@ export default function DefaultLayout() {
     }
   ];
 
-  const menu = [
-    {
-      title: "About NCLLL",
+  const { data: listModule, isLoading: isLoadingModule } = useQuery({
+    queryKey: [MODULES, { mainCategory: "", subCategory: "", limit: 100 }],
+    queryFn: () => fetchModules({ mainCategory: "", subCategory: "", limit: 100 }),
+    staleTime: STALE_TIME,
+    cacheTime: CACHE_TIME,
+  });
+
+  const menu = useMemo(() => {
+    const res = listModule;
+
+    const tempMenu = []
+    const aboutUs = {
+      title: "About",
       link: "/about-us/mission",
       children: [{
         title: 'Mission & Vision',
@@ -139,59 +154,57 @@ export default function DefaultLayout() {
         link: "/about-us/contact",
         disabled: false,
       }],
-    }, {
-      title: "Programs",
-      link: "/program/forum",
-      children: [{
-        title: "National Lifelong Learning Forum",
-        link: "/program/forum",
-        disabled: false,
-      }, {
-        title: "Lifelong Learning Center",
-        link: "/program/center",
-        disabled: false,
-      }, {
-        title: "Lifelong Learning Club",
-        link: "/program/club",
-        disabled: false,
-      }, {
-        title: "Lifelong Learning City",
-        link: "/program/city",
-        disabled: false,
-      }, {
-        title: "Engagement",
-        link: "/program/engagement",
-        disabled: false,
-      }],
-    }, {
-      title: "Focus Areas",
-      link: "/focus-area/all",
-      children: [{
-        title: "Comprehensive and Flexible Learning Program",
-        link: "/focus-area/comprehensive-flexible",
-        disabled: false,
-      }, {
-        title: "Lifelong Learning Environment",
-        link: "/focus-area/environment",
-        disabled: false,
-      }, {
-        title: "Professional Development",
-        link: "/focus-area/professional",
-        disabled: false,
-      }, {
-        title: "Accreditation & Recognition",
-        linl: "/focus-area/accreditation-recognition",
-      }, {
-        title: "Collaboration & Support",
-        link: "/focus-area/collaboration-support",
-        disabled: false,
-      }],
-    }, {
+    };
+
+    tempMenu.push(aboutUs);
+
+    if (res?.code === 200 && !isLoadingModule) {
+      const modules = [
+        {
+          key: "Program",
+          path: "/program/",
+          staticRoute: [
+            {
+              title: "Engagement",
+              link: "/program/engagement",
+              disabled: false,
+            }
+          ]
+        },
+        { key: "Focus Area", path: "/focus-area/" }
+      ];
+      let groupList = _.groupBy(res?.data?.results, (data) => data.mainCategory)
+
+      modules.forEach(item => {
+        if (groupList[item.key]) {
+          tempMenu.push({
+            title: item.key,
+            link: item.path + groupList[item.key]?.[0]?._id,
+            children: [groupList[item.key]?.map(subItem => ({
+              title: subItem[lang]?.title,
+              link: item.path + subItem?._id,
+              disabled: false,
+            })), item?.staticRoute].filter(Boolean).flat(),
+          });
+        } else if (item?.staticRoute) {
+          tempMenu.push({
+            title: item.key,
+            link: item.path + item?.staticRoute[0]?.link,
+            children: item?.staticRoute,
+          });
+        }
+      })
+
+    }
+
+    tempMenu.push({
       title: "Resources",
       link: "/resources",
       children: [],
-    },
-  ];
+    });
+
+    return tempMenu;
+  }, [listModule, isLoadingModule, lang])
 
   const lanuageMenu = [
     {
@@ -210,7 +223,7 @@ export default function DefaultLayout() {
         className='flex gap-3'
       >
         <CambodiaSvg width='20px' height='20px' />
-        {t("Khmer")}
+        {t("ខ្មែរ")}
       </div>,
       key: 'kh',
     },
@@ -219,12 +232,11 @@ export default function DefaultLayout() {
   const onChangeLang = (value) => {
     i18n.changeLanguage(value);
     localStorage.setItem("lang", value)
-    setCurrentLanguage(value);
+    setLang(value);
   }
 
   const handleSearch = () => {
-    //SEARCH SOMETHING
-    console.log(search);
+    navigate("/resources", { state: { search: search } });
   }
 
   const toPage = (link) => {
@@ -235,9 +247,9 @@ export default function DefaultLayout() {
     quickLinkModal?.current?.show();
   }
 
-  const contextValue = { 
-    currentLanguage
-   };
+  const contextValue = {
+    currentLanguage: lang
+  };
 
   return (
     <div className='std-layout'>
@@ -276,7 +288,7 @@ export default function DefaultLayout() {
                   <img onClick={() => navigate("/")} className='cursor-pointer max-w-none object-cover size-[50px] lg:size-[90px] rounded-full' src='/logo.jpg' alt='logo' />
                   <div onClick={() => navigate("/")} className='cursor-pointer hidden 2xl:flex flex-col gap-2 justify-center'>
                     <div className='text-[14px] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                    <div className='text-[14px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                    <div className='text-[14.5px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                   </div>
                   <div className='flex lg:hidden'>
                     <Button type='link' onClick={openQuickLink} icon={<ExpandSvg color='black' className="size-[35px]" />} />
@@ -302,7 +314,7 @@ export default function DefaultLayout() {
                     >
                       <div className='flag-container flex items-center gap-2'>
                         {
-                          currentLanguage === "kh" ?
+                          lang === "kh" ?
                             <CambodiaSvg width='20px' height='20px' /> :
                             <AmericanSvg height='20px' width='20px' />
                         }
@@ -330,7 +342,9 @@ export default function DefaultLayout() {
                   {
                     item.children.map((child, index) => (
                       <Button key={index} className='truncate w-[calc(100vw/3)] xl:w-[calc(100vw/4)] h-[54px] gap-2 std-menu-link' onClick={() => toPage(child?.link)}>
-                        {t(child?.title)}
+                        <span
+                          style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                        >{t(child?.title)}</span>
                       </Button>
                     ))
                   }
@@ -357,7 +371,7 @@ export default function DefaultLayout() {
       </div>
 
       <div className='mt-[70px] md:mt-0 std-outlet-content'>
-        <Outlet context={contextValue}  />
+        <Outlet context={contextValue} />
       </div>
 
       <div className='min-h-[380px] std-footer py-[30px] lg:p-[30px] text-white' style={{ background: "var(--footer-background)" }}>
@@ -368,7 +382,7 @@ export default function DefaultLayout() {
                 <img className='object-cover logo rounded-full' src='/logo.jpg' alt='logo' />
                 <div className='flex flex-col text-center lg:text-start mt-2 lg:mt-0 gap-2 lg:gap-0'>
                   <div className='text-[13px] lg:text-[18px] font-[400] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                  <div className='text-[13px] lg:text-[18px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                  <div className='text-[13.5px] lg:text-[18.7px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                 </div>
               </div>
               <div className='mt-[10px] lg:mt-0 ms-0 lg:ms-[75px] flex flex-col gap-4'>
@@ -380,18 +394,12 @@ export default function DefaultLayout() {
                     </Link>
                   ))
                 }
-                <div className='hidden lg:block'>
-                  <Link to='#' className='ms-[calc(20px+1rem)] mt-[7px] gap-2 icons-container'>
-                    <span className='font-[600] text-[14px]'>{t("Contact Us")}</span>
-                    <ExportSvg width='13px' height='13px' />
-                  </Link>
-                </div>
               </div>
             </div>
             <div className='col-span-1 flex justify-between mt-[10px] lg:mt-[0]'>
               <div className='flex flex-col gap-4'>
                 <Link className='font-[700] text-[20px]' to='#'>
-                  {t("About NCLLL")}
+                  {t("About")}
                 </Link>
                 {
                   aboutNCLL.map((i, index) => (
@@ -407,15 +415,20 @@ export default function DefaultLayout() {
                   {t("Follow us")}
                 </Link>
                 {
-                  socialMediaFooter.map((i, index) => (
-                    <Link key={index} className='text-[16px] icons-container gap-2' to={i.link}>
-                      {i.text}
-                      <ExportSvg width='13px' height='13px' />
-                    </Link>
-                  ))
+                  socialMediaFooter.map((i, index) => {
+                    return (
+                      <>
+                        <Link key={index} className='text-[16px] icons-container gap-2' to={i.link}>
+                          {i.text}
+                          <ExportSvg width='13px' height='13px' />
+                        </Link>
+
+                      </>
+                    )
+                  })
                 }
-                <Link to='#' className='block lg:hidden gap-2 icons-container'>
-                  <span className='text-[16px]'>Contact Us</span>
+                <Link to='#' className='gap-2 icons-container'>
+                  <span className='text-[16px]'>{t("Contact Us")}</span>
                   <ExportSvg width='13px' height='13px' />
                 </Link>
               </div>
@@ -426,7 +439,7 @@ export default function DefaultLayout() {
 
       {/* Copy Right */}
       <div className='text-center content-center text-white h-[100px]' style={{ backgroundColor: "var(--primary-color)" }}>
-        {t("Copyright 2024 © National Committee For Lifelong Education | ALL RIGHTS RESERVED")}
+        {t("Copyright 2024 © National Committee For Lifelong Education")}
       </div>
 
 
@@ -435,7 +448,7 @@ export default function DefaultLayout() {
         className='floating-button'
       />
 
-      <QuickLinkDrawer ref={quickLinkModal} onChangeLang={onChangeLang} menu={menu} lanuageMenu={lanuageMenu} currentLanguage={currentLanguage} />
+      <QuickLinkDrawer ref={quickLinkModal} onChangeLang={onChangeLang} menu={menu} lanuageMenu={lanuageMenu} currentLanguage={lang} />
     </div>
   )
 }

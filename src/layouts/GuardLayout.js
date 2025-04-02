@@ -1,14 +1,80 @@
-import React, { useEffect, useMemo } from 'react'
-import { Outlet, useOutletContext } from 'react-router'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
+import { Outlet, useLocation, useOutletContext, useParams } from 'react-router'
 import { Divider } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
+import { CACHE_TIME, FOCUS_AREA, MODULES, STALE_TIME } from '../constants/CacheAPI';
+import { fetchFocusArea, fetchFocusAreaDetail, fetchModules } from '../api/publicRequest';
+import { LanguageContext } from '../i18n/LanguageProvider';
+import _ from 'lodash';
 
 export default function GuardLayout(props) {
     const { t } = useTranslation();
+    const { lang } = useContext(LanguageContext);
     const { title, description, route } = props;
     const contextParent = useOutletContext();
+    const location = useLocation();
     const { currentRoute, setTitle, setTreeDescription, setTreeData } = contextParent
-    const treeData = useMemo(() => route, [route]);
+
+    const { data, isLoading } = useQuery({
+        queryKey: [MODULES, { mainCategory: "", subCategory: "", limit: 100 }],
+        queryFn: () => fetchModules({ mainCategory: "", subCategory: "", limit: 100 }),
+        staleTime: STALE_TIME,
+        cacheTime: CACHE_TIME,
+    });
+
+    const treeData = useMemo(() => {
+        const res = data;
+
+        if (res?.code === 200 && !isLoading) {
+            const modules = {
+                "Program": {
+                    key: "Program",
+                    path: "/program/",
+                    endRoute: [
+                        {
+                            title: 'Engagement',
+                            label: 'Engagement',
+                            key: '/program/engagement',
+                            path: "/program/engagement",
+                            children: []
+                        }
+                    ]
+                },
+                "Focus Areas": {
+                    key: "Focus Area",
+                    path: "/focus-area/",
+                    startRoute: [
+                        {
+                            title: 'Lifelong Learning for all',
+                            label: 'All',
+                            key: 'All',
+                            path: "/focus-area/all",
+                            children: []
+                        }
+                    ]
+                }
+            };
+            let groupList = _.groupBy(res?.data?.results, (data) => data.mainCategory)
+
+            let key = modules[title]?.key;
+            if (groupList[key]?.length > 0) {
+                return [
+                    modules[title].startRoute,
+                    groupList[key].map(item => ({
+                        title: item[lang]?.title,
+                        label: item[lang]?.title,
+                        key: item?._id,
+                        path: modules[title]?.path + item?._id,
+                        children: []
+                    })),
+                    modules[title].endRoute,
+                ].filter(Boolean).flat();
+            }
+        }
+
+        return route
+    }, [route, lang, data, isLoading, location])
 
     useEffect(() => {
         setTitle(title);
