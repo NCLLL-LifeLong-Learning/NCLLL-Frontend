@@ -9,8 +9,8 @@ export default function HorizontalCard({ image, name, linkURL }) {
       {/* Card */}
       <div className='shadow-lg border rounded-xl w-full p-[1rem] flex gap-1 items-center mb-[1rem]'>
         <Row gutter={[20]}>
-          <Col span={8} lg={4}>
-            <img src={image} className='w-[200px] !aspect-square bg-cover bg-center object-contain' alt='Forum 2' />
+          <Col span={8}>
+            <img src={image} className='w-[250px] h-[200px] !aspect-square bg-cover' alt='Forum 2' />
           </Col>
           <Col span={16}>
             <div className='flex flex-col gap-2 justify-center h-full'>
