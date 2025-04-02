@@ -11,8 +11,6 @@ export default function Partners(props) {
   return (
     <div>
       <div>
-        <h1 className='font-semibold text-3xl md:text-5xl text-black'>{t("Partners")}</h1>
-        <p className='font-semibold text-md md:text-lg text-[#0F69B7] mb-2'>{t("National Committee of LifeLong Learning")}</p>
         <p className='font-semibold space-x-3 text-md md:text-lg text-gray-600'>
           <span>{t("Total")} {total}</span>
           <span>{t("Showing")} {dataSource.length}</span>

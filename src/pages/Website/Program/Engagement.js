@@ -1,20 +1,24 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import ArrowSvg from "../../../assets/svgs/ArrowSvg";
 import Partners from "./Engagement/Partners";
 import { useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
 import { CACHE_TIME, MODULES, PARTNERS, STALE_TIME } from "../../../constants/CacheAPI";
 import { useQuery } from "@tanstack/react-query";
-import { fetchModules, fetchOurPartner } from "../../../api/publicRequest";
+import { fetchModules, fetchModulesDetail, fetchOurPartner } from "../../../api/publicRequest";
 import { MODULES_SUB_TYPE, MODULES_TYPE } from "../../../constants/Bridge";
+import { LanguageContext } from "../../../i18n/LanguageProvider";
+import { Skeleton } from "antd";
+import TextEditor from "../../../components/TextEditor/TextEditor";
 
 const tabs = ["Voluntary", "Fellowship", "Consultant", "Exchange Program", "Partners", "Advisor"];
 
 export default function Engagement() {
    const { t } = useTranslation();
+   const { lang } = useContext(LanguageContext);
    const location = useLocation();
    const [visibleStart, setVisibleStart] = useState(0);
-   const [activeTab, setActiveTab] = useState(0);
+   const [activeTab, setActiveTab] = useState("");
    const [visibleTabs, setVisibleTabs] = useState(6);;
 
    const handlePrev = () => {
@@ -25,7 +29,7 @@ export default function Engagement() {
       setVisibleStart((prev) => (prev < tabs.length - visibleTabs ? prev + 1 : prev));
    };
 
-   const { tempdata, tempisLoading } = useQuery({
+   const { data: tabData, isLoading: isTabLoading } = useQuery({
       queryKey: [MODULES, { mainCategory: MODULES_TYPE.PROGRAM, subCategory: MODULES_SUB_TYPE.ENGAGEMENT, limit: 100 }],
       queryFn: () => fetchModules({ mainCategory: MODULES_TYPE.PROGRAM, subCategory: MODULES_SUB_TYPE.ENGAGEMENT, limit: 100 }),
       staleTime: STALE_TIME,
@@ -33,19 +37,34 @@ export default function Engagement() {
    });
 
    const tabMenu = useMemo(() => {
-      let res = tempdata;
-      if (res?.code === 200 && !tempisLoading) {
+      let res = tabData;
+      if (res?.code === 200 && !isTabLoading) {
+         setActiveTab(res?.data?.results[0]?._id);
          return [...res?.data?.results];
       } else {
          return Array.from({ length: 10 }, (_, index) => ({
             skeleton: true,
          }))
       }
-   }, [tempdata, tempisLoading])
+   }, [tabData, isTabLoading])
 
-   console.log("tempdata = ", tempdata);
-   console.log("tempdataSource = ", tabMenu);
 
+   const { data: detailTabs, isLoading: isDetailTabsLoading } = useQuery({
+      queryKey: [MODULES_SUB_TYPE.ENGAGEMENT, activeTab],
+      queryFn: () => fetchModulesDetail(activeTab),
+      staleTime: STALE_TIME,
+      cacheTime: CACHE_TIME,
+      enabled: activeTab !== ""
+   });
+
+   const tabDetails = useMemo(() => {
+      let res = detailTabs;
+      if (res?.code === 200 && !isDetailTabsLoading) {
+         return { ...res?.data };
+      } else {
+         return {}
+      }
+   }, [detailTabs, isDetailTabsLoading])
 
    const { data, isLoading } = useQuery({
       queryKey: [PARTNERS],
@@ -63,14 +82,6 @@ export default function Engagement() {
 
       return { dataSource: results, total: res?.data?.meta?.total_count };
    }, [data, isLoading]);
-
-   console.log("dataSource = ", dataSource);
-
-   const partners = [
-      { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
-      { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
-      { name: 'IT STEP Academy Cambodia', linkURL: 'https://cambodia.itstep.org/', image: '../../../assets/images/partner/step_academy.png' },
-   ]
 
    const callBackWidthChange = useCallback(() => {
       if (window.innerWidth < 767) {
@@ -100,14 +111,13 @@ export default function Engagement() {
                      <ArrowSvg className="w-5 h-5" />
                   </button>
                   <div className="flex space-x-4 overflow-hidden">
-                     {tabs.slice(visibleStart, visibleStart + visibleTabs).map((tab, index) => (
+                     {tabMenu.slice(visibleStart, visibleStart + visibleTabs).map((tab, index) => (
                         <button
-                           key={visibleStart + index}
-                           onClick={() => setActiveTab(visibleStart + index)}
-                           className={`font-semibold px-4 py-2 rounded-full transition-all duration-300 ${activeTab === visibleStart + index ? "bg-[#0F69B7] text-white" : " text-black"
-                              }`}
+                           key={tab?._id}
+                           onClick={() => setActiveTab(tab?._id)}
+                           className={`font-semibold px-4 py-2 rounded-full transition-all duration-300 ${activeTab === tab?._id ? "bg-[#0F69B7] text-white" : " text-black"}`}
                         >
-                           {t(tab)}
+                           {tab[lang]?.title}
                         </button>
                      ))}
                   </div>
@@ -117,8 +127,20 @@ export default function Engagement() {
                </div>
             </div>
             <div className="w-full pt-[2rem]">
-               {tabs[activeTab] === "Partners" && <Partners total={total} dataSource={dataSource} />}
-               {tabs[activeTab] !== "Partners" && <Partners total={total} dataSource={dataSource} />}
+               <div className='dynamic-detail-page'>
+                  {isDetailTabsLoading ?
+                     <Skeleton.Input active className='!h-[80vh] !w-full' />
+                     :
+                     <div>
+                        <h1 className='font-semibold text-3xl md:text-5xl text-black'>{tabDetails && tabDetails?.en?.title}</h1>
+
+                        <TextEditor jsonData={(tabDetails && tabDetails[lang]?.document?.content) || {}} />
+
+                        {tabDetails && tabDetails?.en?.title === "Partners" && <Partners total={total} dataSource={dataSource} />}
+                     </div>
+                  }
+               </div>
+
             </div>
          </div>
       </div>
