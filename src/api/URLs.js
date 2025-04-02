@@ -21,3 +21,7 @@ export const LIST_PARTNER = "/partners";
 export const LIST_FOCUS_AREA = "/focus-areas";
 
 export const FOCUS_AREA_DETAIL = "/focus-areas/:id";
+
+export const GET_MODULES = "/modules";
+
+export const GET_MODULES_DETAIL = "/modules/:id";

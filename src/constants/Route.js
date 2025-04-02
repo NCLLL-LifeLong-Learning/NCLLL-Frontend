@@ -204,40 +204,5 @@ export const focusArea = {
             path: "/focus-area/all",
             children: []
         },
-        // {
-        //     title: "Comprehensive and Flexible Learning Program",
-        //     label: 'Comprehensive and Flexible Learning Program',
-        //     key: "Comprehensive and Flexible Learning Program",
-        //     path: "/focus-area/comprehensive-flexible",
-        //     children: [],
-        // },
-        // {
-        //     title: "Lifelong Learning Environment",
-        //     label: 'Lifelong Learning Environment',
-        //     key: "Lifelong Learning Environment",
-        //     path: "/focus-area/environment",
-        //     children: [],
-        // },
-        // {
-        //     title: "Professional Development",
-        //     label: 'Professional Development',
-        //     key: "Professional Development",
-        //     path: "/focus-area/professional",
-        //     children: [],
-        // },
-        // {
-        //     title: "Accreditation & Recognition",
-        //     label: 'Accreditation & Recognition',
-        //     key: "Accreditation & Recognition",
-        //     path: "/focus-area/accreditation-recognition",
-        //     children: [],
-        // },
-        // {
-        //     title: "Collaboration & Support",
-        //     label: 'Collaboration & Support',
-        //     key: "Collaboration & Support",
-        //     path: "/focus-area/collaboration-support",
-        //     children: []
-        // }
     ]
 }

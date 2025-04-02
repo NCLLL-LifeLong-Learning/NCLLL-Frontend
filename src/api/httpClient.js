@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ADMIN_ENDPOINT } from '../config/api';
 
 const httpClient = axios.create({
-  withCredentials: true,
+  // withCredentials: true, 
   baseURL: ADMIN_ENDPOINT
 });
 

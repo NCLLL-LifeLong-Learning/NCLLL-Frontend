@@ -23,8 +23,9 @@ import { FaArrowUp } from 'react-icons/fa'
 import QuickLinkDrawer from '../components/Drawers/QuickLinkDrawer.js'
 import { LanguageContext } from '../i18n/LanguageProvider.js'
 import { useQuery } from '@tanstack/react-query'
-import { CACHE_TIME, FOCUS_AREA, STALE_TIME } from '../constants/CacheAPI.js'
-import { fetchFocusArea } from '../api/publicRequest.js'
+import { CACHE_TIME, FOCUS_AREA, MODULES, STALE_TIME } from '../constants/CacheAPI.js'
+import { fetchFocusArea, fetchModules } from '../api/publicRequest.js'
+import _ from 'lodash'
 
 export default function DefaultLayout() {
   const { t, i18n } = useTranslation();
@@ -109,14 +110,17 @@ export default function DefaultLayout() {
     }
   ];
 
-  const { data: focusAreaMenu, isLoading: isLoadingFocusArea } = useQuery({
-    queryKey: [FOCUS_AREA, { limit: 100 }],
-    queryFn: () => fetchFocusArea({ limit: 100 }),
+  const { data: listModule, isLoading: isLoadingModule } = useQuery({
+    queryKey: [MODULES, { mainCategory: "", subCategory: "", limit: 100 }],
+    queryFn: () => fetchModules({ mainCategory: "", subCategory: "", limit: 100 }),
     staleTime: STALE_TIME,
     cacheTime: CACHE_TIME,
   });
 
   const menu = useMemo(() => {
+    const res = listModule;
+
+    const tempMenu = []
     const aboutUs = {
       title: "About",
       link: "/about-us/mission",
@@ -152,80 +156,55 @@ export default function DefaultLayout() {
       }],
     };
 
-    const Programs = {
-      title: "Programs",
-      link: "/program/forum",
-      children: [{
-        title: "National Lifelong Learning Forum",
-        link: "/program/forum",
-        disabled: false,
-      }, {
-        title: "Lifelong Learning Center",
-        link: "/program/center",
-        disabled: false,
-      }, {
-        title: "Lifelong Learning Club",
-        link: "/program/club",
-        disabled: false,
-      }, {
-        title: "Lifelong Learning City",
-        link: "/program/city",
-        disabled: false,
-      }, {
-        title: "Engagement",
-        link: "/program/engagement",
-        disabled: false,
-      }],
-    };
+    tempMenu.push(aboutUs);
 
-    const FocusArea = {
-      title: "Focus Areas",
-      link: "/focus-area/all",
-      children: [
-        // {
-        //   title: "Comprehensive and Flexible Learning Program",
-        //   link: "/focus-area/comprehensive-flexible",
-        //   disabled: false,
-        // }, {
-        //   title: "Lifelong Learning Environment",
-        //   link: "/focus-area/environment",
-        //   disabled: false,
-        // }, {
-        //   title: "Professional Development",
-        //   link: "/focus-area/professional",
-        //   disabled: false,
-        // }, {
-        //   title: "Accreditation & Recognition",
-        //   linl: "/focus-area/accreditation-recognition",
-        // }, {
-        //   title: "Collaboration & Support",
-        //   link: "/focus-area/collaboration-support",
-        //   disabled: false,
-        // }
-      ],
-    };
+    if (res?.code === 200 && !isLoadingModule) {
+      const modules = [
+        {
+          key: "Program",
+          path: "/program/",
+          staticRoute: [
+            {
+              title: "Engagement",
+              link: "/program/engagement",
+              disabled: false,
+            }
+          ]
+        },
+        { key: "Focus Area", path: "/focus-area/" }
+      ];
+      let groupList = _.groupBy(res?.data?.results, (data) => data.mainCategory)
 
-    if (!isLoadingFocusArea) {
-      if (focusAreaMenu?.code === 200) {
-        FocusArea.children.push(...focusAreaMenu?.data?.results.map(item => ({
-          title: item[lang] && item[lang]?.title,
-          link: "/focus-area/" + item?._id,
-          disabled: false,
-        })));
-      }
+      modules.forEach(item => {
+        if (groupList[item.key]) {
+          tempMenu.push({
+            title: item.key,
+            link: item.path + groupList[item.key]?.[0]?._id,
+            children: [groupList[item.key]?.map(subItem => ({
+              title: subItem[lang]?.title,
+              link: item.path + subItem?._id,
+              disabled: false,
+            })), item?.staticRoute].filter(Boolean).flat(),
+          });
+        } else if (item?.staticRoute) {
+          tempMenu.push({
+            title: item.key,
+            link: item.path + item?.staticRoute[0]?.link,
+            children: item?.staticRoute,
+          });
+        }
+      })
+
     }
 
-    return [
-      aboutUs,
-      Programs,
-      FocusArea,
-      {
-        title: "Resources",
-        link: "/resources",
-        children: [],
-      },
-    ];
-  }, [isLoadingFocusArea, focusAreaMenu, lang]);
+    tempMenu.push({
+      title: "Resources",
+      link: "/resources",
+      children: [],
+    });
+
+    return tempMenu;
+  }, [listModule, isLoadingModule, lang])
 
   const lanuageMenu = [
     {
@@ -257,8 +236,7 @@ export default function DefaultLayout() {
   }
 
   const handleSearch = () => {
-    //SEARCH SOMETHING
-    console.log(search);
+    navigate("/resources", { state: { search: search } });
   }
 
   const toPage = (link) => {

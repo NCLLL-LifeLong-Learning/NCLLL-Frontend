@@ -9,3 +9,5 @@ export const GOVERMENT = "goverment";
 
 export const PARTNERS = "partners";
 export const FOCUS_AREA = "focus_area";
+
+export const MODULES = "modules";

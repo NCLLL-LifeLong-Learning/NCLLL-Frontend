@@ -48,7 +48,7 @@ const OurPartner = ({ description, title, onClick }) => {
           responsive={antdResponsive({
             md: {
               slidesToShow: 4,
-              row: 3
+              row: 2
             },
             xs: {
               slidesToShow: 2,
@@ -65,7 +65,7 @@ const OurPartner = ({ description, title, onClick }) => {
           draggable
           infinite
           slidesToShow={4}
-          rows={3}
+          rows={2}
           pauseOnHover
           pauseOnDotsHover
           arrows
@@ -85,7 +85,7 @@ const OurPartner = ({ description, title, onClick }) => {
               dataSource.map((data, index) => (
                 <img
                   key={`clone-${index}`}
-                  className="std-our-partner-logo my-3 w-auto !h-[120px] !aspect-square object-contain"
+                  className="std-our-partner-logo my-3 mx-3 w-auto !h-[120px] !aspect-square object-contain"
                   src={data?.logo}
                   alt={`Partner logo duplicate ${index}`}
                 />

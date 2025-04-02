@@ -1,11 +1,38 @@
 import { Carousel } from 'antd';
-import React from 'react'
+import React, { useContext, useMemo } from 'react'
 import ArrowSvg from '../../assets/svgs/ArrowSvg';
 import { antdResponsive } from '../../utils/Utils';
 import { useTranslation } from 'react-i18next';
+import { LanguageContext } from '../../i18n/LanguageProvider';
+import { useQuery } from '@tanstack/react-query';
+import { CACHE_TIME, MODULES, STALE_TIME } from '../../constants/CacheAPI';
+import { fetchModules } from '../../api/publicRequest';
+import { NavLink } from 'react-router-dom';
 
-export default function SwiperBackgroundImage({ onClick, dataSource, title, description }) {
+export default function SwiperBackgroundImage({ module, title, description }) {
     const { t } = useTranslation();
+    const { lang } = useContext(LanguageContext);
+
+    const { data, isLoading } = useQuery({
+        queryKey: [MODULES, { mainCategory: module, subCategory: "", limit: 100 }],
+        queryFn: () => fetchModules({ mainCategory: module, subCategory: "", limit: 100 }),
+        staleTime: STALE_TIME,
+        cacheTime: CACHE_TIME,
+    });
+
+    const { dataSource, total } = useMemo(() => {
+        let res = data;
+        let results = res?.data?.results || [];
+        if (results.length === 0) {
+            return { dataSource: [], total: 0 };
+        }
+
+        while (results.length < 10) {
+            results = [...results, ...results]
+        }
+
+        return { dataSource: results, total: res?.data?.meta?.total_count };
+    }, [data, isLoading]);
 
     return (
         <div className='flex flex-col items-center container mx-auto'>
@@ -49,14 +76,16 @@ export default function SwiperBackgroundImage({ onClick, dataSource, title, desc
                     {
                         dataSource.map(data => (
                             <div className='p-[5px] md:p-[15px]'>
-                                <div className='std-feature-card-wrapper' onClick={onClick}>
-                                    <img className="std-feature-image" src={data.imageUrl} alt={data.imageUrl} />
-                                    <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[120px] !rounded-none p-4'>
-                                        <p>
-                                            {t(data.title)}
-                                        </p>
+                                <NavLink role='button' to={"/program/" + data?._id}>
+                                    <div className='std-feature-card-wrapper'>
+                                        <img className="std-feature-image" src={data.cover} alt={data.cover} />
+                                        <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[120px] !rounded-none p-4'>
+                                            <p>
+                                                {t(data[lang]?.title)}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
+                                </NavLink>
                             </div>
                         ))
                     }

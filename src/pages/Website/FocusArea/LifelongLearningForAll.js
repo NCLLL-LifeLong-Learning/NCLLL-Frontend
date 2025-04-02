@@ -1,19 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 import { List } from 'antd';
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { useTranslation } from 'react-i18next';
-import { CACHE_TIME, FOCUS_AREA, STALE_TIME } from '../../../constants/CacheAPI';
-import { fetchFocusArea } from '../../../api/publicRequest';
+import { CACHE_TIME, MODULES, STALE_TIME } from '../../../constants/CacheAPI';
+import { fetchModules } from '../../../api/publicRequest';
 import { LanguageContext } from '../../../i18n/LanguageProvider';
 import { NavLink } from 'react-router-dom';
+import { MODULES_TYPE } from '../../../constants/Bridge';
 
 export default function LifelongLearningForAll() {
   const { t } = useTranslation();
   const { lang } = useContext(LanguageContext);
 
   const { data, isLoading } = useQuery({
-    queryKey: [FOCUS_AREA, { limit: 100 }],
-    queryFn: () => fetchFocusArea({ limit: 100 }),
+    queryKey: [MODULES, { mainCategory: MODULES_TYPE.FOCUS_AREA, subCategory: "", limit: 100 }],
+    queryFn: () => fetchModules({ mainCategory: MODULES_TYPE.FOCUS_AREA, subCategory: "", limit: 100 }),
     staleTime: STALE_TIME,
     cacheTime: CACHE_TIME,
   });

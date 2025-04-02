@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
-import TiptapEditor from '../../../AppTest';
+import TextEditor from '../../../components/TextEditor/TextEditor';
 import { useQuery } from '@tanstack/react-query';
 import { BLOGS, CACHE_TIME, STALE_TIME } from '../../../constants/CacheAPI';
 import { fetchBlogsDetail } from '../../../api/publicRequest';
@@ -47,7 +47,7 @@ export default function DynamicDetailPage(props) {
             {isLoading ?
                 <Skeleton.Input active className='!h-[80vh] !w-full' />
                 :
-                <TiptapEditor jsonData={(dataSource && dataSource[lang]?.document?.content) || {}} />
+                <TextEditor jsonData={(dataSource && dataSource[lang]?.document?.content) || {}} />
             }
         </div>
     )

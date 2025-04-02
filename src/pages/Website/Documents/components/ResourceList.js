@@ -25,8 +25,6 @@ export default function ResourceList(props) {
                     if (loading) {
                         return <RosourceTypeDetailLoading />
                     }
-                    console.log("record?.category = ", record);
-                    console.log("record?.category = ", record?.category);
                     if ("content" === record?.contentType || typeDetail.includes(record?.category)) {
                         return <ResourceTypeDetail loading={loading} record={record} />
                     } else {

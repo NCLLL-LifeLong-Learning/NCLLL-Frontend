@@ -2,14 +2,15 @@ import { Button, Drawer, Input, Tabs } from 'antd'
 import React, { forwardRef, useContext, useImperativeHandle, useMemo, useState } from 'react'
 import { IoMdClose } from 'react-icons/io';
 import { useNavigate } from 'react-router';
-import { aboutUs, focusArea, program, resources } from '../../constants/Route';
+import { aboutUs, resources } from '../../constants/Route';
 import CambodiaSvg from '../../assets/svgs/CambodiaSvg';
 import AmericanSvg from '../../assets/svgs/AmericanSvg';
 import { useTranslation } from 'react-i18next';
 import { LanguageContext } from '../../i18n/LanguageProvider';
 import { useQuery } from '@tanstack/react-query';
-import { CACHE_TIME, FOCUS_AREA, STALE_TIME } from '../../constants/CacheAPI';
-import { fetchFocusArea } from '../../api/publicRequest';
+import { CACHE_TIME, MODULES, STALE_TIME } from '../../constants/CacheAPI';
+import { fetchModules } from '../../api/publicRequest';
+import _ from 'lodash';
 
 function QuickLinkDrawer(props, ref) {
     const { t } = useTranslation();
@@ -17,37 +18,98 @@ function QuickLinkDrawer(props, ref) {
     const { onChangeLang } = props
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
+    const [search, setSearch] = useState("");
 
-    const { data: focusAreaMenu, isLoading: isLoadingFocusArea } = useQuery({
-        queryKey: [FOCUS_AREA, { limit: 100 }],
-        queryFn: () => fetchFocusArea({ limit: 100 }),
+    const { data, isLoading } = useQuery({
+        queryKey: [MODULES, { mainCategory: "", subCategory: "", limit: 100 }],
+        queryFn: () => fetchModules({ mainCategory: "", subCategory: "", limit: 100 }),
         staleTime: STALE_TIME,
         cacheTime: CACHE_TIME,
     });
 
     const menu = useMemo(() => {
-        const FocusArea = JSON.parse(JSON.stringify(focusArea))
+        const res = data;
 
-        if (!isLoadingFocusArea) {
-            if (focusAreaMenu?.code === 200) {
-                FocusArea.route?.push(...[
-                ...focusAreaMenu?.data?.results?.map(item => ({
-                    title: item && item[lang]?.title,
-                    label: item && item[lang]?.title,
-                    key: item && item?._id,
-                    path: "/focus-area/" + (item && item?._id),
-                    children: []
-                }))]);
-            }
+        const tempMenu = []
+
+        tempMenu.push(aboutUs);
+
+        if (res?.code === 200 && !isLoading) {
+            const modules = [
+                {
+                    key: "Program",
+                    title: "Program",
+                    description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
+                    path: "/program/",
+                    endRoute: [
+                        {
+                            title: "Engagement",
+                            label: "Engagement",
+                            key: "Engagement",
+                            noHeader: true,
+                            path: "/program/engagement",
+                            children: [],
+                        }
+                    ]
+                },
+                {
+                    key: "Focus Area",
+                    title: "Focus Areas",
+                    description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
+                    path: "/focus-area/",
+                    startRoute: [
+                        {
+                            title: 'Lifelong Learning for all',
+                            label: 'All',
+                            key: 'All',
+                            path: "/focus-area/all",
+                            children: []
+                        },
+                    ]
+                }
+            ];
+            let groupList = _.groupBy(res?.data?.results, (data) => data.mainCategory)
+
+            modules.forEach(item => {
+                if (groupList[item.key]?.length > 0) {
+                    tempMenu.push({
+                        title: item.title,
+                        description: item.description,
+                        route: [
+                            item?.startRoute,
+                            groupList[item.key]?.map(subItem => ({
+                                title: subItem[lang]?.title,
+                                label: subItem[lang]?.title,
+                                key: subItem?._id,
+                                path: item.path + subItem?._id,
+                                children: [],
+                            })),
+                            item?.endRoute
+                        ].filter(Boolean).flat()
+                    })
+                } else if (item?.endRoute || item?.startRoute) {
+                    tempMenu.push({
+                        title: item.title,
+                        description: item.description,
+                        route: [
+                            item?.startRoute,
+                            item?.endRoute
+                        ].filter(Boolean).flat()
+                    })
+                }
+            })
+
         }
 
-        return [
-            aboutUs,
-            program,
-            FocusArea,
-            resources,
-        ];
-    }, [isLoadingFocusArea, focusAreaMenu, lang]);
+        tempMenu.push(resources);
+
+        return tempMenu;
+    }, [data, isLoading, lang])
+
+    const handleSearch = () => {
+        navigate("/resources", { state: { search: search } });
+        onClose();
+    }
 
     const onShow = () => {
         setOpen(true);
@@ -92,7 +154,7 @@ function QuickLinkDrawer(props, ref) {
                         </div>
 
                         <div className='flex lg:hidden gap-3'>
-                            <Input.Search />
+                            <Input.Search value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} onSearch={handleSearch} />
                         </div>
 
                         <Button className='absolute lg:relative top-0 right-0' onClick={onClose} shape='circle' icon={<IoMdClose className="text-[20px]" />} />
@@ -103,7 +165,7 @@ function QuickLinkDrawer(props, ref) {
                 <div className='py-[40px]'>
                     <Tabs
                         tabBarExtraContent={<div className='hidden lg:flex gap-3'>
-                            <Input.Search />
+                            <Input.Search value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} onSearch={handleSearch}  />
                         </div>}
                         defaultActiveKey="1"
                         tabPosition="top"
@@ -122,9 +184,9 @@ function QuickLinkDrawer(props, ref) {
                                                 <div className='col-span-12 sm:col-span-6 md:col-span-3 flex flex-col gap-2'>
                                                     <div className='cursor-pointer text-xl' onClick={() => onNavTo(route.path)}
                                                         style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
-                                                    >{t(route.title)}</div>
+                                                    >{t(route?.title)}</div>
                                                     <div className='ms-[20px] flex flex-col gap-2'>
-                                                        {route.children.map(child => (<div className='cursor-pointer text-xl' onClick={() => onNavTo(child.path)}
+                                                        {route?.children.map(child => (<div className='cursor-pointer text-xl' onClick={() => onNavTo(child.path)}
                                                             style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
                                                         >
                                                             {t(child.title)}

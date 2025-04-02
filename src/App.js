@@ -4,10 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import React, { Suspense } from 'react';
 import GuardLayout from './layouts/GuardLayout';
 import { aboutUs, focusArea, program, resources } from './constants/Route';
-import { RESOURCE_TYPE } from './constants/Bridge';
+import { MODULES_TYPE, RESOURCE_TYPE } from './constants/Bridge';
 import ResourcePage from './pages/Website/Documents/ResourcePage';
 import AllResourcePage from './pages/Website/Documents/AllResourcePage';
-import FocusAreaPage from './pages/Website/FocusArea/FocusAreaPage';
+import DynamicModulePage from './pages/Website/DynamicModulePage';
 
 const WebDefaultLayout = React.lazy(() => import('./layouts/DefaultLayout'));
 const WebDetailsLayout = React.lazy(() => import('./layouts/DetailsLayout'));
@@ -23,10 +23,6 @@ const ContactUsPage = React.lazy(() => import('./pages/Website/AboutUs/ContactUs
 const SecretariatGeneralOfNLLLPage = React.lazy(() => import('./pages/Website/AboutUs/SGLLL'));
 
 const EngagementPage = React.lazy(() => import('./pages/Website/Program/Engagement'));
-const LifelongLearningCenterPage = React.lazy(() => import('./pages/Website/Program/LifelongLearningCenter'));
-const LifelongLearningCityPage = React.lazy(() => import('./pages/Website/Program/LifelongLearningCity'));
-const LifelongLearningClubPage = React.lazy(() => import('./pages/Website/Program/LifelongLearningClub'));
-const NationalLifelongLearningForumPage = React.lazy(() => import('./pages/Website/Program/NationalLifelongLearningForum'));
 
 const LifelongLearningForAllPage = React.lazy(() => import('./pages/Website/FocusArea/LifelongLearningForAll'));
 
@@ -61,21 +57,15 @@ function App() {
             </Route>
 
             <Route path='/program' element={<GuardLayout description={program.description} title={program.title} route={program.route} />}>
-              <Route index path='forum' element={<Suspense><NationalLifelongLearningForumPage /></Suspense>} />
-
-              <Route path='center' element={<Suspense><LifelongLearningCenterPage /></Suspense>} />
-
-              <Route path='club' element={<Suspense><LifelongLearningClubPage /></Suspense>} />
-
-              <Route path='city' element={<Suspense><LifelongLearningCityPage /></Suspense>} />
-
               <Route path='engagement' element={<Suspense><EngagementPage /></Suspense>} />
+
+              <Route path=':id' element={<Suspense><DynamicModulePage module={MODULES_TYPE.PROGRAM} /></Suspense>} />
             </Route>
 
             <Route path='/focus-area' element={<GuardLayout description={focusArea.description} title={focusArea.title} route={focusArea.route} />}>
               <Route index path='all' element={<Suspense><LifelongLearningForAllPage /></Suspense>} />
 
-              <Route path=':id' element={<Suspense><FocusAreaPage /></Suspense>} />
+              <Route path=':id' element={<Suspense><DynamicModulePage module={MODULES_TYPE.FOCUS_AREA}  /></Suspense>} />
             </Route>
 
             <Route path='/resources' element={<GuardLayout description={resources.description} title={resources.title} route={resources.route} />}>

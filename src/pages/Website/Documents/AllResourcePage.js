@@ -6,13 +6,14 @@ import { useQuery } from '@tanstack/react-query';
 import { CACHE_TIME, MINISTRIES, RESOURCES, STALE_TIME } from '../../../constants/CacheAPI';
 import { fetchAllResource, fetchMinistryPartner, fetchResource } from '../../../api/publicRequest';
 import { LanguageContext } from '../../../i18n/LanguageProvider';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import dayjs from 'dayjs';
 
 export default function AllResourcePage() {
   const { t } = useTranslation();
   const { lang } = useContext(LanguageContext);
   const { type } = useParams();
+  const location = useLocation();
   const [searchValue, setSearchValue] = useState("");
   const [filter, setFilter] = useState({
     limit: 10,
@@ -42,7 +43,6 @@ export default function AllResourcePage() {
           originalItem: data?.originalItem,
           _id: data?._id,
         }))]
-
       };
     } else {
       return {
@@ -83,8 +83,12 @@ export default function AllResourcePage() {
 
 
   useEffect(() => {
-    setFilter({ ...filter, type: type || "", lang: lang || "", page: 1 });
-  }, [type, lang])
+    setFilter({ ...filter, type: type || "", lang: lang || "", page: 1, keyword: location?.state?.search });
+  }, [type, lang, location])
+
+  useEffect(() => {
+    setSearchValue(location?.state?.search);
+  }, [location])
 
   const datePickerChange = (date, dateString) => {
     setFilter({ ...filter, year: dateString || undefined });
