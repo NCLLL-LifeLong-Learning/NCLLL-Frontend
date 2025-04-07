@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { LanguageContext } from '../i18n/LanguageProvider';
 import { useQuery } from '@tanstack/react-query';
 import httpClient from '../api/httpClient';
-import { Result } from 'antd';
+import { Result, Spin } from 'antd';
 
 const MaintenanceWrapper = ({ children }) => {
   const { t } = useTranslation();
@@ -31,7 +31,7 @@ const MaintenanceWrapper = ({ children }) => {
       ;
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Spin spinning={true} fullscreen />
 
   if (isMaintenance) {
     return <Result
