@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import { fetchBlogs } from '../../api/publicRequest';
 
-const PAGE_LIMIT = 5; // Items per page
+const PAGE_LIMIT = 3; // Items per page
 
 export default function SegmentedTabs(props) {
     const { t } = useTranslation();
