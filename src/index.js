@@ -11,6 +11,7 @@ import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LanguageProvider } from './i18n/LanguageProvider';
+import MaintenanceWrapper from './pages/MaintenanceWrapper';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -26,7 +27,9 @@ root.render(
     >
       <QueryClientProvider client={queryClient}>
         <LanguageProvider>
-          <App />
+          <MaintenanceWrapper>
+            <App />
+          </MaintenanceWrapper>
         </LanguageProvider>
       </QueryClientProvider>
     </ConfigProvider>

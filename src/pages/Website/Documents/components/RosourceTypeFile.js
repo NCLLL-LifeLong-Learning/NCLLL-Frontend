@@ -13,6 +13,8 @@ export default function RosourceType(props) {
 
     const handleDownload = (record) => {
         const a = document.createElement("a");
+        // a.href = "/assets/1743768110764-bd952f77-2589-44aa-96af-85c0d0429d44-document (1).pdf";	
+        // a.download = "/assets/1743768110764-bd952f77-2589-44aa-96af-85c0d0429d44-document (1).pdf";	
         a.href = data.file;
         a.download = data.file
         // .split("/").pop(); // Extract filename

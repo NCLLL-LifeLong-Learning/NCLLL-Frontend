@@ -7,30 +7,6 @@ import MinistriesPartner from '../../components/Swiper/MinistriesPartner';
 import { useNavigate } from 'react-router';
 import { MODULES_TYPE } from '../../constants/Bridge';
 
-const initSwiperImageBackground = (res) => {
-  const tempTitle = [
-    "",
-    "Lifelong Learning for all",
-    "Comprehensive and Flexible learning Program",
-    "Lifelong Learning Environment",
-    "Professional Development",
-    "Accreditation and Recognition",
-    "Collaboration and Support"
-  ];
-
-  let title = 1;
-  for (let i = 1; i < 20; i++) {
-    res.push({
-      imageUrl: "/assets/images/feature/feature-" + title + ".png",
-      title: tempTitle[title]
-    })
-    title++;
-    if (title === 7) {
-      title = 1;
-    }
-  }
-}
-
 export default function HomePage() {
   const navigate = useNavigate();
 
