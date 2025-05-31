@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LanguageContext } from '../i18n/LanguageProvider';
 import { useQuery } from '@tanstack/react-query';
 import httpClient from '../api/httpClient';
 import { Result, Spin } from 'antd';
+import { debounce } from 'lodash';
 
 const MaintenanceWrapper = ({ children }) => {
   const { t } = useTranslation();
@@ -11,8 +12,8 @@ const MaintenanceWrapper = ({ children }) => {
   const [isMaintenance, setIsMaintenance] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    httpClient.get('/settings')
+  const healthCheck = useCallback(async () => {
+    await httpClient.get('/settings')
       .then(response => response.data)
       .then(res => {
         console.log(res);
@@ -24,12 +25,20 @@ const MaintenanceWrapper = ({ children }) => {
       })
       .catch((error) => {
         console.error('Error fetching maintenance mode:', error);
+        setIsMaintenance(true);
       })
       .finally(() => {
         setLoading(false);
-      })
-      ;
-  }, []);
+      });
+  }, [])
+
+  const debounceHealthCheck = useCallback(debounce(healthCheck, 300), [healthCheck])
+
+  useEffect(() => {
+    debounceHealthCheck();
+
+    return debounceHealthCheck.cancel
+  }, [debounceHealthCheck]);
 
   if (loading) return <Spin spinning={true} fullscreen />
 

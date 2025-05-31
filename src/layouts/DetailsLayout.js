@@ -155,10 +155,13 @@ export default function DetailsLayout() {
                     icon={burger ? <IoMdClose className="text-white text-[20px]" /> : <ExpandSvg color='white' />}
                     style={{ left: 10, bottom: 40, backgroundColor: "var(--primary-color)" }}
                 />
-                <div className={`${burger ? "active" : ""} transition-all fixed-burger xl:block col-span-2 ps-[10px] h-fit pb-[20px]`} style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
-                    <h1 className='py-[20px] px-[10px] text-[1.5rem] md:text-[2rem] text-center m-0'
+                <div className={`${burger ? "active" : ""} transition-all fixed-burger lg:block col-span-2 ps-[10px] h-fit pb-[20px]`} style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
+                    <h1
+                        className='py-[20px] px-[10px] text-[1.5rem] md:text-[2rem] text-center m-0'
                         style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
-                    >{t(treeTitle)}</h1>
+                    >
+                        {t(treeTitle)}
+                    </h1>
                     <Tree
                         rootClassName='root-menu-tree'
                         rootStyle={{ backgroundColor: '#0F69B7', color: 'white' }}
@@ -170,7 +173,7 @@ export default function DetailsLayout() {
                         treeData={formatTreeData}
                     />
                 </div>
-                <div className='col-span-12 xl:col-span-10 px-[10px] py-[40px] p-0 xl:p-[40px] std-container flex justify-center'>
+                <div className='col-span-12 lg:col-span-10 px-[10px] py-[40px] p-0 lg:p-[40px] std-container flex justify-center'>
                     <Outlet context={contextValue} />
                 </div>
             </div>
