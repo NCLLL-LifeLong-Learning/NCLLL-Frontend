@@ -1,10 +1,10 @@
 import { objectToQuery } from "../utils/Utils";
 import httpClient from "./httpClient";
-import { DETAIL_BLOG, FOCUS_AREA_DETAIL, GET_MODULES, GET_MODULES_DETAIL, GOVERMENT_DETAIL, LIST_ALL_RESOURCE, LIST_BANNER, LIST_BLOG, LIST_FOCUS_AREA, LIST_GOVERMENT, LIST_MINISTRIES, LIST_PARTNER, LIST_RESOURCE } from "./URLs";
+import { DETAIL_BLOG, FOCUS_AREA_DETAIL, GET_MODULES, GET_MODULES_DETAIL, GOVERMENT_DETAIL, LIST_ALL_RESOURCE, LIST_BANNER, LIST_BLOG, LIST_FOCUS_AREA, LIST_GOVERMENT, LIST_MINISTRIES, LIST_MODULE_BANNER, LIST_PARTNER, LIST_RESOURCE } from "./URLs";
 
 
 export const fetchBanners = async () => {
-    const res = await httpClient.get(LIST_BANNER).then(res => res.data).catch(error => { throw error });
+    const res = await httpClient.get(LIST_MODULE_BANNER + "?category[]=banner").then(res => res.data).catch(error => { throw error });
     return res;
 };
 

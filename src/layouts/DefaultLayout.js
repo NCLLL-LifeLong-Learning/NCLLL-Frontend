@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useRef, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 import HeaderNavigationBar from '../components/NavigationBar/HeaderNavigationBar'
 import { Button, Dropdown, FloatButton, Input } from 'antd'
@@ -26,6 +26,7 @@ import { useQuery } from '@tanstack/react-query'
 import { CACHE_TIME, FOCUS_AREA, MODULES, STALE_TIME } from '../constants/CacheAPI.js'
 import { fetchFocusArea, fetchModules } from '../api/publicRequest.js'
 import _ from 'lodash'
+import BottomMenuDynamicHeight from '../components/NavigationBar/BottomMenuDynamicHeight.js'
 
 export default function DefaultLayout() {
   const { t, i18n } = useTranslation();
@@ -77,7 +78,7 @@ export default function DefaultLayout() {
     {
       link: "#",
       icon: <GlobeSvg className="size-[21px]" />,
-      text: "www.moeys.gov.kh"
+      text: "www.nclll.kh"
     }
   ]
 
@@ -213,7 +214,7 @@ export default function DefaultLayout() {
         className='flex gap-3'
       >
         <AmericanSvg width='20px' height='20px' />
-        {t("English")}
+        {t("language.en")}
       </div>,
       key: 'en',
     },
@@ -223,7 +224,7 @@ export default function DefaultLayout() {
         className='flex gap-3'
       >
         <CambodiaSvg width='20px' height='20px' />
-        {t("ខ្មែរ")}
+        {t("language.kh")}
       </div>,
       key: 'kh',
     },
@@ -237,10 +238,6 @@ export default function DefaultLayout() {
 
   const handleSearch = () => {
     navigate("/resources", { state: { search: search } });
-  }
-
-  const toPage = (link) => {
-    navigate(link);
   }
 
   const openQuickLink = () => {
@@ -281,7 +278,7 @@ export default function DefaultLayout() {
 
       <div className='fixed w-full md:sticky top-0 z-[40] bg-white '>
         <div className='relative'>
-          <div className='bg-white z-[25] relative shadow-md pt-[10px] lg:pt-[0px] pb-[10px]'>
+          <div className='bg-white z-[25] relative shadow-md pt-[5px] pb-[5px]'>
             <div className='std-container'>
               <div className='flex justify-between items-center'>
                 <div className='w-full lg:w-auto flex items-center justify-between lg:justify-start gap-3'>
@@ -329,27 +326,12 @@ export default function DefaultLayout() {
 
           {
             menu.map((item, index) => (
-              <BottomMenu
-                onMouseLeave={() => {
-                  setMenuHover(-1)
-                }}
+              <BottomMenuDynamicHeight
+                setMenuHover={setMenuHover}
                 menuHover={menuHover}
-                value={index}
-                height={260}
-                key={index}
-              >
-                <div className='flex flex-wrap gap-[20px] justify-between items-center h-full'>
-                  {
-                    item.children.map((child, index) => (
-                      <Button key={index} className='truncate w-[calc(100vw/3)] xl:w-[calc(100vw/4)] h-[54px] gap-2 std-menu-link' onClick={() => toPage(child?.link)}>
-                        <span
-                          style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
-                        >{t(child?.title)}</span>
-                      </Button>
-                    ))
-                  }
-                </div>
-              </BottomMenu>
+                index={index}
+                item={item}
+              />
             ))
           }
 

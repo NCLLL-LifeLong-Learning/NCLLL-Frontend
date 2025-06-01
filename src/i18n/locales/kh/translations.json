@@ -4,7 +4,7 @@
 
   "Hello World": "Hello World",
   "quick_link": "Quick Link",
-  "ខ្មែរ": "ខ្មែរ",
+  "language.kh": "ខ្មែរ",
   "english": "English",
   "home": "Home",
   "Governing Detail": "ប្រវត្តិរូបលម្អិត",
@@ -38,7 +38,7 @@
   "possible_area_of_collaboration": "តំបន់ដែលអាចធ្វើបាននៃកិច្ចសហប្រតិបត្តិការ",
   "describ_scope_of_work": "ពិពណ៌នាអំពីវិសាលភាពនៃការងារ",
   "submit": "ដាក់ស្នើ",
-  "English": "អង់គ្លេស",
+  "language.en": "អង់គ្លេស",
   "Program": "កម្មវិធី",
   "National Lifelong Learning Forum": "វេទិកាសិក្សាពេញមួយជីវិតជាតិ",
   "Cambodia's Skill Gap: Challenges and Opportunities in Lifelong Learning": "គម្លាតជំនាញរបស់កម្ពុជា៖ បញ្ហាប្រឈម និងឱកាសក្នុងការសិក្សាពេញមួយជីវិត",

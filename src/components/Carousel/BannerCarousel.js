@@ -1,4 +1,4 @@
-import { Carousel, Skeleton } from 'antd'
+import { Button, Carousel, Skeleton } from 'antd'
 import React, { useMemo } from 'react'
 import { antdResponsive } from '../../utils/Utils';
 import { useQuery } from '@tanstack/react-query';
@@ -15,7 +15,7 @@ export default function BannerCarousel() {
     const dataSource = useMemo(() => {
         let res = data;
         if (res?.code === 200 && !isLoading) {
-            return [...res?.data];
+            return [...res?.data?.results || []];
         } else {
             return [
                 // {
@@ -68,9 +68,14 @@ export default function BannerCarousel() {
                         ))
                         :
                         dataSource.map(data => (
-                            <div className='px-[5px] md:px-[15px]'>
+                            <div className='px-[5px] md:px-[15px] relative'>
                                 <div className='custom-blur'>
-                                    <img className="std-banner-image" src={data.imageUrl} alt={data.imageUrl} />
+                                    <img className="std-banner-image" src={data.cover} alt={data.cover} />
+                                </div>
+                                <div className='absolute top-[85%] w-full flex justify-center z-[5]'>
+                                    <Button>
+                                        Qucik Link
+                                    </Button>
                                 </div>
                             </div>
                         ))

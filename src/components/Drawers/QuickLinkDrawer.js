@@ -140,11 +140,11 @@ function QuickLinkDrawer(props, ref) {
             <div className='p-[10px] lg:p-[20px]'>
 
                 <div className='relative gap-3 flex-col lg:flex-row flex items-start justify-between'>
-                    <div className='flex-col text-center md:text-start md:flex-row w-full lg:w-auto flex items-center justify-between lg:justify-start gap-3'>
+                    <div className='flex-col text-center md:text-start md:flex-row w-full lg:w-auto flex items-center justify-start gap-3'>
                         <img onClick={() => navigate("/")} className='cursor-pointer max-w-none object-cover size-[50px] lg:size-[90px] rounded-full' src='/logo.jpg' alt='logo' />
                         <div onClick={() => navigate("/")} className='cursor-pointer flex flex-col gap-2 justify-center'>
-                            <div className='text-[12px] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                            <div className='text-[12.5px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                            <div className='text-[12px] lg:text-[16px] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
+                            <div className='text-[12.5px] lg:text-[16.5px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                         </div>
                     </div>
                     <div className='flex-col lg:flex-row w-full lg:w-auto flex justify-center md:justify-start items-center md:items-start gap-3'>
@@ -152,11 +152,6 @@ function QuickLinkDrawer(props, ref) {
                             <Button type='link' onClick={() => onChangeLang("kh")} icon={<CambodiaSvg width='20px' height='20px' />} />
                             <Button type='link' onClick={() => onChangeLang("en")} icon={<AmericanSvg width='20px' height='20px' />} />
                         </div>
-
-                        <div className='flex lg:hidden gap-3'>
-                            <Input.Search value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} onSearch={handleSearch} />
-                        </div>
-
                         <Button className='absolute lg:relative top-0 right-0' onClick={onClose} shape='circle' icon={<IoMdClose className="text-[20px]" />} />
                     </div>
                 </div>
@@ -164,9 +159,6 @@ function QuickLinkDrawer(props, ref) {
 
                 <div className='py-[40px]'>
                     <Tabs
-                        tabBarExtraContent={<div className='hidden lg:flex gap-3'>
-                            <Input.Search value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} onSearch={handleSearch}  />
-                        </div>}
                         defaultActiveKey="1"
                         tabPosition="top"
                         style={{ height: 220 }}
