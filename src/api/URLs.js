@@ -1,5 +1,7 @@
 export const LIST_BANNER = "/banners";
 
+export const LIST_MODULE_BANNER = "/blogs";
+
 export const LIST_MINISTRIES = "/ministries";
 
 export const LIST_ALL_RESOURCE = "/resources/all";
