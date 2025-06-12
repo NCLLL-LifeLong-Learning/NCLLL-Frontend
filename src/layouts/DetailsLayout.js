@@ -150,7 +150,7 @@ export default function DetailsLayout() {
             </div>
             <div className='relative grid grid-cols-12 gap-4'>
                 <FloatButton
-                    rootClassName='xl:hidden esi-floating-buger'
+                    rootClassName='lg:hidden esi-floating-buger'
                     onClick={() => setBurger(!burger)}
                     icon={burger ? <IoMdClose className="text-white text-[20px]" /> : <ExpandSvg color='white' />}
                     style={{ left: 10, bottom: 40, backgroundColor: "var(--primary-color)" }}

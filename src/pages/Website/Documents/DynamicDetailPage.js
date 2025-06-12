@@ -9,12 +9,13 @@ import { LanguageContext } from '../../../i18n/LanguageProvider';
 import { Divider, Skeleton } from 'antd';
 
 export default function DynamicDetailPage(props) {
+    const { typeBlog } = props;
     const { t } = useTranslation();
     const { id } = useParams();
     const { lang } = useContext(LanguageContext);
 
     const { data, isLoading } = useQuery({
-        queryKey: [BLOGS, id],
+        queryKey: typeBlog ? [typeBlog, BLOGS, id] : [BLOGS, id],
         queryFn: () => fetchBlogsDetail(id),
         staleTime: STALE_TIME,
         cacheTime: CACHE_TIME,

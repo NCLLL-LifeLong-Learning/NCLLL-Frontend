@@ -4,7 +4,7 @@ import { DETAIL_BLOG, FOCUS_AREA_DETAIL, GET_MODULES, GET_MODULES_DETAIL, GOVERM
 
 
 export const fetchBanners = async () => {
-    const res = await httpClient.get(LIST_MODULE_BANNER + "?category[]=banner").then(res => res.data).catch(error => { throw error });
+    const res = await httpClient.get(LIST_MODULE_BANNER + "?category[]=banner&limit=1000").then(res => res.data).catch(error => { throw error });
     return res;
 };
 

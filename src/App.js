@@ -27,6 +27,7 @@ const EngagementPage = React.lazy(() => import('./pages/Website/Program/Engageme
 const LifelongLearningForAllPage = React.lazy(() => import('./pages/Website/FocusArea/LifelongLearningForAll'));
 
 const DynamicDetailPage = React.lazy(() => import('./pages/Website/Documents/DynamicDetailPage'));
+const DetailPageContainer = React.lazy(() => import('./pages/DetailPageContainer'));
 
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
 
@@ -37,6 +38,10 @@ function App() {
         {/* Website */}
         <Route element={<Suspense><WebDefaultLayout /></Suspense>}>
           <Route path='/' element={<Suspense><WebHomePage /></Suspense>} />
+          
+          <Route element={<Suspense><DetailPageContainer /></Suspense>}>
+            <Route path='blog/:id' element={<Suspense><DynamicDetailPage typeBlog={MODULES_TYPE.BANNER} /></Suspense>} />
+          </Route>
 
           <Route element={<Suspense><WebDetailsLayout /></Suspense>}>
 
@@ -57,15 +62,15 @@ function App() {
             </Route>
 
             <Route path='/program' element={<GuardLayout description={program.description} title={program.title} route={program.route} />}>
-              <Route path='engagement' element={<Suspense><EngagementPage /></Suspense>} />
+              <Route path='engagement' element={<Suspense><EngagementPage blog /></Suspense>} />
 
-              <Route path=':id' element={<Suspense><DynamicModulePage module={MODULES_TYPE.PROGRAM} /></Suspense>} />
+              <Route path=':id' element={<Suspense><DynamicModulePage module={MODULES_TYPE.PROGRAM} blog /></Suspense>} />
             </Route>
 
             <Route path='/focus-area' element={<GuardLayout description={focusArea.description} title={focusArea.title} route={focusArea.route} />}>
               <Route index path='all' element={<Suspense><LifelongLearningForAllPage /></Suspense>} />
 
-              <Route path=':id' element={<Suspense><DynamicModulePage module={MODULES_TYPE.FOCUS_AREA}  /></Suspense>} />
+            <Route path=':id' element={<Suspense><DynamicModulePage module={MODULES_TYPE.FOCUS_AREA} blog /></Suspense>} />
             </Route>
 
             <Route path='/resources' element={<GuardLayout description={resources.description} title={resources.title} route={resources.route} />}>

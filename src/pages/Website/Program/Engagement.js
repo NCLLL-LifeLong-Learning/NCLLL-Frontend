@@ -10,10 +10,12 @@ import { MODULES_SUB_TYPE, MODULES_TYPE } from "../../../constants/Bridge";
 import { LanguageContext } from "../../../i18n/LanguageProvider";
 import { Skeleton } from "antd";
 import TextEditor from "../../../components/TextEditor/TextEditor";
+import ModuleBlogComponent from "../../ModuleBlogComponent";
 
 const tabs = ["Voluntary", "Fellowship", "Consultant", "Exchange Program", "Partners", "Advisor"];
 
-export default function Engagement() {
+export default function Engagement(props) {
+   const { blog } = props;
    const { t } = useTranslation();
    const { lang } = useContext(LanguageContext);
    const location = useLocation();
@@ -143,6 +145,14 @@ export default function Engagement() {
 
             </div>
          </div>
+
+
+         {
+            blog &&
+            <div className='py-[20px'>
+               <ModuleBlogComponent moduleId={activeTab} />
+            </div>
+         }
       </div>
    )
 }

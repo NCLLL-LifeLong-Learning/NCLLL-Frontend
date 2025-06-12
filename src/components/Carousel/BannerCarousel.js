@@ -3,8 +3,10 @@ import React, { useMemo } from 'react'
 import { antdResponsive } from '../../utils/Utils';
 import { useQuery } from '@tanstack/react-query';
 import { fetchBanners } from '../../api/publicRequest';
+import { useNavigate } from 'react-router';
 
 export default function BannerCarousel() {
+    const navigate = useNavigate();
     const { data, isLoading } = useQuery({
         queryKey: ["banners"],
         queryFn: fetchBanners,
@@ -30,6 +32,10 @@ export default function BannerCarousel() {
         }
     }, [data, isLoading])
 
+    const navigateDetail = (record) => {
+        navigate(`/blog/${record?._id}`);
+    }
+
     return (
         <div className='pb-[40px]'>
             <Carousel
@@ -45,7 +51,7 @@ export default function BannerCarousel() {
                     }
                 })}
                 rootClassName='root-banner-carousel'
-                autoplay
+                // autoplay
                 swipeToSlide
                 draggable
                 slidesToShow={1}
@@ -72,8 +78,8 @@ export default function BannerCarousel() {
                                 <div className='custom-blur'>
                                     <img className="std-banner-image" src={data.cover} alt={data.cover} />
                                 </div>
-                                <div className='absolute top-[85%] w-full flex justify-center z-[5]'>
-                                    <Button>
+                                <div className='absolute bottom-[25px] w-full flex justify-center z-[5]'>
+                                    <Button className='std-btn' onClick={() => navigateDetail(data)}>
                                         Qucik Link
                                     </Button>
                                 </div>

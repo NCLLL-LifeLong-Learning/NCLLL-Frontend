@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react'
-import { Outlet, useLocation, useOutletContext, useParams } from 'react-router'
+import React, { useContext, useEffect, useMemo } from 'react'
+import { Outlet, useLocation, useOutletContext } from 'react-router'
 import { Divider } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
-import { CACHE_TIME, FOCUS_AREA, MODULES, STALE_TIME } from '../constants/CacheAPI';
-import { fetchFocusArea, fetchFocusAreaDetail, fetchModules } from '../api/publicRequest';
+import { CACHE_TIME, MODULES, STALE_TIME } from '../constants/CacheAPI';
+import { fetchModules } from '../api/publicRequest';
 import { LanguageContext } from '../i18n/LanguageProvider';
 import _ from 'lodash';
+import ResourcePage from '../pages/Website/Documents/ResourcePage';
 
 export default function GuardLayout(props) {
     const { t } = useTranslation();

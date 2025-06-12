@@ -6,10 +6,9 @@ import { LanguageContext } from '../../i18n/LanguageProvider';
 import { useQuery } from '@tanstack/react-query';
 import { CACHE_TIME, STALE_TIME } from '../../constants/CacheAPI';
 import { fetchModulesDetail } from '../../api/publicRequest';
-import ModuleBlogComponent from '../ModuleBlogComponent';
 
-export default function DynamicModulePage(props) {
-  const { module, blog } = props;
+export default function DynamicBlogPage(props) {
+  const { module } = props;
   const { id } = useParams();
   const { lang } = useContext(LanguageContext);
 
@@ -36,13 +35,6 @@ export default function DynamicModulePage(props) {
         <Skeleton.Input active className='!h-[80vh] !w-full' />
         :
         <TextEditor jsonData={(dataSource && dataSource[lang]?.document?.content) || {}} />
-      }
-
-      {
-        blog &&
-        <div className='py-[20px'>
-          <ModuleBlogComponent moduleId={id} />
-        </div>
       }
     </div>
   )
