@@ -1,11 +1,68 @@
-import { Button, Divider } from 'antd';
-import React, { useState } from 'react'
-import { useOutletContext } from 'react-router';
+import { Button, Col, Image, Row, Skeleton } from 'antd';
+import React, { useContext, useMemo, useState } from 'react'
 import { BASE_ASSET_URL } from "../../../constants/Url";
 import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
+import { CACHE_TIME, SGLLL_TREE, STALE_TIME } from '../../../constants/CacheAPI';
+import { fetchSglllTree } from '../../../api/publicRequest';
+import { LanguageContext } from '../../../i18n/LanguageProvider';
 
 export default function SecretariatGeneralOfNLLL() {
   const { t } = useTranslation();
+  const { lang } = useContext(LanguageContext);
+  const [loading, setLoading] = useState({
+    downloadLoading: false
+  });
+
+  const [noTermAvailable, setNoTermAvailable] = useState(false);
+  const [selectedTerm, setSelectedTerm] = useState(null);
+  const { data, isLoading } = useQuery({
+    queryKey: [SGLLL_TREE],
+    queryFn: fetchSglllTree,
+    staleTime: STALE_TIME,
+    cacheTime: CACHE_TIME,
+  });
+  // const isLoading = true
+
+  const dataSource = useMemo(() => {
+    const res = data;
+    if (res?.code === 200 && !isLoading) {
+      const termData = res?.data?.data;
+      if (termData?.length === 0) {
+        setNoTermAvailable(true);
+      } else {
+        setSelectedTerm(termData[termData.length - 1]);
+        setNoTermAvailable(false);
+        return [...res?.data?.data];
+      }
+    } else {
+      setNoTermAvailable(false);
+      return Array.from({ length: 4 }, (_, index) => ({
+        skeleton: true,
+      }));
+    }
+  }, [data, isLoading])
+
+  const handleDownload = async () => {
+    if (!selectedTerm?.[`image_url_${lang}`]) return;
+
+    try {
+      setLoading(pre => ({ ...pre, downloadLoading: true }))
+      const link = document.createElement('a');
+      link.href = selectedTerm?.[`image_url_${lang}`];
+      link.download = 'nclll_tree_image_terms_' + selectedTerm?.term + '.jpg';
+      link.target = '_blank'; // Optional: open in new tab if needed
+      link.rel = 'noopener noreferrer';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error('Download failed:', error);
+    } finally {
+      setLoading(pre => ({ ...pre, downloadLoading: false }))
+    }
+  };
+
 
   return (
     <div className='flex flex-col gap-[30px]'>
@@ -16,42 +73,62 @@ export default function SecretariatGeneralOfNLLL() {
       <div className='text-center' style={{ color: "var(--primary-color)", fontWeight: 600 }}>
         {t("The Structure of Secretariat General of NLLL are as follow :")}
       </div>
-      <div className='flex justify-between px-[10px] md:px-[40px]'>
-        <Button className='std-btn !px-[10px] md:!px-[60px]'>{t("6th Term")}</Button>
-        <Button className='std-btn !px-[10px] md:!px-[60px]'>{t("7th Term")}</Button>
-        <Button className='std-btn !px-[10px] md:!px-[60px]'>{t("8th Term")}</Button>
-      </div>
-      <div className='flex-col-center pb-[30px] gap-[10px]'>
-        <div className='p-[20px] w-fit rounded-lg' style={{ background: "var(--chairman-background)" }}>
-          <img className='rounded-lg' src={BASE_ASSET_URL + "/NCLLL-ChairMan.png"} alt='Chair Man Picutre' />
-        </div>
-        <div className='w-[90%] select-none'>
-          <img className="w-full select-none" src={BASE_ASSET_URL + '/ArrowImage.png'} alt='Arrow Image' />
-        </div>
-        <div className='flex justify-between w-full py-[15px]'>
-          <div className='mission-content px-[10px] md:px-[40px] py-[5px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-            {t("Text Name")}
-          </div>
-          <div className='mission-content px-[10px] md:px-[40px] py-[5px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-            {t("Text Name")}
-          </div>
-          <div className='mission-content px-[10px] md:px-[40px] py-[5px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-            {t("Text Name")}
-          </div>
-        </div>
 
-        <div className='flex flex-col w-full gap-[30px] pt-[20px]'>
-          <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-            {t("The Secretariat of the NEC has the following functions and responsibilities:")}
-          </div>
-          <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-            {t("The policy section has the following responsibilities:")}
-          </div>
-          <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-            {t("The policy section has the following responsibilities:")}
+      {
+        !noTermAvailable &&
+        <div className='flex justify-center w-100 px-[10px] md:px-[40px]'>
+          <Row gutter={[20, 20]} style={{ justifyContent: "space-between", width: "100%" }}>
+            {
+              dataSource.map(item => <Col className='flex justify-center' span={24} sm={12} md={8} lg={6} xl={3}>
+                {
+                  isLoading && item?.skeleton ?
+                    <Skeleton.Button active className='!w-[150px]' />
+                    :
+                    <Button className='std-btn !px-[60px]' onClick={() => setSelectedTerm(item)}>{t(item?.term + "th Term")}</Button>
+                }
+              </Col>)
+            }
+          </Row>
+        </div>
+      }
+      {
+        !noTermAvailable &&
+        <div className='flex flex-col items-center pb-[30px] gap-[10px]'>
+          {
+            isLoading && !selectedTerm ?
+              <Skeleton.Image active
+                className='!aspect-video !object-contain !w-full !h-full'
+                rootClassName='!w-full !max-w-[1000px]'
+              />
+              :
+              <Image
+                src={selectedTerm?.[`image_url_${lang}`]}
+                alt={"term " + selectedTerm?.term}
+                rootClassName='w-full max-w-[1000px]'
+                className='!aspect-video object-contain'
+              />
+          }
+
+          {
+            isLoading && !selectedTerm ?
+              <Skeleton.Button active className='!w-[150px]' />
+              :
+              <Button loading={loading?.downloadLoading} className='std-btn' onClick={handleDownload}>Download Tree</Button>
+          }
+
+          <div className='flex flex-col w-full gap-[30px] pt-[20px]'>
+            <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+              {t("The Secretariat of the NEC has the following functions and responsibilities:")}
+            </div>
+            <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+              {t("The policy section has the following responsibilities:")}
+            </div>
+            <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+              {t("The policy section has the following responsibilities:")}
+            </div>
           </div>
         </div>
-      </div>
+      }
     </div>
   )
 }

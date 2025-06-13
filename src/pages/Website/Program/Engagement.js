@@ -41,12 +41,33 @@ export default function Engagement(props) {
    const tabMenu = useMemo(() => {
       let res = tabData;
       if (res?.code === 200 && !isTabLoading) {
-         setActiveTab(res?.data?.results[0]?._id);
-         return [...res?.data?.results];
+         if (res?.data?.results.length === 0) {
+            setActiveTab(null);
+            return [
+               {
+                  en: {
+                     title: "Partners"
+                  },
+                  kh: {
+                     title: "Partners"
+                  }
+               }
+            ]
+         } else {
+            setActiveTab(res?.data?.results[0]?._id);
+            return [...res?.data?.results];
+         }
       } else {
-         return Array.from({ length: 10 }, (_, index) => ({
-            skeleton: true,
-         }))
+         return [
+            {
+               en: {
+                  title: "Partners"
+               },
+               kh: {
+                  title: "Partners"
+               }
+            }
+         ]
       }
    }, [tabData, isTabLoading])
 
@@ -142,7 +163,6 @@ export default function Engagement(props) {
                      </div>
                   }
                </div>
-
             </div>
          </div>
 

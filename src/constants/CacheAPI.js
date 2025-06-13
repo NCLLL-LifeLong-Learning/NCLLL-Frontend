@@ -6,6 +6,7 @@ export const MINISTRIES = "ministries";
 export const BLOGS = "blogs";
 export const RESOURCES = "resources";
 export const GOVERMENT = "goverment";
+export const SGLLL_TREE = "sglll-tree";
 
 export const PARTNERS = "partners";
 export const FOCUS_AREA = "focus_area";

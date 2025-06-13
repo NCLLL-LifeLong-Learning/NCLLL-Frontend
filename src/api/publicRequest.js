@@ -1,6 +1,6 @@
 import { objectToQuery } from "../utils/Utils";
 import httpClient from "./httpClient";
-import { DETAIL_BLOG, FOCUS_AREA_DETAIL, GET_MODULES, GET_MODULES_DETAIL, GOVERMENT_DETAIL, LIST_ALL_RESOURCE, LIST_BANNER, LIST_BLOG, LIST_FOCUS_AREA, LIST_GOVERMENT, LIST_MINISTRIES, LIST_MODULE_BANNER, LIST_PARTNER, LIST_RESOURCE } from "./URLs";
+import { DETAIL_BLOG, FOCUS_AREA_DETAIL, GET_MODULES, GET_MODULES_DETAIL, GOVERMENT_DETAIL, LIST_ALL_RESOURCE, LIST_BANNER, LIST_BLOG, LIST_FOCUS_AREA, LIST_GOVERMENT, LIST_MINISTRIES, LIST_MODULE_BANNER, LIST_PARTNER, LIST_RESOURCE, SGLLL_TREE } from "./URLs";
 
 
 export const fetchBanners = async () => {
@@ -66,5 +66,10 @@ export const fetchGovermentDetail = async (id) => {
 
 export const fetchGoverments = async () => {
     const res = await httpClient.get(LIST_GOVERMENT).then(res => res.data).catch(error => { throw error });
+    return res;
+};
+
+export const fetchSglllTree = async () => {
+    const res = await httpClient.get(SGLLL_TREE + "?limit=1000").then(res => res.data).catch(error => { throw error });
     return res;
 };

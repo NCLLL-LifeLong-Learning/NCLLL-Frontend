@@ -152,6 +152,11 @@ function QuickLinkDrawer(props, ref) {
                             <Button type='link' onClick={() => onChangeLang("kh")} icon={<CambodiaSvg width='20px' height='20px' />} />
                             <Button type='link' onClick={() => onChangeLang("en")} icon={<AmericanSvg width='20px' height='20px' />} />
                         </div>
+
+                        <div className='flex lg:hidden gap-3'>
+                            <Input.Search value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} onSearch={handleSearch} />
+                        </div>
+
                         <Button className='absolute lg:relative top-0 right-0' onClick={onClose} shape='circle' icon={<IoMdClose className="text-[20px]" />} />
                     </div>
                 </div>
@@ -159,6 +164,9 @@ function QuickLinkDrawer(props, ref) {
 
                 <div className='py-[40px]'>
                     <Tabs
+                        tabBarExtraContent={<div className='hidden lg:flex gap-3'>
+                            <Input.Search value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} onSearch={handleSearch} />
+                        </div>}
                         defaultActiveKey="1"
                         tabPosition="top"
                         style={{ height: 220 }}

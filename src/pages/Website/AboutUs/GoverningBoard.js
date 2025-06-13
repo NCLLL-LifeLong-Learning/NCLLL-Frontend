@@ -33,7 +33,7 @@ export default function GoverningBoard() {
   }, [data, isLoading])
 
   const goToDetail = (record) => {
-    navigate("/about-us/board/" + record._id);
+    // navigate("/about-us/board/" + record._id);
   }
 
   return (

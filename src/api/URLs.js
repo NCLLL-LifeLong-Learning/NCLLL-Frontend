@@ -27,3 +27,5 @@ export const FOCUS_AREA_DETAIL = "/focus-areas/:id";
 export const GET_MODULES = "/modules";
 
 export const GET_MODULES_DETAIL = "/modules/:id";
+
+export const SGLLL_TREE = "/sglll-tree";

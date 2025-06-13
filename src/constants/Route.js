@@ -3,34 +3,6 @@ export const program = {
     description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
     route: [
         {
-            title: 'National Lifelong Learning Forum',
-            label: 'National Lifelong Learning Forum',
-            key: 'National Lifelong Learning Forum',
-            path: "/program/forum",
-            children: []
-        },
-        {
-            title: "Lifelong Learning Center",
-            label: 'Lifelong Learning Center',
-            key: "Lifelong Learning Center",
-            path: "/program/center",
-            children: [],
-        },
-        {
-            title: "Lifelong Learning Club",
-            label: "Lifelong Learning Club",
-            key: "Lifelong Learning Club",
-            path: "/program/club",
-            children: [],
-        },
-        {
-            title: "Lifelong Learning City",
-            label: "Lifelong Learning City",
-            key: "Lifelong Learning City",
-            path: "/program/city",
-            children: [],
-        },
-        {
             title: "Engagement",
             label: "Engagement",
             key: "Engagement",

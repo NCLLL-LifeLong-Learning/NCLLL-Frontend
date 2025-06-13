@@ -33,25 +33,25 @@ export default function RosourceTypeDetail(props) {
             <div className='col-span-3 flex flex-col gap-3 justify-center flex-1'>
                 <div className='text-xl truncate' style={{ color: "var(--primary-color)" }}>{data[lang]?.title || "N/A"}</div>
                 <div className='flex-wrap flex items-center gap-3'>
-                    <div className='flex gap-1 items-center'>
+                    <div className='flex gap-1 items-center truncate'>
                         <div className='text-md font-bold'>{t("Source")}</div>
                         <div>:</div>
                         <span style={{ textWrap: "nowrap" }}>{(data.source && data?.source[lang]?.name) || "N/A"}</span>
                     </div>
                     -
-                    <div className='flex gap-1 items-center'>
+                    <div className='flex gap-1 items-center truncate'>
                         <div className='text-md font-bold'>{t("Tags")}</div>
                         <div>:</div>
                         <span style={{ textWrap: "nowrap" }}>{getTags()}</span>
                     </div>
                     -
-                    <div className='flex gap-1 items-center'>
+                    <div className='flex gap-1 items-center truncate'>
                         <div className='text-md font-bold'>{t("Published")}</div>
                         <div>:</div>
                         <span>{dayjs(data.publishedTS).format("DD/MM/YYYY")}</span>
                     </div>
                     -
-                    <div className='flex gap-1 items-center'>
+                    <div className='flex gap-1 items-center truncate'>
                         <div className='text-md font-bold'>{t("Lan")}</div>
                         <div>:</div>
                         <span>{String(lang).toUpperCase()}</span>

@@ -18,7 +18,7 @@ const KeyFunctionsPage = React.lazy(() => import('./pages/Website/AboutUs/KeyFun
 const MissionAndVisionPage = React.lazy(() => import('./pages/Website/AboutUs/MissionAndVision'));
 const MemberMinistriesPage = React.lazy(() => import('./pages/Website/AboutUs/MemberMinistries'));
 const GoverningBoardPage = React.lazy(() => import('./pages/Website/AboutUs/GoverningBoard'));
-const GoverningDetailPage = React.lazy(() => import('./pages/Website/AboutUs/GoverningDetail'));
+// const GoverningDetailPage = React.lazy(() => import('./pages/Website/AboutUs/GoverningDetail'));
 const ContactUsPage = React.lazy(() => import('./pages/Website/AboutUs/ContactUs'));
 const SecretariatGeneralOfNLLLPage = React.lazy(() => import('./pages/Website/AboutUs/SGLLL'));
 
@@ -54,7 +54,7 @@ function App() {
 
               <Route path='board' element={<Suspense><GoverningBoardPage /></Suspense>} />
 
-              <Route path='board/:id' element={<Suspense><GoverningDetailPage /></Suspense>} />
+              {/* <Route path='board/:id' element={<Suspense><GoverningDetailPage /></Suspense>} /> */}
 
               <Route path='sglll' element={<Suspense><SecretariatGeneralOfNLLLPage /></Suspense>} />
 
