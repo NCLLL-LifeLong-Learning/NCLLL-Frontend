@@ -8,6 +8,8 @@ export const LIST_ALL_RESOURCE = "/resources/all";
 
 export const LIST_RESOURCE = "/resources";
 
+export const DOWNLOAD_RESOURCE = "/resources/download";
+
 export const LIST_BLOG = "/blogs";
 
 export const DETAIL_BLOG = "/blogs/:id";

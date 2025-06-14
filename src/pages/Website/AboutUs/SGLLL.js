@@ -22,7 +22,6 @@ export default function SecretariatGeneralOfNLLL() {
     staleTime: STALE_TIME,
     cacheTime: CACHE_TIME,
   });
-  // const isLoading = true
 
   const dataSource = useMemo(() => {
     const res = data;
@@ -30,6 +29,7 @@ export default function SecretariatGeneralOfNLLL() {
       const termData = res?.data?.data;
       if (termData?.length === 0) {
         setNoTermAvailable(true);
+        return [];
       } else {
         setSelectedTerm(termData[termData.length - 1]);
         setNoTermAvailable(false);
@@ -75,11 +75,18 @@ export default function SecretariatGeneralOfNLLL() {
       </div>
 
       {
+        noTermAvailable &&
+        <h1 className='text-3xl text-center'>
+          {t("No Info available to views")}
+        </h1>
+      }
+
+      {
         !noTermAvailable &&
         <div className='flex justify-center w-100 px-[10px] md:px-[40px]'>
           <Row gutter={[20, 20]} style={{ justifyContent: "space-between", width: "100%" }}>
             {
-              dataSource.map(item => <Col className='flex justify-center' span={24} sm={12} md={8} lg={6} xl={3}>
+              dataSource?.map(item => <Col className='flex justify-center' span={24} sm={12} md={8} lg={6} xl={3}>
                 {
                   isLoading && item?.skeleton ?
                     <Skeleton.Button active className='!w-[150px]' />

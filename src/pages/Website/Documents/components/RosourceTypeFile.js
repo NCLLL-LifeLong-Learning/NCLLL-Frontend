@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { LanguageContext } from '../../../../i18n/LanguageProvider';
 import { FaLayerGroup } from 'react-icons/fa';
 import httpClient from '../../../../api/httpClient';
+import { DOWNLOAD_RESOURCE } from '../../../../api/URLs';
 
 export default function RosourceType(props) {
     const { record } = props;
@@ -14,17 +15,15 @@ export default function RosourceType(props) {
     const [open, setOpen] = useState(false);
     const data = record?.originalItem ? record?.originalItem : record;
 
-    const handleDownload = async (record) => {
+    const handleDownload = async (fileRecord) => {
         try {
-            const { data } = await httpClient.get(`${record._id}`);
-
-            if (!data?.file) {
-                console.error('No file URL returned from API.');
-                return;
+            const res = await httpClient.post(DOWNLOAD_RESOURCE + `/${data?._id}/${fileRecord._id}`);
+            if (res?.status !== 200) {
+                throw Error("Interal Server Error");
             }
 
             const link = document.createElement('a');
-            link.href = data.file; // This should be a full URL (e.g., https://yourdomain.com/files/file.pdf)
+            link.href = fileRecord?.url; // This should be a full URL (e.g., https://yourdomain.com/files/file.pdf)
             link.download = ''; // Optional: provide a name like 'myfile.pdf'
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
@@ -36,6 +35,11 @@ export default function RosourceType(props) {
             console.error('Download failed:', error);
         }
     };
+
+    function getFileTypeFromUrl(url) {
+        const extension = url.split('.').pop().toLowerCase();
+        return extension.toUpperCase(); // e.g., "pdf" → "PDF"
+    }
 
     return (
         <div className='grid grid-cols-3 md:flex px-[10px] md:px-[20px] gap-[10px] md:gap-[20px] w-full items-center justify-between py-[20px] ring rounded-lg'>
@@ -65,7 +69,7 @@ export default function RosourceType(props) {
                 </div>
             </div>
             <div className='col-span-3 h-fit flex-center'>
-                <Badge count={record?.file?.length || 1}>
+                <Badge count={data?.file?.length || 0}>
                     <Button
                         type='link'
                         icon={<FaLayerGroup color='black' className="size-[25px]" />}
@@ -84,26 +88,24 @@ export default function RosourceType(props) {
                 <div>
                     <Table
                         bordered
+                        scroll={{ x: 600 }}
                         columns={[
                             {
-                                title: 'Filename',
-                                dataIndex: 'filename',
-                                key: 'filename',
-                            },
-                            {
-                                title: 'Page',
-                                dataIndex: 'page',
-                                key: 'page',
+                                title: 'File Name',
+                                dataIndex: 'file_name',
+                                key: 'file_name',
                             },
                             {
                                 title: 'File Type',
-                                dataIndex: 'fileType',
-                                key: 'fileType',
+                                dataIndex: 'url',
+                                key: 'url',
+                                render: (text) => getFileTypeFromUrl(text) || "Unknown"
                             },
                             {
-                                title: 'View',
-                                dataIndex: 'view',
-                                key: 'view',
+                                title: 'View / Download',
+                                dataIndex: 'download_count',
+                                key: 'download_count',
+                                render: (text) => text || 0
                             },
                             {
                                 title: "Action",
@@ -112,16 +114,9 @@ export default function RosourceType(props) {
                                 render: (item, record) => <Button type='link' icon={<DownloadSvg color='black' className="size-[25px]" />} onClick={() => handleDownload(record)} />
                             },
                         ]}
-                        dataSource={record?.file}
+                        dataSource={data?.file || []}
                     />
                 </div>
-                {/* <Descriptions>
-                    <Descriptions.Item label="File name">
-                        {record?.filename || "N/A"}
-                    </Descriptions.Item>
-                    <Button type='link' icon={<DownloadSvg color='black' className="size-[25px]" />} onClick={() => handleDownload(record)} />
-                </Descriptions> */}
-
             </Modal>
         </div>
     )

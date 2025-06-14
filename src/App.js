@@ -38,7 +38,7 @@ function App() {
         {/* Website */}
         <Route element={<Suspense><WebDefaultLayout /></Suspense>}>
           <Route path='/' element={<Suspense><WebHomePage /></Suspense>} />
-          
+
           <Route element={<Suspense><DetailPageContainer /></Suspense>}>
             <Route path='blog/:id' element={<Suspense><DynamicDetailPage typeBlog={MODULES_TYPE.BANNER} /></Suspense>} />
           </Route>
@@ -70,7 +70,7 @@ function App() {
             <Route path='/focus-area' element={<GuardLayout description={focusArea.description} title={focusArea.title} route={focusArea.route} />}>
               <Route index path='all' element={<Suspense><LifelongLearningForAllPage /></Suspense>} />
 
-            <Route path=':id' element={<Suspense><DynamicModulePage module={MODULES_TYPE.FOCUS_AREA} blog /></Suspense>} />
+              <Route path=':id' element={<Suspense><DynamicModulePage module={MODULES_TYPE.FOCUS_AREA} blog /></Suspense>} />
             </Route>
 
             <Route path='/resources' element={<GuardLayout description={resources.description} title={resources.title} route={resources.route} />}>

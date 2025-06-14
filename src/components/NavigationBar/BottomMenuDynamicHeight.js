@@ -20,11 +20,7 @@ export default function BottomMenuDynamicHeight(props) {
 
         // Initial height set
         setHeight(element.offsetHeight);
-        console.log("item =", item);
-        console.log("element.offsetHeight =", element.offsetHeight);
     }, [menuHover]);
-
-    console.log("height = ", height);
 
     const toPage = (link) => {
         navigate(link);

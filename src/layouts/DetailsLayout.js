@@ -25,7 +25,6 @@ export default function DetailsLayout() {
     const [burger, setBurger] = useState(false);
 
     const handleChildAction = (message) => {
-        console.log("Message from child:", message);
         alert(`Received from child: ${message}`);
     };
 
