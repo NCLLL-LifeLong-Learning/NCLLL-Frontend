@@ -1,14 +1,11 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LanguageContext } from '../i18n/LanguageProvider';
-import { useQuery } from '@tanstack/react-query';
 import httpClient from '../api/httpClient';
 import { Result, Spin } from 'antd';
 import { debounce } from 'lodash';
 
 const MaintenanceWrapper = ({ children }) => {
   const { t } = useTranslation();
-  const { lang } = useContext(LanguageContext);
   const [isMaintenance, setIsMaintenance] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +13,6 @@ const MaintenanceWrapper = ({ children }) => {
     await httpClient.get('/settings')
       .then(response => response.data)
       .then(res => {
-        console.log(res);
         if (res.code === 200) {
           setIsMaintenance(res?.data?.maintenanceMode);
         } else {

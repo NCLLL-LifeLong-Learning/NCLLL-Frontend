@@ -39,23 +39,23 @@ export default function DefaultLayout() {
   const aboutNCLL = [
     {
       text: "Mission and Vision",
-      link: "#",
+      link: "/about-us/mission",
     },
     {
       text: "Key Functions",
-      link: "#",
+      link: "/about-us/key",
     },
     {
       text: "Ministries Partner",
-      link: "#",
+      link: "/about-us/member",
     },
     {
       text: "Governing Board",
-      link: "#",
+      link: "/about-us/board",
     },
     {
       text: "SGLL",
-      link: "#",
+      link: "/about-us/sglll",
     }
   ]
 
