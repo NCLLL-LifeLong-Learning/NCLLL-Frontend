@@ -51,7 +51,7 @@ export default function BannerCarousel() {
                     }
                 })}
                 rootClassName='root-banner-carousel'
-                // autoplay
+                autoplay
                 swipeToSlide
                 draggable
                 slidesToShow={1}
@@ -66,15 +66,15 @@ export default function BannerCarousel() {
                 {
                     isLoading ?
                         Array.from({ length: 3 }, (_, index) => (
-                            <div className='px-[5px] md:px-[15px]'>
+                            <div className='px-[5px] md:px-[15px]' key={index}>
                                 <div className='custom-blur'>
                                     <Skeleton.Image active className="std-banner-image" />
                                 </div>
                             </div>
                         ))
                         :
-                        dataSource.map(data => (
-                            <div className='px-[5px] md:px-[15px] relative'>
+                        dataSource.map((data, index) => (
+                            <div className='px-[5px] md:px-[15px] relative' key={`${data?._id}-${index}`}>
                                 <div className='custom-blur'>
                                     <img className="std-banner-image" src={data.cover} alt={data.cover} />
                                 </div>

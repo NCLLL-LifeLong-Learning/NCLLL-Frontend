@@ -13,7 +13,7 @@ import { RESOURCE_TYPE_VIEW } from '../../../constants/Bridge';
 export default function ResourcePage() {
   const { t } = useTranslation();
   const { lang } = useContext(LanguageContext);
-  const { type } = useParams();
+  const { type, subType } = useParams();
   const typeDetail = Object.keys(RESOURCE_TYPE_VIEW)
   const [searchValue, setSearchValue] = useState("");
   let currentTypes = typeDetail.includes(type) ? { category: [type] } : { type: type };
@@ -28,29 +28,29 @@ export default function ResourcePage() {
   });
 
   const computeQuery = useMemo(() => {
-    if (typeDetail.includes(type)) {
-      return {
-        limit: filter.limit,
-        page: filter.page,
-        lang: lang,
-        category: type === "news" ? [RESOURCE_TYPE_VIEW.event, RESOURCE_TYPE_VIEW.news] : [RESOURCE_TYPE_VIEW.project],
-        year: filter.year,
-        source: filter.source,
-        keyword: filter.keyword
-      };
-    }
-    return {
+    let query = {
       limit: filter.limit,
       page: filter.page,
       lang: lang,
-      type: type,
       year: filter.year,
       source: filter.source,
       keyword: filter.keyword
     };
-  }, [filter])
 
-  const { data: resourceData, isLoading: isResourceLoading } = useQuery({
+    if (subType) {
+      query.sub_type = subType;
+    }
+
+    if (typeDetail.includes(type)) {
+      query.category = type === "news" ? [RESOURCE_TYPE_VIEW.event, RESOURCE_TYPE_VIEW.news] : [RESOURCE_TYPE_VIEW.project]
+    } else {
+      query.type = type;
+    }
+
+    return query;
+  }, [filter, subType, type])
+
+  const { data: resourceData, isLoading: isResourceLoading, refetch } = useQuery({
     queryKey: [typeDetail.includes(type) ? BLOGS : RESOURCES, computeQuery],
     queryFn: () => {
       if (typeDetail.includes(type)) {
@@ -161,6 +161,7 @@ export default function ResourcePage() {
           dataSource={dataSource}
           total={total}
           currentPage={filter.page}
+          refetch={refetch}
           setCurrentPage={(value) => setFilter({ ...filter, page: value })}
         />
       </div>

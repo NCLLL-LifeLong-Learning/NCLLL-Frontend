@@ -1,12 +1,10 @@
 {
-  "The website is under maintenance.": "The website is under maintenance.",
-  "We'll be back soon!": "We'll be back soon!",
+  "maintenance.sub.title": "The website is under maintenance.",
+  "maintenance.title": "We'll be back soon!",
 
-  "Hello World": "Hello World",
-  "quick_link": "Quick Link",
+  "layout.quick_link": "តំណភ្ជាប់រហ័ស",
   "language.kh": "ខ្មែរ",
-  "english": "English",
-  "home": "Home",
+  "language.en": "អង់គ្លេស",
   "Governing Detail": "ប្រវត្តិរូបលម្អិត",
   "Current job": "ការងារបច្ចុប្បន្ន",
   "Name": "ឈ្មោះ",
@@ -17,13 +15,16 @@
   "E-mail": "អ៊ីមែល",
   	
   "Profile": "ប្រវត្តិរូបសង្ខេប",
-  "Copyright 2024 © National Committee For Lifelong Education": "រក្សាសិទ្ធិ 2024 © គណៈកម្មាធិការជាតិសម្រាប់ការអប់រំពេញមួយជីវិត | រក្សាសិទ្ធិគ្រប់យ៉ាង",
-  "Mission and Vision": "បេសកកម្ម និងចក្ខុវិស័យ",
-  "Follow us": "តាមយើង",
-  "About": "អំពី",
-  "Contact Us": "ទាក់ទងមកយើងខ្ញុំ",
-  "Programs": "កម្មវិធី",
-  "Quick Links": "តំណភ្ជាប់រហ័ស",
+  "layout.copyright": "រក្សាសិទ្ធិ 2024 © គណៈកម្មាធិការជាតិសម្រាប់ការអប់រំពេញមួយជីវិត | រក្សាសិទ្ធិគ្រប់យ៉ាង",
+  "layout.menu.vision": "បេសកកម្ម និងចក្ខុវិស័យ",
+  "layout.follow_us": "តាមយើង",
+  "layout.menu.about": "អំពី",
+  "layout.menu.program": "កម្មវិធី",
+  
+  "layout.menu.contact_us": "ទាក់ទងមកយើងខ្ញុំ",
+
+  "layout.footer.contact_us": "ទាក់ទងមកយើងខ្ញុំ",
+
   "Featured Programs": "កម្មវិធីពិសេស",
   "News": "ព័ត៌មាន",
   "Events": "ព្រឹត្តិការណ៍",
@@ -38,7 +39,6 @@
   "possible_area_of_collaboration": "តំបន់ដែលអាចធ្វើបាននៃកិច្ចសហប្រតិបត្តិការ",
   "describ_scope_of_work": "ពិពណ៌នាអំពីវិសាលភាពនៃការងារ",
   "submit": "ដាក់ស្នើ",
-  "language.en": "អង់គ្លេស",
   "Program": "កម្មវិធី",
   "National Lifelong Learning Forum": "វេទិកាសិក្សាពេញមួយជីវិតជាតិ",
   "Cambodia's Skill Gap: Challenges and Opportunities in Lifelong Learning": "គម្លាតជំនាញរបស់កម្ពុជា៖ បញ្ហាប្រឈម និងឱកាសក្នុងការសិក្សាពេញមួយជីវិត",

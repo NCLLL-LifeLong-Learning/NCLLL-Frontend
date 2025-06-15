@@ -1,5 +1,5 @@
 export const program = {
-    title: "Program",
+    title: "layout.menu.program",
     description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
     route: [
         {
@@ -53,7 +53,7 @@ export const aboutUs = {
             children: [],
         },
         {
-            title: "Contact us",
+            title: "layout.menu.contact_us",
             label: 'Get in touch',
             key: "Contact us",
             path: "/about-us/contact",
@@ -94,38 +94,38 @@ export const resources = {
                     noHeader: true,
                     title: 'Laws & Regulation',
                     key: 'Laws & Regulation',
-                    path: "/resources/admin",
+                    path: "/resources/admin/laws_and_regulation",
                 },
                 {
                     noHeader: true,
                     title: 'Royal Decrees',
                     key: 'Royal Decrees',
-                    path: "/resources/admin",
+                    path: "/resources/admin/royal_decrees",
                 },
                 {
                     noHeader: true,
                     title: "Sub-Decrees",
-                    path: "/resources/admin",
+                    path: "/resources/admin/sub_decrees",
                     key: "Sub-Decrees",
                 }, {
                     noHeader: true,
                     title: "Circulations",
-                    path: "/resources/admin",
+                    path: "/resources/admin/circulations",
                     key: "Circulations"
                 }, {
                     noHeader: true,
                     title: "Prakas",
-                    path: "/resources/admin",
+                    path: "/resources/admin/prakas",
                     key: "Prakas"
                 }, {
                     noHeader: true,
                     title: "Decisions",
-                    path: "/resources/admin",
+                    path: "/resources/admin/decisions",
                     key: "Decisions"
                 }, {
                     title: "Orders",
                     noHeader: true,
-                    path: "/resources/admin",
+                    path: "/resources/admin/orders",
                     key: "Orders"
                 }
             ],

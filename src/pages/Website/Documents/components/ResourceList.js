@@ -7,7 +7,7 @@ import RosourceTypeDetailLoading from './ResourceTypeDetailLoading';
 import { RESOURCE_TYPE_VIEW } from '../../../../constants/Bridge';
 
 export default function ResourceList(props) {
-    const { loading, dataSource, pageSize, total, currentPage, setCurrentPage } = props;
+    const { refetch, loading, dataSource, pageSize, total, currentPage, setCurrentPage } = props;
 
     return (
         <div>
@@ -26,9 +26,9 @@ export default function ResourceList(props) {
                         return <RosourceTypeDetailLoading />
                     }
                     if ("content" === record?.contentType || typeDetail.includes(record?.category)) {
-                        return <ResourceTypeDetail loading={loading} record={record} />
+                        return <ResourceTypeDetail refetch={refetch} loading={loading} record={record} />
                     } else {
-                        return <RosourceTypeFile record={record} />
+                        return <RosourceTypeFile refetch={refetch} record={record} />
                     }
                 }}
             />

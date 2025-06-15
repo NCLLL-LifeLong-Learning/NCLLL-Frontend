@@ -62,7 +62,7 @@ export default function MemberMinistries() {
 
           return <div className='py-[20px] px-[10px]'>
             <div className='gap-3 flex flex-col shadow-lg border border-gray-300 p-[30px] w-full rounded-lg'>
-              <img className='w-full !aspect-square h-full' src={record.imageUrl} alt={record.imageUrl} />
+              <img className='w-full !aspect-square h-full object-contain' src={record.imageUrl} alt={record.imageUrl} />
               <div className='partner-title text-center'>{record.name}</div>
             </div>
           </div>

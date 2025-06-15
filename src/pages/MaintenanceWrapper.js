@@ -1,15 +1,38 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import httpClient from '../api/httpClient';
-import { Result, Spin } from 'antd';
+import { message, Result, Spin } from 'antd';
 import { debounce } from 'lodash';
+import { Route, Router, Routes } from 'react-router';
+import MaintenancePage from './MaintenancePage';
+import { BrowserRouter } from 'react-router-dom';
+import MaintenanceLoginPage from './MaintenanceLoginPage';
 
 const MaintenanceWrapper = ({ children }) => {
-  const { t } = useTranslation();
   const [isMaintenance, setIsMaintenance] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const healthCheck = useCallback(async () => {
+    const key = localStorage.getItem("maintenance_key");
+
+    if (key) {
+      try {
+        const res = await httpClient.post("/settings/maintenance-key/verify", { key })
+
+        if (res?.status === 200 && res?.data?.code === 200 && res?.data?.data?.isValid) {
+          localStorage.setItem("maintenance_key", key);
+
+          setIsMaintenance(false);
+          setLoading(false);
+          return;
+        } else {
+          message.error(res?.data?.message || "Internal Server Error!");
+        }
+      } catch (error) {
+        message.error(error?.message || "Internal Server Error!");
+      }
+    }
+
     await httpClient.get('/settings')
       .then(response => response.data)
       .then(res => {
@@ -39,11 +62,12 @@ const MaintenanceWrapper = ({ children }) => {
   if (loading) return <Spin spinning={true} fullscreen />
 
   if (isMaintenance) {
-    return <Result
-      status="500"
-      title={t("We'll be back soon!")}
-      subTitle={t("The website is under maintenance.")}
-    />
+    return <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<MaintenanceLoginPage healthCheck={healthCheck} />} />
+        <Route path="*" element={<MaintenancePage />} />
+      </Routes>
+    </BrowserRouter>
   }
 
   return <>{children}</>;

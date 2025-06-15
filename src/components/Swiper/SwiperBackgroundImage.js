@@ -74,8 +74,8 @@ export default function SwiperBackgroundImage({ module, title, description }) {
                     nextArrow={<div><ArrowSvg className="std-feature-arrow-next" transform="scale(-1)" /></div>}
                 >
                     {
-                        dataSource.map(data => (
-                            <div className='p-[5px] md:p-[15px]'>
+                        dataSource.map((data, index) => (
+                            <div className='p-[5px] md:p-[15px]' key={`${data?._id}-${index}`}>
                                 <NavLink role='button' to={"/program/" + data?._id}>
                                     <div className='std-feature-card-wrapper'>
                                         <img className="std-feature-image" src={data.cover} alt={data.cover} />

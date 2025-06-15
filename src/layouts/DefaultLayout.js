@@ -38,7 +38,7 @@ export default function DefaultLayout() {
 
   const aboutNCLL = [
     {
-      text: "Mission and Vision",
+      text: "layout.menu.vision",
       link: "/about-us/mission",
     },
     {
@@ -123,7 +123,7 @@ export default function DefaultLayout() {
 
     const tempMenu = []
     const aboutUs = {
-      title: "About",
+      title: "layout.menu.about",
       link: "/about-us/mission",
       children: [{
         title: 'Mission & Vision',
@@ -151,7 +151,7 @@ export default function DefaultLayout() {
         disabled: false,
       },
       {
-        title: "Contact us",
+        title: "layout.menu.contact_us",
         link: "/about-us/contact",
         disabled: false,
       }],
@@ -261,12 +261,12 @@ export default function DefaultLayout() {
                 className='p-0'
                 icon={<GridSvg color='black' className="size-[16px]" />}
               >
-                {t("Quick Links")}
+                {t("layout.quick_link")}
               </Button>
 
               <div className='flex gap-[1.25rem]'>
                 {
-                  socialMedia.map((i, index) => <a href={i.link} key={index}>
+                  socialMedia.map((i, index) => <a href={i.link} key={`${i?.link}-${index}`}>
                     {i.icon}
                   </a>)
                 }
@@ -324,16 +324,20 @@ export default function DefaultLayout() {
             </div>
           </div>
 
-          {
-            menu.map((item, index) => (
-              <BottomMenuDynamicHeight
-                setMenuHover={setMenuHover}
-                menuHover={menuHover}
-                index={index}
-                item={item}
-              />
-            ))
-          }
+          <div>
+            {
+              menu.map((item, index) => (
+                <div key={index}>
+                  <BottomMenuDynamicHeight
+                    setMenuHover={setMenuHover}
+                    menuHover={menuHover}
+                    index={index}
+                    item={item}
+                  />
+                </div>
+              ))
+            }
+          </div>
 
           <BottomMenu
             onMouseLeave={() => {
@@ -370,7 +374,7 @@ export default function DefaultLayout() {
               <div className='mt-[10px] lg:mt-0 ms-0 lg:ms-[75px] flex flex-col gap-4'>
                 {
                   businessInfo.map((i, index) => (
-                    <Link key={index} to={i.link} className='icons-container gap-3'>
+                    <Link key={`${i.link}-${index}`} to={i.link} className='icons-container gap-3'>
                       {i.icon}
                       <span className='truncate'>{i.text}</span>
                     </Link>
@@ -381,11 +385,11 @@ export default function DefaultLayout() {
             <div className='col-span-1 flex justify-between mt-[10px] lg:mt-[0]'>
               <div className='flex flex-col gap-4'>
                 <Link className='font-[700] text-[20px]' to='#'>
-                  {t("About")}
+                  {t("layout.menu.about")}
                 </Link>
                 {
                   aboutNCLL.map((i, index) => (
-                    <Link className='text-[16px]' key={index} to={i.link}>
+                    <Link key={`${i?.link}-${index}`} className='text-[16px]' to={i.link}>
                       {t(i.text)}
                     </Link>
                   ))
@@ -393,14 +397,14 @@ export default function DefaultLayout() {
               </div>
 
               <div className='flex flex-col gap-4'>
-                <Link className='font-[700] text-[20px]' to='#'>
-                  {t("Follow us")}
+                <Link className='font-[700] text-[20px]' key={`About-key`} to='#'>
+                  {t("layout.follow_us")}
                 </Link>
                 {
                   socialMediaFooter.map((i, index) => {
                     return (
                       <>
-                        <Link key={index} className='text-[16px] icons-container gap-2' to={i.link}>
+                        <Link key={`${i?.link}-${index}`} className='text-[16px] icons-container gap-2' to={i.link}>
                           {i.text}
                           <ExportSvg width='13px' height='13px' />
                         </Link>
@@ -410,7 +414,7 @@ export default function DefaultLayout() {
                   })
                 }
                 <Link to='#' className='gap-2 icons-container'>
-                  <span className='text-[16px]'>{t("Contact Us")}</span>
+                  <span className='text-[16px]'>{t("layout.footer.contact_us")}</span>
                   <ExportSvg width='13px' height='13px' />
                 </Link>
               </div>
@@ -421,7 +425,7 @@ export default function DefaultLayout() {
 
       {/* Copy Right */}
       <div className='text-center content-center text-white h-[100px]' style={{ backgroundColor: "var(--primary-color)" }}>
-        {t("Copyright 2024 © National Committee For Lifelong Education")}
+        {t("layout.copyright")}
       </div>
 
 

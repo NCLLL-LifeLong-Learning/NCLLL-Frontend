@@ -9,7 +9,7 @@ import httpClient from '../../../../api/httpClient';
 import { DOWNLOAD_RESOURCE } from '../../../../api/URLs';
 
 export default function RosourceType(props) {
-    const { record } = props;
+    const { record, refetch } = props;
     const { lang } = useContext(LanguageContext);
     const { t } = useTranslation();
     const [open, setOpen] = useState(false);
@@ -31,6 +31,7 @@ export default function RosourceType(props) {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            refetch && refetch(); 
         } catch (error) {
             console.error('Download failed:', error);
         }

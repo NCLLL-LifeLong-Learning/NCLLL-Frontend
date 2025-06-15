@@ -26,14 +26,14 @@ export default function SecretariatGeneralOfNLLL() {
   const dataSource = useMemo(() => {
     const res = data;
     if (res?.code === 200 && !isLoading) {
-      const termData = res?.data?.data;
+      const termData = res?.data?.results;
       if (termData?.length === 0) {
         setNoTermAvailable(true);
         return [];
       } else {
         setSelectedTerm(termData[termData.length - 1]);
         setNoTermAvailable(false);
-        return [...res?.data?.data];
+        return [...termData];
       }
     } else {
       setNoTermAvailable(false);

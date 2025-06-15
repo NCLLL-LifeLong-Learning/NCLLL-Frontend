@@ -34,7 +34,6 @@ export default function BottomMenuDynamicHeight(props) {
             menuHover={menuHover}
             value={index}
             height={height + 100}
-            key={index}
         >
             <div className='flex flex-wrap gap-[20px] justify-between items-center h-full' ref={subMenuRef}>
                 {

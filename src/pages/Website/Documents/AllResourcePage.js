@@ -25,7 +25,7 @@ export default function AllResourcePage() {
     keyword: ""
   });
 
-  const { data: resourceData, isLoading: isResourceLoading } = useQuery({
+  const { data: resourceData, isLoading: isResourceLoading, refetch } = useQuery({
     queryKey: [RESOURCES, filter],
     queryFn: () => fetchAllResource(filter),
     staleTime: STALE_TIME,
@@ -140,6 +140,7 @@ export default function AllResourcePage() {
           pageSize={filter.limit}
           dataSource={dataSource}
           total={total}
+          refetch={refetch}
           currentPage={filter.page}
           setCurrentPage={(value) => setFilter({ ...filter, page: value })}
         />

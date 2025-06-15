@@ -180,13 +180,16 @@ function QuickLinkDrawer(props, ref) {
                                 children: <div className='px-[30px] py-[20px] md:py-[30px] md:px-[60px] text-white'>
                                     <div className='grid grid-cols-12 gap-2'>
                                         {
-                                            item.route.map(route => (
-                                                <div className='col-span-12 sm:col-span-6 md:col-span-3 flex flex-col gap-2'>
+                                            item.route.map((route, index) => (
+                                                <div className='col-span-12 sm:col-span-6 md:col-span-3 flex flex-col gap-2' key={`${route?.title}=${route?.path}-${index}`}>
                                                     <div className='cursor-pointer text-xl' onClick={() => onNavTo(route.path)}
                                                         style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
                                                     >{t(route?.title)}</div>
                                                     <div className='ms-[20px] flex flex-col gap-2'>
-                                                        {route?.children.map(child => (<div className='cursor-pointer text-xl' onClick={() => onNavTo(child.path)}
+                                                        {route?.children.map((child, index) => (<div
+                                                            key={`${child?.title}-${child?.path}-${index}`}
+                                                            className='cursor-pointer text-xl'
+                                                            onClick={() => onNavTo(child.path)}
                                                             style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
                                                         >
                                                             {t(child.title)}

@@ -1,11 +1,12 @@
 {
-  "The website is under maintenance.": "The website is under maintenance.",
-  "We'll be back soon!": "We'll be back soon!",
+  "maintenance.sub.title": "The website is under maintenance.",
+  "maintenance.title": "We'll be back soon!",
 
   "Hello World": "Hello World",
-  "quick_link": "Quick Link",
-  "language.kh": "ខ្មែរ",
-  "english": "English",
+  "layout.quick_link": "Quick Links",
+  "language.kh": "Khmer",
+  "language.en": "English",
+
   "home": "Home",
   "Governing Detail": "Governing Detail",
   "Current job": "Current job",
@@ -17,13 +18,15 @@
   "E-mail": "E-mail",
 
   "Profile": "Profile",
-  "Copyright 2024 © National Committee For Lifelong Education": "Copyright 2024 © National Committee For Lifelong Education",
-  "Mission and Vision": "Mission and Vision",
-  "Follow us": "Follow us",
-  "About": "About",
-  "Programs": "Programs",
-  "Contact Us": "Contact Us",
-  "Quick Links": "Quick Links",
+  "layout.copyright": "Copyright 2024 © National Committee For Lifelong Education",
+ 
+  "layout.menu.vision": "Mission and Vision",
+  "layout.follow_us": "Follow us",
+  "layout.menu.about": "About",
+  "layout.menu.program": "Program",
+
+  "layout.footer.contact_us": "Contact Us",
+
   "Featured Programs": "Featured Programs",
   "News": "News",
   "Events": "Events",
@@ -38,7 +41,6 @@
   "possible_area_of_collaboration": "Possible area of collaboration",
   "describ_scope_of_work": "Describe scope of work",
   "submit": "Submit",
-  "language.en": "អង់គ្លេស",
   "Program": "Program",
   "National Lifelong Learning Forum": "National Lifelong Learning Forum",
   "Cambodia's Skill Gap: Challenges and Opportunities in Lifelong Learning": "Cambodia's Skill Gap: Challenges and Opportunities in Lifelong Learning",

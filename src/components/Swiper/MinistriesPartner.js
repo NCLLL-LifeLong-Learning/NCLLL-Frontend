@@ -98,16 +98,16 @@ export default function MinistriesPartner({ description, title, onClick }) {
                     >
                         {
                             isLoading ?
-                                dataSource.map(data => (
-                                    <div className='px-[5px] md:px-[10px]'>
+                                dataSource.map((data, index) => (
+                                    <div className='px-[5px] md:px-[10px]' key={`${data?._id}-${index}`}>
                                         <div className='rounded-[10px] w-[145px] h-[165px] flex justify-center items-center bg-white' onClick={onClick}>
                                             <Skeleton.Image active className='std-partner-logo' />
                                         </div>
                                     </div>
                                 ))
                                 :
-                                dataSource.map(data => (
-                                    <div className='px-[5px] md:px-[10px]'>
+                                dataSource.map((data, index) => (
+                                    <div className='px-[5px] md:px-[10px]' key={`${data?._id}-${index}`}>
                                         <div className='rounded-[10px] w-[145px] h-[165px] flex justify-center items-center bg-white' onClick={onClick}>
                                             <img className='std-partner-logo' src={data.imageUrl} alt={data.imageUrl} />
                                         </div>

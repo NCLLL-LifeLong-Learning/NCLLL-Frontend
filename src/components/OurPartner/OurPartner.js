@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Button, Carousel, Skeleton } from "antd";
-import AutoScroll from "../AutoScroll/AutoScroll";
+// import AutoScroll from "../AutoScroll/AutoScroll";
 import { useTranslation } from "react-i18next";
 import ArrowSvg from "../../assets/svgs/ArrowSvg";
 import { antdResponsive } from "../../utils/Utils";
@@ -46,8 +46,16 @@ const OurPartner = ({ description, title, onClick }) => {
       <div className="w-full col-span-2 space-y-0 sm:space-y-[30px] overflow-hidden max-w-[100%]">
         <Carousel
           responsive={antdResponsive({
-            md: {
+            xl: {
               slidesToShow: 4,
+              row: 2
+            },
+            lg: {
+              slidesToShow: 3,
+              row: 2
+            },
+            md: {
+              slidesToShow: 2,
               row: 2
             },
             xs: {
@@ -78,17 +86,20 @@ const OurPartner = ({ description, title, onClick }) => {
             isLoading ?
               Array.from({ length: 20 }, (_, index) => (
                 <Skeleton.Image active
+                key={index}
                   className="std-our-partner-logo w-auto !my-3 !h-[120px] !aspect-square !flex"
                 />
               ))
               :
               dataSource.map((data, index) => (
-                <img
-                  key={`clone-${index}`}
-                  className="std-our-partner-logo my-3 mx-3 w-auto !h-[120px] !aspect-square object-contain"
-                  src={data?.logo}
-                  alt={`Partner logo duplicate ${index}`}
-                />
+                <div className="mx-3" key={`${data?._id}-${index}`}>
+                  <img
+                    key={`clone-${index}`}
+                    className="std-our-partner-logo my-3 w-auto !h-[120px] !aspect-square object-contain"
+                    src={data?.logo}
+                    alt={`Partner logo duplicate ${index}`}
+                  />
+                </div>
               ))
           }
         </Carousel>

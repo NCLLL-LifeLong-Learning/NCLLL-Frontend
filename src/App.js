@@ -77,8 +77,9 @@ function App() {
 
               <Route element={<AllResourcePage />} index />
               <Route path=':type' element={<ResourcePage />} />
+              <Route path=':type/:subType' element={<ResourcePage />} />
 
-              <Route path=':type/:id' element={<Suspense><DynamicDetailPage type={RESOURCE_TYPE.event} /></Suspense>} />
+              <Route path='detail/:type/:id' element={<Suspense><DynamicDetailPage type={RESOURCE_TYPE.event} /></Suspense>} />
             </Route>
           </Route>
         </Route>

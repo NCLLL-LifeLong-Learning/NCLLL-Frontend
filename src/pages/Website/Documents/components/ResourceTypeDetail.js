@@ -7,14 +7,14 @@ import { useTranslation } from 'react-i18next';
 import { LanguageContext } from '../../../../i18n/LanguageProvider';
 
 export default function RosourceTypeDetail(props) {
-    const { record } = props;
+    const { record, refetch } = props;
     const { lang } = useContext(LanguageContext);
     const data = record?.originalItem ? record?.originalItem : record;
     const { t } = useTranslation();
     const navigate = useNavigate();
 
     const onViewDetail = () => {
-        navigate("/resources/" + data?.category + `/${record._id}`);
+        navigate("/resources/detail/" + data?.category + `/${record._id}`);
     }
 
     const getTags = () => {

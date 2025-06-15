@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
-import { useOutletContext } from 'react-router';
+import React from 'react'
 import TelescopeSvg from '../../../assets/svgs/TelescopeSvg';
 import TargetSvg from '../../../assets/svgs/TargetSvg';
 import SideWayArrowSvg from '../../../assets/svgs/SideWayArrowSvg';
 import { Button } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 
 export default function MissionAndVision() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const navigateResource = () => {
+    navigate("/resources");
+  }
 
   return (
     <div className='flex flex-col gap-[30px]'>
@@ -48,7 +53,7 @@ export default function MissionAndVision() {
             <li>{t("Collaboration and Implementation: Encourage ministries, institutions, the private sector, and development partners to implement lifelong learning programs to continuously update and advance employee skills as outlined in the CNQF.")}</li>
           </ol>
           <div className='flex-col-center py-[30px]'>
-            <Button className='std-btn w-auto lg:w-[30%] flex gap-[10px]'>{t("More on Objective")} <SideWayArrowSvg width='10px' height='10px' /></Button>
+            <Button className='std-btn w-auto lg:w-[30%] flex gap-[10px]' onClick={navigateResource}>{t("More on Objective")} <SideWayArrowSvg width='10px' height='10px' /></Button>
           </div>
         </div>
       </div>
