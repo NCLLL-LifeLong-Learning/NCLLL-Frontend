@@ -6,8 +6,9 @@ import { LanguageContext } from '../../i18n/LanguageProvider';
 export default function HeaderNavigationBar(props) {
     const { t } = useTranslation();
     const { lang } = useContext(LanguageContext);
-    const { menu, setMenuHover } = props;
+    const { menu, setMenuHover, menuHover } = props;
 
+    console.log("index =", menuHover);
     return (
         <div className='hidden lg:flex gap-[2rem] xl:gap-[5rem]'>
             {
@@ -21,10 +22,10 @@ export default function HeaderNavigationBar(props) {
                                 setMenuHover(index)
                             }
                         }}
-                        className={'flex items-center gap-2 std-menu-link'}
-                        style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                        className={'flex items-center gap-2 std-menu-link uppercase ' + (menuHover == index ? "std-menu-link-active" : "")}
                         to={item?.link}
                     >
+                    {/* menuHover */}
                         {t(item?.title)}
                         {
                             item.children.length > 0 &&

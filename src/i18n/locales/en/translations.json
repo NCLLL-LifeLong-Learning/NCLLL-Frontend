@@ -1,11 +1,11 @@
 {
-  "maintenance.sub.title": "The website is under maintenance.",
-  "maintenance.title": "We'll be back soon!",
+  "The website is under maintenance.": "The website is under maintenance.",
+  "We'll be back soon!": "We'll be back soon!",
 
   "Hello World": "Hello World",
-  "layout.quick_link": "Quick Links",
-  "language.kh": "Khmer",
-  "language.en": "English",
+  "Quick Links": "Quick Links",
+  "Khmer": "ខ្មែរ",
+  "English": "English",
 
   "home": "Home",
   "Governing Detail": "Governing Detail",
@@ -18,14 +18,13 @@
   "E-mail": "E-mail",
 
   "Profile": "Profile",
-  "layout.copyright": "Copyright 2024 © National Committee For Lifelong Education",
+  "Copyright 2024 © National Committee For Lifelong Education": "Copyright 2024 © National Committee For Lifelong Education",
  
-  "layout.menu.vision": "Mission and Vision",
-  "layout.follow_us": "Follow us",
-  "layout.menu.about": "About",
-  "layout.menu.program": "Program",
+  "Mission and Vision": "Mission and Vision",
+  "Follow us": "Follow us",
+  "About": "About",
 
-  "layout.footer.contact_us": "Contact Us",
+  "Contact Us": "Contact Us",
 
   "Featured Programs": "Featured Programs",
   "News": "News",
@@ -139,6 +138,7 @@
   "Partners and Sponsors": "Partners and Sponsors",
   "Become a partner": "Become a partner",
 
+  "Focus Area": "Focus Area",
   "Focus Areas": "Focus Areas",
   "Lifelong Learning for all": "Lifelong Learning for all",
   "Comprehensive and Flexible Learning Program": "Comprehensive and Flexible Learning Program",

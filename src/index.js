@@ -9,6 +9,8 @@ import store from './global/Store';
 import './i18n/config'
 import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LanguageProvider } from './i18n/LanguageProvider';
 import MaintenanceWrapper from './pages/MaintenanceWrapper';

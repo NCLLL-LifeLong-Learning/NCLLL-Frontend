@@ -16,7 +16,7 @@ export default function MissionAndVision() {
 
   return (
     <div className='flex flex-col gap-[1.875rem]'>
-      <div className='mission-content px-[2.5rem] py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+      <div className='mission-content p-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
         {t("The Secretariat General of the National Committee for Lifelong Learning, established under the Cambodian Royal Government, operates within a framework set by several key legal documents. The Secretariat General is responsible for implementing lifelong learning initiatives, adhering to directives from the Minister of Education, Youth and Sport, and aligning with the broader educational governance framework in Cambodia.")}
       </div>
       <div className='h-fit grid grid-cols-2 gap-[3.75rem]'>
@@ -42,9 +42,9 @@ export default function MissionAndVision() {
       </div>
       <div>
         <div className='mission-title' style={{ color: "var(--primary-color)" }}>{t("Objective")}</div>
-        <div className='mission-content py-[1.25rem]'>
+        <div className='mission-content py-[0.5rem] lg:py-[1.25rem]'>
           {t("To achieve the vision and goals, the following objectives have been established:")}
-          <ol className='px-[2.5rem]'>
+          <ol className='mission-content px-[1rem] md:px-[2.5rem] mt-2'>
             <li>{t("Lifelong Learning Services: Provide lifelong learning opportunities to all Cambodian people.")}</li>
             <li>{t("Flexible Learning Programs: Develop comprehensive and adaptable lifelong learning programs to meet the demand for education.")}</li>
             <li>{t("Learning Infrastructure: Establish and enhance learning centers, physical infrastructure, and venues for education.")}</li>
@@ -52,7 +52,7 @@ export default function MissionAndVision() {
             <li>{t("Recognition and Accreditation: Validate and accredit the knowledge, skills, and competencies gained from lifelong learning programs according to the Cambodian National Qualification Framework (CNQF), ensuring transparency, fairness, and consistency.")}</li>
             <li>{t("Collaboration and Implementation: Encourage ministries, institutions, the private sector, and development partners to implement lifelong learning programs to continuously update and advance employee skills as outlined in the CNQF.")}</li>
           </ol>
-          <div className='flex-col-center py-[1.875rem]'>
+          <div className='flex-col-center py-[0.5rem] lg:py-[1.875rem]'>
             <Button className='std-btn w-auto lg:w-[30%] flex gap-[0.625rem]' onClick={navigateResource}>{t("More on Objective")} <SideWayArrowSvg width='0.625rem' height='0.625rem' /></Button>
           </div>
         </div>

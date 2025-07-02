@@ -1,12 +1,11 @@
 import React, { useMemo } from "react";
-import { Button, Carousel, Skeleton } from "antd";
+import { Button, Skeleton } from "antd";
 // import AutoScroll from "../AutoScroll/AutoScroll";
 import { useTranslation } from "react-i18next";
-import ArrowSvg from "../../assets/svgs/ArrowSvg";
-import { antdResponsive } from "../../utils/Utils";
 import { useQuery } from "@tanstack/react-query";
 import { fetchOurPartner } from "../../api/publicRequest";
 import { CACHE_TIME, PARTNERS, STALE_TIME } from "../../constants/CacheAPI";
+import Slider from "react-slick";
 
 const OurPartner = ({ description, title, onClick }) => {
   const { t } = useTranslation();
@@ -34,8 +33,70 @@ const OurPartner = ({ description, title, onClick }) => {
   }, [data, isLoading]);
 
 
+  const settings = {
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 0, // or 0 + cssEase:'linear' for continuous scroll
+    speed: 4000,
+    cssEase: 'linear',
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    rows: 2,
+    swipeToSlide: true,
+    draggable: true,
+    pauseOnHover: true,
+    arrows: false,
+    dots: false,
+    // prevArrow: <div><ArrowSvg className="std-feature-arrow-prev" /></div>,
+    // nextArrow: <div><ArrowSvg className="std-feature-arrow-next" transform="scale(-1)" /></div>,
+    responsive: [
+      {
+        breakpoint: 1836, // xl
+        settings: {
+          slidesToShow: 4,
+          rows: 2,
+        },
+      },
+      {
+        breakpoint: 1536, // xl
+        settings: {
+          slidesToShow: 3,
+          rows: 2,
+        },
+      },
+      {
+        breakpoint: 1280, // lg
+        settings: {
+          slidesToShow: 3,
+          rows: 2,
+        },
+      },
+      {
+        breakpoint: 992, // md
+        settings: {
+          slidesToShow: 2,
+          rows: 2,
+        },
+      },
+      {
+        breakpoint: 640, // xs
+        settings: {
+          slidesToShow: 2,
+          rows: 1,
+        },
+      },
+      {
+        breakpoint: 480, // xxs
+        settings: {
+          slidesToShow: 2,
+          rows: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className="flex flex-col-reverse sm:grid grid-cols-4 gap-[1.875rem] sm:gap-[10%] px-[5%] min-h-[9.375rem] sm:min-h-[25rem]">
+    <div className="flex text-center sm:text-start flex-col sm:grid grid-cols-4 gap-[1.875rem] sm:gap-[10%] px-[5%] min-h-[9.375rem] sm:min-h-[25rem]">
       <div className="w-full col-span-2 flex flex-col justify-center gap-[1.563rem]">
         <h1 className="std-title m-0">{t(title)}</h1>
         <div>
@@ -44,7 +105,30 @@ const OurPartner = ({ description, title, onClick }) => {
         <Button className="std-btn" onClick={onClick}>{t("Become a partner")}</Button>
       </div>
       <div className="w-full col-span-2 space-y-0 sm:space-y-[1.875rem] overflow-hidden max-w-[100%]">
-        <Carousel
+        <Slider {...settings} className="root-feature-carousel cursor-grab">
+          {
+            isLoading ?
+              Array.from({ length: 20 }).map((_, index) => (
+                <Skeleton.Image
+                  key={index}
+                  active
+                  className="std-our-partner-logo w-auto !my-3 !h-[11.25rem] !aspect-square !flex"
+                />
+              ))
+              :
+              dataSource.map((data, index) => (
+                <div className="mx-3" key={`${data?._id}-${index}`}>
+                  <img
+                    className="std-our-partner-logo my-3 w-auto !h-[11.25rem] !aspect-square object-contain"
+                    src={data?.logo}
+                    alt={`Partner logo duplicate ${index}`}
+                  />
+                </div>
+              ))
+          }
+        </Slider>
+
+        {/* <Carousel
           responsive={antdResponsive({
             xl: {
               slidesToShow: 4,
@@ -86,7 +170,7 @@ const OurPartner = ({ description, title, onClick }) => {
             isLoading ?
               Array.from({ length: 20 }, (_, index) => (
                 <Skeleton.Image active
-                key={index}
+                  key={index}
                   className="std-our-partner-logo w-auto !my-3 !h-[11.25rem] !aspect-square !flex"
                 />
               ))
@@ -102,7 +186,7 @@ const OurPartner = ({ description, title, onClick }) => {
                 </div>
               ))
           }
-        </Carousel>
+        </Carousel> */}
 
         {/* <AutoScroll dataSource={dataSource} className="!hidden sm:!flex" />
         <AutoScroll dataSource={dataSource} scroll={"right"} className="!hidden sm:!flex" />

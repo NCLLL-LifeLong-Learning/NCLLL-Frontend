@@ -4,6 +4,7 @@ import { antdResponsive } from '../../utils/Utils';
 import { useQuery } from '@tanstack/react-query';
 import { fetchBanners } from '../../api/publicRequest';
 import { useNavigate } from 'react-router';
+import { t } from 'i18next';
 
 export default function BannerCarousel() {
     const navigate = useNavigate();
@@ -41,16 +42,16 @@ export default function BannerCarousel() {
             <Carousel
                 responsive={antdResponsive({
                     lg: {
-                        centerPadding: '2.5rem'
+                        centerPadding: '40px'
                     },
                     md: {
-                        centerPadding: '2.5rem'
+                        centerPadding: '40px'
                     },
                     xxs: {
-                        centerPadding: '0.938rem'
+                        centerPadding: '15px'
                     }
                 })}
-                rootClassName='root-banner-carousel'
+                rootClassName='root-banner-carousel hide-arrow'
                 autoplay
                 swipeToSlide
                 draggable
@@ -59,7 +60,7 @@ export default function BannerCarousel() {
                 pauseOnHover
                 pauseOnDotsHover
                 centerMode
-                centerPadding='6.25rem'
+                centerPadding='100px'
                 dotPosition='bottom'
                 dots={true}
             >
@@ -78,9 +79,9 @@ export default function BannerCarousel() {
                                 <div className='custom-blur'>
                                     <img className="std-banner-image" src={data.cover} alt={data.cover} />
                                 </div>
-                                <div className='absolute bottom-[20.313rem] w-full flex justify-center z-[5]'>
-                                    <Button className='std-btn' onClick={() => navigateDetail(data)}>
-                                        Qucik Link
+                                <div className='absolute bottom-[25px] w-full flex justify-center z-[5]'>
+                                    <Button className='std-btn-small std-btn uppercase' onClick={() => navigateDetail(data)}>
+                                        {t("Explore More")}
                                     </Button>
                                 </div>
                             </div>

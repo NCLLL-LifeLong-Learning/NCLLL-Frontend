@@ -114,9 +114,7 @@ export default function DetailsLayout() {
         (<div>
             <div className='h-[16.25rem] text-white flex justify-center items-center' style={{ background: "var(--detail-header-background)" }}>
                 <div className='max-w-[50rem] text-center gap-[1.25rem] flex flex-col'>
-                    <div className='std-title !text-white'
-                        style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
-                    >{t(treeTitle)}</div>
+                    <div className='std-title !text-white uppercase'>{t(treeTitle)}</div>
                     <div className='std-content'>{t(treeDescription)}</div>
                 </div>
             </div>
@@ -124,25 +122,26 @@ export default function DetailsLayout() {
                 <div className='std-container py-[1.25rem] flex items-center'>
                     <Breadcrumb
                         className='list-center breadcrumb-custom'
-                        separator={<ArrowSvg className="size-[1rem]" transform="scale(-1)" />}
+                        separator={<ArrowSvg className="size-[0.75rem] md:size-[1rem]" transform="scale(-1)" />}
                         items={[
                             {
                                 onClick: () => navigate("/"),
-                                title: <AiOutlineHome className='size-[1.5rem]' />,
+                                title: <AiOutlineHome className='size-[1.25rem] md:size-[1.5rem]' />,
                             },
                             {
                                 onClick: () => navigate(treeData[0]?.path),
-                                title: <span
-                                    style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
-                                >{t(treeTitle)}</span>,
+                                title: <span className='text-nowrap uppercase'>{t(treeTitle)}</span>,
                             },
-                            ...activeNodes.map(i => ({
-                                onClick: () => navigate(i?.path),
-                                key: i.key,
-                                title: <span
-                                    style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
-                                >{t(i.title)}</span>,
-                            })),
+                            // ...activeNodes.map(i => ({
+                            //     onClick: () => navigate(i?.path),
+                            //     key: i.key,
+                            //     title: <p className='line-clamp-1 uppercase m-0'>{t(i.title)}</p>,
+                            // })),
+                            ...activeNodes ? [{
+                                onClick: () => navigate(activeNodes[0]?.path),
+                                key: activeNodes[0]?.key,
+                                title: <p className='line-clamp-1 uppercase m-0'>{t(activeNodes[0]?.title)}</p>,
+                            }] : []
                         ]}
                     />
                 </div>
@@ -156,8 +155,7 @@ export default function DetailsLayout() {
                 />
                 <div className={`${burger ? "active" : ""} transition-all fixed-burger lg:block col-span-2 ps-[0.625rem] h-fit pb-[1.25rem]`} style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
                     <h1
-                        className='py-[1.25rem] px-[0.625rem] text-[1.5rem] md:text-[2rem] text-center m-0'
-                        style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                        className='py-[1.25rem] px-[0.625rem] text-[1.5rem] md:text-[2rem] text-center m-0 uppercase'
                     >
                         {t(treeTitle)}
                     </h1>

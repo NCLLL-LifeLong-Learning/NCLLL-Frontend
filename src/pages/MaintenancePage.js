@@ -8,8 +8,8 @@ export default function MaintenancePage() {
     return (
         <Result
             status="500"
-            title={t("maintenance.title")}
-            subTitle={t("maintenance.sub.title")}
+            title={t("We'll be back soon!")}
+            subTitle={t("The website is under maintenance.")}
         />
     )
 }

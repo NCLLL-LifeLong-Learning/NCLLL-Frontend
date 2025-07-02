@@ -1,5 +1,5 @@
 export const program = {
-    title: "layout.menu.program",
+    title: "Program",
     description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
     route: [
         {
@@ -53,7 +53,7 @@ export const aboutUs = {
             children: [],
         },
         {
-            title: "layout.menu.contact_us",
+            title: "Contact Us",
             label: 'Get in touch',
             key: "Contact us",
             path: "/about-us/contact",

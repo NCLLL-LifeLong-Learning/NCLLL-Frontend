@@ -143,8 +143,8 @@ function QuickLinkDrawer(props, ref) {
                     <div className='flex-col text-center md:text-start md:flex-row w-full lg:w-auto flex items-center justify-start gap-3'>
                         <img onClick={() => navigate("/")} className='cursor-pointer max-w-none object-cover size-[3.125rem] lg:size-[5.625rem] rounded-full' src='/logo.jpg' alt='logo' />
                         <div onClick={() => navigate("/")} className='cursor-pointer flex flex-col gap-2 justify-center'>
-                            <div className='text-[0.65rem] text-md-[0.75rem] lg:text-[1rem] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                            <div className='text-[0.680rem] text-md-[0.781rem] lg:text-[1.031rem] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                            <div className='text-[0.65rem] leading-none text-md-[0.75rem] lg:text-[1rem] font-[400] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
+                            <div className='text-[0.680rem] leading-none text-md-[0.781rem] lg:text-[1.031rem] font-[400] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                         </div>
                     </div>
                     <div className='flex-col lg:flex-row w-full lg:w-auto flex justify-center md:justify-start items-center md:items-start gap-3'>
@@ -162,7 +162,7 @@ function QuickLinkDrawer(props, ref) {
                 </div>
 
 
-                <div className='py-[2.5rem]'>
+                <div className='py-[1.5rem] md:py-[2.5rem]'>
                     <Tabs
                         tabBarExtraContent={<div className='hidden lg:flex gap-3'>
                             <Input.Search value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} onSearch={handleSearch} />
@@ -172,27 +172,27 @@ function QuickLinkDrawer(props, ref) {
                         style={{ height: 220 }}
                         items={
                             menu.map((item, index) => ({
-                                label: <div
-                                    className='text-xl  font-bold text-white'
-                                    style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
-                                >{t(item.title)}</div>,
+                                label: <div className='text-md md:text-xl font-bold text-white uppercase'>{t(item.title)}</div>,
                                 key: index,
-                                children: <div className='px-[1.875rem] py-[1.25rem] md:py-[1.875rem] md:px-[3.75rem] text-white'>
-                                    <div className='grid grid-cols-12 gap-2'>
+                                children: <div className='px-[0.875rem] py-[0.55rem] md:py-[1.875rem] md:px-[3.75rem] text-white'>
+                                    <div className='grid grid-cols-12 gap-4'>
                                         {
                                             item.route.map((route, index) => (
-                                                <div className='col-span-12 sm:col-span-6 md:col-span-3 flex flex-col gap-2' key={`${route?.title}=${route?.path}-${index}`}>
-                                                    <div className='cursor-pointer text-xl' onClick={() => onNavTo(route.path)}
-                                                        style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
-                                                    >{t(route?.title)}</div>
+                                                <div className='col-span-12 sm:col-span-6 md:col-span-6 flex flex-col gap-2' key={`${route?.title}=${route?.path}-${index}`}>
+                                                    <div className='cursor-pointer text-md md:text-xl uppercase' onClick={() => onNavTo(route.path)}>
+                                                        <p className="line-clamp-1 m-0">
+                                                            {t(route?.title)}
+                                                        </p>
+                                                    </div>
                                                     <div className='ms-[1.25rem] flex flex-col gap-2'>
                                                         {route?.children.map((child, index) => (<div
                                                             key={`${child?.title}-${child?.path}-${index}`}
-                                                            className='cursor-pointer text-xl'
+                                                            className='cursor-pointer text-md md:text-xl'
                                                             onClick={() => onNavTo(child.path)}
-                                                            style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
                                                         >
-                                                            {t(child.title)}
+                                                            <p className="line-clamp-1 m-0 uppercase">
+                                                                {t(child.title)}
+                                                            </p>
                                                         </div>))}
                                                     </div>
                                                 </div>))

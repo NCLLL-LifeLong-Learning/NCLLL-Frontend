@@ -62,7 +62,7 @@ function App() {
             </Route>
 
             <Route path='/program' element={<GuardLayout description={program.description} title={program.title} route={program.route} />}>
-              <Route path='engagement' element={<Suspense><EngagementPage blog /></Suspense>} />
+              <Route path='engagement' element={<Suspense><EngagementPage /></Suspense>} />
 
               <Route path=':id' element={<Suspense><DynamicModulePage module={MODULES_TYPE.PROGRAM} /></Suspense>} />
             </Route>
