@@ -169,7 +169,7 @@ export default function Engagement(props) {
 
          {
             blog &&
-            <div className='py-[20px'>
+            <div className='py-[1.25rem'>
                <ModuleBlogComponent moduleId={activeTab} />
             </div>
          }

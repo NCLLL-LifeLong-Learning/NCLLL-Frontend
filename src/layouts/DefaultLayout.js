@@ -62,35 +62,35 @@ export default function DefaultLayout() {
   const businessInfo = [
     {
       link: "#",
-      icon: <PinSvg className="size-[21px]" />,
+      icon: <PinSvg className="size-[1.313rem]" />,
       text: "80 Blvd. Preah Norodom, Phnom Penh, Cambodia."
     },
     {
       link: "#",
-      icon: <PhoneSvg className="size-[21px]" />,
+      icon: <PhoneSvg className="size-[1.313rem]" />,
       text: "(855-23) 220 673 / 220 304 / 426 951"
     },
     {
       link: "#",
-      icon: <MailSvg className="size-[21px]" />,
+      icon: <MailSvg className="size-[1.313rem]" />,
       text: "info@moeys.gov.kh/administration@moeys.gov.kh"
     },
     {
       link: "#",
-      icon: <GlobeSvg className="size-[21px]" />,
+      icon: <GlobeSvg className="size-[1.313rem]" />,
       text: "www.nclll.kh"
     }
   ]
 
   const socialMedia = [
     {
-      icon: <FacebookSvg width='20px' height='20px' />,
+      icon: <FacebookSvg width='1.25rem' height='1.25rem' />,
       link: "#",
     }, {
-      icon: <TelegramSvg width='20px' height='20px' />,
+      icon: <TelegramSvg width='1.25rem' height='1.25rem' />,
       link: "#",
     }, {
-      icon: <YoutubeSvg width='20px' height='20px' />,
+      icon: <YoutubeSvg width='1.25rem' height='1.25rem' />,
       link: "#"
     }
   ];
@@ -213,7 +213,7 @@ export default function DefaultLayout() {
         onClick={() => onChangeLang("en")}
         className='flex gap-3'
       >
-        <AmericanSvg width='20px' height='20px' />
+        <AmericanSvg width='1.25rem' height='1.25rem' />
         {t("language.en")}
       </div>,
       key: 'en',
@@ -223,7 +223,7 @@ export default function DefaultLayout() {
         onClick={() => onChangeLang("kh")}
         className='flex gap-3'
       >
-        <CambodiaSvg width='20px' height='20px' />
+        <CambodiaSvg width='1.25rem' height='1.25rem' />
         {t("language.kh")}
       </div>,
       key: 'kh',
@@ -251,7 +251,7 @@ export default function DefaultLayout() {
   return (
     <div className='std-layout'>
       <div className='bg-white sticky z-[50] hidden lg:block'>
-        <div className='std-container pe-[20px] pt-[20px]'>
+        <div className='std-container pe-[1.25rem] pt-[1.25rem]'>
           <div className='flex justify-end'>
             <div className='flex gap-[2rem] items-center'>
               <Button
@@ -259,7 +259,7 @@ export default function DefaultLayout() {
                 type='text'
                 iconPosition='end'
                 className='p-0'
-                icon={<GridSvg color='black' className="size-[16px]" />}
+                icon={<GridSvg color='black' className="size-[1rem]" />}
               >
                 {t("layout.quick_link")}
               </Button>
@@ -278,32 +278,32 @@ export default function DefaultLayout() {
 
       <div className='fixed w-full md:sticky top-0 z-[40] bg-white '>
         <div className='relative'>
-          <div className='bg-white z-[25] relative shadow-md pt-[5px] pb-[5px]'>
+          <div className='bg-white z-[25] relative shadow-md pt-[0.313rem] pb-[0.313rem]'>
             <div className='std-container'>
               <div className='flex justify-between items-center'>
                 <div className='w-full lg:w-auto flex items-center justify-between lg:justify-start gap-3'>
-                  <img onClick={() => navigate("/")} className='cursor-pointer max-w-none object-cover size-[50px] lg:size-[90px] rounded-full' src='/logo.jpg' alt='logo' />
+                  <img onClick={() => navigate("/")} className='cursor-pointer max-w-none object-cover size-[3.125rem] lg:size-[5.625rem] rounded-full' src='/logo.jpg' alt='logo' />
                   <div onClick={() => navigate("/")} className='cursor-pointer hidden 2xl:flex flex-col gap-2 justify-center'>
-                    <div className='text-[14px] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                    <div className='text-[14.5px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                    <div className='text-[0.875rem] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
+                    <div className='text-[0.906rem] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                   </div>
                   <div className='flex lg:hidden'>
-                    <Button type='link' onClick={openQuickLink} icon={<ExpandSvg color='black' className="size-[35px]" />} />
+                    <Button type='link' onClick={openQuickLink} icon={<ExpandSvg color='black' className="size-[2.188rem]" />} />
 
                   </div>
                 </div>
                 <HeaderNavigationBar menu={menu} setMenuHover={setMenuHover} />
 
                 <div className='hidden lg:flex items-center divide-x-2 divide-[grey]'>
-                  <div className='px-[20px]'>
+                  <div className='px-[1.25rem]'>
                     <div className='cursor-pointer' onMouseEnter={() => {
                       setMenuHover("search")
                     }}>
-                      <SearchSvg color='black' className="size-[20px]" />
+                      <SearchSvg color='black' className="size-[1.25rem]" />
                     </div>
                   </div>
 
-                  <div className='py-[5px] px-[20px] '>
+                  <div className='py-[0.313rem] px-[1.25rem] '>
                     <Dropdown
                       className='bg-none cursor-pointer'
                       type="primary"
@@ -312,10 +312,10 @@ export default function DefaultLayout() {
                       <div className='flag-container flex items-center gap-2'>
                         {
                           lang === "kh" ?
-                            <CambodiaSvg width='20px' height='20px' /> :
-                            <AmericanSvg height='20px' width='20px' />
+                            <CambodiaSvg width='1.25rem' height='1.25rem' /> :
+                            <AmericanSvg height='1.25rem' width='1.25rem' />
                         }
-                        <ArrowSvg width='10px' height='10px' className="arrow-icons" />
+                        <ArrowSvg width='0.625rem' height='0.625rem' className="arrow-icons" />
                       </div>
                     </Dropdown>
                   </div>
@@ -349,29 +349,29 @@ export default function DefaultLayout() {
             value={"search"}
           >
             <div className='flex gap-3 items-center h-full'>
-              <Input className='h-[40px]' value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} />
+              <Input className='h-[2.5rem]' value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} />
               <Button className='search-button' onClick={handleSearch}>{t("Search")}</Button>
             </div>
           </BottomMenu>
         </div>
       </div>
 
-      <div className='mt-[70px] md:mt-0 std-outlet-content'>
+      <div className='mt-[4.375rem] md:mt-0 std-outlet-content'>
         <Outlet context={contextValue} />
       </div>
 
-      <div className='min-h-[380px] std-footer py-[30px] lg:p-[30px] text-white' style={{ background: "var(--footer-background)" }}>
+      <div className='min-h-[23.75rem] std-footer py-[1.875rem] lg:p-[1.875rem] text-white' style={{ background: "var(--footer-background)" }}>
         <div className='std-container'>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
             <div className='col-span-2'>
               <div className='flex items-center flex-col lg:flex-row gap-3 pb-4'>
                 <img className='object-cover logo rounded-full' src='/logo.jpg' alt='logo' />
                 <div className='flex flex-col text-center lg:text-start mt-2 lg:mt-0 gap-2 lg:gap-0'>
-                  <div className='text-[13px] lg:text-[18px] font-[400] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                  <div className='text-[13.5px] lg:text-[18.7px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                  <div className='text-[0.813rem] lg:text-[1.125rem] font-[400] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
+                  <div className='text-[0.844rem] lg:text-[1.169rem] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                 </div>
               </div>
-              <div className='mt-[10px] lg:mt-0 ms-0 lg:ms-[75px] flex flex-col gap-4'>
+              <div className='mt-[0.625rem] lg:mt-0 ms-0 lg:ms-[4.688rem] flex flex-col gap-4'>
                 {
                   businessInfo.map((i, index) => (
                     <Link key={`${i.link}-${index}`} to={i.link} className='icons-container gap-3'>
@@ -382,14 +382,14 @@ export default function DefaultLayout() {
                 }
               </div>
             </div>
-            <div className='col-span-1 flex justify-between mt-[10px] lg:mt-[0]'>
+            <div className='col-span-1 flex justify-between mt-[0.625rem] lg:mt-[0]'>
               <div className='flex flex-col gap-4'>
-                <Link className='font-[700] text-[20px]' to='#'>
+                <Link className='font-[700] text-[1.25rem]' to='#'>
                   {t("layout.menu.about")}
                 </Link>
                 {
                   aboutNCLL.map((i, index) => (
-                    <Link key={`${i?.link}-${index}`} className='text-[16px]' to={i.link}>
+                    <Link key={`${i?.link}-${index}`} className='text-[1rem]' to={i.link}>
                       {t(i.text)}
                     </Link>
                   ))
@@ -397,16 +397,16 @@ export default function DefaultLayout() {
               </div>
 
               <div className='flex flex-col gap-4'>
-                <Link className='font-[700] text-[20px]' key={`About-key`} to='#'>
+                <Link className='font-[700] text-[1.25rem]' key={`About-key`} to='#'>
                   {t("layout.follow_us")}
                 </Link>
                 {
                   socialMediaFooter.map((i, index) => {
                     return (
                       <>
-                        <Link key={`${i?.link}-${index}`} className='text-[16px] icons-container gap-2' to={i.link}>
+                        <Link key={`${i?.link}-${index}`} className='text-[1rem] icons-container gap-2' to={i.link}>
                           {i.text}
-                          <ExportSvg width='13px' height='13px' />
+                          <ExportSvg width='0.813rem' height='0.813rem' />
                         </Link>
 
                       </>
@@ -414,8 +414,8 @@ export default function DefaultLayout() {
                   })
                 }
                 <Link to='#' className='gap-2 icons-container'>
-                  <span className='text-[16px]'>{t("layout.footer.contact_us")}</span>
-                  <ExportSvg width='13px' height='13px' />
+                  <span className='text-[1rem]'>{t("layout.footer.contact_us")}</span>
+                  <ExportSvg width='0.813rem' height='0.813rem' />
                 </Link>
               </div>
             </div>
@@ -424,7 +424,7 @@ export default function DefaultLayout() {
       </div>
 
       {/* Copy Right */}
-      <div className='text-center content-center text-white h-[100px]' style={{ backgroundColor: "var(--primary-color)" }}>
+      <div className='text-center content-center text-white h-[6.25rem]' style={{ backgroundColor: "var(--primary-color)" }}>
         {t("layout.copyright")}
       </div>
 

@@ -104,7 +104,7 @@ export default function ModuleBlogComponent(props) {
                         <Select
                             showSearch
                             allowClear
-                            className='w-full min-w-[150px]'
+                            className='w-full min-w-[9.375rem]'
                             placeholder={t("All")}
                             value={filter?.source}
                             onChange={(value) => setFilter({ ...filter, source: value })}
@@ -118,7 +118,7 @@ export default function ModuleBlogComponent(props) {
                     <div className='col-span-1 flex gap-3 items-center'>
                         {t("Year")}:
                         <DatePicker
-                            className='w-full min-w-[150px]'
+                            className='w-full min-w-[9.375rem]'
                             onChange={datePickerChange}
                             picker="year"
                             value={filter?.year ? dayjs(filter?.year) : undefined}
@@ -128,7 +128,7 @@ export default function ModuleBlogComponent(props) {
                 </div>
                 <div className='flex gap-3 w-full lg:w-[50%]'>
                     <Input placeholder={t('Search')} onChange={(event) => setSearchValue(event.target.value)} value={searchValue} />
-                    <Button className="std-btn !px-[40px]" onClick={handleSearch}>{t("Search")}</Button>
+                    <Button className="std-btn !px-[2.5rem]" onClick={handleSearch}>{t("Search")}</Button>
                 </div>
             </div>
 

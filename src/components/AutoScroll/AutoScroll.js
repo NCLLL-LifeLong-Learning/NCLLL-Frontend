@@ -3,7 +3,7 @@ import React from 'react'
 export default function AutoScroll(props) {
     const { dataSource, className, scroll } = props;
     return (
-        <div className={`active h-[100px] scrolling-container ${scroll === "right" ? "scroll-right" : "scroll-left"} ${className}`}>
+        <div className={`active h-[6.25rem] scrolling-container ${scroll === "right" ? "scroll-right" : "scroll-left"} ${className}`}>
             <div className='scroll-div'>
                 {dataSource.map((data, index) => (
                     <img

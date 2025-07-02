@@ -31,7 +31,7 @@ export default function LifelongLearningForAll() {
   }, [data, isLoading])
 
   return (
-    <div className='flex flex-col gap-[30px]'>
+    <div className='flex flex-col gap-[1.875rem]'>
       <div>
         {t("The NEC has an important role to play in encouraging ministries and relevant institutions to provide support and lifelong learning, for which member ministries include:")}
       </div>
@@ -39,11 +39,11 @@ export default function LifelongLearningForAll() {
         grid={{ xxl: 3, xl: 3, lg: 2, md: 2, sm: 1, xs: 1 }}
         dataSource={dataSource}
         renderItem={(data) => {
-          return <div className='p-[5px] md:p-[15px]'>
+          return <div className='p-[0.313rem] md:p-[0.938rem]'>
             <NavLink role='button' to={"/focus-area/" + data?._id}>
               <div className='std-feature-card-wrapper'>
                 <img className="std-feature-image" src={data?.cover} alt={data?.cover} />
-                <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[120px] !rounded-none p-4'>
+                <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[7.5rem] !rounded-none p-4'>
                   <p>
                     {t(data && data[lang]?.title)}
                   </p>

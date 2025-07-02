@@ -17,9 +17,9 @@ export default function KeyFunctions() {
     t("Promote gender equality, equity, and inclusion")
   ]);
   return (
-    <div className='flex flex-col gap-[30px]'>
+    <div className='flex flex-col gap-[1.875rem]'>
       {
-        keyFunctions.map((keyFunction, index) => (<div className='flex items-center gap-[10px]'>
+        keyFunctions.map((keyFunction, index) => (<div className='flex items-center gap-[0.625rem]'>
           <div className='key-function-index !rounded-full text-center content-center text-white'>{index}</div>
           <div className='key-function-content rounded-xl'>{keyFunction}</div>
         </div>))

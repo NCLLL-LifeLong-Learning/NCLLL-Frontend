@@ -120,9 +120,9 @@ export default function SegmentedTabs(props) {
         <div
             style={{
                 textAlign: 'center',
-                marginTop: 12,
-                height: 32,
-                lineHeight: '32px',
+                marginTop: "0.75rem",
+                height: "2rem",
+                lineHeight: '2rem',
                 display: hasMoreData ? 'block' : 'none'
             }}
         >
@@ -133,8 +133,8 @@ export default function SegmentedTabs(props) {
                 icon={
                     <ArrowSvg
                         transform="rotate(270deg)"
-                        width='10px'
-                        height='10px'
+                        width='0.625rem'
+                        height='0.625rem'
                     />
                 }
                 onClick={handleLoadMore}
@@ -153,7 +153,7 @@ export default function SegmentedTabs(props) {
     };
 
     return (
-        <div className='flex flex-col justify-center items-center gap-[30px] pb-[40px]'>
+        <div className='flex flex-col justify-center items-center gap-[1.875rem] pb-[2.5rem]'>
             <Segmented
                 rootClassName='root-segmentedTab'
                 options={options}
@@ -175,14 +175,14 @@ export default function SegmentedTabs(props) {
                     loading={isLoading}
                     dataSource={dataSource}
                     renderItem={(item) => (
-                        <div className='px-[20px] py-[15px]' onClick={() => handleItemClick(item)}>
+                        <div className='px-[1.25rem] py-[0.938rem]' onClick={() => handleItemClick(item)}>
                             <div className='std-card-wrapper'>
                                 <div>
                                     <img className="std-card-image" src={item?.cover} alt={item?.cover} />
                                 </div>
-                                <div className='p-[20px] flex flex-col gap-2'>
+                                <div className='p-[1.25rem] flex flex-col gap-2'>
                                     <div className='flex items-center justify-start gap-1' style={{ color: "#00000080" }}>
-                                        <TagsSvg width='20px' height='20px' />
+                                        <TagsSvg width='1.25rem' height='1.25rem' />
                                         <div>{getTags(item.tags)}</div>
                                     </div>
                                     <h1 className='text-lg !text-black std-card-title'>{item[lang]?.title}</h1>

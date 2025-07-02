@@ -42,7 +42,7 @@ export default function SwiperBackgroundImage({ module, title, description }) {
             <div className='px-2 text-center'>
                 <p className='std-content'>{t(description)}</p>
             </div>
-            <div className='w-full px-[30px] sm:px-[60px] lg:px-[100px]'>
+            <div className='w-full px-[1.875rem] sm:px-[3.75rem] lg:px-[6.25rem]'>
                 <Carousel
                     responsive={antdResponsive({
                         lg: {
@@ -75,11 +75,11 @@ export default function SwiperBackgroundImage({ module, title, description }) {
                 >
                     {
                         dataSource.map((data, index) => (
-                            <div className='p-[5px] md:p-[15px]' key={`${data?._id}-${index}`}>
+                            <div className='p-[0.313rem] md:p-[0.938rem]' key={`${data?._id}-${index}`}>
                                 <NavLink role='button' to={"/program/" + data?._id}>
                                     <div className='std-feature-card-wrapper'>
                                         <img className="std-feature-image" src={data.cover} alt={data.cover} />
-                                        <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[120px] !rounded-none p-4'>
+                                        <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[7.5rem] !rounded-none p-4'>
                                             <p>
                                                 {t(data[lang]?.title)}
                                             </p>

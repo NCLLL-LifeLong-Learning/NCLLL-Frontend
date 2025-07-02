@@ -64,7 +64,7 @@ const MaintenanceWrapper = ({ children }) => {
   if (isMaintenance) {
     return <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<MaintenanceLoginPage healthCheck={healthCheck} />} />
+        <Route path="/login" element={<MaintenanceLoginPage setIsMaintenance={setIsMaintenance} />} />
         <Route path="*" element={<MaintenancePage />} />
       </Routes>
     </BrowserRouter>

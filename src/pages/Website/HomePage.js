@@ -29,32 +29,32 @@ export default function HomePage() {
       <div className='pt-[1rem]'>
         <BannerCarousel />
       </div>
-      <div className='py-[40px]'>
+      <div className='py-[2.5rem]'>
         <SwiperBackgroundImage
           module={MODULES_TYPE.FOCUS_AREA}
           title={"Focus Areas"}
           description={"Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities"}
         />
       </div>
-      <div className='py-[40px]'>
+      <div className='py-[2.5rem]'>
         <SwiperBackgroundImage
           module={MODULES_TYPE.PROGRAM}
           title={"Featured Programs"}
           description={"Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities"}
         />
       </div>
-      <div className='pt-[30px] container mx-auto'>
+      <div className='pt-[1.875rem] container mx-auto'>
         <SegmentedTabs
         />
       </div>
-      <div className='p-[30px]' style={{ backgroundColor: 'var(--light-blue-color)' }}>
+      <div className='p-[1.875rem]' style={{ backgroundColor: 'var(--light-blue-color)' }}>
         <MinistriesPartner
           title="Ministries Partner"
           description={"Our focus areas encourage lifelong learning through flexible, inclusive and comprehensive initiatives that meet the changing need."}
           onClick={handleMinistryPartnerClick}
         />
       </div>
-      <div className='py-[20px] md:py-[60px] container mx-auto'>
+      <div className='py-[1.25rem] md:py-[3.75rem] container mx-auto'>
         <OurPartner
           onClick={handleOurPartnerClick}
           title={"Our Partner"}

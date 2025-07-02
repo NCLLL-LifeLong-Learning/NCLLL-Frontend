@@ -1,6 +1,6 @@
 .logo {
-  width: 64px;
-  height: 64px;
+  width: 4rem;
+  height: 4rem;
 }
 
 :where(.dynamic-detail-page) img {
@@ -9,20 +9,20 @@
 
 :where(.dynamic-detail-page) pre {
   width: 100%;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 1.25rem;
+  border-radius: 0.625rem;
   background-color: #000;
   color: white;
 }
 
 .std-container {
   max-width: 85vw;
-  margin: 0px auto;
+  margin: 0rem auto;
   width: 100%;
 }
 
 .submenu-container {
-  padding: 50px 0px;
+  padding: 3.125rem 0rem;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -43,9 +43,9 @@
 .search-button {
   background-color: var(--primary-color);
   color: white;
-  width: 252px;
-  height: 40px;
-  gap: 10px;
+  width: 15.75rem;
+  height: 2.5rem;
+  gap: 0.625rem;
 }
 
 .std-layout {
@@ -67,21 +67,21 @@
 }
 
 .header-logo {
-  inline-size: 80px;
-  block-size: 80px;
+  inline-size: 5rem;
+  block-size: 5rem;
   object-fit: contain;
 }
 
 .search-input {
-  width: 194px;
-  height: 34px;
+  width: 12.125rem;
+  height: 2.125rem;
   border-radius: 5rem;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
+  padding-left: 0.625rem !important;
+  padding-right: 0.625rem !important;
 }
 
 .std-menu-link {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
 }
 
@@ -110,24 +110,24 @@
 }
 
 :where(.root-banner-carousel).ant-carousel .slick-dots-bottom {
-  margin-bottom: -30px;
+  margin-bottom: -1.875rem;
   bottom: 0 !important;
 }
 
 :where(.root-banner-carousel).ant-carousel .slick-dots li.slick-active button {
   background: none !important;
   background-color: var(--primary-color) !important;
-  border-radius: 20px !important;
-  height: 10px !important;
-  width: 24px !important;
+  border-radius: 1.25rem !important;
+  height: 0.625rem !important;
+  width: 1.5rem !important;
 }
 
 :where(.root-banner-carousel).ant-carousel .slick-dots button {
   background: none !important;
   background-color: black !important;
   border-radius: 1rem !important;
-  height: 10px !important;
-  width: 10px !important;
+  height: 0.625rem !important;
+  width: 0.625rem !important;
 }
 
 :where(.root-banner-carousel).ant-carousel .slick-dots li {
@@ -137,7 +137,7 @@
 :where(.root-segmentedTab).ant-segmented {
   border-radius: 5rem !important;
   overflow: hidden !important;
-  padding: 10px !important;
+  padding: 0.625rem !important;
 }
 
 :where(.root-segmentedTab).ant-segmented .ant-segmented-thumb {
@@ -149,7 +149,7 @@
 :where(.root-segmentedTab).ant-segmented .ant-segmented-item {
   border-radius: 5rem !important;
   overflow: hidden !important;
-  padding: 8px 40px !important;
+  padding: 0.5rem 2.5rem !important;
 }
 
 :where(.root-segmentedTab).ant-segmented .ant-segmented-item {
@@ -162,12 +162,12 @@
 }
 
 :where(.root-segmentedTab).ant-segmented .ant-segmented-item-label {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
 :where(.root-segmented-carousel).ant-carousel .slick-track {
-  padding: 20px 0px !important;
+  padding: 1.25rem 0rem !important;
 }
 
 .std-card-image {
@@ -184,7 +184,7 @@
 .std-card-wrapper {
   overflow: hidden !important;
   border-radius: 0.75rem;
-  box-shadow: 0px 1px 2px 0px #0000004d, 0px 2px 6px 2px #00000026;
+  box-shadow: 0rem 0.063rem 0.125rem 0rem #0000004d, 0rem 0.125rem 0.375rem 0.125rem #00000026;
   width: 100%;
   aspect-ratio: 1/0.65;
 }
@@ -197,7 +197,7 @@
 }
 
 :where(.breadcrumb-custom).ant-breadcrumb ol {
-  gap: 30px !important;
+  gap: 1.875rem !important;
 }
 
 :where(.breadcrumb-custom).ant-breadcrumb a {
@@ -206,7 +206,7 @@
 
 :where(.list-center).ant-breadcrumb li {
   line-height: 1;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
   color: var(--primary-color) !important;
   display: flex;
@@ -228,12 +228,12 @@
 
 .std-title {
   color: var(--primary-color);
-  font-size: 48px;
+  font-size: 3rem;
   font-weight: 700;
 }
 
 .std-content {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 
@@ -248,26 +248,26 @@
 }
 
 :where(.root-feature-carousel).ant-carousel .slick-prev {
-  margin-left: -60px;
+  margin-left: -3.75rem;
 }
 
 :where(.root-feature-carousel).ant-carousel .slick-next {
-  margin-right: -60px;
+  margin-right: -3.75rem;
 }
 
 :where(.root-partner-list).ant-carousel .slick-next {
-  margin-right: -30px;
+  margin-right: -1.875rem;
 }
 
 :where(.root-partner-list).ant-carousel .slick-prev {
-  margin-left: -30px;
+  margin-left: -1.875rem;
 }
 
 .std-feature-arrow-prev,
 .std-feature-arrow-next {
   color: var(--primary-btn-color);
-  width: 19px;
-  height: 30px;
+  width: 1.188rem;
+  height: 1.875rem;
 }
 
 :where(.hide-arrow).ant-carousel .slick-prev::after,
@@ -281,8 +281,8 @@
   position: absolute;
   bottom: 0;
   height: 30%;
-  min-height: 50px;
-  max-height: 120px;
+  min-height: 3.125rem;
+  max-height: 11.25rem;
   color: white;
   display: flex;
   justify-content: center;
@@ -293,7 +293,7 @@
   z-index: 2;
   text-align: center;
   position: relative;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 400;
   margin: 0 !important;
 }
@@ -327,8 +327,8 @@
 
 .std-partner-logo {
   max-width: none !important;
-  width: 130px !important;
-  height: 140px !important;
+  width: 8.125rem !important;
+  height: 8.75rem !important;
   object-fit: contain;
 }
 
@@ -340,14 +340,14 @@
 .std-btn,
 .std-btn:hover {
   border: none;
-  padding: 20px;
+  padding: 1.25rem;
   background-color: var(--primary-color) !important;
   color: white !important;
 }
 
 .std-btn>span {
   color: white;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700 !important;
 }
 
@@ -367,7 +367,7 @@
 }
 
 .std-our-partner-logo {
-  margin-right: 20px;
+  margin-right: 1.25rem;
   flex-shrink: 0;
   height: auto;
   width: auto;
@@ -376,7 +376,7 @@
 .scroll-div {
   display: flex;
   height: 100%;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .std-our-partner-logo {
@@ -412,19 +412,19 @@
 }
 
 .goverment-title {
-  padding: 10px 15px 10px;
+  padding: 0.625rem 0.938rem 0.625rem;
   width: 100%;
   background-color: #f7f7f7;
   color: #017827;
-  border: 1px solid #ececec;
+  border: 0.063rem solid #ececec;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 1.063rem;
 }
 
 .goverment-item-name {
   overflow: hidden;
   flex-shrink: 0;
-  font-size: 18px;
+  font-size: 1.125rem;
   padding: 0 1rem;
   word-wrap: break-word;
   width: 80%;
@@ -435,10 +435,10 @@
 }
 
 .member-table-title {
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.9;
-  padding: 10px 15px;
-  border-width: 1px;
+  padding: 0.625rem 0.938rem;
+  border-width: 0.063rem;
   border-style: solid;
   border-color: rgb(219, 219, 219);
   border-image: initial;
@@ -449,8 +449,8 @@
 }
 
 .member-table {
-  padding: 10px 15px;
-  border-width: 1px;
+  padding: 0.625rem 0.938rem;
+  border-width: 0.063rem;
   border-style: solid;
   border-color: rgb(219, 219, 219);
 }
@@ -490,8 +490,8 @@
 :where(.root-menu-tree).ant-tree .ant-tree-node-content-wrapper {
   text-align: center !important;
   width: 100% !important;
-  padding: 0px !important;
-  border-radius: 8px !important;
+  padding: 0rem !important;
+  border-radius: 0.5rem !important;
   overflow: hidden;
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
@@ -511,7 +511,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px !important;
+  height: 3.75rem !important;
   font-size: 0.9rem;
   font-weight: 400;
   text-align: center;
@@ -522,8 +522,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px !important;
-  font-size: 16px;
+  height: 2.5rem !important;
+  font-size: 1rem;
   font-weight: 400;
   text-align: center;
   align-content: center;
@@ -547,17 +547,17 @@
 }
 
 .detail-page-title {
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 600;
 }
 
 .key-function-index {
-  width: 60px;
+  width: 3.75rem;
   aspect-ratio: 1/1;
   border-radius: 10rem;
-  padding: 10px;
+  padding: 0.625rem;
   background: #0F69B7;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
@@ -566,11 +566,11 @@
   text-align: center;
   align-content: center;
   color: white;
-  padding: 20px 40px;
+  padding: 1.25rem 2.5rem;
   width: 100%;
   height: 100%;
-  min-height: 60px;
-  font-size: 20px;
+  min-height: 3.75rem;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
@@ -580,29 +580,29 @@
 
 .contact-title {
   color: #0F69B7;
-  font-size: 26px;
+  font-size: 1.625rem;
   font-weight: 700;
 }
 
 .contact-link {
   color: #0F69B7;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 
 .partner-title {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 400;
 }
 
 .mission-content {
-  line-height: 25px;
-  font-size: 20px;
+  line-height: 1.563rem;
+  font-size: 1.25rem;
   font-weight: 400;
 }
 
 .mission-title {
-  font-size: 36px;
+  font-size: 2.25rem;
   font-weight: 600;
 }
 
@@ -632,12 +632,12 @@
 @media (max-width: 1279px) {
   .fixed-burger {
     scrollbar-width: thin;
-    max-height: calc(100vh - 100px) !important;
+    max-height: calc(100vh - 6.25rem) !important;
     overflow-y: scroll;
     z-index: 1000;
     height: fit-content;
     position: fixed;
-    bottom: 100px;
+    bottom: 6.25rem;
     left: 0;
     border-top-right-radius: 1rem;
     transform: translate(-100%);
@@ -651,7 +651,7 @@
 /* max-md */
 @media (max-width: 1023px) {
   .detail-page-title {
-    font-size: 30px;
+    font-size: 1.875rem;
   }
 
   .std-card-wrapper {
@@ -659,30 +659,30 @@
   }
 
   :where(.root-feature-carousel).ant-carousel .slick-prev {
-    margin-left: -40px;
+    margin-left: -2.5rem;
   }
 
   :where(.root-feature-carousel).ant-carousel .slick-next {
-    margin-right: -40px;
+    margin-right: -2.5rem;
   }
 }
 
 /* max-sm */
 @media (max-width: 767px) {
   :where(.breadcrumb-custom) .ant-breadcrumb-link {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .detail-page-title {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
   :where(.breadcrumb-custom).ant-breadcrumb ol {
-    gap: 10px !important;
+    gap: 0.625rem !important;
   }
 
   .contact-link,
   .mission-content {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .contact-title {
@@ -690,7 +690,7 @@
   }
 
   .goverment-item-name {
-    font-size: 16px;
+    font-size: 1rem;
     width: 100%;
   }
 
@@ -709,20 +709,20 @@
 
 @media (max-width: 639px) {
   .std-title {
-    font-size: 30px;
+    font-size: 1.875rem;
   }
 
   .std-content {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 560px) {
   :where(.root-feature-carousel).ant-carousel .slick-prev {
-    margin-left: -30px;
+    margin-left: -1.875rem;
   }
 
   :where(.root-feature-carousel).ant-carousel .slick-next {
-    margin-right: -30px;
+    margin-right: -1.875rem;
   }
 }

@@ -137,32 +137,32 @@ function QuickLinkDrawer(props, ref) {
             open={open}
             size='large'
         >
-            <div className='p-[10px] lg:p-[20px]'>
+            <div className='p-[0.625rem] lg:p-[1.25rem]'>
 
                 <div className='relative gap-3 flex-col lg:flex-row flex items-start justify-between'>
                     <div className='flex-col text-center md:text-start md:flex-row w-full lg:w-auto flex items-center justify-start gap-3'>
-                        <img onClick={() => navigate("/")} className='cursor-pointer max-w-none object-cover size-[50px] lg:size-[90px] rounded-full' src='/logo.jpg' alt='logo' />
+                        <img onClick={() => navigate("/")} className='cursor-pointer max-w-none object-cover size-[3.125rem] lg:size-[5.625rem] rounded-full' src='/logo.jpg' alt='logo' />
                         <div onClick={() => navigate("/")} className='cursor-pointer flex flex-col gap-2 justify-center'>
-                            <div className='text-[12px] lg:text-[16px] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                            <div className='text-[12.5px] lg:text-[16.5px] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                            <div className='text-[0.65rem] text-md-[0.75rem] lg:text-[1rem] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
+                            <div className='text-[0.680rem] text-md-[0.781rem] lg:text-[1.031rem] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                         </div>
                     </div>
                     <div className='flex-col lg:flex-row w-full lg:w-auto flex justify-center md:justify-start items-center md:items-start gap-3'>
                         <div className='flex gap-3'>
-                            <Button type='link' onClick={() => onChangeLang("kh")} icon={<CambodiaSvg width='20px' height='20px' />} />
-                            <Button type='link' onClick={() => onChangeLang("en")} icon={<AmericanSvg width='20px' height='20px' />} />
+                            <Button type='link' onClick={() => onChangeLang("kh")} icon={<CambodiaSvg width='1.25rem' height='1.25rem' />} />
+                            <Button type='link' onClick={() => onChangeLang("en")} icon={<AmericanSvg width='1.25rem' height='1.25rem' />} />
                         </div>
 
                         <div className='flex lg:hidden gap-3'>
                             <Input.Search value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} onSearch={handleSearch} />
                         </div>
 
-                        <Button className='absolute lg:relative top-0 right-0' onClick={onClose} shape='circle' icon={<IoMdClose className="text-[20px]" />} />
+                        <Button className='absolute lg:relative top-0 right-0' onClick={onClose} shape='circle' icon={<IoMdClose className="text-[1.25rem]" />} />
                     </div>
                 </div>
 
 
-                <div className='py-[40px]'>
+                <div className='py-[2.5rem]'>
                     <Tabs
                         tabBarExtraContent={<div className='hidden lg:flex gap-3'>
                             <Input.Search value={search} onChange={(value) => setSearch(value.target.value)} onPressEnter={handleSearch} onSearch={handleSearch} />
@@ -177,7 +177,7 @@ function QuickLinkDrawer(props, ref) {
                                     style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
                                 >{t(item.title)}</div>,
                                 key: index,
-                                children: <div className='px-[30px] py-[20px] md:py-[30px] md:px-[60px] text-white'>
+                                children: <div className='px-[1.875rem] py-[1.25rem] md:py-[1.875rem] md:px-[3.75rem] text-white'>
                                     <div className='grid grid-cols-12 gap-2'>
                                         {
                                             item.route.map((route, index) => (
@@ -185,7 +185,7 @@ function QuickLinkDrawer(props, ref) {
                                                     <div className='cursor-pointer text-xl' onClick={() => onNavTo(route.path)}
                                                         style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
                                                     >{t(route?.title)}</div>
-                                                    <div className='ms-[20px] flex flex-col gap-2'>
+                                                    <div className='ms-[1.25rem] flex flex-col gap-2'>
                                                         {route?.children.map((child, index) => (<div
                                                             key={`${child?.title}-${child?.path}-${index}`}
                                                             className='cursor-pointer text-xl'

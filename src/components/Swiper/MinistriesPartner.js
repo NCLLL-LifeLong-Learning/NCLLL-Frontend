@@ -54,17 +54,17 @@ export default function MinistriesPartner({ description, title, onClick }) {
     }, [data, isLoading, lang])
 
     return (
-        <div className='min-h-[350px] md:min-h-[450px] flex items-center container mx-auto'>
+        <div className='min-h-[21.875rem] md:min-h-[28.125rem] flex items-center container mx-auto'>
             <div className='text-center w-full'>
                 <h1 className='std-title m-0'>{t(title)}</h1>
 
-                <p className='std-content m-0 pt-[20px] pb-[40px]' style={{
+                <p className='std-content m-0 pt-[1.25rem] pb-[2.5rem]' style={{
                     color: "var(--primary-color)"
                 }}>
                     {t(description)}
                 </p>
 
-                <div className='max-xxs:max-w-[205px] max-w-[calc(165px*8)] px-[5px] md:px-[20px] lg:px-0 w-full mx-auto'>
+                <div className='max-xxs:max-w-[12.813rem] max-w-[calc(10.313rem*8)] px-[0.313rem] md:px-[1.25rem] lg:px-0 w-full mx-auto'>
                     <Carousel
                         responsive={antdResponsive({
                             xl: {
@@ -99,16 +99,16 @@ export default function MinistriesPartner({ description, title, onClick }) {
                         {
                             isLoading ?
                                 dataSource.map((data, index) => (
-                                    <div className='px-[5px] md:px-[10px]' key={`${data?._id}-${index}`}>
-                                        <div className='rounded-[10px] w-[145px] h-[165px] flex justify-center items-center bg-white' onClick={onClick}>
+                                    <div className='px-[0.313rem] md:px-[0.625rem]' key={`${data?._id}-${index}`}>
+                                        <div className='rounded-[0.625rem] w-[9.063rem] h-[10.313rem] flex justify-center items-center bg-white' onClick={onClick}>
                                             <Skeleton.Image active className='std-partner-logo' />
                                         </div>
                                     </div>
                                 ))
                                 :
                                 dataSource.map((data, index) => (
-                                    <div className='px-[5px] md:px-[10px]' key={`${data?._id}-${index}`}>
-                                        <div className='rounded-[10px] w-[145px] h-[165px] flex justify-center items-center bg-white' onClick={onClick}>
+                                    <div className='px-[0.313rem] md:px-[0.625rem]' key={`${data?._id}-${index}`}>
+                                        <div className='rounded-[0.625rem] w-[9.063rem] h-[10.313rem] flex justify-center items-center bg-white' onClick={onClick}>
                                             <img className='std-partner-logo' src={data.imageUrl} alt={data.imageUrl} />
                                         </div>
                                     </div>

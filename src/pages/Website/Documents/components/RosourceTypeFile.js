@@ -43,9 +43,9 @@ export default function RosourceType(props) {
     }
 
     return (
-        <div className='grid grid-cols-3 md:flex px-[10px] md:px-[20px] gap-[10px] md:gap-[20px] w-full items-center justify-between py-[20px] ring rounded-lg'>
+        <div className='grid grid-cols-3 md:flex px-[0.625rem] md:px-[1.25rem] gap-[0.625rem] md:gap-[1.25rem] w-full items-center justify-between py-[1.25rem] ring rounded-lg'>
             <div className='col-span-3'>
-                <img className='!aspect-square w-full h-auto md:w-auto max-h-none md:max-h-[150px] border' src={data?.cover} alt={data?.cover} />
+                <img className='!aspect-square w-full h-auto md:w-auto max-h-none md:max-h-[9.375rem] border' src={data?.cover} alt={data?.cover} />
             </div>
             <div className='col-span-3 flex flex-col gap-3 justify-center flex-1'>
                 <div className='text-xl truncate' style={{ color: "var(--primary-color)" }}>{data?.title}</div>
@@ -73,7 +73,7 @@ export default function RosourceType(props) {
                 <Badge count={data?.file?.length || 0}>
                     <Button
                         type='link'
-                        icon={<FaLayerGroup color='black' className="size-[25px]" />}
+                        icon={<FaLayerGroup color='black' className="size-[1.563rem]" />}
                         onClick={() => setOpen(true)}
                     />
                 </Badge>
@@ -112,7 +112,7 @@ export default function RosourceType(props) {
                                 title: "Action",
                                 dataIndex: 'view',
                                 key: 'view',
-                                render: (item, record) => <Button type='link' icon={<DownloadSvg color='black' className="size-[25px]" />} onClick={() => handleDownload(record)} />
+                                render: (item, record) => <Button type='link' icon={<DownloadSvg color='black' className="size-[1.563rem]" />} onClick={() => handleDownload(record)} />
                             },
                         ]}
                         dataSource={data?.file || []}

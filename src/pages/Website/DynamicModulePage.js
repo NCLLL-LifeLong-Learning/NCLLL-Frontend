@@ -40,7 +40,7 @@ export default function DynamicModulePage(props) {
 
       {
         blog &&
-        <div className='py-[20px'>
+        <div className='py-[1.25rem]'>
           <ModuleBlogComponent moduleId={id} />
         </div>
       }

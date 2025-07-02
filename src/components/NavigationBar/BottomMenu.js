@@ -12,7 +12,7 @@ export default function BottomMenu({ onMouseLeave, height, menuHover, value, chi
             }}
             className={"submenu-container hidden lg:block"}
         >
-            <div style={{ padding: "0px 100px" }}>
+            <div style={{ padding: "0rem 6.25rem" }}>
                 {children}
             </div>
         </div>

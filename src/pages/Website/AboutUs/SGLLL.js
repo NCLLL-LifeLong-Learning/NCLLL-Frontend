@@ -65,9 +65,9 @@ export default function SecretariatGeneralOfNLLL() {
 
 
   return (
-    <div className='flex flex-col gap-[30px]'>
+    <div className='flex flex-col gap-[1.875rem]'>
       <div className='mission-title' style={{ color: "var(--primary-color)" }}>{t("Structure of NCLLL")}</div>
-      <div className='mission-content py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+      <div className='mission-content py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
         {t("Annex to Sub-Decree No. 237 dated 2 December 2021 on the Organization and Functioning of the Secretariat of the National Committee for Lifelong Learning")}
       </div>
       <div className='text-center' style={{ color: "var(--primary-color)", fontWeight: 600 }}>
@@ -83,15 +83,15 @@ export default function SecretariatGeneralOfNLLL() {
 
       {
         !noTermAvailable &&
-        <div className='flex justify-center w-100 px-[10px] md:px-[40px]'>
+        <div className='flex justify-center w-100 px-[0.625rem] md:px-[2.5rem]'>
           <Row gutter={[20, 20]} style={{ justifyContent: "space-between", width: "100%" }}>
             {
               dataSource?.map(item => <Col className='flex justify-center' span={24} sm={12} md={8} lg={6} xl={3}>
                 {
                   isLoading && item?.skeleton ?
-                    <Skeleton.Button active className='!w-[150px]' />
+                    <Skeleton.Button active className='!w-[9.375rem]' />
                     :
-                    <Button className='std-btn !px-[60px]' onClick={() => setSelectedTerm(item)}>{t(item?.term + "th Term")}</Button>
+                    <Button className='std-btn !px-[3.75rem]' onClick={() => setSelectedTerm(item)}>{t(item?.term + "th Term")}</Button>
                 }
               </Col>)
             }
@@ -100,37 +100,37 @@ export default function SecretariatGeneralOfNLLL() {
       }
       {
         !noTermAvailable &&
-        <div className='flex flex-col items-center pb-[30px] gap-[10px]'>
+        <div className='flex flex-col items-center pb-[1.875rem] gap-[0.625rem]'>
           {
             isLoading && !selectedTerm ?
               <Skeleton.Image active
                 className='!aspect-video !object-contain !w-full !h-full'
-                rootClassName='!w-full !max-w-[1000px]'
+                rootClassName='!w-full !max-w-[62.5rem]'
               />
               :
               <Image
                 src={selectedTerm?.[`image_url_${lang}`]}
                 alt={"term " + selectedTerm?.term}
-                rootClassName='w-full max-w-[1000px]'
+                rootClassName='w-full max-w-[62.5rem]'
                 className='!aspect-video object-contain'
               />
           }
 
           {
             isLoading && !selectedTerm ?
-              <Skeleton.Button active className='!w-[150px]' />
+              <Skeleton.Button active className='!w-[9.375rem]' />
               :
               <Button loading={loading?.downloadLoading} className='std-btn' onClick={handleDownload}>Download Tree</Button>
           }
 
-          <div className='flex flex-col w-full gap-[30px] pt-[20px]'>
-            <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+          <div className='flex flex-col w-full gap-[1.875rem] pt-[1.25rem]'>
+            <div className='min-h-[18.75rem] mission-content w-full py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
               {t("The Secretariat of the NEC has the following functions and responsibilities:")}
             </div>
-            <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+            <div className='min-h-[18.75rem] mission-content w-full py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
               {t("The policy section has the following responsibilities:")}
             </div>
-            <div className='min-h-[300px] mission-content w-full py-[10px] px-[20px] md:px-[40px] md:py-[20px] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+            <div className='min-h-[18.75rem] mission-content w-full py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
               {t("The policy section has the following responsibilities:")}
             </div>
           </div>

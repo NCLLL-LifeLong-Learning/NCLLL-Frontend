@@ -38,7 +38,7 @@ export default function DynamicDetailPage(props) {
     return (
         <div className='dynamic-detail-page'>
             {isLoading ?
-                <Skeleton.Input active className='!h-[40px] !w-full' />
+                <Skeleton.Input active className='!h-[2.5rem] !w-full' />
                 :
                 <div className='detail-page-title'>{t(dataSource && dataSource[lang]?.title)}</div>
             }

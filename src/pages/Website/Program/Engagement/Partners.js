@@ -18,7 +18,7 @@ export default function Partners(props) {
         </p>
       </div>
       {/* Card */}
-      <div className='grid grid-cols-1 gap-[30px]'>
+      <div className='grid grid-cols-1 gap-[1.875rem]'>
         {dataSource?.map((item, index) => (
           <HorizontalCard key={index} image={item?.logo} name={item[lang]?.name} linkURL={item.url} />
         ))}

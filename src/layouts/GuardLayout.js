@@ -94,7 +94,7 @@ export default function GuardLayout(props) {
                 <Divider />
             </>}
 
-            <div className={!currentRoute?.noHeader ? "py-0" : "py-[20px]"}>
+            <div className={!currentRoute?.noHeader ? "py-0" : "py-[1.25rem]"}>
                 <Outlet context={contextValue} />
             </div>
         </div>

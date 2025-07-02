@@ -129,26 +129,26 @@ export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg:
 
 export const getTreeTitle = (title, isChild, isActive, isParent, lang) => {
     if (isChild) {
-        return <div className={`gap-3 px-[10px] menu-tree-child ${isActive && "active"}`}
+        return <div className={`gap-3 px-[0.625rem] menu-tree-child ${isActive && "active"}`}
             style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
         >
             {title}
             {
                 isParent &&
                 <span className="switcher-icon">
-                    <ArrowSvg className="size-[20px] scale-[-1]" color={isActive ? "var(--primary-color)" : "white"} />
+                    <ArrowSvg className="size-[1.25rem] scale-[-1]" color={isActive ? "var(--primary-color)" : "white"} />
                 </span>
             }
         </div>
     }
-    return <div className={`gap-3 px-[10px] menu-tree-title ${isActive && "active"}`}
+    return <div className={`gap-3 px-[0.625rem] menu-tree-title ${isActive && "active"}`}
         style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
     >
         {title}
         {
             isParent &&
             <span className="switcher-icon">
-                <ArrowSvg className={`size-[20px] transition-all ${isActive ? "-rotate-90" : "-rotate-180"}`} color={isActive ? "var(--primary-color)" : "white"} />
+                <ArrowSvg className={`size-[1.25rem] transition-all ${isActive ? "-rotate-90" : "-rotate-180"}`} color={isActive ? "var(--primary-color)" : "white"} />
             </span>
         }
     </div>

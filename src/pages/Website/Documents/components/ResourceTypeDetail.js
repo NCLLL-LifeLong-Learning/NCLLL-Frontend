@@ -26,9 +26,9 @@ export default function RosourceTypeDetail(props) {
     }
 
     return (
-        <div className='grid grid-cols-3 md:flex px-[10px] md:px-[20px] gap-[10px] md:gap-[20px] w-full items-center justify-between py-[20px] ring rounded-lg'>
+        <div className='grid grid-cols-3 md:flex px-[0.625rem] md:px-[1.25rem] gap-[0.625rem] md:gap-[1.25rem] w-full items-center justify-between py-[1.25rem] ring rounded-lg'>
             <div className='col-span-3'>
-                <img className='!aspect-square w-full h-auto md:w-auto max-h-none md:max-h-[150px] border' src={data?.cover} alt={data?.cover} />
+                <img className='!aspect-square w-full h-auto md:w-auto max-h-none md:max-h-[9.375rem] border' src={data?.cover} alt={data?.cover} />
             </div>
             <div className='col-span-3 flex flex-col gap-3 justify-center flex-1'>
                 <div className='text-xl truncate' style={{ color: "var(--primary-color)" }}>{data[lang]?.title || "N/A"}</div>
@@ -59,7 +59,7 @@ export default function RosourceTypeDetail(props) {
                 </div>
             </div>
             <div className='col-span-3 h-fit flex-center'>
-                <Button type='link' icon={<LuEye style={{ fontSize: "30px", color: "black" }} onClick={onViewDetail} />} />
+                <Button type='link' icon={<LuEye style={{ fontSize: "1.875rem", color: "black" }} onClick={onViewDetail} />} />
             </div>
         </div>
     )

@@ -41,7 +41,7 @@ export default function MemberMinistries() {
   }, [data, isLoading, lang])
 
   return (
-    <div className='flex flex-col gap-[30px]'>
+    <div className='flex flex-col gap-[1.875rem]'>
       <div>
         {t("The NEC has an important role to play in encouraging ministries and relevant institutions to provide support and lifelong learning, for which member ministries include:")}
       </div>
@@ -51,8 +51,8 @@ export default function MemberMinistries() {
         dataSource={dataSource}
         renderItem={(record) => {
           if (isLoading) {
-            return <div className='py-[20px] px-[10px]'>
-              <div className='gap-3 flex flex-col shadow-lg border border-gray-300 p-[30px] w-full rounded-lg'>
+            return <div className='py-[1.25rem] px-[0.625rem]'>
+              <div className='gap-3 flex flex-col shadow-lg border border-gray-300 p-[1.875rem] w-full rounded-lg'>
                 <Skeleton.Image active={true} className="!w-full !aspect-square !h-full" />
               
                 <Skeleton.Input active={true} className="!w-full" />
@@ -60,8 +60,8 @@ export default function MemberMinistries() {
             </div>
           }
 
-          return <div className='py-[20px] px-[10px]'>
-            <div className='gap-3 flex flex-col shadow-lg border border-gray-300 p-[30px] w-full rounded-lg'>
+          return <div className='py-[1.25rem] px-[0.625rem]'>
+            <div className='gap-3 flex flex-col shadow-lg border border-gray-300 p-[1.875rem] w-full rounded-lg'>
               <img className='w-full !aspect-square h-full object-contain' src={record.imageUrl} alt={record.imageUrl} />
               <div className='partner-title text-center'>{record.name}</div>
             </div>

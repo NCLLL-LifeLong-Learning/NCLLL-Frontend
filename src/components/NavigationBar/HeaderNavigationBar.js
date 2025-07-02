@@ -28,7 +28,7 @@ export default function HeaderNavigationBar(props) {
                         {t(item?.title)}
                         {
                             item.children.length > 0 &&
-                            <ArrowSvg width='10px' height='10px' transform="rotate(180deg)" />
+                            <ArrowSvg width='0.625rem' height='0.625rem' transform="rotate(180deg)" />
                         }
                     </Link>
                 </div>)

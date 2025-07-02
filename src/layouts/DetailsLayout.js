@@ -112,8 +112,8 @@ export default function DetailsLayout() {
 
     return (
         (<div>
-            <div className='h-[260px] text-white flex justify-center items-center' style={{ background: "var(--detail-header-background)" }}>
-                <div className='max-w-[800px] text-center gap-[20px] flex flex-col'>
+            <div className='h-[16.25rem] text-white flex justify-center items-center' style={{ background: "var(--detail-header-background)" }}>
+                <div className='max-w-[50rem] text-center gap-[1.25rem] flex flex-col'>
                     <div className='std-title !text-white'
                         style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
                     >{t(treeTitle)}</div>
@@ -121,14 +121,14 @@ export default function DetailsLayout() {
                 </div>
             </div>
             <div className='bg-white shadow-md'>
-                <div className='std-container py-[20px] flex items-center'>
+                <div className='std-container py-[1.25rem] flex items-center'>
                     <Breadcrumb
                         className='list-center breadcrumb-custom'
-                        separator={<ArrowSvg className="size-[16px]" transform="scale(-1)" />}
+                        separator={<ArrowSvg className="size-[1rem]" transform="scale(-1)" />}
                         items={[
                             {
                                 onClick: () => navigate("/"),
-                                title: <AiOutlineHome className='size-[24px]' />,
+                                title: <AiOutlineHome className='size-[1.5rem]' />,
                             },
                             {
                                 onClick: () => navigate(treeData[0]?.path),
@@ -151,12 +151,12 @@ export default function DetailsLayout() {
                 <FloatButton
                     rootClassName='lg:hidden esi-floating-buger'
                     onClick={() => setBurger(!burger)}
-                    icon={burger ? <IoMdClose className="text-white text-[20px]" /> : <ExpandSvg color='white' />}
+                    icon={burger ? <IoMdClose className="text-white text-[1.25rem]" /> : <ExpandSvg color='white' />}
                     style={{ left: 10, bottom: 40, backgroundColor: "var(--primary-color)" }}
                 />
-                <div className={`${burger ? "active" : ""} transition-all fixed-burger lg:block col-span-2 ps-[10px] h-fit pb-[20px]`} style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
+                <div className={`${burger ? "active" : ""} transition-all fixed-burger lg:block col-span-2 ps-[0.625rem] h-fit pb-[1.25rem]`} style={{ backgroundColor: '#0F69B7', color: "white", borderBottomRightRadius: "1rem" }}>
                     <h1
-                        className='py-[20px] px-[10px] text-[1.5rem] md:text-[2rem] text-center m-0'
+                        className='py-[1.25rem] px-[0.625rem] text-[1.5rem] md:text-[2rem] text-center m-0'
                         style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
                     >
                         {t(treeTitle)}
@@ -172,12 +172,12 @@ export default function DetailsLayout() {
                         treeData={formatTreeData}
                     />
                 </div>
-                <div className='col-span-12 lg:col-span-10 px-[10px] py-[40px] p-0 lg:p-[40px] std-container flex justify-center'>
+                <div className='col-span-12 lg:col-span-10 px-[0.625rem] py-[2.5rem] p-0 lg:p-[2.5rem] std-container flex justify-center'>
                     <Outlet context={contextValue} />
                 </div>
             </div>
             {
-                currentRoute.contactUs && <div className="min-h-[700px] flex justify-center items-center" style={{ backgroundColor: 'var(--light-blue-color)' }}>
+                currentRoute.contactUs && <div className="min-h-[43.75rem] flex justify-center items-center" style={{ backgroundColor: 'var(--light-blue-color)' }}>
                     <BecomePartner />
                 </div>
             }

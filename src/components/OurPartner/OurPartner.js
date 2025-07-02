@@ -35,15 +35,15 @@ const OurPartner = ({ description, title, onClick }) => {
 
 
   return (
-    <div className="flex flex-col-reverse sm:grid grid-cols-4 gap-[30px] sm:gap-[10%] px-[5%] min-h-[150px] sm:min-h-[400px]">
-      <div className="w-full col-span-2 flex flex-col justify-center gap-[25px]">
+    <div className="flex flex-col-reverse sm:grid grid-cols-4 gap-[1.875rem] sm:gap-[10%] px-[5%] min-h-[9.375rem] sm:min-h-[25rem]">
+      <div className="w-full col-span-2 flex flex-col justify-center gap-[1.563rem]">
         <h1 className="std-title m-0">{t(title)}</h1>
         <div>
           <p className="std-content m-0">{t(description)}</p>
         </div>
         <Button className="std-btn" onClick={onClick}>{t("Become a partner")}</Button>
       </div>
-      <div className="w-full col-span-2 space-y-0 sm:space-y-[30px] overflow-hidden max-w-[100%]">
+      <div className="w-full col-span-2 space-y-0 sm:space-y-[1.875rem] overflow-hidden max-w-[100%]">
         <Carousel
           responsive={antdResponsive({
             xl: {
@@ -87,7 +87,7 @@ const OurPartner = ({ description, title, onClick }) => {
               Array.from({ length: 20 }, (_, index) => (
                 <Skeleton.Image active
                 key={index}
-                  className="std-our-partner-logo w-auto !my-3 !h-[120px] !aspect-square !flex"
+                  className="std-our-partner-logo w-auto !my-3 !h-[11.25rem] !aspect-square !flex"
                 />
               ))
               :
@@ -95,7 +95,7 @@ const OurPartner = ({ description, title, onClick }) => {
                 <div className="mx-3" key={`${data?._id}-${index}`}>
                   <img
                     key={`clone-${index}`}
-                    className="std-our-partner-logo my-3 w-auto !h-[120px] !aspect-square object-contain"
+                    className="std-our-partner-logo my-3 w-auto !h-[11.25rem] !aspect-square object-contain"
                     src={data?.logo}
                     alt={`Partner logo duplicate ${index}`}
                   />

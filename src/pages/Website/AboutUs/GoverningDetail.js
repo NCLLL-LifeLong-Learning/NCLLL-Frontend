@@ -215,21 +215,21 @@ export default function GoverningBoard() {
         }
       }}
     >
-      <div className='flex flex-col gap-[30px] max-w-[70vw]'>
+      <div className='flex flex-col gap-[1.875rem] max-w-[70vw]'>
         <div className='detail-page-title text-center'>{t("Governing Detail")}</div>
 
         <div className='grid grid-cols-5 gap-5'>
           {
             isLoading ?
               <div className='col-span-5 md:col-span-2 flex flex-col items-center'>
-                <div className='w-[50%] flex gap-[20px] flex-col items-center'>
+                <div className='w-[50%] flex gap-[1.25rem] flex-col items-center'>
                   <Skeleton.Image active className='!w-full !h-full !aspect-square' />
                   <Skeleton.Input active className='!mb-0 !w-full' />
                 </div>
               </div>
               :
               <div className='col-span-5 md:col-span-2 text-center flex flex-col items-center'>
-                <div className='w-[50%] flex gap-[20px] flex-col items-center'>
+                <div className='w-[50%] flex gap-[1.25rem] flex-col items-center'>
                   <img className='!w-full !h-full !aspect-square' src={data?.imageUrl} alt={data?.imageUrl} />
                   <h1 className='mb-0'>{data?.name}</h1>
                 </div>

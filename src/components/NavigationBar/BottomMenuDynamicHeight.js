@@ -35,10 +35,10 @@ export default function BottomMenuDynamicHeight(props) {
             value={index}
             height={height + 100}
         >
-            <div className='flex flex-wrap gap-[20px] justify-between items-center h-full' ref={subMenuRef}>
+            <div className='flex flex-wrap gap-[1.25rem] justify-between items-center h-full' ref={subMenuRef}>
                 {
                     item.children.map((child, index) => (
-                        <Button key={index} className='truncate w-[calc(100vw/3)] xl:w-[calc(100vw/4)] h-[54px] gap-2 std-menu-link' onClick={() => toPage(child?.link)}>
+                        <Button key={index} className='truncate w-[calc(100vw/3)] xl:w-[calc(100vw/4)] h-[3.375rem] gap-2 std-menu-link' onClick={() => toPage(child?.link)}>
                             <span
                                 style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
                             >{t(child?.title)}</span>

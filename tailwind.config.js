@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'xxs': '440px',  // Custom xxs breakpoint
-        'xs': '640px',   // Default xs breakpoint
+        'xxs': '42.5rem',  // Custom xxs breakpoint
+        'xs': '62.5rem',   // Default xs breakpoint
         'sm': '768px',   // Default sm breakpoint
         'md': '1024px',  // Default md breakpoint
         'lg': '1280px',  // Default lg breakpoint

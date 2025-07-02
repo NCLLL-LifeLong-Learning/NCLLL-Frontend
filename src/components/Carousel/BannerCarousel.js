@@ -37,17 +37,17 @@ export default function BannerCarousel() {
     }
 
     return (
-        <div className='pb-[40px]'>
+        <div className='pb-[2.5rem]'>
             <Carousel
                 responsive={antdResponsive({
                     lg: {
-                        centerPadding: '40px'
+                        centerPadding: '2.5rem'
                     },
                     md: {
-                        centerPadding: '40px'
+                        centerPadding: '2.5rem'
                     },
                     xxs: {
-                        centerPadding: '15px'
+                        centerPadding: '0.938rem'
                     }
                 })}
                 rootClassName='root-banner-carousel'
@@ -59,14 +59,14 @@ export default function BannerCarousel() {
                 pauseOnHover
                 pauseOnDotsHover
                 centerMode
-                centerPadding='100px'
+                centerPadding='6.25rem'
                 dotPosition='bottom'
                 dots={true}
             >
                 {
                     isLoading ?
                         Array.from({ length: 3 }, (_, index) => (
-                            <div className='px-[5px] md:px-[15px]' key={index}>
+                            <div className='px-[0.313rem] md:px-[0.938rem]' key={index}>
                                 <div className='custom-blur'>
                                     <Skeleton.Image active className="std-banner-image" />
                                 </div>
@@ -74,11 +74,11 @@ export default function BannerCarousel() {
                         ))
                         :
                         dataSource.map((data, index) => (
-                            <div className='px-[5px] md:px-[15px] relative' key={`${data?._id}-${index}`}>
+                            <div className='px-[0.313rem] md:px-[0.938rem] relative' key={`${data?._id}-${index}`}>
                                 <div className='custom-blur'>
                                     <img className="std-banner-image" src={data.cover} alt={data.cover} />
                                 </div>
-                                <div className='absolute bottom-[25px] w-full flex justify-center z-[5]'>
+                                <div className='absolute bottom-[20.313rem] w-full flex justify-center z-[5]'>
                                     <Button className='std-btn' onClick={() => navigateDetail(data)}>
                                         Qucik Link
                                     </Button>
