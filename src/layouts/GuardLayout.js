@@ -91,7 +91,7 @@ export default function GuardLayout(props) {
         <div className='w-full'>
             {!currentRoute?.noHeader && <>
                 <div className='detail-page-title'>{t(currentRoute.title)}</div>
-                <Divider />
+                <Divider className='h-[20px] p-0 m-0' />
             </>}
 
             <div className={!currentRoute?.noHeader ? "py-0" : "py-[1.25rem]"}>

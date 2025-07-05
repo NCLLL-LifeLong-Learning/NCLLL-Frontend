@@ -258,10 +258,17 @@ export default function DefaultLayout() {
                 onClick={openQuickLink}
                 type='text'
                 iconPosition='end'
-                className='p-0'
-                icon={<GridSvg color='black' className="size-[1rem]" />}
+                className='p-0 m-0'
               >
-                {t("layout.quick_link")}
+                <div className='flex items-center gap-2'>
+                  <p className='m-0'>
+                    {t("Quick Links")}
+                  </p>
+                  <div>
+                    <GridSvg color='black' className="size-[1rem]" />
+
+                  </div>
+                </div>
               </Button>
 
               <div className='flex gap-[1.25rem]'>
@@ -281,15 +288,14 @@ export default function DefaultLayout() {
           <div className='bg-white z-[25] relative shadow-md pt-[0.313rem] pb-[0.313rem]'>
             <div className='std-container'>
               <div className='flex justify-between items-center'>
-                <div className='w-full lg:w-auto flex items-center justify-between lg:justify-start gap-3'>
+                <div className='w-full lg:w-auto flex items-center lg:justify-start gap-3'>
                   <img onClick={() => navigate("/")} className='cursor-pointer max-w-none object-cover size-[3.125rem] lg:size-[5.625rem] rounded-full' src='/logo.jpg' alt='logo' />
-                  <div onClick={() => navigate("/")} className='cursor-pointer hidden 2xl:flex flex-col gap-2 justify-center'>
-                    <div className='text-[0.875rem] font-[500] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                    <div className='text-[0.906rem] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                  <div onClick={() => navigate("/")} className='cursor-pointer gap-2 flex flex-col justify-center'>
+                    <div className='text-[0.51rem] sm:text-[0.55rem] md:text-[0.75rem] lg:text-[0.875rem] font-[400] leading-none font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
+                    <div className='text-[0.53rem] sm:text-[0.57rem] md:text-[0.781rem] lg:text-[0.906rem] font-[400] leading-none font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                   </div>
-                  <div className='flex lg:hidden'>
-                    <Button type='link' onClick={openQuickLink} icon={<ExpandSvg color='black' className="size-[2.188rem]" />} />
-
+                  <div className='flex lg:hidden me-0 ms-auto'>
+                    <Button type='link' onClick={openQuickLink} icon={<ExpandSvg color='black' className="size-[1.5rem]" />} />
                   </div>
                 </div>
                 <HeaderNavigationBar menu={menu} setMenuHover={setMenuHover} />
@@ -366,9 +372,9 @@ export default function DefaultLayout() {
             <div className='col-span-2'>
               <div className='flex items-center flex-col lg:flex-row gap-3 pb-4'>
                 <img className='object-cover logo rounded-full' src='/logo.jpg' alt='logo' />
-                <div className='flex flex-col text-center lg:text-start mt-2 lg:mt-0 gap-2 lg:gap-0'>
-                  <div className='text-[0.813rem] lg:text-[1.125rem] font-[400] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
-                  <div className='text-[0.844rem] lg:text-[1.169rem] font-[700] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
+                <div className='flex flex-col text-center lg:text-start mt-2 lg:mt-0 gap-2 lg:gap-2'>
+                  <div className='text-[0.75rem] sm:text-[0.813rem] lg:text-[1.125rem] leading-none font-[400] font-khmer'>គណៈកម្មាធិការជាតិសម្រាប់ការសិក្សាពេញមួយជីវិត</div>
+                  <div className='text-[0.78rem] sm:text-[0.844rem] lg:text-[1.169rem] leading-none font-[400] font-english-700'>NATIONAL COMMITTEE FOR LIFELONG LEARNING</div>
                 </div>
               </div>
               <div className='mt-[0.625rem] lg:mt-0 ms-0 lg:ms-[4.688rem] flex flex-col gap-4'>

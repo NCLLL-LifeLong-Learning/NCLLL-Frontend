@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { CACHE_TIME, MODULES, STALE_TIME } from '../../constants/CacheAPI';
 import { fetchModules } from '../../api/publicRequest';
 import { NavLink } from 'react-router-dom';
+import { MODULES_TYPE } from '../../constants/Bridge';
 
 export default function SwiperBackgroundImage({ module, title, description }) {
     const { t } = useTranslation();
@@ -76,11 +77,11 @@ export default function SwiperBackgroundImage({ module, title, description }) {
                     {
                         dataSource.map((data, index) => (
                             <div className='p-[0.313rem] md:p-[0.938rem]' key={`${data?._id}-${index}`}>
-                                <NavLink role='button' to={"/program/" + data?._id}>
+                                <NavLink role='button' to={(module === MODULES_TYPE.FOCUS_AREA ? "/focus-area/" : "/program/") + data?._id}>
                                     <div className='std-feature-card-wrapper'>
                                         <img className="std-feature-image" src={data.cover} alt={data.cover} />
                                         <div className='custom-feature-blur w-full !absolute bottom-0 min-h-[7.5rem] !rounded-none p-4'>
-                                            <p>
+                                            <p className='line-clamp-2'>
                                                 {t(data[lang]?.title)}
                                             </p>
                                         </div>

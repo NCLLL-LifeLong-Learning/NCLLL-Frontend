@@ -48,7 +48,7 @@ export default function RosourceType(props) {
                 <img className='!aspect-square w-full h-auto md:w-auto max-h-none md:max-h-[9.375rem] border' src={data?.cover} alt={data?.cover} />
             </div>
             <div className='col-span-3 flex flex-col gap-3 justify-center flex-1'>
-                <div className='text-xl truncate' style={{ color: "var(--primary-color)" }}>{data?.title}</div>
+                <div className='text-xl truncate' style={{ color: "var(--primary-color)" }} role='button'  onClick={() => setOpen(true)}>{data?.title}</div>
                 <div className='flex-wrap flex items-center gap-3'>
                     <div className='flex gap-1 items-center truncate'>
                         <div className='text-md font-bold'>{t("Source")}</div>

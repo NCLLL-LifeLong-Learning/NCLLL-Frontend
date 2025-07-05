@@ -3,6 +3,12 @@
   height: 4rem;
 }
 
+/* 
+
+:where(.root-menu-tree ).ant-tree [class^="ant-tree"]{
+  width: 100% !important;
+} */
+
 :where(.dynamic-detail-page) img {
   margin: 0 auto;
 }
@@ -197,7 +203,8 @@
 }
 
 :where(.breadcrumb-custom).ant-breadcrumb ol {
-  gap: 1.875rem !important;
+  gap: 1.5rem !important;
+  flex-wrap: nowrap !important;
 }
 
 :where(.breadcrumb-custom).ant-breadcrumb a {
@@ -509,24 +516,22 @@
 
 .menu-tree-title {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   height: 3.75rem !important;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 400;
-  text-align: center;
-  align-content: center;
+  text-align: start;
 }
 
 .menu-tree-child {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   height: 2.5rem !important;
   font-size: 1rem;
   font-weight: 400;
-  text-align: center;
-  align-content: center;
+  text-align: start;
 }
 
 .menu-tree-title:hover>span>svg,
@@ -569,7 +574,6 @@
   padding: 1.25rem 2.5rem;
   width: 100%;
   height: 100%;
-  min-height: 3.75rem;
   font-size: 1.25rem;
   font-weight: 700;
 }
@@ -665,6 +669,10 @@
   :where(.root-feature-carousel).ant-carousel .slick-next {
     margin-right: -2.5rem;
   }
+
+  .key-function-content {
+    text-align: start;
+  }
 }
 
 /* max-sm */
@@ -673,11 +681,44 @@
     font-size: 1rem;
   }
 
-  .detail-page-title {
+  .key-function-content {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .key-function-index {
+    /* width: 3rem; */
+    aspect-ratio: 1/1;
+    font-size: 1.125rem;
+    padding: 0.25rem;
+  }
+
+  .mission-title {
     font-size: 1.5rem;
   }
+
+  .std-btn-small.std-btn {
+    padding: 0.75rem;
+  }
+
+  .std-btn-small.std-btn>span {
+    font-size: 0.75rem;
+  }
+
+  .menu-tree-child {
+    font-size: 0.875rem;
+  }
+
+  .menu-tree-title {
+    font-size: 1rem;
+  }
+
+  .detail-page-title {
+    font-size: 1.25rem;
+  }
+
   :where(.breadcrumb-custom).ant-breadcrumb ol {
-    gap: 0.625rem !important;
+    gap: 0.25rem !important;
   }
 
   .contact-link,

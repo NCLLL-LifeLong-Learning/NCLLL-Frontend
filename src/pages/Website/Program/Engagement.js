@@ -42,7 +42,7 @@ export default function Engagement(props) {
       let res = tabData;
       if (res?.code === 200 && !isTabLoading) {
          if (res?.data?.results.length === 0) {
-            setActiveTab(null);
+            setActiveTab("");
             return [
                {
                   en: {

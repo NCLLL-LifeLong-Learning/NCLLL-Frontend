@@ -129,10 +129,10 @@ export const antdResponsive = (settings = { xxs: {}, xs: {}, sm: {}, md: {}, lg:
 
 export const getTreeTitle = (title, isChild, isActive, isParent, lang) => {
     if (isChild) {
-        return <div className={`gap-3 px-[0.625rem] menu-tree-child ${isActive && "active"}`}
-            style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
-        >
-            {title}
+        return <div className={`gap-3 line-clamp-1 px-[0.5rem] xxl:px-[1.25rem] uppercase menu-tree-child ${isActive && "active"}`}>
+            <p className="line-clamp-1 m-0">
+                {title}
+            </p>
             {
                 isParent &&
                 <span className="switcher-icon">
@@ -141,10 +141,10 @@ export const getTreeTitle = (title, isChild, isActive, isParent, lang) => {
             }
         </div>
     }
-    return <div className={`gap-3 px-[0.625rem] menu-tree-title ${isActive && "active"}`}
-        style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
-    >
-        {title}
+    return <div className={`gap-3 px-[0.75rem] xxl:px-[1.5rem] menu-tree-title uppercase ${isActive && "active"}`}>
+        <p className="line-clamp-1 m-0">
+            {title}
+        </p>
         {
             isParent &&
             <span className="switcher-icon">

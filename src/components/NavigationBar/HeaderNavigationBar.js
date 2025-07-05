@@ -21,8 +21,7 @@ export default function HeaderNavigationBar(props) {
                                 setMenuHover(index)
                             }
                         }}
-                        className={'flex items-center gap-2 std-menu-link'}
-                        style={lang === "en" ? { fontVariant: "all-petite-caps" } : {}}
+                        className={'flex items-center gap-2 std-menu-link uppercase'}
                         to={item?.link}
                     >
                         {t(item?.title)}
