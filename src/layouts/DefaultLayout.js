@@ -54,7 +54,7 @@ export default function DefaultLayout() {
       link: "/about-us/board",
     },
     {
-      text: "SGLL",
+      text: "Secretariat General",
       link: "/about-us/sglll",
     }
   ]
@@ -75,11 +75,11 @@ export default function DefaultLayout() {
       icon: <MailSvg className="size-[1.313rem]" />,
       text: "info@moeys.gov.kh/administration@moeys.gov.kh"
     },
-    {
-      link: "#",
-      icon: <GlobeSvg className="size-[1.313rem]" />,
-      text: "www.nclll.kh"
-    }
+    // {
+    //   link: "#",
+    //   icon: <GlobeSvg className="size-[1.313rem]" />,
+    //   text: "www.nclll.kh"
+    // }
   ]
 
   const socialMedia = [
@@ -146,7 +146,7 @@ export default function DefaultLayout() {
         disabled: false,
       },
       {
-        title: "SGLLL",
+        title: "Secretariat General",
         link: "/about-us/sglll",
         disabled: false,
       },
@@ -431,7 +431,7 @@ export default function DefaultLayout() {
 
       {/* Copy Right */}
       <div className='text-center content-center text-white h-[6.25rem]' style={{ backgroundColor: "var(--primary-color)" }}>
-        {t("Copyright 2024 © National Committee For Lifelong Education")}
+        {t("© National Committee For Lifelong Learning")}
       </div>
 
 

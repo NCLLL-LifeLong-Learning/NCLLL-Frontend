@@ -46,7 +46,7 @@ export const aboutUs = {
             children: [],
         },
         {
-            title: "SGLLL",
+            title: "Secretariat General",
             label: 'Secretariat General of NLLL',
             key: "Secretariat General of NLLL",
             path: "/about-us/sglll",
