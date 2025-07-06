@@ -36,14 +36,14 @@ export default function SwiperBackgroundImage({ module, title, description }) {
     }, [data, isLoading]);
 
     return (
-        <div className='flex flex-col items-center container mx-auto'>
+        <div className='flex flex-col items-center container mx-auto px-[1.875rem] sm:px-[3.75rem] lg:px-[6.25rem]'>
             <div>
                 <h1 className='std-title'>{t(title)}</h1>
             </div>
             <div className='px-2 text-center'>
                 <p className='std-content'>{t(description)}</p>
             </div>
-            <div className='w-full px-[1.875rem] sm:px-[3.75rem] lg:px-[6.25rem]'>
+            <div className='w-full'>
                 <Carousel
                     responsive={antdResponsive({
                         lg: {

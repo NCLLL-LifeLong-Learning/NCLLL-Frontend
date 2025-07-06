@@ -133,6 +133,9 @@ export default function SecretariatGeneralOfNLLL() {
             <div className='min-h-[18.75rem] mission-content w-full py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
               {t("The policy section has the following responsibilities:")}
             </div>
+            <div className='min-h-[18.75rem] mission-content w-full py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
+              {t("The policy section has the following responsibilities:")}
+            </div>
           </div>
         </div>
       }

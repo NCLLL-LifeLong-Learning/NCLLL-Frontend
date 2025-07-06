@@ -95,7 +95,7 @@ export default function MinistriesPartner({ description, title, onClick }) {
     };
 
     return (
-        <div className='min-h-[21.875rem] md:min-h-[28.125rem] flex items-center container mx-auto'>
+        <div className='min-h-[21.875rem] md:min-h-[28.125rem] flex items-center container mx-auto px-[0.313rem] md:px-[1.25rem] lg:px-0 '>
             <div className='text-center w-full'>
                 <h1 className='std-title m-0'>{t(title)}</h1>
 
@@ -103,7 +103,7 @@ export default function MinistriesPartner({ description, title, onClick }) {
                     {t(description)}
                 </p>
 
-                <div className='max-xxs:max-w-[12.813rem] max-w-[calc(10.313rem*8)] px-[0.313rem] md:px-[1.25rem] lg:px-0 w-full mx-auto'>
+                <div className='max-xxs:max-w-[12.813rem] max-w-[calc(10.313rem*8)] w-full mx-auto'>
                     <Slider
                         {...settings}
                         className='root-partner-list cursor-grab'

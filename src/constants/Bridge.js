@@ -5,7 +5,7 @@ export const RESOURCE_TYPE = {
     report: "report",
     policy: "policy",
     admin: "admin",
-    legal: "legal",
+    // legal: "legal",
 }
 
 export const RESOURCE_TYPE_VIEW = {
@@ -18,7 +18,7 @@ export const RESOURCE_TYPE_DOWNLOAD = {
     report: "report",
     policy: "policy",
     admin: "admin",
-    legal: "legal",
+    // legal: "legal",
 }
 
 export const MODULES_TYPE = {

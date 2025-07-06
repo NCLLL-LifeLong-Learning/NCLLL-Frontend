@@ -4,9 +4,10 @@ import { antdResponsive } from '../../utils/Utils';
 import { useQuery } from '@tanstack/react-query';
 import { fetchBanners } from '../../api/publicRequest';
 import { useNavigate } from 'react-router';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 export default function BannerCarousel() {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const { data, isLoading } = useQuery({
         queryKey: ["banners"],
@@ -80,8 +81,8 @@ export default function BannerCarousel() {
                                     <img className="std-banner-image" src={data.cover} alt={data.cover} />
                                 </div>
                                 <div className='absolute bottom-[25px] w-full flex justify-center z-[5]'>
-                                    <Button className='std-btn-small std-btn uppercase' onClick={() => navigateDetail(data)}>
-                                        {t("Explore More")}
+                                    <Button className='std-btn-small std-btn uppercase opacity-75 hover:opacity-100' onClick={() => navigateDetail(data)}>
+                                        {t("Read More")}
                                     </Button>
                                 </div>
                             </div>

@@ -64,8 +64,8 @@ export const fetchGovermentDetail = async (id) => {
     return res;
 };
 
-export const fetchGoverments = async () => {
-    const res = await httpClient.get(LIST_GOVERMENT).then(res => res.data).catch(error => { throw error });
+export const fetchGoverments = async (query) => {
+    const res = await httpClient.get(objectToQuery(LIST_GOVERMENT, query)).then(res => res.data).catch(error => { throw error });
     return res;
 };
 

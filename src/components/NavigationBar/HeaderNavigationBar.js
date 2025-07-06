@@ -8,7 +8,6 @@ export default function HeaderNavigationBar(props) {
     const { lang } = useContext(LanguageContext);
     const { menu, setMenuHover, menuHover } = props;
 
-    console.log("index =", menuHover);
     return (
         <div className='hidden lg:flex gap-[2rem] xl:gap-[5rem]'>
             {
@@ -25,11 +24,10 @@ export default function HeaderNavigationBar(props) {
                         className={'flex items-center gap-2 std-menu-link uppercase ' + (menuHover == index ? "std-menu-link-active" : "")}
                         to={item?.link}
                     >
-                    {/* menuHover */}
                         {t(item?.title)}
                         {
                             item.children.length > 0 &&
-                            <ArrowSvg width='0.625rem' height='0.625rem' transform="rotate(180deg)" />
+                            <ArrowSvg width='0.625rem' height='0.625rem' transform={menuHover == index ? "rotate(270deg)" : "rotate(180deg)"} />
                         }
                     </Link>
                 </div>)

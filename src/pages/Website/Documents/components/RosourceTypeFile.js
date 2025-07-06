@@ -95,6 +95,9 @@ export default function RosourceType(props) {
                                 title: 'File Name',
                                 dataIndex: 'file_name',
                                 key: 'file_name',
+                                render: (fileName) => {
+                                      return fileName?.split('/')?.pop()?.split('.')?.slice(0, -1)?.join('.') || '';
+                                }
                             },
                             {
                                 title: 'File Type',

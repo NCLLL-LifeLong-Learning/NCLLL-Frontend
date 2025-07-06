@@ -75,14 +75,14 @@ export const resources = {
             path: "/resources",
             children: []
         },
-        {
-            title: "Legal Document",
-            label: 'Legal Document',
-            key: "Legal Document",
-            noHeader: true,
-            path: "/resources/laws",
-            children: [],
-        },
+        // {
+        //     title: "Legal Document",
+        //     label: 'Legal Document',
+        //     key: "Legal Document",
+        //     noHeader: true,
+        //     path: "/resources/laws",
+        //     children: [],
+        // },
         {
             noHeader: true,
             title: "Administration",

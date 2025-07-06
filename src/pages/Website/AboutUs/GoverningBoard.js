@@ -1,6 +1,6 @@
-import React, { useContext, useMemo } from 'react'
-import { List, Skeleton } from 'antd'
-import { useNavigate } from 'react-router';
+import React, { useContext, useMemo, useState } from 'react'
+import { List, Select, Skeleton } from 'antd'
+// import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { CACHE_TIME, GOVERMENT, STALE_TIME } from '../../../constants/CacheAPI';
@@ -10,25 +10,35 @@ import { LanguageContext } from '../../../i18n/LanguageProvider';
 export default function GoverningBoard() {
   const { t } = useTranslation();
   const { lang } = useContext(LanguageContext);
-  const navigate = useNavigate();
+  const [query, setQuery] = useState({
+    generation: 0
+  });
   const { data, isLoading } = useQuery({
-    queryKey: [GOVERMENT],
-    queryFn: fetchGoverments,
+    queryKey: [GOVERMENT, query],
+    queryFn: () => fetchGoverments(query),
     staleTime: STALE_TIME,
     cacheTime: CACHE_TIME,
   });
 
-  const dataSource = useMemo(() => {
+  const { dataSource, generations, currentGeneration } = useMemo(() => {
     const res = data;
     if (res?.code === 200 && !isLoading) {
-      return [...res?.data];
+      return {
+        currentGeneration: res?.data?.currentGeneration || 0,
+        generations: res?.data?.generations || [],
+        dataSource: [...res?.data?.list]
+      };
     } else {
-      return Array.from({ length: 3 }, (_, index) => ({
-        skeleton: true,
-        members: Array.from({ length: 6 }, (_, index) => ({
-          skeleton: true
+      return {
+        currentGeneration: 0,
+        generations: [],
+        dataSource: Array.from({ length: 3 }, (_, index) => ({
+          skeleton: true,
+          members: Array.from({ length: 6 }, (_, index) => ({
+            skeleton: true
+          }))
         }))
-      }));
+      };
     }
   }, [data, isLoading])
 
@@ -38,6 +48,21 @@ export default function GoverningBoard() {
 
   return (
     <div className='flex flex-col gap-[1.875rem] w-[90vw] md:max-w-[70vw]'>
+      <Select
+        value={query.generation > 0 ? query.generation : currentGeneration}
+        options={generations?.map((item) => {
+          const startYear = 2018 + (item - 1) * 5;
+          const endYear = startYear + 5;
+          return {
+            value: item,
+            label: t("Year") + `: ${startYear}–${endYear}`
+          };
+        })}
+        onChange={(value) => {
+          setQuery(pre => ({ ...pre, generation: value }));
+        }}
+      />
+
       {
         dataSource.map(data => <div>
           {
