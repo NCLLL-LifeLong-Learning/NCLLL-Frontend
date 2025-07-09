@@ -45,7 +45,7 @@ export default function RosourceType(props) {
     return (
         <div className='grid grid-cols-3 md:flex px-[0.625rem] md:px-[1.25rem] gap-[0.625rem] md:gap-[1.25rem] w-full items-center justify-between py-[1.25rem] ring rounded-lg'>
             <div className='col-span-3'>
-                <img className='!aspect-square w-full h-auto md:w-auto max-h-none md:max-h-[9.375rem] border' src={data?.cover} alt={data?.cover} />
+                <img className='!aspect-square w-full h-auto md:w-auto max-h-none md:max-h-[9.375rem] border object-cover object-top' src={data?.cover} alt={data?.cover} />
             </div>
             <div className='col-span-3 flex flex-col gap-3 justify-center flex-1'>
                 <div className='text-xl truncate' style={{ color: "var(--primary-color)" }} role='button'  onClick={() => setOpen(true)}>{data?.title}</div>

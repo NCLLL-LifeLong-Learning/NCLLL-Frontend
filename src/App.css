@@ -186,6 +186,7 @@
   width: 100%;
   aspect-ratio: 1/0.45;
   object-fit: cover;
+  object-position: 100% 0%;
 }
 
 .std-card-title {
