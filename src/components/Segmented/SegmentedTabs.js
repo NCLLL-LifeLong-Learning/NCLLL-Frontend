@@ -180,12 +180,12 @@ export default function SegmentedTabs(props) {
                                 <div>
                                     <img className="std-card-image" src={item?.cover} alt={item?.cover} />
                                 </div>
-                                <div className='p-[0.5rem] lg:p-[1.25rem] flex flex-col gap-1 lg:gap-2'>
+                                <div className='px-[0.5rem] py-[0.5rem] lg:py-[0.75rem] lg:px-[1rem] flex flex-col gap-1'>
                                     <div className='flex items-center justify-start gap-1' style={{ color: "#00000080" }}>
-                                        <TagsSvg className="size-[0.75rem] lg:size-[1.25rem]" />
-                                        <div className='line-clamp-1 text-[0.75rem] lg:text-[1.25rem]'>{getTags(item.tags)}</div>
+                                        <TagsSvg className="size-[0.75rem] lg:size-[1rem]" />
+                                        <div className='line-clamp-1 text-[0.75rem] lg:text-[1rem]'>{getTags(item.tags)}</div>
                                     </div>
-                                    <h1 className='text-[1rem] lg:text-[1.5rem] line-clamp-1 !text-black'>{item[lang]?.title}</h1>
+                                    <h1 className='text-[1rem] line-clamp-1 lg:line-clamp-2 !text-black'>{item[lang]?.title}</h1>
                                 </div>
                             </div>
                         </div>
