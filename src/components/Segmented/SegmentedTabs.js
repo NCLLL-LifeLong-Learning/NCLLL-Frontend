@@ -168,8 +168,8 @@ export default function SegmentedTabs(props) {
                         xs: 1,
                         sm: 2,
                         md: 2,
-                        lg: 2,
-                        xl: 2,
+                        lg: 3,
+                        xl: 3,
                         xxl: 3,
                     }}
                     loading={isLoading}
@@ -182,10 +182,10 @@ export default function SegmentedTabs(props) {
                                 </div>
                                 <div className='px-[0.5rem] py-[0.5rem] lg:py-[0.75rem] lg:px-[1rem] flex flex-col gap-1'>
                                     <div className='flex items-center justify-start gap-1' style={{ color: "#00000080" }}>
-                                        <TagsSvg className="size-[0.75rem] lg:size-[1rem]" />
-                                        <div className='line-clamp-1 text-[0.75rem] lg:text-[1rem]'>{getTags(item.tags)}</div>
+                                        <TagsSvg className="size-[1rem]" />
+                                        <div className='line-clamp-1 text-[1rem]'>{getTags(item.tags)}</div>
                                     </div>
-                                    <h1 className='text-[1rem] line-clamp-1 lg:line-clamp-2 !text-black'>{item[lang]?.title}</h1>
+                                    <h1 className='text-[1rem] line-clamp-2 !text-black'>{item[lang]?.title}</h1>
                                 </div>
                             </div>
                         </div>

@@ -37,6 +37,21 @@ function QuickLinkDrawer(props, ref) {
         if (res?.code === 200 && !isLoading) {
             const modules = [
                 {
+                    key: "Focus Area",
+                    title: "Focus Areas",
+                    description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
+                    path: "/focus-area/",
+                    startRoute: [
+                        {
+                            title: 'Lifelong Learning for all',
+                            label: 'All',
+                            key: 'All',
+                            path: "/focus-area/all",
+                            children: []
+                        },
+                    ]
+                },
+                {
                     key: "Program",
                     title: "Program",
                     description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
@@ -52,21 +67,6 @@ function QuickLinkDrawer(props, ref) {
                         }
                     ]
                 },
-                {
-                    key: "Focus Area",
-                    title: "Focus Areas",
-                    description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
-                    path: "/focus-area/",
-                    startRoute: [
-                        {
-                            title: 'Lifelong Learning for all',
-                            label: 'All',
-                            key: 'All',
-                            path: "/focus-area/all",
-                            children: []
-                        },
-                    ]
-                }
             ];
             let groupList = _.groupBy(res?.data?.results, (data) => data.mainCategory)
 

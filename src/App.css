@@ -664,6 +664,10 @@
   .fixed-burger.active {
     transform: translate(0%);
   }
+
+  .std-card-wrapper {
+    aspect-ratio: 1/0.8;
+  }
 }
 
 /* max-md */
@@ -671,11 +675,7 @@
   .detail-page-title {
     font-size: 1.875rem;
   }
-
-  .std-card-wrapper {
-    aspect-ratio: 1/0.7;
-  }
-
+  
   :where(.root-feature-carousel).ant-carousel .slick-prev {
     margin-left: -2.5rem;
   }
@@ -691,6 +691,10 @@
 
 /* max-sm */
 @media (max-width: 767px) {
+  .std-card-wrapper {
+    aspect-ratio: 1/0.8;
+  }
+
   :where(.breadcrumb-custom) .ant-breadcrumb-link {
     font-size: 1rem;
   }

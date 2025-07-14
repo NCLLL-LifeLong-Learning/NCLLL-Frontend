@@ -161,6 +161,7 @@ export default function DefaultLayout() {
 
     if (res?.code === 200 && !isLoadingModule) {
       const modules = [
+        { key: "Focus Area", path: "/focus-area/" },
         {
           key: "Program",
           path: "/program/",
@@ -172,7 +173,6 @@ export default function DefaultLayout() {
             }
           ]
         },
-        { key: "Focus Area", path: "/focus-area/" }
       ];
       let groupList = _.groupBy(res?.data?.results, (data) => data.mainCategory)
 
