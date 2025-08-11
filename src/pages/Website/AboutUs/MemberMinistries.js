@@ -42,8 +42,8 @@ export default function MemberMinistries() {
 
   return (
     <div className='flex flex-col gap-[1.875rem]'>
-      <div className='text-sm md:text-2xl'>
-        {t("The NEC has an important role to play in encouraging ministries and relevant institutions to provide support and lifelong learning, for which member ministries include:")}
+      <div className='mission-content'>
+        {t("about_us.menu_3.subtitle")}
       </div>
 
       <List

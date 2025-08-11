@@ -126,17 +126,17 @@ export default function DefaultLayout() {
       title: "About",
       link: "/about-us/mission",
       children: [{
-        title: 'Policy and Action Plan',
+        title: 'about_us.menu_1.title',
         link: "/about-us/mission",
         disabled: false,
       },
       {
-        title: "Strategy",
+        title: "about_us.menu_2.title",
         link: "/about-us/key",
         disabled: false,
       },
       {
-        title: "Member Ministry",
+        title: "about_us.menu_3.title",
         link: "/about-us/member",
         disabled: false,
       },

@@ -1,45 +1,90 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next';
-import { translateNumber } from '../../../utils/Utils';
 
 export default function KeyFunctions() {
   const { t } = useTranslation();
-  const [keyFunctions, setKeyFunctions] = useState([
-    t("Establish legal frameworks and mechanisms"),
-    t("Deliver lifelong-learning services to all citizens"),
-    t("Design diverse, flexible programs that respond to learner needs"),
-    t("Build and maintain accessible learning centers, infrastructure, and spaces"),
-    t("Train and certify professional lifelong-learning coordinators"),
-    t("Recognize, validate, and accredit learning fairly, transparently, and consistently"),
-    t("Engage ministries and institutions in lifelong-learning support"),
-    t("Foster a culture of global citizenship"),
-    t("Advance equality, equity, gender inclusion, and accessibility"),
-    t("Promote technology-based education"),
-    t("Engage the private sector, development partners, and non-governmental organizations in delivering lifelong-learning services")
-  ]);
+
+  // read arrays from translations (react-i18next must be configured to allow returnObjects)
+  const roles = t("about_us.menu_2.roles", { returnObjects: true });
+  const members = t("about_us.menu_2.members", { returnObjects: true });
+  const emblemPoints = t("about_us.menu_2.emblemPoints", { returnObjects: true });
+  const documents = t("about_us.menu_2.documents", { returnObjects: true });
+
+
   return (
     <div className='flex flex-col gap-[1.875rem]'>
-      <div className='text-sm md:text-2xl'>
-        {t("The following key strategies will be implemented to meet our objectives and goals:")}
-      </div>
+      <article>
+        <header className="mb-6">
+          <p className="text-gray-700 mission-content">{t("about_us.menu_2.subtitle")}</p>
+        </header>
 
-      {
-        keyFunctions.map((keyFunction, index) => {
-          // Example: Khmer numerals
-          const translatedIndex = translateNumber(t, index + 1); // start at 1
+        <section className="mb-6">
+          <h2 className="mission-title font-bold mb-3" style={{ color: "var(--primary-color)" }}>{t("about_us.menu_2.section.rolesTitle")}</h2>
+          <p className="mb-3 mission-content">{t("about_us.menu_2.section.rolesIntro")}</p>
 
-          return (
-            <div key={index} className="flex items-center gap-[0.625rem]">
-              <div className="key-function-index whitespace-nowrap !rounded-full text-center content-center text-white">
-                {t("Strategy")} {translatedIndex}
-              </div>
-              <div className="key-function-content rounded-xl">
-                {t(keyFunction)}
-              </div>
-            </div>
-          );
-        })
-      }
+          <ul className="list-disc list-inside space-y-2">
+            {roles.map((r, idx) => (
+              <li key={idx} className="text-gray-800 mission-content">
+                {r}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mb-6">
+          <h2 className="mission-title font-bold mb-3" style={{ color: "var(--primary-color)" }}>{t("about_us.menu_2.section.compositionTitle")}</h2>
+          <p className="mb-3 mission-content">{t("about_us.menu_2.section.compositionIntro")}</p>
+
+          <ul className="list-disc list-inside space-y-2">
+            {members.map((m, idx) => (
+              <li key={idx} className="text-gray-800">
+                <span className="!font-medium mission-content">{m.title}</span>{" "}
+                <span className="text-gray-600 mission-content"> — {m.note}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mb-6">
+          <h2 className="mission-title font-bold mb-3" style={{ color: "var(--primary-color)" }}>{t("about_us.menu_2.section.emblemTitle")}</h2>
+          <p className="mb-3 mission-content">{t("about_us.menu_2.section.emblemIntro")}</p>
+
+          <ol className="list-decimal list-inside space-y-2">
+            {emblemPoints.map((p, idx) => (
+              <li key={idx} className="text-gray-800 mission-content">
+                <span className='mission-content'>{p.title}</span>
+                {p.children && p.children.length > 0 && (
+                  <ul className="list-disc list-inside ml-5 space-y-1">
+                    {p.children.map((child, cIdx) => (
+                      <li key={cIdx} className="text-gray-700 mission-content">
+                        {child}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section>
+          <h2 className="mission-title font-bold mb-3" style={{ color: "var(--primary-color)" }}>{t("about_us.menu_2.section.documentsTitle")}</h2>
+          <ul className="list-disc list-inside space-y-2">
+            {documents.map((d, idx) => (
+              <li key={idx}>
+                <a
+                  href={d.href || "#"}
+                  className="text-blue-600 hover:underline mission-content"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {d.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </article>
     </div>
   )
 }

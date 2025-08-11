@@ -18,23 +18,23 @@ export const aboutUs = {
     description: "The National Committee for Lifelong Learning (NCLLL) is the coordinating body responsible for monitoring, supervising, evaluating, and supporting the Royal Government’s lifelong learning initiatives under the Education Law and the National Policy on Lifelong Learning.",
     route: [
         {
-            title: 'Policy and Action Plan',
-            label: 'Policy and Action Plan',
-            key: 'Policy and Action Plan',
+            title: 'about_us.menu_1.title',
+            label: 'about_us.menu_1.title',
+            key: 'about_us.menu_1.title',
             path: "/about-us/mission",
             children: []
         },
         {
-            title: "About NCLLL",
-            label: 'About NCLLL',
-            key: "About NCLLL",
+            title: "about_us.menu_2.title",
+            label: 'about_us.menu_2.title',
+            key: "about_us.menu_2.title",
             path: "/about-us/key",
             children: [],
         },
         {
-            title: "Member Ministry",
-            label: 'Member Ministry',
-            key: "Member Ministry",
+            title: "about_us.menu_3.title",
+            label: 'about_us.menu_3.title',
+            key: "about_us.menu_3.title",
             path: "/about-us/member",
             children: [],
         },

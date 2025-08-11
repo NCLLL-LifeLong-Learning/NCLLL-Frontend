@@ -112,7 +112,6 @@
   "Promote technology-based education": "Promote technology-based education",
   "Engage the private sector, development partners, and non-governmental organizations in delivering lifelong-learning services": "Engage the private sector, development partners, and non-governmental organizations in delivering lifelong-learning services",
   "About NCLLL": "About NCLLL",
-  "Policy and Action Plan": "Policy and Action Plan",
   "The Secretariat General of the National Committee for Lifelong Learning, established under the Cambodian Royal Government, operates within a framework set by several key legal documents. The Secretariat General is responsible for implementing lifelong learning initiatives, adhering to directives from the Minister of Education, Youth and Sport, and aligning with the broader educational governance framework in Cambodia.": "The Secretariat General of the National Committee for Lifelong Learning, established under the Cambodian Royal Government, operates within a framework set by several key legal documents. The Secretariat General is responsible for implementing lifelong learning initiatives, adhering to directives from the Minister of Education, Youth and Sport, and aligning with the broader educational governance framework in Cambodia.",
   "Purpose": "Purpose",
   "Vision": "Vision",
@@ -167,6 +166,7 @@
   },
   "about_us": {
     "menu_1": {
+      "title": "Policy and Action Plan",
       "goals_title": "Goal",
       "goals_intro": "To achieve the above vision and objectives, we have set the following goals:",
       "goal_1": "Deliver lifelong learning services to all Cambodians.",
@@ -192,6 +192,189 @@
       "documents_title": "Download file:",
       "document_1": "National Policy on Lifelong Learning",
       "document_2": "National Action Plan for Lifelong Learning 2024 - 2028"
+    },
+    "menu_2": {
+      "title": "About NCLLL",
+      "subtitle": "The National Committee for Lifelong Learning (NCLLL) is the coordinating body responsible for monitoring, supervising, evaluating, and supporting the Royal Government’s lifelong learning initiatives under the Education Law and the National Policy on Lifelong Learning.",
+      "section": {
+        "rolesTitle": "Roles and responsibilities of the NCLLL",
+        "rolesIntro": "The National Committee for Lifelong Learning (NCLLL) serves as an advisory body to the Royal Government on implementing the National Policy on Lifelong Learning and has the following responsibilities:",
+        "compositionTitle": "Membership of the NCLLL",
+        "compositionIntro": "The National Committee for Lifelong Learning (NCLLL) comprises 30 member ministries and institutions and is supported by a General Secretariat overseeing administrative and technical functions to ensure its effective operation. The membership is as follows:",
+        "emblemTitle": "The logo of the NCLLL",
+        "emblemIntro": "The NCLLL logo incorporates the following symbols and their meanings:",
+        "documentsTitle": "ទាញយកឯកសារ"
+      },
+      "roles": [
+        "Develop and disseminate the National Action Plan for Lifelong Learning",
+        "Recommend to the Royal Government to prepare the legal framework, mechanisms, and put in place the necessary measures at the national and sub-national levels to support the implementation of the national policy",
+        "Promote and coordinate the provision of non-formal and informal education services to all citizens to achieve literacy, numeracy, technical and vocational skills in all forms, and have the opportunity to learn throughout their lives",
+        "Organize and develop a diverse and flexible lifelong learning program",
+        "Develop infrastructure, learning spaces, and learning centers",
+        "Promote training and advance gender equality, equity, and inclusion.",
+        "Promote and encourage citizens to have a culture of lifelong learning",
+        "Coordinate and encourage ministries, national and sub-national institutions to implement policies, strategies and national action plans for lifelong learning",
+        "Promote lifelong education through technology",
+        "Encourage ministries, relevant institutions, the private sector, development partners and non-governmental organizations to participate in providing services and supporting lifelong learning",
+        "Propose to the Royal Government to revise the policy and national action plan for lifelong learning",
+        "Monitor, supervise and evaluate the implementation of the policy and national action plan for lifelong learning across ministries, institutions and sub-national",
+        "Report on the progress of implementing the National Policy and Action Plan for Lifelong Learning to the Royal Government",
+        "Perform other duties as assigned by the Royal Government."
+      ],
+      "members": [
+        {
+          "title": "Minister of Education, Youth and Sports (1 position)",
+          "note": "Chairman"
+        },
+        {
+          "title": "Minister of Labor and Vocational Training (1 position)",
+          "note": "Vice Chairman"
+        },
+        {
+          "title": "Minister of Social Affairs, Veterans and Youth Rehabilitation (1 position)",
+          "note": "Vice Chairman"
+        },
+        {
+          "title": "Minister of Cults and Religion (1 position)",
+          "note": "Vice Chairman"
+        },
+        {
+          "title": "Secretary of State of the Council of Ministers (1 position)",
+          "note": "Vice Chairman"
+        },
+        {
+          "title": "Secretary of State of the Ministry of Economy and Finance (1 position)",
+          "note": "Vice Chairman"
+        },
+        {
+          "title": "Secretary of State of the Ministry of Interior (1 position)",
+          "note": "Vice Chairman"
+        },
+        {
+          "title": "Secretary of State of the Ministry of Education, Youth and Sports (1 position)",
+          "note": "Permanent Vice Chairman"
+        },
+        {
+          "title": "Secretary of State of the Ministry of Health (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State of the Ministry of National Defense (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State of the Ministry of Economy and Finance (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State of the Ministry of Information (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State of the Ministry of Women's Affairs (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State of the Ministry of Environment (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State of the Ministry of Rural Development (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State of the Ministry of Agriculture, Forestry and Fisheries (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Culture and Fine Arts (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Commerce (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Public Service (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Public Works and Transport (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Mines and Energy (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Industry, Science, Technology and Innovation (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Posts and Telecommunications (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Land Management, Urban Planning and Construction (1 position)  Member",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Planning (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Justice (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Civil Aviation (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "Secretary of State, Ministry of Border Affairs (1 position)",
+          "note": "Member"
+        },
+        {
+          "title": "General Secretariat of the National Election Commission (1 position)",
+          "note": "Member"
+        }
+      ],
+      "emblemPoints": [
+        {
+          "title": "Three human figures (light green, dark green, sky blue) standing shoulder to shoulder, symbolizing the three stages of life:",
+          "children": [
+            "Light green represents the early stage of life, growth, development and learning",
+            "Dark green represents the middle stage, maturity and solidarity",
+            "Sky blue represents the later stage, old age and wisdom."
+          ]
+        },
+        {
+          "title": "The circle of green romduol leaves surrounding the human figures symbolizes the natural resources that sustain life. As Cambodia’s national flower, romduol represents our nation’s wealth and support for the Khmer people.",
+          "children": []
+        },
+        {
+          "title": "The green book at the base, inscribed with “NCLLL” in sky-blue letters, represents the source of knowledge and wisdom and serves as the guiding teacher across all fields of learning.",
+          "children": []
+        }
+      ],
+      "documents": [
+        {
+          "label": "Royal Decree No. NS/RKT/0125/012, dated 3 January 2025, amending the Royal Decree on the Organization and Functioning of the National Committee for Lifelong Learning",
+          "href": "#"
+        },
+        {
+          "label": "Royal Decree No. NS/RKT/0820/924, dated 29 August 2020, on the Organization and Functioning of the National Committee for Lifelong Learning",
+          "href": "#"
+        },
+        {
+          "label": "Sub-Decree No. 121 NK.BK, dated 6 June 2023, on the Logo and Seal of the National Committee for Lifelong Learning",
+          "href": "#"
+        }
+      ]
+    },
+    "menu_3": {
+      "title": "NCLLL Member Ministries",
+      "subtitle": "The NCLLL has 30 ministries and institutions as members and one General Secretariat acting as the secretariat to manage administrative and technical affairs to ensure the sustainable operation of the NCLLL as follows:"
     }
   }
 }
