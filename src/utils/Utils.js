@@ -220,3 +220,12 @@ export const objectToQuery = (uri, obj) => {
 
     return queryString ? `${uri}?${queryString}` : uri;
 };
+
+
+export const translateNumber = (t, num) => {
+    return num
+        .toString()
+        .split('')
+        .map(digit => t(`digits.${digit}`))
+        .join('');
+};

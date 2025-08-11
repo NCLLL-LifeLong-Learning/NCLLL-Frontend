@@ -66,9 +66,8 @@ export default function SecretariatGeneralOfNLLL() {
 
   return (
     <div className='flex flex-col gap-[1.875rem]'>
-      <div className='mission-title' style={{ color: "var(--primary-color)" }}>{t("Structure of NCLLL")}</div>
       <div className='mission-content py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-        {t("Annex to Sub-Decree No. 237 dated 2 December 2021 on the Organization and Functioning of the Secretariat of the National Committee for Lifelong Learning")}
+        {t("The General Secretariat of the NCLLL acts as the executive secretariat to the NCLLL and has the following responsibilities:")}
       </div>
       <div className='text-center' style={{ color: "var(--primary-color)", fontWeight: 600 }}>
         {t("The Structure of Secretariat General of NLLL are as follow :")}

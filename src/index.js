@@ -4,8 +4,6 @@ import './tailwind.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import store from './global/Store';
 import './i18n/config'
 import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';

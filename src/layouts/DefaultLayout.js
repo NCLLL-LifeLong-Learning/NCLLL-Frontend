@@ -38,11 +38,11 @@ export default function DefaultLayout() {
 
   const aboutNCLL = [
     {
-      text: "Mission and Vision",
+      text: "Purpose and Vision",
       link: "/about-us/mission",
     },
     {
-      text: "Key Functions",
+      text: "Strategy",
       link: "/about-us/key",
     },
     {
@@ -50,7 +50,7 @@ export default function DefaultLayout() {
       link: "/about-us/member",
     },
     {
-      text: "Governing Board",
+      text: "Board Member",
       link: "/about-us/board",
     },
     {
@@ -126,22 +126,22 @@ export default function DefaultLayout() {
       title: "About",
       link: "/about-us/mission",
       children: [{
-        title: 'Mission & Vision',
+        title: 'Policy and Action Plan',
         link: "/about-us/mission",
         disabled: false,
       },
       {
-        title: "Key Functions",
+        title: "Strategy",
         link: "/about-us/key",
         disabled: false,
       },
       {
-        title: "NCLLL Member Ministries",
+        title: "Member Ministry",
         link: "/about-us/member",
         disabled: false,
       },
       {
-        title: "Governing Board",
+        title: "Board Member",
         link: "/about-us/board",
         disabled: false,
       },
@@ -151,7 +151,7 @@ export default function DefaultLayout() {
         disabled: false,
       },
       {
-        title: "Contact Us",
+        title: "menu.contact_us",
         link: "/about-us/contact",
         disabled: false,
       }],

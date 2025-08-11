@@ -5,6 +5,7 @@ import SideWayArrowSvg from '../../../assets/svgs/SideWayArrowSvg';
 import { Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
+import { translateNumber } from '../../../utils/Utils';
 
 export default function MissionAndVision() {
   const { t } = useTranslation();
@@ -14,6 +15,34 @@ export default function MissionAndVision() {
     navigate("/resources");
   }
 
+  const goals = [
+    t("about_us.menu_1.goal_1"),
+    t("about_us.menu_1.goal_2"),
+    t("about_us.menu_1.goal_3"),
+    t("about_us.menu_1.goal_4"),
+    t("about_us.menu_1.goal_5"),
+    t("about_us.menu_1.goal_6")
+  ];
+
+  const strategies = [
+    { number: 1, text: t("about_us.menu_1.strategy_1") },
+    { number: 2, text: t("about_us.menu_1.strategy_2") },
+    { number: 3, text: t("about_us.menu_1.strategy_3") },
+    { number: 4, text: t("about_us.menu_1.strategy_4") },
+    { number: 5, text: t("about_us.menu_1.strategy_5") },
+    { number: 6, text: t("about_us.menu_1.strategy_6") },
+    { number: 7, text: t("about_us.menu_1.strategy_7") },
+    { number: 8, text: t("about_us.menu_1.strategy_8") },
+    { number: 9, text: t("about_us.menu_1.strategy_9") },
+    { number: 10, text: t("about_us.menu_1.strategy_10") },
+    { number: 11, text: t("about_us.menu_1.strategy_11") }
+  ];
+
+  const documents = [
+    t("about_us.menu_1.document_1"),
+    t("about_us.menu_1.document_2")
+  ];
+
   return (
     <div className='flex flex-col gap-[1.875rem]'>
       <div className='mission-content p-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
@@ -22,40 +51,66 @@ export default function MissionAndVision() {
       <div className='h-fit grid grid-cols-2 gap-[3.75rem]'>
         <div className='col-span-2 md:col-span-1 h-fit'>
           <div className='p-[1.875rem] flex-col-center gap-[1.25rem]'>
-            <TargetSvg width='40%' />
-            <div className='mission-title' style={{ color: "var(--dark-green-color)" }}>{t("Mission")}</div>
+            <TelescopeSvg width='40%' />
+            <div className='mission-title' style={{ color: "var(--dark-green-color)" }}>{t("Vision")}</div>
           </div>
           <div className='p-[1.25rem] rounded-lg mission-content' style={{ backgroundColor: "var(--light-green-color)" }}>
-            {t("NCLL is a road map to developing human resource. To achieve this policy, it is required for collaborative cooperation and support from ministries, institutions and relevant stakeholders of all levels. Furthermore, it is required for mechanism and legal standards to formulate supporting team or organization in order to coordinate work, develop national strategic plan, broadly disseminate lifelong learning, and mobilize sources from all sides, aimed at promoting lifelong learning.")}
+            {t("The National Policy on Lifelong Learning seeks to equip all Cambodians, at every stage of life and in every location, with the knowledge, skills, attitudes, physical fitness, and personal attributes necessary to foster economic growth and harmonious lives within families and communities.")}
           </div>
         </div>
 
         <div className='col-span-2 md:col-span-1 h-fit flex flex-col'>
           <div className='p-[1.875rem] flex-col-center gap-[1.25rem]'>
-            <TelescopeSvg width='40%' />
-            <div className='mission-title' style={{ color: "var(--primary-color)" }}>{t("Vision")}</div>
+            <TargetSvg width='40%' />
+            <div className='mission-title' style={{ color: "var(--primary-color)" }}>{t("Purpose")}</div>
           </div>
           <div className='flex-1 p-[1.25rem] rounded-lg mission-content' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-            {t("NCLL aims to develop every Cambodian citizen to gain knowledge, skill, attitude, and value to contribute to economic growth and promote individual and social harmony through providing lifelong learning opportunity in all contexts at any time, in any place, and by any means.")}
+            {t("The National Policy on Lifelong Learning aims to provide everyone with diverse educational opportunities and support so they can apply their skills and knowledge to enhance efficiency, quality, productivity, and income in the information technology era and intelligent society.")}
           </div>
         </div>
       </div>
       <div>
-        <div className='mission-title' style={{ color: "var(--primary-color)" }}>{t("Objective")}</div>
-        <div className='mission-content py-[0.5rem] lg:py-[1.25rem]'>
-          {t("To achieve the vision and goals, the following objectives have been established:")}
-          <ol className='mission-content px-[1rem] md:px-[2.5rem] mt-2'>
-            <li>{t("Lifelong Learning Services: Provide lifelong learning opportunities to all Cambodian people.")}</li>
-            <li>{t("Flexible Learning Programs: Develop comprehensive and adaptable lifelong learning programs to meet the demand for education.")}</li>
-            <li>{t("Learning Infrastructure: Establish and enhance learning centers, physical infrastructure, and venues for education.")}</li>
-            <li>{t("Capacity Building: Enhance the skills of lifelong learning program coordinators with a focus on program design, material development, teaching methods, orientation programs, and technical and professional practicums.")}</li>
-            <li>{t("Recognition and Accreditation: Validate and accredit the knowledge, skills, and competencies gained from lifelong learning programs according to the Cambodian National Qualification Framework (CNQF), ensuring transparency, fairness, and consistency.")}</li>
-            <li>{t("Collaboration and Implementation: Encourage ministries, institutions, the private sector, and development partners to implement lifelong learning programs to continuously update and advance employee skills as outlined in the CNQF.")}</li>
-          </ol>
-          <div className='flex-col-center py-[0.5rem] lg:py-[1.875rem]'>
-            <Button className='std-btn w-auto lg:w-[30%] flex gap-[0.625rem]' onClick={navigateResource}>{t("More on Objective")} <SideWayArrowSvg width='0.625rem' height='0.625rem' /></Button>
+
+        {/* Goals Section */}
+        <section>
+          <div className='mission-title text-center' style={{ color: "var(--primary-color)" }}>{t("about_us.menu_1.goals_title")}</div>
+          <p className='mission-content'>{t("about_us.menu_1.goals_intro")}</p>
+
+          <div>
+            {goals.map((goal, index) => (
+              <div key={index} className="flex">
+                <span className="mission-content mr-2">{translateNumber(t, index + 1)}.</span>
+                <p className='mission-content'>{goal}</p>
+              </div>
+            ))}
           </div>
-        </div>
+        </section>
+
+        {/* Strategy Section */}
+        <section>
+          <div className='mission-title text-center' style={{ color: "var(--primary-color)" }}>{t("about_us.menu_1.strategy_title")}</div>
+          <p className='mission-content'>{t("about_us.menu_1.strategy_intro")}</p>
+
+          <div>
+            {strategies.map((strategy, index) => (
+              <div key={index}>
+                <p className='mission-content'><span className="!font-bold mission-content">{t("about_us.menu_1.strategy_label")} {translateNumber(t, strategy.number)}:</span> {strategy.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Documents Section */}
+        <section>
+          <div className='mission-title' style={{ color: "var(--primary-color)" }}>{t("about_us.menu_1.documents_title")}</div>
+          <div>
+            {documents.map((document, index) => (
+              <div key={index}>
+                <Button type='link' target='_blank' href='' className='mission-content'>- {document}</Button>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   )

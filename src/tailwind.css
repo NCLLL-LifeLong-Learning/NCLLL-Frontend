@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  ul, ol {
-    list-style: revert;
-  }
-}
-
 @layer utilities {
   .flex-center {
     @apply flex justify-center items-center

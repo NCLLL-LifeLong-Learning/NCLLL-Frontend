@@ -571,7 +571,6 @@
 }
 
 .key-function-index {
-  width: 3.75rem;
   aspect-ratio: 1/1;
   border-radius: 10rem;
   padding: 0.625rem;
@@ -614,9 +613,10 @@
 }
 
 .mission-content {
-  line-height: 1.563rem;
+  line-height: 2;
   font-size: 1.25rem;
   font-weight: 400;
+  margin-bottom: 0px;
 }
 
 .mission-title {
@@ -705,7 +705,6 @@
   }
 
   .key-function-index {
-    /* width: 3rem; */
     aspect-ratio: 1/1;
     font-size: 1.125rem;
     padding: 0.25rem;

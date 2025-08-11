@@ -1,29 +1,20 @@
-import React, { useState } from 'react'
-import { useOutletContext } from 'react-router';
+import React from 'react'
 import HoldingHandSvg from "../../../assets/svgs/HoldingHandSvg";
-import HoldingHeartSvg from "../../../assets/svgs/HoldingHeartSvg.js";
 import PhoneSvg from '../../../assets/svgs/PhoneSvg';
 import { useTranslation } from 'react-i18next';
 
 export default function ContactUs() {
   const { t } = useTranslation();
-  const contextParent = useOutletContext();
-  const { setActiveKeys } = contextParent
 
   const contacts = [
     {
-      email: "info@moeys.gov.kh",
-      title: "Information",
+      email: "+855 77 488 887",
+      title: "Tel ( Telegram )",
       icons: <PhoneSvg className="size-[2.5rem] md:size-[3.75rem]" color='white' />,
     },
     {
-      email: "voluntary@moeys.gov.kh",
-      title: "Voluntary",
-      icons: <HoldingHeartSvg className="size-[2.5rem] md:size-[3.75rem]" color='white' />,
-    },
-    {
       email: "phel.phearoun@moeys.gov.kh",
-      title: "Partners and Sponsors",
+      title: "Email",
       icons: <HoldingHandSvg className="size-[2.5rem] md:size-[3.75rem]" color='white' />,
     }
 
@@ -32,7 +23,7 @@ export default function ContactUs() {
   return (
     <div className='flex flex-col gap-[1.875rem]'>
       <div>
-        {t("If you would like to get in touch with NLLL, please complete the form, or contact us directly to the following emails.")}
+        {t("If you would like to get in touch with NCLLL, please complete the form, or contact us directly to the following emails.")}
       </div>
 
       <div className='flex flex-col gap-3'>

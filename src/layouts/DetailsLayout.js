@@ -112,7 +112,7 @@ export default function DetailsLayout() {
 
     return (
         (<div>
-            <div className='h-[16.25rem] text-white flex justify-center items-center' style={{ background: "var(--detail-header-background)" }}>
+            <div className='min-h-[16.25rem] text-white flex justify-center items-center p-[2rem]' style={{ background: "var(--detail-header-background)" }}>
                 <div className='max-w-[50rem] text-center gap-[1.25rem] flex flex-col'>
                     <div className='std-title !text-white uppercase'>{t(treeTitle)}</div>
                     <div className='std-content'>{t(treeDescription)}</div>

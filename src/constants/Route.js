@@ -14,46 +14,46 @@ export const program = {
 }
 
 export const aboutUs = {
-    title: "About us",
-    description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
+    title: "About NCLLL",
+    description: "The National Committee for Lifelong Learning (NCLLL) is the coordinating body responsible for monitoring, supervising, evaluating, and supporting the Royal Government’s lifelong learning initiatives under the Education Law and the National Policy on Lifelong Learning.",
     route: [
         {
-            title: 'Mission & Vision',
-            label: 'Mission & Vision',
-            key: 'Mission & Vision',
+            title: 'Policy and Action Plan',
+            label: 'Policy and Action Plan',
+            key: 'Policy and Action Plan',
             path: "/about-us/mission",
             children: []
         },
         {
-            title: "Key Functions",
-            label: 'Key Functions',
-            key: "Key Functions",
+            title: "About NCLLL",
+            label: 'About NCLLL',
+            key: "About NCLLL",
             path: "/about-us/key",
             children: [],
         },
         {
-            title: "NCLLL Member Ministries",
-            label: 'NCLLL Member Ministries',
-            key: "NCLLL Member Ministries",
+            title: "Member Ministry",
+            label: 'Member Ministry',
+            key: "Member Ministry",
             path: "/about-us/member",
             children: [],
         },
         {
-            title: "Governing Board",
-            label: 'Governing Board',
-            key: "Governing Board",
+            title: "Board Member",
+            label: 'Board Member',
+            key: "Board Member",
             path: "/about-us/board",
             children: [],
         },
         {
             title: "Secretariat General",
-            label: 'Secretariat General of NLLL',
-            key: "Secretariat General of NLLL",
+            label: 'Secretariat General',
+            key: "Secretariat General",
             path: "/about-us/sglll",
             children: [],
         },
         {
-            title: "Contact Us",
+            title: "menu.contact_us",
             label: 'Get in touch',
             key: "Contact us",
             path: "/about-us/contact",
