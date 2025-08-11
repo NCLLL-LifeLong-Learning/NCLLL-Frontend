@@ -39,11 +39,11 @@ export default function DefaultLayout() {
   const aboutNCLL = [
     {
       text: "Purpose and Vision",
-      link: "/about-us/mission",
+      link: "/about-us/policy-nclll",
     },
     {
       text: "Strategy",
-      link: "/about-us/key",
+      link: "/about-us/about-nclll",
     },
     {
       text: "Ministries Partner",
@@ -124,15 +124,15 @@ export default function DefaultLayout() {
     const tempMenu = []
     const aboutUs = {
       title: "About",
-      link: "/about-us/mission",
+      link: "/about-us/policy-nclll",
       children: [{
         title: 'about_us.menu_1.title',
-        link: "/about-us/mission",
+        link: "/about-us/policy-nclll",
         disabled: false,
       },
       {
         title: "about_us.menu_2.title",
-        link: "/about-us/key",
+        link: "/about-us/about-nclll",
         disabled: false,
       },
       {

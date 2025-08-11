@@ -67,6 +67,10 @@ export default function KeyFunctions() {
           </ol>
         </section>
 
+        <section className='flex justify-center my-4'>
+            <img className='w-full md:w-[50%] max-w-[400px]' src='/assets/images/menu_2_image_1.png' alt='/assets/images/menu_2_image_1.png' />
+        </section>
+
         <section>
           <h2 className="mission-title font-bold mb-3" style={{ color: "var(--primary-color)" }}>{t("about_us.menu_2.section.documentsTitle")}</h2>
           <ul className="list-disc list-inside space-y-2">

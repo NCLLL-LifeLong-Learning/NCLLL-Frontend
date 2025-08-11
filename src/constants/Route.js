@@ -21,14 +21,14 @@ export const aboutUs = {
             title: 'about_us.menu_1.title',
             label: 'about_us.menu_1.title',
             key: 'about_us.menu_1.title',
-            path: "/about-us/mission",
+            path: "/about-us/policy-nclll",
             children: []
         },
         {
             title: "about_us.menu_2.title",
             label: 'about_us.menu_2.title',
             key: "about_us.menu_2.title",
-            path: "/about-us/key",
+            path: "/about-us/about-nclll",
             children: [],
         },
         {

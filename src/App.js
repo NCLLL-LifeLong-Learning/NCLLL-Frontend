@@ -46,9 +46,9 @@ function App() {
           <Route element={<Suspense><WebDetailsLayout /></Suspense>}>
 
             <Route path='/about-us' element={<GuardLayout description={aboutUs.description} title={aboutUs.title} route={aboutUs.route} />}>
-              <Route index path='mission' element={<Suspense><MissionAndVisionPage /></Suspense>} />
+              <Route index path='policy-nclll' element={<Suspense><MissionAndVisionPage /></Suspense>} />
 
-              <Route path='key' element={<Suspense><KeyFunctionsPage /></Suspense>} />
+              <Route path='about-nclll' element={<Suspense><KeyFunctionsPage /></Suspense>} />
 
               <Route path='member' element={<Suspense><MemberMinistriesPage /></Suspense>} />
 
