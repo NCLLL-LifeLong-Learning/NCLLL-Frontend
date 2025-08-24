@@ -14,7 +14,7 @@ const WebDetailsLayout = React.lazy(() => import('./layouts/DetailsLayout'));
 
 const WebHomePage = React.lazy(() => import('./pages/Website/HomePage'));
 
-const KeyFunctionsPage = React.lazy(() => import('./pages/Website/AboutUs/KeyFunctions'));
+const AboutNCLLLPage = React.lazy(() => import('./pages/Website/AboutUs/AboutNCLLL'));
 const MissionAndVisionPage = React.lazy(() => import('./pages/Website/AboutUs/MissionAndVision'));
 const MemberMinistriesPage = React.lazy(() => import('./pages/Website/AboutUs/MemberMinistries'));
 const GoverningBoardPage = React.lazy(() => import('./pages/Website/AboutUs/GoverningBoard'));
@@ -48,7 +48,7 @@ function App() {
             <Route path='/about-us' element={<GuardLayout description={aboutUs.description} title={aboutUs.title} route={aboutUs.route} />}>
               <Route index path='policy-nclll' element={<Suspense><MissionAndVisionPage /></Suspense>} />
 
-              <Route path='about-nclll' element={<Suspense><KeyFunctionsPage /></Suspense>} />
+              <Route path='about-nclll' element={<Suspense><AboutNCLLLPage /></Suspense>} />
 
               <Route path='member' element={<Suspense><MemberMinistriesPage /></Suspense>} />
 
