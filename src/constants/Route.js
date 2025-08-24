@@ -53,9 +53,9 @@ export const aboutUs = {
             children: [],
         },
         {
-            title: "menu.contact_us",
-            label: 'Get in touch',
-            key: "Contact us",
+            title: "about_us.menu_6.title",
+            label: 'about_us.menu_6.title',
+            key: "about_us.menu_6.title",
             path: "/about-us/contact",
             contactUs: true,
             children: []

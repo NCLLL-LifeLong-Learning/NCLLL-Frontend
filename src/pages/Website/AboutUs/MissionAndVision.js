@@ -46,7 +46,7 @@ export default function MissionAndVision() {
   return (
     <div className='flex flex-col gap-[1.875rem]'>
       <div className='mission-content p-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-        {t("The Secretariat General of the National Committee for Lifelong Learning, established under the Cambodian Royal Government, operates within a framework set by several key legal documents. The Secretariat General is responsible for implementing lifelong learning initiatives, adhering to directives from the Minister of Education, Youth and Sport, and aligning with the broader educational governance framework in Cambodia.")}
+        {t("The Royal Government of Cambodia has developed a National Policy on Lifelong Learning, which was approved in 2019, with the aim of enhancing potential human resource development to achieve sustainable development goals. At the same time, the development of a National Action Plan on Lifelong Learning is necessary and requires the concerted efforts of all institutions and stakeholders, focusing on the quality and effectiveness of human resource development. This action plan is an incorporated mechanism within a common national goal that can broaden and make participation more effective in providing opportunities and services, as well as recognizing and responding to the needs of service recipients and the labor market, especially for marginalized group.")}
       </div>
       <div className='h-fit grid grid-cols-2 gap-[3.75rem]'>
         <div className='col-span-2 md:col-span-1 h-fit'>
@@ -55,7 +55,7 @@ export default function MissionAndVision() {
             <div className='mission-title' style={{ color: "var(--dark-green-color)" }}>{t("Vision")}</div>
           </div>
           <div className='p-[1.25rem] rounded-lg mission-content' style={{ backgroundColor: "var(--light-green-color)" }}>
-            {t("The National Policy on Lifelong Learning seeks to equip all Cambodians, at every stage of life and in every location, with the knowledge, skills, attitudes, physical fitness, and personal attributes necessary to foster economic growth and harmonious lives within families and communities.")}
+            {t("The National Policy on Lifelong Learning seeks to equip all Cambodians, at every stage of life and in every location, with the knowledge, skills, attitudes, physical fitness, and personal attributes necessary to foster economic growth and promote harmonious lives within families and communities.")}
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export default function MissionAndVision() {
             <div className='mission-title' style={{ color: "var(--primary-color)" }}>{t("Purpose")}</div>
           </div>
           <div className='flex-1 p-[1.25rem] rounded-lg mission-content' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-            {t("The National Policy on Lifelong Learning aims to provide everyone with diverse educational opportunities and support so they can apply their skills and knowledge to enhance efficiency, quality, productivity, and income in the information technology era and intelligent society.")}
+            {t("The National Policy on Lifelong Learning aims to provide everyone with diverse educational opportunities and support so they can apply their skills and knowledge to enhance efficiency, quality, productivity, and income in the information technology era and smart society.")}
           </div>
         </div>
       </div>

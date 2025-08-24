@@ -8,13 +8,15 @@ export default function ContactUs() {
 
   const contacts = [
     {
-      email: "+855 77 488 887",
-      title: "Tel ( Telegram )",
+      email: "+885 77 488 887",
+      link: "https://t.me/+077488887",
+      title: "about_us.menu_6.tel",
       icons: <PhoneSvg className="size-[2.5rem] md:size-[3.75rem]" color='white' />,
     },
     {
       email: "phel.phearoun@moeys.gov.kh",
-      title: "Email",
+      link: "mailto:phel.phearoun@moeys.gov.kh",
+      title: "about_us.menu_6.email",
       icons: <HoldingHandSvg className="size-[2.5rem] md:size-[3.75rem]" color='white' />,
     }
 
@@ -23,7 +25,7 @@ export default function ContactUs() {
   return (
     <div className='flex flex-col gap-[1.875rem]'>
       <div>
-        {t("If you would like to get in touch with NCLLL, please complete the form, or contact us directly to the following emails.")}
+        {t("about_us.menu_6.subtitle")}
       </div>
 
       <div className='flex flex-col gap-3'>
@@ -32,7 +34,7 @@ export default function ContactUs() {
             <div className='contact-icons rounded-l-md p-[1.25rem] md:px-[1.25rem] md:py-[1.875rem]'>{contact.icons}</div>
             <div className='rounded-r-md flex flex-col justify-center gap-[0.313rem] pe-[0.625rem]'>
               <div className='truncate contact-title'>{t(contact.title)}</div>
-              <a className='truncate contact-link' href={'mailto:' + contact.email}>{contact.email}</a>
+              <a className='truncate contact-link' href={contact.link} target='_blank' rel='noreferrer'>{contact.email}</a>
             </div>
           </div>)
         }

@@ -420,7 +420,7 @@ export default function DefaultLayout() {
                   })
                 }
                 <Link to='#' className='gap-2 icons-container'>
-                  <span className='text-[1rem]'>{t("Contact Us")}</span>
+                  <span className='text-[1rem]'>{t("about_us.menu_6.title")}</span>
                   <ExportSvg width='0.813rem' height='0.813rem' />
                 </Link>
               </div>
