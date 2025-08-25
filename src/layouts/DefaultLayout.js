@@ -38,23 +38,23 @@ export default function DefaultLayout() {
 
   const aboutNCLL = [
     {
-      text: "Purpose and Vision",
+      text: "about_us.menu_1.title",
       link: "/about-us/policy-nclll",
     },
     {
-      text: "Strategy",
+      text: "about_us.menu_2.title",
       link: "/about-us/about-nclll",
     },
     {
-      text: "Ministries Partner",
+      text: "about_us.menu_3.title",
       link: "/about-us/member",
     },
     {
-      text: "Board Member",
+      text: "about_us.menu_4.title",
       link: "/about-us/board",
     },
     {
-      text: "Secretariat General",
+      text: "about_us.menu_5.title",
       link: "/about-us/sglll",
     }
   ]
@@ -141,17 +141,17 @@ export default function DefaultLayout() {
         disabled: false,
       },
       {
-        title: "Board Member",
+        title: "about_us.menu_4.title",
         link: "/about-us/board",
         disabled: false,
       },
       {
-        title: "Secretariat General",
+        title: "about_us.menu_5.title",
         link: "/about-us/sglll",
         disabled: false,
       },
       {
-        title: "menu.contact_us",
+        title: "about_us.menu_6.title",
         link: "/about-us/contact",
         disabled: false,
       }],

@@ -46,9 +46,9 @@ export const aboutUs = {
             children: [],
         },
         {
-            title: "Secretariat General",
-            label: 'Secretariat General',
-            key: "Secretariat General",
+            title: "about_us.menu_5.title",
+            label: 'about_us.menu_5.title',
+            key: "about_us.menu_5.title",
             path: "/about-us/sglll",
             children: [],
         },

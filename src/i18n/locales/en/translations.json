@@ -133,7 +133,6 @@
   "The NEC has an important role to play in encouraging ministries and relevant institutions to provide support and lifelong learning, for which member ministries include:": "The NEC has an important role to play in encouraging ministries and relevant institutions to provide support and lifelong learning, for which member ministries include:",
   "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities": "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
   "Select year": "Select year",
-  "Secretariat General": "Secretariat General",
   "menu": {
     "contact_us": "Contact Us"
   },
@@ -353,6 +352,85 @@
     "menu_3": {
       "title": "NCLLL Member Ministries",
       "subtitle": "The NCLLL has 30 ministries and institutions as members and one General Secretariat acting as the secretariat to manage administrative and technical affairs to ensure the sustainable operation of the NCLLL as follows:"
+    },
+    "menu_5": {
+      "title": "Secretariat General",
+      "documentsTitle": "Download file:",
+      "summary_line_1": "The NCLLL is comprised of a General Secretariat as a key actor for its day-to-day operations and is located at the cabinet of the Ministry of Education, Youth, and Sports. ",
+      "summary_line_2": "General Secretariat of NCLLL was established by Sub-decree No. 237 ANK.BK, dated December 2, 2021, on the organization and functioning of the General Secretariat of the National Committee for Lifelong Learning.",
+      "summary_line_3": "The organizational structure of the general secretariat includes:",
+      "summary_line_3_1": "Administration and Finance Department",
+      "summary_line_3_2": "Policy Department",
+      "summary_line_3_3": "Monitoring, Evaluation, and Assessment Department",
+      "sub_title": "The Structure of Secretariat General of NLLL are as follow :",
+      "term_1": "Management Structure",
+      "term_2": "Organizational Structure",
+      "download_title": "Download",
+      "box_1": {
+        "title": "The General Secretariat of the NCLLL serves as the main executive body of the NCLLL and has the following duties:",
+        "ul_list": [
+          "Manage administrative and technical affairs to ensure the sustainable operation of the NCLLL.",
+          "Disseminate various legal documents approved by the NCLLL to all ministries, institutions, and development partners involved.",
+          "Develop infrastructure, learning spaces, and learning centers.",
+          "Coordinate the provision of non-formal and informal education services to all citizens, enabling literacy, numeracy, technical and vocational skills, and lifelong learning opportunities.",
+          "Organize and develop diversified lifelong learning programs for training and promoting gender equality, equity, and inclusiveness.",
+          "Coordinate with ministries, national and sub-national institutions, private sectors, development partners, and NGOs to implement policies, strategies, and national action plans for lifelong learning.",
+          "Promote and encourage citizens to cultivate a lifelong learning culture.",
+          "Manage the finances of the NCLLL.",
+          "Monitor, evaluate, and promote the implementation of national policies on lifelong learning in ministries, institutions, and sub-national levels.",
+          "Propose reviews and improvements of national policies and national action plans on lifelong learning to the NCLLL.",
+          "Collaborate with the NCLLL to coordinate technical work in each relevant sector.",
+          "Prepare reports for the NCLLL.",
+          "Perform other tasks assigned by the Chairperson of the NCLLL."
+        ]
+      },
+      "box_2": {
+        "title": "Administration and Finance Division responsibilities:",
+        "ul_list": [
+          "Perform administrative tasks and ensure the sustainability of general secretariat operations.",
+          "Disseminate approved legal documents of the NCLLL to all relevant ministries, institutions, and development partners.",
+          "Manage civil servants and staff within the general secretariat of the NCLLL ",
+          "Organize and arrange meetings of the NCLLL and its Secretariat.",
+          "Manage income, expenditure, and propose of annual budget projects of the NCLLL.",
+          "Organize and manage inventories of movable and immovable assets of the Secretariat.",
+          "Prepare short-, medium-, and long-term operational plans for the Secretariat.",
+          "Coordinate with ministries, institutions, and development partners to prepare reports and recommendations for NCLLL’s review and decision.",
+          "Summarize work related to promoting lifelong learning for the Secretariat’s review.",
+          "Prepare reports on the general secretariat of the NCLLL ",
+          "Perform other tasks assigned by the Secretary-General."
+        ]
+      },
+      "box_3": {
+        "title": "Policy Division responsibilities:",
+        "ul_list": [
+          "Organize and develop diversified lifelong learning programs for training and promoting gender equality, equity, and inclusiveness.",
+          "Coordinate with ministries, national and sub-national institutions, private sectors, development partners, and NGOs to implement policies, strategies, and national action plans for lifelong learning.",
+          "Propose reviews and improvements of national policies and national action plans on lifelong learning to the NCLLL.",
+          "Cooperate with national and international communities to ensure the effectiveness of the NCLLL’s work.",
+          "Conduct research to promote lifelong learning and prepare documents for learners.",
+          "Collaborate with ministries, institutions, and development partners to expand lifelong learning services.",
+          "Cooperate with sectoral technical committees to ensure the implementation of roles and responsibilities outlined in national policies on lifelong learning.",
+          "Promote and encourage citizens to cultivate a lifelong learning culture.",
+          "Perform other tasks assigned by the Secretary-General."
+        ]
+      },
+      "box_4": {
+        "title": "Monitoring, Evaluation, and Assessment Division responsibilities:",
+        "ul_list": [
+          "Collaborate with sectoral technical committees for lifelong learning to monitor, evaluate, and assess the implementation of national lifelong learning policies.",
+          "Conduct research and establish indicators and benchmarks for monitoring, evaluation, and assessment.",
+          "Cooperate with ministries, institutions, and development partners to improve monitoring and evaluation mechanisms.",
+          "Collect and analyze data on the outcomes of lifelong learning programs for the NCLLL’s review and decision.",
+          "Disseminate results of monitoring and evaluation to ministries, institutions, and development partners.",
+          "Perform other tasks assigned by the Secretary-General."
+        ]
+      },
+      "documents": [
+        {
+          "label": "Sub-decree No. 237 ANK.BK, dated December 2, 2021, on the organization and functioning of the General Secretariat of the National Committee for Lifelong Learning",
+          "href": "#"
+        }
+      ]
     },
     "menu_6": {
       "title": "Contact Us",

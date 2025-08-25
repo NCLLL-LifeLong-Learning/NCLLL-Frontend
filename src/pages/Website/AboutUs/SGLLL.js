@@ -63,14 +63,45 @@ export default function SecretariatGeneralOfNLLL() {
     }
   };
 
+  const Box1UList = t("about_us.menu_5.box_1.ul_list", { returnObjects: true });
+  const Box2UList = t("about_us.menu_5.box_2.ul_list", { returnObjects: true });
+  const Box3UList = t("about_us.menu_5.box_3.ul_list", { returnObjects: true });
+  const Box4UList = t("about_us.menu_5.box_4.ul_list", { returnObjects: true });
+
+  const documents = t("about_us.menu_5.documents", { returnObjects: true }) || [];
 
   return (
     <div className='flex flex-col gap-[1.875rem]'>
       <div className='mission-content py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-        {t("The General Secretariat of the NCLLL acts as the executive secretariat to the NCLLL and has the following responsibilities:")}
+        <p
+          className="mission-content"
+          dangerouslySetInnerHTML={{ __html: t("about_us.menu_5.summary_line_1") }}
+        />
+        <p
+          className="mission-content"
+          dangerouslySetInnerHTML={{ __html: t("about_us.menu_5.summary_line_2") }}
+        />
+        <p
+          className="mission-content"
+          dangerouslySetInnerHTML={{ __html: t("about_us.menu_5.summary_line_3") }}
+        />
+        <ul className="px-[3rem]">
+          <li
+            className="mission-content"
+            dangerouslySetInnerHTML={{ __html: t("about_us.menu_5.summary_line_3_1") }}
+          />
+          <li
+            className="mission-content"
+            dangerouslySetInnerHTML={{ __html: t("about_us.menu_5.summary_line_3_2") }}
+          />
+          <li
+            className="mission-content"
+            dangerouslySetInnerHTML={{ __html: t("about_us.menu_5.summary_line_3_3") }}
+          />
+        </ul>
       </div>
       <div className='text-center' style={{ color: "var(--primary-color)", fontWeight: 600 }}>
-        {t("The Structure of Secretariat General of NLLL are as follow :")}
+        {t("about_us.menu_5.sub_title")}
       </div>
 
       {
@@ -90,7 +121,7 @@ export default function SecretariatGeneralOfNLLL() {
                   isLoading && item?.skeleton ?
                     <Skeleton.Button active className='!w-[9.375rem]' />
                     :
-                    <Button className='std-btn !px-[3.75rem]' onClick={() => setSelectedTerm(item)}>{t(item?.term + "th Term")}</Button>
+                    <Button className='std-btn !px-[3.75rem]' onClick={() => setSelectedTerm(item)}>{t("about_us.menu_5.term_" + item?.term)}</Button>
                 }
               </Col>)
             }
@@ -119,25 +150,67 @@ export default function SecretariatGeneralOfNLLL() {
             isLoading && !selectedTerm ?
               <Skeleton.Button active className='!w-[9.375rem]' />
               :
-              <Button loading={loading?.downloadLoading} className='std-btn' onClick={handleDownload}>Download Tree</Button>
+              <Button loading={loading?.downloadLoading} className='std-btn' onClick={handleDownload}>{t("about_us.menu_5.download_title")}</Button>
           }
 
           <div className='flex flex-col w-full gap-[1.875rem] pt-[1.25rem]'>
             <div className='min-h-[18.75rem] mission-content w-full py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-              {t("The Secretariat of the NEC has the following functions and responsibilities:")}
+              {t("about_us.menu_5.box_1.title")}
+
+              <ul className='px-[3rem]'>
+                {Box1UList.map((li, idx) => (
+                  <li className='mission-content'>{li}</li>
+                ))}
+              </ul>
             </div>
             <div className='min-h-[18.75rem] mission-content w-full py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-              {t("The policy section has the following responsibilities:")}
+              {t("about_us.menu_5.box_2.title")}
+
+              <ul className='px-[3rem]'>
+                {Box2UList.map((li, idx) => (
+                  <li className='mission-content'>{li}</li>
+                ))}
+              </ul>
             </div>
             <div className='min-h-[18.75rem] mission-content w-full py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-              {t("The policy section has the following responsibilities:")}
+              {t("about_us.menu_5.box_3.title")}
+
+              <ul className='px-[3rem]'>
+                {Box3UList.map((li, idx) => (
+                  <li className='mission-content'>{li}</li>
+                ))}
+              </ul>
             </div>
             <div className='min-h-[18.75rem] mission-content w-full py-[0.625rem] px-[1.25rem] md:px-[2.5rem] md:py-[1.25rem] rounded-lg' style={{ backgroundColor: "var(--dark-blue-color)" }}>
-              {t("The policy section has the following responsibilities:")}
+              {t("about_us.menu_5.box_4.title")}
+
+              <ul className='px-[3rem]'>
+                {Box4UList.map((li, idx) => (
+                  <li className='mission-content'>{li}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       }
+
+      <section>
+        <h2 className="mission-title font-bold mb-3" style={{ color: "var(--primary-color)" }}>{t("about_us.menu_5.documentsTitle")}</h2>
+        <ul className="list-disc list-inside space-y-2">
+          {documents?.map((d, idx) => (
+            <li key={idx}>
+              <a
+                href={d.href || "#"}
+                className="text-blue-600 hover:underline mission-content"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {d.label}
+              </a>
+            </li>
+          )) || []}
+        </ul>
+      </section>
     </div>
   )
 }
