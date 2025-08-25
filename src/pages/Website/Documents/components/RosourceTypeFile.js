@@ -43,11 +43,11 @@ export default function RosourceType(props) {
     }
 
     return (
-        <div className='grid grid-cols-3 md:flex px-[0.625rem] md:px-[1.25rem] gap-[0.625rem] md:gap-[1.25rem] w-full items-center justify-between py-[1.25rem] ring rounded-lg'>
-            <div className='col-span-3'>
+        <div className='grid grid-cols-8 px-[0.625rem] md:px-[1.25rem] gap-[0.625rem] md:gap-[1.25rem] w-full items-center justify-between py-[1.25rem] ring rounded-lg'>
+            <div className='col-span-8 sm:col-span-2 md:col-span-1'>
                 <img className='!aspect-square w-full h-auto md:w-auto max-h-none md:max-h-[9.375rem] border object-cover object-top' src={data?.cover} alt={data?.cover} />
             </div>
-            <div className='col-span-3 flex flex-col gap-3 justify-center flex-1'>
+            <div className='col-span-8 sm:col-span-4 md:col-span-6 flex flex-col gap-3 justify-center flex-1'>
                 <div className='text-xl truncate' style={{ color: "var(--primary-color)" }} role='button'  onClick={() => setOpen(true)}>{data?.title}</div>
                 <div className='flex-wrap flex items-center gap-3'>
                     <div className='flex gap-1 items-center truncate'>
@@ -69,7 +69,7 @@ export default function RosourceType(props) {
                     </div>
                 </div>
             </div>
-            <div className='col-span-3 h-fit flex-center'>
+            <div className='col-span-8 sm:col-span-2 md:col-span-1 h-fit flex-center'>
                 <Badge count={data?.file?.length || 0}>
                     <Button
                         type='link'

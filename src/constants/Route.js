@@ -1,6 +1,6 @@
 export const program = {
-    title: "Program",
-    description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
+    title: "program.title",
+    description: "program.description",
     route: [
         {
             title: "Engagement",
@@ -14,8 +14,8 @@ export const program = {
 }
 
 export const aboutUs = {
-    title: "About NCLLL",
-    description: "The National Committee for Lifelong Learning (NCLLL) is the coordinating body responsible for monitoring, supervising, evaluating, and supporting the Royal Government’s lifelong learning initiatives under the Education Law and the National Policy on Lifelong Learning.",
+    title: "about_us.title",
+    description: "about_us.description",
     route: [
         {
             title: 'about_us.menu_1.title',
@@ -64,8 +64,8 @@ export const aboutUs = {
 }
 
 export const resources = {
-    title: "Resources",
-    description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
+    title: "resources.title",
+    description: "resources.description",
     route: [
         {
             title: 'All',
@@ -166,8 +166,8 @@ export const resources = {
 }
 
 export const focusArea = {
-    title: "Focus Areas",
-    description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
+    title: "our_work.title",
+    description: "our_work.description",
     route: [
         {
             title: 'Lifelong Learning for all',

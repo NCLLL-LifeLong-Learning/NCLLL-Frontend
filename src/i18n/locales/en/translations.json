@@ -30,15 +30,11 @@
   "© National Committee For Lifelong Learning": "© National Committee For Lifelong Learning",
   "Purpose and Vision": "Purpose and Vision",
   "Follow us": "Follow us",
-  "About": "About",
   "Contact Us": "Contact Us",
-  "Featured Programs": "Featured Programs",
   "News": "News",
   "Events": "Events",
   "Load more": "Load more",
   "resourcess": "Resources",
-  "Our Partner": "Our Partner",
-  "Ministries Partner": "Ministries Partner",
   "Our focus areas encourage lifelong learning through flexible, inclusive and comprehensive initiatives that meet the changing need.": "Our focus areas encourage lifelong learning through flexible, inclusive and comprehensive initiatives that meet the changing need.",
   "Become Our Partner": "Become Our Partner",
   "Seeking for Collaboration.": "Seeking for Collaboration.",
@@ -100,7 +96,6 @@
   "Published": "Published",
   "Lan": "Lan",
   "Source": "Source",
-  "About NCLLL": "About NCLLL",
   "Member Ministry": "Member Ministry",
   "Board Member": "Board Member",
   "Minister": "Minister",
@@ -109,9 +104,6 @@
   "The General Secretariat of the NCLLL acts as the executive secretariat to the NCLLL and has the following responsibilities:": "The General Secretariat of the NCLLL acts as the executive secretariat to the NCLLL and has the following responsibilities:",
   "Annex to Sub-Decree No. 237 dated 2 December 2021 on the Organization and Functioning of the Secretariat of the National Committee for Lifelong Learning": "Annex to Sub-Decree No. 237 dated 2 December 2021 on the Organization and Functioning of the Secretariat of the National Committee for Lifelong Learning",
   "The Structure of Secretariat General of NLLL are as follow :": "The Structure of Secretariat General of NLLL are as follow :",
-  "6th Term": "6th Term",
-  "7th Term": "7th Term",
-  "8th Term": "8th Term",
   "The Secretariat of the NEC has the following functions and responsibilities:": "The Secretariat of the NEC has the following functions and responsibilities:",
   "The policy section has the following responsibilities:": "The policy section has the following responsibilities:",
   "Text Name": "Text Name",
@@ -141,7 +133,43 @@
   "Vision": "Vision",
   "The National Policy on Lifelong Learning aims to provide everyone with diverse educational opportunities and support so they can apply their skills and knowledge to enhance efficiency, quality, productivity, and income in the information technology era and smart society.": "The National Policy on Lifelong Learning aims to provide everyone with diverse educational opportunities and support so they can apply their skills and knowledge to enhance efficiency, quality, productivity, and income in the information technology era and smart society.",
   "The National Policy on Lifelong Learning seeks to equip all Cambodians, at every stage of life and in every location, with the knowledge, skills, attitudes, physical fitness, and personal attributes necessary to foster economic growth and promote harmonious lives within families and communities.": "The National Policy on Lifelong Learning seeks to equip all Cambodians, at every stage of life and in every location, with the knowledge, skills, attitudes, physical fitness, and personal attributes necessary to foster economic growth and promote harmonious lives within families and communities.",
+  "footer": {
+    "about_us": {
+      "menu_1": "National Policy",
+      "menu_2": "About NCLLL",
+      "menu_5": "Secretariat General"
+    },
+    "soical_media": {
+      "title": "Connect",
+      "facebook": "Facebook",
+      "youtube": "Youtube",
+      "contact_us": "Contact Us"
+    }
+  },
+  "our_partner": {
+    "title": "Our Partner",
+    "description": "Become an official partner of the National Council of Education (NCE) to participate in the development and promotion of lifelong learning in Cambodia."
+  },
+  "ministries_partner": {
+    "title": "Ministries Partner",
+    "description": "The NCSC has 30 member ministries and institutions and a General Secretariat as its headquarters to manage administrative and technical affairs that ensure the smooth running of the work."
+  },
+  "our_work": {
+    "title": "Our Work",
+    "description": "Provide opportunities and support for all people to receive education in all forms and use knowledge to increase efficiency, quality, work productivity, and income in line with the information technology age and Buddhist society."
+  },
+  "program": {
+    "title": "Program",
+    "home_title": "Featured Programs",
+    "description": "Coordinate and support the implementation of programs with NCEC members, the private sector, and development partners in response to the 6 goals and 11 strategies of the National Policy on Lifelong Learning."
+  },
+  "resources": {
+    "title": "Resources",
+    "description": "Collect documents and legal regulations related to the implementation of the national policy on lifelong learning."
+  },
   "about_us": {
+    "title": "About Us",
+    "description": "It has a vision to develop all Cambodian people to be fully capable, contribute to economic growth, and promote the well-being of individuals, families, and society by providing lifelong learning opportunities.",
     "menu_1": {
       "title": "National Policy on Lifelong Learning",
       "goals_title": "Goals",
@@ -172,6 +200,7 @@
     },
     "menu_2": {
       "title": "About NCLLL",
+      "description": "It has a vision to develop all Cambodian people to be fully capable, contribute to economic growth, and promote the well-being of individuals, families, and society by providing lifelong learning opportunities.",
       "subtitle": "The National Committee for Lifelong Learning (NCLLL) is the coordinating body responsible for monitoring, supervising, evaluating, and supporting the Royal Government’s lifelong learning initiatives under the Education Law and the National Policy on Lifelong Learning.",
       "section": {
         "rolesTitle": "Roles and responsibilities of the NCLLL",

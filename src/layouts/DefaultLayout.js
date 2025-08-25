@@ -38,42 +38,36 @@ export default function DefaultLayout() {
 
   const aboutNCLL = [
     {
-      text: "about_us.menu_1.title",
+      text: "footer.about_us.menu_1",
       link: "/about-us/policy-nclll",
     },
     {
-      text: "about_us.menu_2.title",
+      text: "footer.about_us.menu_2",
       link: "/about-us/about-nclll",
     },
     {
-      text: "about_us.menu_3.title",
-      link: "/about-us/member",
-    },
-    {
-      text: "about_us.menu_4.title",
-      link: "/about-us/board",
-    },
-    {
-      text: "about_us.menu_5.title",
+      text: "footer.about_us.menu_5",
       link: "/about-us/sglll",
     }
   ]
 
   const businessInfo = [
     {
-      link: "#",
+      link: "https://www.google.com/maps/search/?api=1&query=80+Blvd.+Preah+Norodom,+Phnom+Penh,+Cambodia",
+      target: "_blank",
       icon: <PinSvg className="size-[1.313rem]" />,
       text: "80 Blvd. Preah Norodom, Phnom Penh, Cambodia."
     },
     {
-      link: "#",
+      link: "https://t.me/+077488887",
+      target: "_blank",
       icon: <PhoneSvg className="size-[1.313rem]" />,
-      text: "(855-23) 220 673 / 220 304 / 426 951"
+      text: "(855-77) 488 887"
     },
     {
-      link: "#",
+      link: "mailto:phel.phearoun@moeys.gov.kh",
       icon: <MailSvg className="size-[1.313rem]" />,
-      text: "info@moeys.gov.kh/administration@moeys.gov.kh"
+      text: "phel.phearoun@moeys.gov.kh"
     },
     // {
     //   link: "#",
@@ -97,16 +91,19 @@ export default function DefaultLayout() {
 
   const socialMediaFooter = [
     {
-      text: "Facebook",
+      text: "footer.soical_media.facebook",
       link: "#"
-    }, {
-      text: "Telegram",
-      link: "#"
-    }, {
-      text: "LinkedIn",
-      link: "#"
-    }, {
-      text: "Youtube",
+    },
+    // {
+    //   text: "Telegram",
+    //   link: "#"
+    // }, 
+    // {
+    //   text: "LinkedIn",
+    //   link: "#"
+    // }, 
+    {
+      text: "footer.soical_media.youtube",
       link: "#"
     }
   ];
@@ -123,7 +120,7 @@ export default function DefaultLayout() {
 
     const tempMenu = []
     const aboutUs = {
-      title: "About",
+      title: "about_us.title",
       link: "/about-us/policy-nclll",
       children: [{
         title: 'about_us.menu_1.title',
@@ -380,7 +377,7 @@ export default function DefaultLayout() {
               <div className='mt-[0.625rem] lg:mt-0 ms-0 lg:ms-[4.688rem] flex flex-col gap-4'>
                 {
                   businessInfo.map((i, index) => (
-                    <Link key={`${i.link}-${index}`} to={i.link} className='icons-container gap-3'>
+                    <Link key={`${i.link}-${index}`} to={i.link} target={i.target ?? "_self"} className='icons-container gap-3'>
                       {i.icon}
                       <span className='truncate'>{i.text}</span>
                     </Link>
@@ -391,7 +388,7 @@ export default function DefaultLayout() {
             <div className='col-span-1 flex justify-between mt-[0.625rem] lg:mt-[0]'>
               <div className='flex flex-col gap-4'>
                 <Link className='font-[700] text-[1.25rem]' to='#'>
-                  {t("About")}
+                  {t("about_us.title")}
                 </Link>
                 {
                   aboutNCLL.map((i, index) => (
@@ -411,7 +408,7 @@ export default function DefaultLayout() {
                     return (
                       <>
                         <Link key={`${i?.link}-${index}`} className='text-[1rem] icons-container gap-2' to={i.link}>
-                          {i.text}
+                          {t(i.text)}
                           <ExportSvg width='0.813rem' height='0.813rem' />
                         </Link>
 
@@ -419,8 +416,8 @@ export default function DefaultLayout() {
                     )
                   })
                 }
-                <Link to='#' className='gap-2 icons-container'>
-                  <span className='text-[1rem]'>{t("about_us.menu_6.title")}</span>
+                <Link to='/about-us/contact' className='gap-2 icons-container'>
+                  <span className='text-[1rem]'>{t("footer.soical_media.contact_us")}</span>
                   <ExportSvg width='0.813rem' height='0.813rem' />
                 </Link>
               </div>

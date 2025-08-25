@@ -32,15 +32,15 @@ export default function HomePage() {
       <div className='py-[2.5rem]'>
         <SwiperBackgroundImage
           module={MODULES_TYPE.FOCUS_AREA}
-          title={"Focus Areas"}
-          description={"Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities"}
+          title={"our_work.title"}
+          description={"our_work.description"}
         />
       </div>
       <div className='py-[2.5rem]'>
         <SwiperBackgroundImage
           module={MODULES_TYPE.PROGRAM}
-          title={"Featured Programs"}
-          description={"Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities"}
+          title={"program.home_title"}
+          description={"program.description"}
         />
       </div>
       <div className='pt-[1.875rem] container mx-auto'>
@@ -49,16 +49,16 @@ export default function HomePage() {
       </div>
       <div className='p-[1.875rem]' style={{ backgroundColor: 'var(--light-blue-color)' }}>
         <MinistriesPartner
-          title="Ministries Partner"
-          description={"Our focus areas encourage lifelong learning through flexible, inclusive and comprehensive initiatives that meet the changing need."}
+          title="ministries_partner.title"
+          description={"ministries_partner.description"}
           onClick={handleMinistryPartnerClick}
         />
       </div>
       <div className='py-[1.25rem] md:py-[3.75rem] container mx-auto'>
         <OurPartner
           onClick={handleOurPartnerClick}
-          title={"Our Partner"}
-          description={"Our focus areas encourage lifelong learning through flexible, inclusive and comprehensive initiatives that meet the changing need."}
+          title={"our_partner.title"}
+          description={"our_partner.description"}
         />
       </div>
     </div>

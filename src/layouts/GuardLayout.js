@@ -29,7 +29,7 @@ export default function GuardLayout(props) {
 
         if (res?.code === 200 && !isLoading) {
             const modules = {
-                "Program": {
+                "program.title": {
                     key: "Program",
                     path: "/program/",
                     endRoute: [
@@ -42,7 +42,7 @@ export default function GuardLayout(props) {
                         }
                     ]
                 },
-                "Focus Areas": {
+                "our_work.title": {
                     key: "Focus Area",
                     path: "/focus-area/",
                     startRoute: [

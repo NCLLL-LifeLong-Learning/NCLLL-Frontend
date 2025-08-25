@@ -38,8 +38,8 @@ function QuickLinkDrawer(props, ref) {
             const modules = [
                 {
                     key: "Focus Area",
-                    title: "Focus Areas",
-                    description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
+                    title: "our_work.title",
+                    description: "our_work.description",
                     path: "/focus-area/",
                     startRoute: [
                         {
@@ -53,8 +53,8 @@ function QuickLinkDrawer(props, ref) {
                 },
                 {
                     key: "Program",
-                    title: "Program",
-                    description: "Our focus areas enhance lifelong learning through flexible, inclusive, and comprehensive initiatives that meet the changing needs of individuals and communities",
+                    title: "program.title",
+                    description: "program.description",
                     path: "/program/",
                     endRoute: [
                         {
